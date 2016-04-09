@@ -1,0 +1,61 @@
+<div class="row">
+	<div class="col-md-5">
+		<div class="btn-group" role="group" aria-label="...">
+		  <button type="button" class="btn btn-default" ng-click="cat.nuevaCategoria()">Nueva Categoría</button>
+		  <button type="button" class="btn btn-default" ng-click="cat.putCategoria()" ng-disabled="cat.activado">Editar Categoría</button>
+		  <button type="button" class="btn btn-default" ng-click="cat.deleteCategoria()" ng-disabled="cat.activado">Eliminar Categoría</button>
+		</div>
+	</div>
+    <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand" ui-sref-active="active">
+                    <a ui-sref="productos">
+                        Productos
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="categorias">Categorias</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+</div>
+
+
+
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+
+<div class="row">
+    <div class="col-md-6" ui-view>
+
+	</div>
+<div class="col-md-8">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Descripcion</th>
+        <th>Género</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="categoria in cat.categorias">
+        <td><li class="list-group-item" ng-click="cat.activeItem($index, categoria)" ng-class="{ 'active' : $index == cat.selectedIndex}">
+            {{categoria.idCategoria}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="cat.activeItem($index, categoria)" ng-class="{ 'active' : $index == cat.selectedIndex}">
+			  {{categoria.descripcion}}</li>
+		  </td>
+           <td> <li class="list-group-item" ng-click="cat.activeItem($index, categoria)" ng-class="{ 'active' : $index == cat.selectedIndex}">
+			  {{categoria.generoDescripcion}}</li>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+
+	
+</div>

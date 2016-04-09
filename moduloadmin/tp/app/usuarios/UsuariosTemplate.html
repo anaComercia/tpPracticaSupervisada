@@ -1,0 +1,52 @@
+<div class="row">
+	<div class="col-md-5">
+		<div class="btn-group" role="group" aria-label="...">
+		  <button type="button" class="btn btn-default" ng-click="cat.nuevoUsuario()">Nuevo Usuario</button>
+		  <button type="button" class="btn btn-default" ng-click="cat.putUsuario()" ng-disabled="cat.activado">Editar Usuario</button>
+		  <button type="button" class="btn btn-default" ng-click="cat.deleteUsuario()" ng-disabled="cat.activado">Eliminar Usuario</button>
+		</div>
+	</div>
+     <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand" ui-sref-active="active">
+                    <a ui-sref="usuarios">
+                        Usuarios
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Clientes</a>
+                </li>
+                <li>
+                    <a href="#">Empleados</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+    
+    <div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+    
+<div class="col-md-8">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Usuario</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="producto in prod.productos">
+        <td><li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+            {{producto.producto_desc}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{producto.producto_precio}}</li>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+</div>

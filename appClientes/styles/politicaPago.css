@@ -1,0 +1,11 @@
+#idPoliticaPago h5{
+    font-family: -webkit-pictograph;
+    font-style: italic;
+    color: black;
+    padding-bottom: 10px;
+    text-decoration: underline;
+}
+
+#idPoliticaPago .fa:before {
+    margin-right: 15px;
+}

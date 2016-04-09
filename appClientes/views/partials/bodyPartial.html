@@ -1,0 +1,93 @@
+<div id="idBody"  class="col-md-10 col-md-offset-1" >
+
+    <div id="idModulosPrincipal"  class="col-md-12" >
+        <div  class="col-md-10 col-md-offset-2" style="padding: 0px;">
+            <ul id="idMenuModulos">
+                <li >
+                    <a href="../views/paginaPrincipalCopy.html"> INICIO </a>
+                </li>
+                <li >
+                    <a href="../views/paginaPrincipalCopy.html"> PRODUCTOS </a>
+                </li>
+                <li>
+                    <a href="../views/paginaPrincipalCopy.html"> CONTACTO </a>
+                </li>
+                <li >
+                    <a href="../views/modulos/politicasPago.html"> POLITICA DE PAGO </a>
+                </li>
+
+            </ul>
+        </div>
+
+
+        <div id="myCarousel" class="col-md-10 col-md-offset-2 carousel slide" >
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+          </ol>
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            <div class="active item"><img  src="../img/carrusel/carrusel1.jpg" alt="banner1" /></div>
+            <div class="item"><img  src="../img/carrusel/carrusel2.jpg" alt="banner2" /></div>
+            <div class="item"><img  src="../img/carrusel/carrusel3.jpg" alt="banner3" /></div>
+            <div class="item"><img  src="../img/carrusel/carrusel4.jpg" alt="banner4" /></div>
+            <div class="item"><img  src="../img/carrusel/carrusel5.jpg" alt="banner5" /></div>
+            <div class="item"><img  src="../img/carrusel/carrusel6.jpg" alt="banner6" /></div>
+          </div>
+
+        </div> <!-- FIN CARRUSEL -->
+
+    </div>
+
+    <div id="idPnlFiltros"  class="col-md-2" style="height:800px;">
+         <div id="idPnlCategorias" class="col-md-10" style="">
+             <h4>Categorias principales</h4>
+             <ul>
+                <li>Jeans</li>
+                <li>Camisas</li>
+                <li>Remeras</li>
+                <li>Camperas</li>
+                <li>Hombre</li>
+                <li>Mujer</li>
+             </ul>
+             <a href="#" id="show-more-cats" style="" title="Mostrar más categorías">
+                 <i class="fa fa-angle-down"></i>
+             </a>
+        </div>
+
+    </div>
+
+    <div id="idPnlImagenes"  class="col-md-10" style="height:800px; padding:0px;">
+
+
+    </div>
+</div> <!-- FIN BODY -->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+          $('#myCarousel').carousel({
+             interval: 2000 
+          });
+    });
+
+    var categoriesList = $("#idPnlCategorias li");
+
+    if (categoriesList.length > 4) {
+        $("#show-more-cats").show(); 
+        for (i = 4; i < categoriesList.length; i++) { 
+            $(categoriesList[i]).hide();
+        }
+    }
+
+    $("#show-more-cats").click(function(e){
+        e.preventDefault();
+        for (i = 4; i < categoriesList.length; i++) { 
+            $(categoriesList[i]).toggle();
+        }
+        $(this).find("i").toggleClass("fa-angle-up fa-angle-down");
+    });
+</script>

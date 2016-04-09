@@ -1,0 +1,69 @@
+<div class="row">
+	<div class="col-md-5">
+		<div class="btn-group" role="group" aria-label="...">
+            <!-- <ng-click funciona del mismo modo que onclick llamando a un metodo del controller, siempre tiene que anteponer el alias> -->
+		  <button type="button" class="btn btn-default" ng-click="prod.nuevoProducto()">Nuevo Producto</button>
+		  <button type="button" class="btn btn-default" Editar Producto</button>
+		  <button type="button" class="btn btn-default" >Eliminar Producto</button>
+		</div>
+	</div>
+    
+    <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand" ui-sref-active="active">
+                    <a ui-sref="productos">
+                        Productos
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="categorias">Categorias</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+    <div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+    
+    
+<div class="col-md-8">
+    <div class="col-md-12" ui-view> <!-- Se inserta productFormTemplate -->
+
+	</div>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Título</th>
+        <th>Categoría</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+        <!-- <ng-repeat siempre para llenar una tabla o un combobox con un array guardado en el controller> -->
+        <!-- <producto es el alias como el for each> -->
+      <tr ng-repeat="producto in prod.productos">
+          <!-- <ng-class permite cambiar la clase de un elemento en tiempo real si algo sucede> -->
+           <!-- Hace que se sombree -->
+        <td><li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}"><!-- ng-class= cambiamos dinamicamente; active es una clase de bustrup -->
+            <!-- Buscar TErnarios-->
+            {{producto.idProducto}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{producto.titulo}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{producto.categoria_desc}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{producto.precio}}</li>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+    
+    
+</div>

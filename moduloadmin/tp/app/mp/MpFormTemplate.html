@@ -1,0 +1,28 @@
+<h2>{{mp.formLabel}}</h2>
+<div>
+	  <div class="form-group">
+		<label>Titulo</label>
+		<input type="text" class="form-control" placeholder="Título de la materia prima" ng-model="mp.nuevaMp.titulo">
+          
+           <label>Color</label>
+		<input type="text" class="form-control" placeholder="Color de la materia prima" ng-model="mp.nuevaMp.color">
+          
+        <div  id="divMp">
+          <label>Precio</label>
+		<input type="text" class="form-control" placeholder="Precio de la materia prima" ng-model="mp.nuevaMp.precio">
+          </div>
+          <div  id="divMp">
+          <label>Por cada</label>
+		<input type="text" class="form-control" placeholder="Cada cuantas unidades" ng-model="mp.nuevaMp.porCada">
+          </div>
+          <div  id="divMp">
+           <label>Unidad de medida</label>
+		<input type="text" class="form-control" placeholder="Unidad de medida de la materia prima" ng-model="mp.nuevaMp.medida">
+          </div>
+	  </div>
+	  <button class="btn btn-default" ng-click="cat.createCategoria()" ng-hide="cat.editOn">Guardar</button>
+	<button class="btn btn-default" ng-click="mp.clearMp()" >Cancelar</button>
+</div>
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>

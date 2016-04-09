@@ -1,0 +1,88 @@
+<div>
+<h2 id="divCat">{{prod.formLabel}}</h2>
+ <div id="divImg" > 
+                <h5> 
+                    <div id="imagePreview"></div>
+                    <input id="uploadFile" type="file" name="image" class="img" onchange="prod.mostrarImagen()" />
+                </h5>
+          </div>
+    </div>
+<div>
+	  <div class="form-group">
+          
+          <!-- <ng-model liga directamente el valor de un elemento con un dato del controller en ambas direcciones> -->
+          <!-- <Si el valor del elemento cambia, el valor en el controller también y viceversa> -->
+            <input id="desc" type="text" class="form-control" placeholder="Titulo del producto" ng-model="prod.productoNuevo.titulo"> 
+        
+          <label class="titulo">Descripcion</label>
+            <textarea id="desc" class="form-control" placeholder="Descripcion del producto" ng-model="prod.productoNuevo.descripcion" rows="5"></textarea>
+         
+      
+          
+          <div>
+          <div id="divCat">
+          <label class="titulo" id='lbCat'>Genero</label>
+            <h5> 
+                <!-- <ng-value se usa para especificar que valor representa ese elemento> -->
+                <!-- <En este caso se utilizó porque el combobox mostraría la descripcion, pero el dato que nos interesa guardar es la id> -->
+                <select ng-model="prod.generoSeleccionado">
+                    <option ng-repeat="genero in prod.generos" ng-value = 'genero.generoId'><!--Atributo de la DB -->
+                        {{genero.descripcion}}
+                    </option>
+                </select>
+            </h5>
+        </div>
+        <div id="divCat" >
+          <label class="titulo" id='lbCat'>Categoria</label>       
+            <h5> 
+                <select ng-model="prod.productoNuevo.idCategoria">
+                    <option ng-repeat="categoria in prod.categoriasFiltradas" ng-value = 'categoria.idCategoria' >
+                        {{categoria.descripcion}}
+                    </option>
+                </select>
+            </h5>
+          </div>
+            
+          </div>
+          <label class="titulo">Precio</label>
+		<input id="precio" type="text" class="form-control" placeholder="Precio del producto" ng-model="prod.prodSeleccionadoEditar.producto_precio">   
+          
+                <label class="titulo">Medidas</label>
+            <input id="medida" type="text" class="form-control" placeholder="Medidas del producto" ng-model="prod.productoNuevo.medidas">
+          
+          <label class="titulo">Punto de Reposición</label>
+            <input id="medida" type="text" class="form-control" placeholder="Punto de reposición del producto" ng-model="prod.productoNuevo.puntoReposicion">
+                
+      <label class="titulo">Materia Prima</label>    
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Cantidad</th>
+        <th>Unidad de medida</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="materia in prod.mps">
+        <td><li class="list-group-item" ng-click="prod.activeItemMp($index, materia)" ng-class="{ 'active' : $index == prod.selectedIndexMp}">
+            {{materia.titulo}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="prod.activeItemMp($index, materia)" ng-class="{ 'active' : $index == prod.selectedIndexMp}">
+			  <input id="cantidad" type="text" class="form-control" ng-model="prod.productoNuevo.cantidad"></li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItemMp($index, materia)" ng-class="{ 'active' : $index == prod.selectedIndexMp}">
+			  {{materia.medida}}</li>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+          
+	  </div>
+    <!-- <ng-show sirve para mostrar el elemento solo si se cumple una condicion, se puede usar ng-disable para deshabilitar> -->
+    <button class="btn btn-default" ng-click="prod.createProducto()" ng-show="prod.formLabel == 'Nuevo Producto'">Guardar</button>
+	<button class="btn btn-default" ng-click="prod.updateProducto()" ng-show="prod.formLabel == 'Editar Producto'">Editar</button>
+	<button class="btn btn-default" ng-click="prod.clearProd()">Cancelar</button>
+</div>
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>

@@ -1,3 +1,6 @@
+var inicio = angular.module("backendEcommerceClientes.inicio", [
+	"ui.router"
+]);
 
 var categoriesList = $("#idPnlCategorias li");
 

@@ -114,3 +114,14 @@ a:link{
 #idFooter label {
     font-size: 12px;
 }
+
+/*Menu flotante*/
+.f-nav{ 
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: white;
+} 
+    

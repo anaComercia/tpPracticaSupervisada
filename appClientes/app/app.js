@@ -2,9 +2,14 @@
 //Agrego todos los modulos que voy a usar despues, lo agrego porque estoy en el principal, agrego los hijos
 var backendEcommerce = angular.module("backendEcommerceClientes", [
 	"backendEcommerceClientes.inicio",
-	"backendEcommerceClientes.productos",
+	"backendEcommerceClientes.producto",
     "backendEcommerceClientes.contacto",
-    "backendEcommerceClientes.politicaPago",
+    "backendEcommerceClientes.formaPago",
+    "backendEcommerceClientes.carrito",
+    "backendEcommerceClientes.crearCuenta",
+    "backendEcommerceClientes.formaPago",
+    "backendEcommerceClientes.iniciarSesion",
+    "backendEcommerceClientes.perfil",
 	"ui.router"
 ]);
 
@@ -39,19 +44,19 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 		})
     .state("iniciarSesion", {
 			url : "/login",
-			templateUrl : "app/iniciarSesion/IniciarSesion.html",
+			templateUrl : "app/iniciarSesion/IniciarSesionTemplate.html",
 			controller : "IniciarSesionController",
 			controllerAs : "login"
 		})
       .state("crearCuenta", {
 			url : "/crearCuenta",
-			templateUrl : "app/crearCuenta/CrearCuenta.html",
+			templateUrl : "app/crearCuenta/CrearCuentaTemplate.html",
 			controller : "CrearCuentaController",
 			controllerAs : "crearCta"
 		})
      .state("carrito", {
 			url : "/carrito",
-			templateUrl : "app/carrito/carrito.html",
+			templateUrl : "app/carrito/CarritoTemplate.html",
 			controller : "CarritoController",
 			controllerAs : "carrito"
 		})

@@ -6,4 +6,18 @@ backendEcommerce.controller("MainController", function(){
 	
 	this.brand = "Usuario";
 	
+    
+    jQuery("document").ready(function($){
+    
+    var nav = $('#mainMenu');
+    
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 136) {
+            nav.addClass("f-nav");
+        } else {
+            nav.removeClass("f-nav");
+        }
+    });
+ 
+});
 });

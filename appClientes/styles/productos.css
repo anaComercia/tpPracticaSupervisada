@@ -1,0 +1,14 @@
+#idPaginaProducto div{
+    height:800px; 
+    padding:0px; 
+    
+}
+
+#idPaginaProducto #idImgProductoDetalle div {
+    padding-top:60px; 
+}
+
+#idPaginaProducto #idImgProductoDetalle img {
+    height: 300px;
+    width: 360px;
+}

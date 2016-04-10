@@ -16,9 +16,9 @@
         <script src="../appClientes/app/crearCuenta/crearCuenta.js"></script>
         <script src="../appClientes/app/formaPago/formaPago.js"></script>
         <script src="../appClientes/app/iniciarSesion/iniciarSesion.js"></script>
-        <script src="../appClientes/app/inicio/inicio.js"></script>
         <script src="../appClientes/app/perfil/perfil.js"></script>
         <script src="../appClientes/app/productos/productos.js"></script>
+        <script src="../appClientes/app/inicio/inicio.js"></script>
         
         <script src="../appClientes/app/MainController.js"></script> 
         <script src="../appClientes/app/carrito/CarritoController.js"></script> 
@@ -32,17 +32,16 @@
         
         <!-- <Estilos> -->
         <link rel="stylesheet" href="../appClientes/content/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../appClientes/styles/inicio.css">
-        
-  
+        <link rel="stylesheet" href="../appClientes/styles/index.css">
+       
         <title>MODA SHOW</title>
         <style>
 
         </style>     
     </head>
     <body>
-       <div ng-controller="MainController as main" id="container" >
-            <div id="idHeader" class="col-md-10 col-md-offset-1 container" >
+       <div ng-controller="MainController as main" id="container" style="container">
+            <div id="idHeader" class="col-md-10 col-md-offset-1" >
                 <div id="idDivBuscador" class="col-md-3 input--search">
                         <input id="idBuscador" maxlength="15" placeholder="Buscar" style="fa fa-search"/>
                         <button type="submit" class="btn"><i class="fa fa-search"></i></button>
@@ -67,14 +66,9 @@
 
                     <label id=""> PERFIL</label>
                 </div>
-
-            </div> <!-- FIN HEADER -->
-
-             <div class="col-md-10 col-md-offset-1">
-
-                <div id="idModulosPrincipal"  class="col-md-12" >
-                    <div id="mainMenu"  class="col-md-10 col-md-offset-2"  class="container">
-                        <ul id="idMenuModulos">
+            <div id="idModulosPrincipal"  class="col-md-12" >
+                <div  class="col-md-10 col-md-offset-2" style="padding: 0px;"  id="mainMenu">
+                     <ul id="idMenuModulos" class="container">
                             <li ui-sref-active="active">
                                 <a ui-sref="inicio"> INICIO </a>
                             </li>
@@ -89,53 +83,36 @@
                             </li>
 
                         </ul>
+                </div>
+
+
+            </div>
+            
+            </div> <!-- FIN HEADER -->
+
+            <div class="col-md-10 col-md-offset-1" id="idBodyPrincipal">
+                <div  class="col-md-12" >
+                <!-- <Acá se va a insertar el html ligado al ui-sref de arriba> -->
+                    <div class="container" ui-view style="padding:0px;">
+                    <!-- <Acá se va a insertar el html ligado al ui-sref de arriba> -->
                     </div>
-
-
-                    <div id="myCarousel" class="col-md-10 col-md-offset-2 carousel slide" >
-                      <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                        <li data-target="#myCarousel" data-slide-to="3"></li>
-                        <li data-target="#myCarousel" data-slide-to="4"></li>
-                        <li data-target="#myCarousel" data-slide-to="5"></li>
-                      </ol>
-                      <!-- Carousel items -->
-                      <div class="carousel-inner">
-                        <div class="active item"><img  src="../appClientes/img/carrusel/carrusel1.jpg" alt="banner1" /></div>
-                        <div class="item"><img  src="../appClientes/img/carrusel/carrusel2.jpg" alt="banner2" /></div>
-                        <div class="item"><img  src="../appClientes/img/carrusel/carrusel3.jpg" alt="banner3" /></div>
-                        <div class="item"><img  src="../appClientes/img/carrusel/carrusel4.jpg" alt="banner4" /></div>
-                        <div class="item"><img  src="../appClientes/img/carrusel/carrusel5.jpg" alt="banner5" /></div>
-                        <div class="item"><img  src="../appClientes/img/carrusel/carrusel6.jpg" alt="banner6" /></div>
-                      </div>
-
-                    </div> <!-- FIN CARRUSEL -->
-
                 </div>
-
-                       <!-- <Acá se va a insertar el html ligado al ui-sref de arriba> -->
-                <div class="container" ui-view>
-                     <!-- <Acá se va a insertar el html ligado al ui-sref de arriba> -->
-                </div>
-
-
-
             </div> <!-- FIN BODY -->
-       </div> 
-        <div id="idFooter" class="col-md-12" >
-            <div id="idPnlDetallesFooter"  class="col-md-10 col-md-offset-1" style="height:100px; padding: 0px;">
-               <div class="col-md-3" style=" height:100px;">
-                   <label style="font-size:15px;"> REDES SOCIALES </label>
+            
+       </div> <!--Fin Main Controller --> 
+       
+        <div id="idFooter" class="col-md-12 div-footer" >
+            <div id="idPnlDetallesFooter"  class="col-md-10 col-md-offset-1">
+               <div class="col-md-3" style=" ">
+                   <label class="footer-titles"> REDES SOCIALES </label>
                    <div class="col-md-12">
-                       <label  class="fa fa-facebook-official " style="font-style: italic;"> https://www.facebook.com/ModaShow</label>
-                       <label  class="fa fa-instagram " style="font-style: italic;"> https://www.instagram.com/ModaShow</label>       
-                       <label  class="fa fa-twitter " style="font-style: italic;"> https://www.twitter.com/ModaShow</label> 
+                       <label  class="fa fa-facebook-official footer-label-detalle"> https://www.facebook.com/ModaShow</label>
+                       <label  class="fa fa-instagram footer-label-detalle"> https://www.instagram.com/ModaShow</label>       
+                       <label  class="fa fa-twitter footer-label-detalle"> https://www.twitter.com/ModaShow</label> 
                    </div>
                 </div>
-                <div  class="col-md-3" style="height:100px;">
-                    <label style="font-size:15px; padding-right: 100;">MEDIOS DE PAGO </label>
+                <div  class="col-md-3" style="">
+                    <label class="footer-titles" >MEDIOS DE PAGO </label>
                     <div id="idPnlMediosPago"  class="col-md-12" style="">
                         <img src="../appClientes/img/footer/pagoAmex.JPG">
                         <img src="../appClientes/img/footer/pagoBanelco.JPG">
@@ -143,7 +120,7 @@
                         <img src="../appClientes/img/footer/pagoVisa.JPG">
                     </div>
                     <div id="idPnlFormasPago"  class="" style="">
-                        <label style="font-size:15px;">FORMAS DE ENVIO </label>
+                        <label class="footer-titles">FORMAS DE ENVIO </label>
                         <i class=" fa fa-truck" style="  padding-right: 50;"></i>
                     </div>
                     <div id="idPnlFormasPago"  class="col-md-12" style="">
@@ -151,25 +128,24 @@
                     </div>
                 </div>
                 
-                <div  class="col-md-3" style="height:100px;">
-                   <label style=" font-size: 12px;"> CONTACTANOS </label>
+                <div  class="col-md-3" >
+                   <label class="footer-titles" > CONTACTANOS </label>
                     <div class="col-md-12">
-                        <label  class="fa fa-envelope" style="font-style: italic;"> shop@modashow.com.ar</label>
-                        <label  class="fa fa-phone" style="font-style: italic;"> 54 11 4576 8876 (Sucursal Capital)</label>
-                        <label  class="fa fa-phone" style="font-style: italic;"> 54 11 4865 7645 (Sucursal Avellaneda)</label>
-                        <label  class="fa fa-phone" style="font-style: italic;"> 54 11 4967 3125 (Sucursal Lugano)</label>
+                        <label  class="fa fa-envelope footer-label-detalle"> shop@modashow.com.ar</label>
+                        <label  class="fa fa-phone footer-label-detalle"> 54 11 4576 8876 (Sucursal Capital)</label>
+                        <label  class="fa fa-phone footer-label-detalle" > 54 11 4865 7645 (Sucursal Avellaneda)</label>
+                        <label  class="fa fa-phone footer-label-detalle"> 54 11 4967 3125 (Sucursal Lugano)</label>
                     </div>
                 </div>
-                <div class="col-md-3" style="height:100px;">
-                   <label style="font-size:15px;"> SEGURIDAD Y CERTIFICACIONES </label>
+                <div class="col-md-3" style="">
+                   <label class="footer-titles"> SEGURIDAD Y CERTIFICACIONES </label>
                     <div class="col-md-12">
                          <img src="../appClientes/img/footer/dataFiscal.JPG">
                     </div>
                 </div>
             </div>
         </div> <!-- FIN FOOTER -->
-        
-        <script src="../appClientes/script/carrusel.js"></script>
+     
     
     </body>
    

@@ -1,0 +1,66 @@
+#idPaginaProducto {
+    height:800px; 
+    padding:0px; 
+    
+}
+
+#idPaginaProducto .img {
+    padding-left: 50px;
+}
+
+
+#idPaginaProducto .img-first {
+    height: 400px;
+    width: 400px;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    border-color: black !important;
+    border-top-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
+
+/*#idImgProdSecundario .divImg{
+    width: 100px;
+    height: 150px;
+}*/
+
+#idImgProdSecundario img {
+    width: 120px;
+    height: 120px;
+    margin-left: 15;
+    
+}
+
+#idDetalleProd .lblTitulo {
+    font-size: 50;
+    font-family: -webkit-pictograph;
+    text-align: center;
+    font-weight: 100;
+    padding-top: 20px;
+    padding-left: 50px;
+}
+
+#idDetalleProd .lblPrecio{
+    font-size: 25;
+    padding-top: 20px;
+}
+
+#idDetalleProd .lblDetalle{
+    font-style: italic;
+    font-size: 20;
+    padding-right: 500px;
+    margin-top: 10px;
+}
+
+.select-option{
+    width: 70;
+    height: 30;
+}
+
+.btn-agregar{
+    float: right;
+    margin-top: 50px;
+    width: 100;
+}
+

@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 #idPaginaProducto {
+=======
+#idPaginaProducto div{
+>>>>>>> origin/master
     height:800px; 
     padding:0px; 
     
 }
 
+<<<<<<< HEAD
 #idPaginaProducto .img {
     padding-left: 50px;
 }
@@ -64,3 +69,13 @@
     width: 100;
 }
 
+=======
+#idPaginaProducto #idImgProductoDetalle div {
+    padding-top:60px; 
+}
+
+#idPaginaProducto #idImgProductoDetalle img {
+    height: 300px;
+    width: 360px;
+}
+>>>>>>> origin/master

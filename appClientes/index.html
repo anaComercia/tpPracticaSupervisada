@@ -3,39 +3,42 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <!-- <Librerías> -->
-        <script src="../appClientes/bower_components/angular/angular.min.js"></script>
-        <script src="../appClientes/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>      
-        <script src="../appClientes/bower_components/jquery/dist/jquery.js"></script>
-        <link rel="stylesheet" type="text/css" href="../appClientes/bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <script src="../appClientes/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    
-        <!--  <App acá se declaran todos los js que usa angular>-->
-        <script src="../appClientes/app/app.js"></script>
-        <script src="../appClientes/app/carrito/carrito.js"></script>
-        <script src="../appClientes/app/contacto/contacto.js"></script>
-        <script src="../appClientes/app/crearCuenta/crearCuenta.js"></script>
-        <script src="../appClientes/app/formaPago/formaPago.js"></script>
-        <script src="../appClientes/app/iniciarSesion/iniciarSesion.js"></script>
-        <script src="../appClientes/app/perfil/perfil.js"></script>
-        <script src="../appClientes/app/productos/productos.js"></script>
-        <script src="../appClientes/app/inicio/inicio.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>      
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         
-        <script src="../appClientes/app/MainController.js"></script> 
-        <script src="../appClientes/app/carrito/CarritoController.js"></script> 
-        <script src="../appClientes/app/contacto/ContactoController.js"></script> 
-        <script src="../appClientes/app/crearCuenta/CrearCuentaController.js"></script>
-        <script src="../appClientes/app/formaPago/FormaPagoController.js"></script>
-        <script src="../appClientes/app/iniciarSesion/IniciarSesionController.js"></script>
-        <script src="../appClientes/app/inicio/InicioController.js"></script>
-        <script src="../appClientes/app/perfil/PerfilController.js"></script>
-        <script src="../appClientes/app/productos/ProductosController.js"></script>
+            
+        <!--  <App acá se declaran todos los js que usa angular>-->
+        <script src="app/app.js"></script>
+        <script src="app/carrito/carrito.js"></script>
+        <script src="app/contacto/contacto.js"></script>
+        <script src="app/crearCuenta/crearCuenta.js"></script>
+        <script src="app/formaPago/formaPago.js"></script>
+        <script src="app/iniciarSesion/iniciarSesion.js"></script>
+        <script src="app/perfil/perfil.js"></script>
+        <script src="app/productos/productos.js"></script>
+        <script src="app/inicio/inicio.js"></script>
+        <script src="script/carrusel.js"></script>
+        
+        <script src="app/MainController.js"></script> 
+        <script src="app/carrito/CarritoController.js"></script> 
+        <script src="app/contacto/ContactoController.js"></script> 
+        <script src="app/crearCuenta/CrearCuentaController.js"></script>
+        <script src="app/formaPago/FormaPagoController.js"></script>
+        <script src="app/iniciarSesion/IniciarSesionController.js"></script>
+        <script src="app/inicio/InicioController.js"></script>
+        <script src="app/perfil/PerfilController.js"></script>
+        <script src="app/productos/ProductosController.js"></script>
+        
+        <script src="app/productos/ProductoDirective.js"></script>
         
         <!-- <Estilos> -->
-        <link rel="stylesheet" href="../appClientes/content/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../appClientes/styles/inicio.css">
-        <link rel="stylesheet" href="../appClientes/styles/politicaPago.css">
-        <link rel="stylesheet" href="../appClientes/styles/productos.css">
-  
+        <link rel="stylesheet" href="content/css/font-awesome.min.css">
+        <link rel="stylesheet" href="styles/index.css">
+        
+       
         <title>MODA SHOW</title>
         <style>
 
@@ -87,27 +90,7 @@
                         </ul>
                 </div>
 
-                
-                <div id="myCarousel" class="col-md-10 col-md-offset-2 carousel slide" >
-                  <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                    <li data-target="#myCarousel" data-slide-to="4"></li>
-                    <li data-target="#myCarousel" data-slide-to="5"></li>
-                  </ol>
-                  <!-- Carousel items -->
-                  <div class="carousel-inner">
-                    <div class="active item"><img  src="../appClientes/img/carrusel/carrusel1.jpg" alt="banner1" /></div>
-                    <div class="item"><img  src="../appClientes/img/carrusel/carrusel2.jpg" alt="banner2" /></div>
-                    <div class="item"><img  src="../appClientes/img/carrusel/carrusel3.jpg" alt="banner3" /></div>
-                    <div class="item"><img  src="../appClientes/img/carrusel/carrusel4.jpg" alt="banner4" /></div>
-                    <div class="item"><img  src="../appClientes/img/carrusel/carrusel5.jpg" alt="banner5" /></div>
-                    <div class="item"><img  src="../appClientes/img/carrusel/carrusel6.jpg" alt="banner6" /></div>
-                  </div>
 
-                </div> <!-- FIN CARRUSEL -->
             </div>
             
             </div> <!-- FIN HEADER -->
@@ -123,52 +106,51 @@
             
        </div> <!--Fin Main Controller --> 
        
-        <div id="idFooter" class="col-md-12" >
-            <div id="idPnlDetallesFooter"  class="col-md-10 col-md-offset-1" style="height:100px; padding: 0px;">
-               <div class="col-md-3" style=" height:100px;">
-                   <label style="font-size:15px;"> REDES SOCIALES </label>
+        <div id="idFooter" class="col-md-12 div-footer" >
+            <div id="idPnlDetallesFooter"  class="col-md-10 col-md-offset-1">
+               <div class="col-md-3" style=" ">
+                   <label class="footer-titles"> REDES SOCIALES </label>
                    <div class="col-md-12">
-                       <label  class="fa fa-facebook-official " style="font-style: italic;"> https://www.facebook.com/ModaShow</label>
-                       <label  class="fa fa-instagram " style="font-style: italic;"> https://www.instagram.com/ModaShow</label>       
-                       <label  class="fa fa-twitter " style="font-style: italic;"> https://www.twitter.com/ModaShow</label> 
+                       <label  class="fa fa-facebook-official footer-label-detalle"> https://www.facebook.com/ModaShow</label>
+                       <label  class="fa fa-instagram footer-label-detalle"> https://www.instagram.com/ModaShow</label>       
+                       <label  class="fa fa-twitter footer-label-detalle"> https://www.twitter.com/ModaShow</label> 
                    </div>
                 </div>
-                <div  class="col-md-3" style="height:100px;">
-                    <label style="font-size:15px; padding-right: 100;">MEDIOS DE PAGO </label>
+                <div  class="col-md-3" style="">
+                    <label class="footer-titles" >MEDIOS DE PAGO </label>
                     <div id="idPnlMediosPago"  class="col-md-12" style="">
-                        <img src="../appClientes/img/footer/pagoAmex.JPG">
-                        <img src="../appClientes/img/footer/pagoBanelco.JPG">
-                        <img src="../appClientes/img/footer/pagoMaster.JPG">
-                        <img src="../appClientes/img/footer/pagoVisa.JPG">
+                        <img src="img/footer/pagoAmex.JPG">
+                        <img src="img/footer/pagoBanelco.JPG">
+                        <img src="img/footer/pagoMaster.JPG">
+                        <img src="img/footer/pagoVisa.JPG">
                     </div>
                     <div id="idPnlFormasPago"  class="" style="">
-                        <label style="font-size:15px;">FORMAS DE ENVIO </label>
+                        <label class="footer-titles">FORMAS DE ENVIO </label>
                         <i class=" fa fa-truck" style="  padding-right: 50;"></i>
                     </div>
                     <div id="idPnlFormasPago"  class="col-md-12" style="">
-                        <img src="../appClientes/img/footer/envioOca.JPG">
+                        <img src="img/footer/envioOca.JPG">
                     </div>
                 </div>
                 
-                <div  class="col-md-3" style="height:100px;">
-                   <label style=" font-size: 12px;"> CONTACTANOS </label>
+                <div  class="col-md-3" >
+                   <label class="footer-titles" > CONTACTANOS </label>
                     <div class="col-md-12">
-                        <label  class="fa fa-envelope" style="font-style: italic;"> shop@modashow.com.ar</label>
-                        <label  class="fa fa-phone" style="font-style: italic;"> 54 11 4576 8876 (Sucursal Capital)</label>
-                        <label  class="fa fa-phone" style="font-style: italic;"> 54 11 4865 7645 (Sucursal Avellaneda)</label>
-                        <label  class="fa fa-phone" style="font-style: italic;"> 54 11 4967 3125 (Sucursal Lugano)</label>
+                        <label  class="fa fa-envelope footer-label-detalle"> shop@modashow.com.ar</label>
+                        <label  class="fa fa-phone footer-label-detalle"> 54 11 4576 8876 (Sucursal Capital)</label>
+                        <label  class="fa fa-phone footer-label-detalle" > 54 11 4865 7645 (Sucursal Avellaneda)</label>
+                        <label  class="fa fa-phone footer-label-detalle"> 54 11 4967 3125 (Sucursal Lugano)</label>
                     </div>
                 </div>
-                <div class="col-md-3" style="height:100px;">
-                   <label style="font-size:15px;"> SEGURIDAD Y CERTIFICACIONES </label>
+                <div class="col-md-3" style="">
+                   <label class="footer-titles"> SEGURIDAD Y CERTIFICACIONES </label>
                     <div class="col-md-12">
-                         <img src="../appClientes/img/footer/dataFiscal.JPG">
+                         <img src="img/footer/dataFiscal.JPG">
                     </div>
                 </div>
             </div>
         </div> <!-- FIN FOOTER -->
-        
-        <script src="../appClientes/script/carrusel.js"></script>
+     
     
     </body>
    

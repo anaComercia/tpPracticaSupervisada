@@ -1,14 +1,53 @@
-<div id="idPaginaProducto" class="col-md-10 col-md-offset-1" style="height:800px; ">
+<link rel="stylesheet" href="styles/productos.css">
 
-    <div id="idImgProductoDetalle"  class="col-md-5" style="background-color:red;">
-        <div class="col-md-10 col-md-offset-1" id="" style="background-color:yellow;" >
-            <img  src="../../../appClientes/img/modulos/imgModuloProductos.jpg"  />
-        </div>
+<div id="idPaginaProducto" ng-controller="ProductosController as productCtrl" >
+  
+    
+    <div class="col-md-5 col-md-offset-1" >
+    
+        <img  src="img/modulos/prueba2.jpg" class="img img-first" />
 
+        <div id="idImgProdSecundario" >
+            <img src="img/modulos/prueba2.jpg" ng-click="productCtrl.changeImage(this)" />
+            <img src="img/modulos/prueba3.jpg" ng-click="productCtrl.changeImage(this)"/>
+            <img src="img/modulos/prueba4.jpg" ng-click="productCtrl.changeImage(this)" />
+        </div> 
+        
     </div>
 
-    <div id=""  class="col-md-7" style="background-color:blue;">
-
+    <div  id="idDetalleProd" class="col-md-6" style="">
+        <label class="lblTitulo">CAMPERA MILANO</label>
+        
+        <div>
+            <label class="lblPrecio" >Precio Unitario</label>
+        </div>
+        
+        <div>
+            <label class="lblDetalle">Sexo</label>
+            <label >Mujer</label>
+        </div>
+        
+        <div>
+            <label class="lblDetalle">Talle</label>
+            <select class="select-option">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+  
+        
+        <div>
+            <label class="lblDetalle">Color</label>
+            <select class="select-option">
+                <option value="Azul">Azul</option>
+                <option value="Rosa">Rosa</option>
+                <option value="Blanca">Blanca</option>
+            </select>
+        </div>
+        
+        <button class="btn-agregar">Agregar</button>
+        
 
     </div>    
 </div>

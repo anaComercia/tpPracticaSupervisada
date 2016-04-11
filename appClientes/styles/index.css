@@ -1,0 +1,110 @@
+#container {
+    /*height:1350px; */
+    padding: 0px;
+}
+
+#idMenuModulos li{
+    display: initial;
+    padding-left: 33px;
+    text-align: center;
+    font-size: large;
+}
+    
+a{
+    text-decoration: none;
+    color: black;
+}
+
+
+a:link{
+    text-decoration: none;
+    color: black;             
+}
+     
+#idBodyPrincipal {
+    height:800px; 
+    padding: 0px;
+}
+
+#idModulosPrincipal li a:hover{
+    color: #000000;
+    border-top: 1px solid #000000; 
+    border-bottom: 1px solid #000000;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    height:430px; 
+}
+
+#idHeader {
+    /*height:550px; */
+    padding: 0px;  
+}
+
+#idDivBuscador{
+    height:140px; 
+    padding-top:60px; 
+    padding-left:30px;
+}
+
+#idDivEmpresa{
+    height:140px;
+}
+
+#idDivEmpresa h1{
+    text-align:center; 
+    font-family:-webkit-pictograph; 
+    font-size:50px; 
+    color:black; 
+    padding-top:20px;
+}
+
+#idDivCrearCuenta{
+    height:140px; 
+    padding-top:15px; 
+    padding-left:30px;
+}
+
+#idDivCrearCuenta label { 
+    top:50px; 
+    width:90px; 
+    font-size:10px;
+}
+
+#idDivCrearCuenta #idCarrito { 
+    text-align:center; 
+    top:50px; 
+    width:200px; 
+    background-color:#ccc;
+}
+
+#idModulosPrincipal{
+   /* height:430px; */
+    padding-top:10px; 
+    padding-left:70px;
+}
+
+
+#idFooter {
+    background-color:#D8D8D8;  
+ /*   height:100px; */
+    padding: 0px; 
+}
+
+
+.div-footer{
+   height:110px;
+}
+
+.footer-titles{
+    font-size: 15px;
+}
+
+#idPnlDetallesFooter{
+    padding: 0px;
+}
+
+.footer-label-detalle{
+    font-size: 14;
+    font-style: italic;
+}

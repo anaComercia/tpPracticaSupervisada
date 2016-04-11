@@ -18,3 +18,4 @@ $("#show-more-cats").click(function(e){
     }
     $(this).find("i").toggleClass("fa-angle-up fa-angle-down");
 });
+

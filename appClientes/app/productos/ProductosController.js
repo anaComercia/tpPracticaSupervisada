@@ -14,10 +14,10 @@ ProductosCtrl.$injector = ["$state"];
 
 function ProductosCtrl($state) {
     vm = this;
-    debugger;
+ //   debugger;
     vm.changeImage = _changeImage
         
     function _changeImage(e){
-        debugger;
+    //    debugger;
     }
 }

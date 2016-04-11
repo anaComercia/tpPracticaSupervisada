@@ -33,12 +33,15 @@
 }
 
 #idDetalleProd .lblTitulo {
-    font-size: 50;
+       font-size: 40;
     font-family: -webkit-pictograph;
     text-align: center;
     font-weight: 100;
     padding-top: 20px;
-    padding-left: 50px;
+    padding-left: 0;
+}
+#idDetalleProd{
+    margin-top: 40px;
 }
 
 #idDetalleProd .lblPrecio{

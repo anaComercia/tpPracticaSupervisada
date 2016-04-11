@@ -2,16 +2,22 @@ var inicio = angular.module("backendEcommerceClientes.inicio", [
 	"ui.router"
 ]);
 
-var categoriesList = $("#idPnlFiltros #idPnlCategorias li");
+$(document).ready(function(){
+    $('#myCarousel').carousel({
+        interval: 200 
+    });
+});
+
+var categoriesList = $("#idPnlCategorias li");
 
 if (categoriesList.length > 3) {
-    $("#show-more-cats").show(); 
+    $("#idPnlCategorias #show-more-cats").show(); 
     for (i = 3; i < categoriesList.length; i++) { 
         $(categoriesList[i]).hide();
     }
 }
 
-$("#show-more-cats").click(function(e){
+$("#idPnlCategorias #show-more-cats").click(function(e){
     e.preventDefault();
     for (i = 3; i < categoriesList.length; i++) { 
         $(categoriesList[i]).toggle();

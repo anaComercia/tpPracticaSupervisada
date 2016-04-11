@@ -40,14 +40,22 @@
 } 
   */  
 
-.ini-mini-imagen{
+.ini-mini-imagen {
     background-color: aliceblue;
-    height: 300;
-    width: 200;
-    font-size: 20px;
+    height: 250;
+    padding: 0;
+    width: 150;
 }
 
 .ini-mini-imagen img{
-   height: 200;
-    width: 200;
+   height: 150;
+    width: 150;
+}
+
+.ini-mini-imagen label{
+    margin-top: 10;  
+}
+
+#idPrecioImg{
+    float: right;
 }

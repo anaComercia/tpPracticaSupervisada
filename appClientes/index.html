@@ -6,43 +6,46 @@
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>      
         <script src="bower_components/jquery/dist/jquery.js"></script>
-        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         
-            
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
         <!--  <App acá se declaran todos los js que usa angular>-->
-        <script src="app/app.js"></script>
-        <script src="app/carrito/carrito.js"></script>
-        <script src="app/contacto/contacto.js"></script>
-        <script src="app/crearCuenta/crearCuenta.js"></script>
-        <script src="app/formaPago/formaPago.js"></script>
-        <script src="app/iniciarSesion/iniciarSesion.js"></script>
-        <script src="app/perfil/perfil.js"></script>
-        <script src="app/productos/productos.js"></script>
-        <script src="app/inicio/inicio.js"></script>
-       
-        
+        <script src="app/app.js"></script> 
         <script src="app/MainController.js"></script> 
+               
+        <script src="app/carrito/Carrito.js"></script>
         <script src="app/carrito/CarritoController.js"></script> 
-        <script src="app/contacto/ContactoController.js"></script> 
+                 
+        <script src="app/contacto/Contacto.js"></script>
+        <script src="app/contacto/ContactoController.js"></script>
+                
+        <script src="app/crearCuenta/CrearCuenta.js"></script>
         <script src="app/crearCuenta/CrearCuentaController.js"></script>
-        <script src="app/formaPago/FormaPagoController.js"></script>
-        <script src="app/iniciarSesion/IniciarSesionController.js"></script>
-        <script src="app/inicio/InicioController.js"></script>
-        <script src="app/perfil/PerfilController.js"></script>
-        <script src="app/productos/ProductosController.js"></script>
         
+        <script src="app/formaPago/formaPago.js"></script>
+        <script src="app/formaPago/FormaPagoController.js"></script>
+        
+        <script src="app/iniciarSesion/IniciarSesion.js"></script>
+        <script src="app/iniciarSesion/IniciarSesionController.js"></script>
+        
+        <script src="app/inicio/Inicio.js"></script>
+        <script src="app/inicio/InicioController.js"></script>
+        
+        <script src="app/perfil/Perfil.js"></script>
+        <script src="app/perfil/PerfilController.js"></script>
+        
+        <script src="app/productos/Productos.js"></script>
+        <script src="app/productos/ProductosController.js"></script>
         <script src="app/productos/ProductoDirective.js"></script>
         
         <!-- <Estilos> -->
         <link rel="stylesheet" href="content/css/font-awesome.min.css">
         <link rel="stylesheet" href="styles/index.css">
-        
+        <link rel="stylesheet" href="styles/inicio.css">
+        <link rel="stylesheet" href="styles/productos.css">
+        <link rel="stylesheet" href="styles/politicaPago.css">
        
-        <title>MODA SHOW</title>
-        <style>
-
-        </style>     
+        <title>MODA SHOW</title>    
     </head>
     <body>
        <div ng-controller="MainController as main" id="container" style="container">
@@ -66,10 +69,14 @@
                     <a ui-sref="crearCuenta">
                          <label id="idCrearCuenta" >CREAR CUENTA</label>
                     </a>
-
-                    <label id="idIniciarSesion"  > INICIAR SESION</label>
-
-                    <label id=""> PERFIL</label>
+                    <a ui-sref="iniciarSesion">
+                        <label id="idIniciarSesion"  > INICIAR SESION</label>
+                    </a>
+                    
+                    <a ui-sref="perfil">
+                        <label id=""> PERFIL</label>
+                    </a>   
+                    
                 </div>
             <div id="idModulosPrincipal"  class="col-md-12 col-xs-6" >
                 <div  class="col-md-10 col-md-offset-2" style="padding: 0px;"  id="mainMenu">

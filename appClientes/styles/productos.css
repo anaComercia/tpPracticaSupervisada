@@ -65,5 +65,26 @@
     float: right;
     margin-top: 50px;
     width: 100;
+    margin-right: 100px;
 }
 
+.ini-mini-imagen {
+    height: 250;
+    padding: 0;
+    width: 150;
+    border-bottom-color: #ccc;
+    border-bottom-style: double;
+}
+
+.ini-mini-imagen img{
+   height: 150;
+    width: 150;
+}
+
+.ini-mini-imagen label{
+    margin-top: 10;  
+}
+
+#idPrecioImg{
+    float: right;
+}

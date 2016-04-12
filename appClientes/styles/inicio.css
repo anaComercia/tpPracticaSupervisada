@@ -39,23 +39,3 @@
     background-color: white;
 } 
   */  
-
-.ini-mini-imagen {
-    background-color: aliceblue;
-    height: 250;
-    padding: 0;
-    width: 150;
-}
-
-.ini-mini-imagen img{
-   height: 150;
-    width: 150;
-}
-
-.ini-mini-imagen label{
-    margin-top: 10;  
-}
-
-#idPrecioImg{
-    float: right;
-}

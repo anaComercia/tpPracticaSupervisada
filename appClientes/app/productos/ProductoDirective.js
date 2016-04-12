@@ -3,13 +3,15 @@ angular
     .directive("productoDirective", ProductoDirective);
 
 function ProductoDirective() {
-    //debugger;
+    
     return {
         restrict: "E",
         replace: true,
         templateUrl:'../appClientes/app/productos/InitProductTemplate.html',
+        scope: { product: '=productData' },
         controller: function($scope, $element, $attrs) {
-       // debugger;
+        debugger;
+            $scope.product;
         }       
     }    
 }

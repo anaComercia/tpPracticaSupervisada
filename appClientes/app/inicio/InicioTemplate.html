@@ -41,11 +41,14 @@
 
 </div>
 
-<div id="idPnlImagenes"  class="col-md-8" style=" padding:0px;">
+<div id="idPnlImagenes" ng-controller="InicioController as initCtrl" class="col-md-8" style=" padding:0px;">
 
     <!-- div ng-repeat donde meto la lista de la bbdd ng-model="product" product es cada element
 de la lista-->
-    <producto-directive style="margin:20px;" ></producto-directive>
+ 
+   <producto-directive style="margin:20px;" ng-repeat="product in initCtrl.products" product-data="product"></producto-directive>
+
+    
 
 </div>
 

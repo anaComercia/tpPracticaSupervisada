@@ -1,4 +1,6 @@
-
+<div class="col-md-8 col-offser-2" id="idImgModProd">
+    <img  class="img-responsive" src="img/modulos/imgModuloProductos.jpg" />
+</div>
 
 <div id="idPaginaProducto" ng-controller="ProductosController as productCtrl" class="col-md-12">
   
@@ -23,7 +25,7 @@
         </div>
         
         <div>
-            <label class="lblDetalle">Sexo</label>
+            <label class="lblDetalle">Género</label>
             <label >{{productCtrl.prod.gender}}</label>
         </div>
         
@@ -39,11 +41,7 @@
             <select class="select-option" ng-model="productCtrl.mySelect.color" ng-options="option as option for option in productCtrl.prod.color">
             </select>
         </div>
-        
-        <div>
-            <label class="lblDetalle">Sexo</label>
-            <label >{{productCtrl.prod.gender}}</label>
-        </div>
+       
         
         <button class="btn-agregar">Agregar</button>
         

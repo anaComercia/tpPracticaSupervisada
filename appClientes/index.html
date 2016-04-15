@@ -1,11 +1,13 @@
 <html lang="es" ng-app="backendEcommerceClientes">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <!-- <Librerías> -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>      
-        <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         
         <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -77,8 +79,8 @@
                 </div>
                 
                 <div id="idModulosPrincipal"  class="col-md-12 col-xs-6" >
-                    <div  class="col-md-10 col-md-offset-2" style="padding: 0px;"  id="mainMenu">
-                         <ul id="idMenuModulos" class="container">
+                    <div  class="col-md-10 col-md-offset-2" id="mainMenu">
+                         <ul id="idMenuModulos" class="container active">
                                 <li ui-sref-active="active">
                                     <a ui-sref="inicio"> INICIO </a>
                                 </li>

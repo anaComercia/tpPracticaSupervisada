@@ -10,7 +10,7 @@ function ProductoDirective() {
         templateUrl:'../appClientes/app/productos/InitProductTemplate.html',
         scope: { product: '=productData' },
         controller: function($scope, $element, $attrs) {
-        debugger;
+       // debugger;
             $scope.product;
         }       
     }    

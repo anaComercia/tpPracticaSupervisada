@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+#idMenuModulos{
+    margin-bottom: 20;
+    padding: 0px;
+}
 #idMenuModulos li{
     display: initial;
     padding-left: 33px;
@@ -23,20 +27,10 @@ a:link{
 }
      
 #idBodyPrincipal {
-    height:800px; 
+  /*  height:800px; */
     padding: 0px;
 }
 
-#idModulosPrincipal li a:hover{
-    color: #000000;
-    border-top: 1px solid #000000; 
-    border-bottom: 1px solid #000000;
-    background-color: azure;
-    padding-top: 10px;
-    padding-bottom: 5px;
-    height:430px; 
-    
-}
 
 #idHeader {
     /*height:550px; */
@@ -81,22 +75,53 @@ a:link{
 }
 
 #idModulosPrincipal{
-   /* height:430px; */
-    padding-top:10px; 
-    padding-left:70px;
+    /* height: 430px; */
+    padding-top: 10px;
+    padding-left: 70px;
+    /* border-bottom-color: #D3E0EF; */
+    /* border-bottom-style: double; */
+    /* margin-bottom: 20px; */
+    /* border-bottom-width: thick; */
+    /* border-width: 6; */
+    /* border-bottom-left-radius: 300px; */
+    /* border-bottom-right-radius: 300px; */
 }
 
+
+#idModulosPrincipal li a:hover{
+    color: #000000;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    height:430px; 
+    border-bottom-color: #D3E0EF; 
+    border-bottom-style: double; 
+    margin-bottom: 20px; 
+    border-bottom-width: thick; 
+    border-width: 6; 
+   
+    
+}
+
+#idModulosPrincipal li.active a{
+  border-bottom-color: #D3E0EF; 
+  border-bottom-style: double; 
+  margin-bottom: 20px; 
+  border-bottom-width: thick; 
+  border-width: 6; 
+  
+}
 
 #idFooter {
     background-color:#D8D8D8;  
  /*   height:100px; */
     padding: 0px; 
+    margin-top: 30px;
 }
 
 
-.div-footer{
+/*.div-footer{
    height:120px;
-}
+}*/
 
 .footer-titles{
     font-size: 15px;
@@ -104,6 +129,8 @@ a:link{
 
 #idPnlDetallesFooter{
     padding: 0px;
+    margin-top: 20;
+    background-color:#D8D8D8;  
 }
 
 .footer-label-detalle{

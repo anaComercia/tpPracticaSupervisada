@@ -21,23 +21,24 @@
         <label class="lblTitulo">{{productCtrl.prod.title}}</label>
         
         <div>
-            <label class="lblPrecio" >{{productCtrl.prod.price}}</label>
+            <label class="lblPrecio" >${{productCtrl.prod.price}}</label>
+            <label class="">3 cuotas de ${{productCtrl.precioXcuota}} cada una</label>
         </div>
         
         <div>
-            <label class="lblDetalle">Género</label>
-            <label >{{productCtrl.prod.gender}}</label>
+            <label class="lblDetalle lblGenero">Género</label>
+            <label class="" >{{productCtrl.prod.gender}}</label>
         </div>
         
         <div>
-            <label class="lblDetalle">Talle</label>
+            <label class="lblDetalle">Elegir talle</label>
             <select class="select-option" ng-model="productCtrl.mySelect.size" ng-options="option as option for option in productCtrl.prod.size">
             </select>
         </div>
   
         
         <div>
-            <label class="lblDetalle">Color</label>
+            <label class="lblDetalle">Elegir color</label>
             <select class="select-option" ng-model="productCtrl.mySelect.color" ng-options="option as option for option in productCtrl.prod.color">
             </select>
         </div>
@@ -45,7 +46,7 @@
         
         <button  type="button" class="btn btn-default btn-md btn-agregar">
             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            Agregar
+            Agregar al carrito
         </button>
         <!--class="btn-agregar"-->
 

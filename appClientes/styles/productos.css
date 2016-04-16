@@ -51,13 +51,20 @@
 #idDetalleProd .lblPrecio{
     font-size: 25;
     padding-top: 20px;
+    padding-right: 50px;
 }
 
 #idDetalleProd .lblDetalle{
     font-style: italic;
     font-size: 20;
-    padding-right: 500px;
+    margin-right: 400px;
     margin-top: 10px;
+}
+
+#idDetalleProd .lblGenero{
+    margin-right: 500px !important;
+
+    
 }
 
 .select-option{
@@ -66,10 +73,9 @@
 }
 
 .btn-agregar{
-    float: right;
     margin-top: 50px;
-    width: 100;
-    margin-right: 100px;
+    width: 200;
+    margin-left: 150px;
     background-color: aliceblue;
 }
 

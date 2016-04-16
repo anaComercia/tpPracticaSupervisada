@@ -7,7 +7,7 @@ ProductosCtrl.$injector = ["$state"];
 function ProductosCtrl($state) {
     var obj = {
         title: 'CAMPERA MILANO',
-        price: '$600',
+        price: 600,
         gender: 'Mujer',
         size: ['1','2'],
         color: ['Azul', 'Rosa', 'Blanca'],
@@ -18,6 +18,7 @@ function ProductosCtrl($state) {
     vm = this;
     
     vm.prod = obj;
+    vm.precioXcuota = vm.prod.price / 3;
     vm.mySelect = {};//seleccion de los combos
     
     vm.source = vm.prod.image[0];

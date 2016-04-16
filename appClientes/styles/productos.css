@@ -1,6 +1,10 @@
 #idPaginaProducto {
-    height:800px; 
+    height:600px; 
     padding:0px; 
+    border-width: 8px;
+    border-color: antiquewhite;
+    border-style: double;
+    margin-top: 40px;
     
 }
 
@@ -66,6 +70,11 @@
     margin-top: 50px;
     width: 100;
     margin-right: 100px;
+    background-color: aliceblue;
+}
+
+.btn-agregar:hover{
+    background-color: antiquewhite;
 }
 
 .ini-mini-imagen {

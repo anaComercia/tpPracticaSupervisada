@@ -1,0 +1,61 @@
+
+
+#idPaginaIniciarSesion {
+    height:0px; 
+    padding:0px; 
+    
+}
+#idDetalleIniciarSesion .lblTitulo {
+    font-size: 50;
+    font-family: -webkit-pictograph;
+    text-align: center;
+    font-weight: 100;
+    padding-top: 20px;
+    padding-left: 50px;
+}
+
+
+#idDetalleIniciarSesion .lblDetalle{
+    font-style: italic;
+    font-size: 20;
+	margin-top: 5px;
+   /* padding-right: 610px;
+    margin-top: 10px;*/
+}
+
+
+#idDetalleIniciarSesion .impDetalle{
+    font-style: italic;
+    font-size: 18;
+	/*margin-top: 10px;
+    padding-right: 610px;
+    margin-top: 10px;*/
+}
+
+#idDetalleIniciarSesion .btnBoton{
+    font-style: italic;
+    font-size: 20;
+	margin-top: 40px;
+   /* padding-right: 610px;
+    margin-top: 10px;*/
+}
+
+#idDetalleIniciarSesion .a{
+    font-style: italic;
+    font-size: 15;
+	margin-top: 40px;
+   /* padding-right: 610px;
+    margin-top: 10px;*/
+}
+
+
+/*
+#idDetalleCrearCuenta .emDetalle{
+    font-style: italic;
+    font-size: 20;
+    padding-right: 500px;
+    margin-top: 20px;
+}*/
+
+
+

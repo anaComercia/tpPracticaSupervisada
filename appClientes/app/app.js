@@ -11,6 +11,10 @@ var backendEcommerce = angular.module("backendEcommerceClientes", [
     "backendEcommerceClientes.iniciarSesion",
     "backendEcommerceClientes.perfil",
 	"ui.router"
+    
+    /*2016/04/11 acastillo
+    "backendEcommerceClientes.modificarCuenta",
+    "backendEcommerceClientes.recordarContrasenia"*/
 ]);
 
 //Solo se declara en la principal
@@ -65,8 +69,22 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 			templateUrl : "app/perfil/PerfilTemplate.html",
 			controller : "PerfilController",
 			controllerAs : "prfl"
+		});/*;
+    
+    //2016/04/11 acastillo
+          .state("modificarCuenta", {
+			url : "/modificarCuenta",
+			templateUrl : "app/perfil/PerfilModificarCuenta.html",
+			controller : "PerfilController",
+			controllerAs : "modificarCta"
+		})
+        .state("recordarContrasenia", {
+			url : "/recordarContrasenia",
+			templateUrl : "app/iniciarSesion/RecordarContraseña.html",
+			controller : "InicioSesionController",
+			controllerAs : "recordarContraseniaCta"
 		});
-	
+	*/
 	$urlRouterProvider.otherwise("/inicio"); 
 	
 });

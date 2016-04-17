@@ -1,0 +1,95 @@
+
+<script src="app/perfil/Perfil.js"></script>
+
+<div class="col-md-8 col-offser-2" id="idImgModProd">
+    <img  class="img-responsive" src="img/modulos/imgModuloProductos.jpg" />
+</div>
+
+<div ng-controller="PerfilController as perfCtrl" class="col-md-12" style="background-color:red; height:800px; padding:0px; margin-top:30px;" id="myTab">
+  
+   <div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-3">
+            <div class="panel-group" id="accordeon">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordeon" href="#collapseOne">
+                                <span class="glyphicon glyphicon-folder-close"></span>
+                                Perfil
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span>
+                                        <a >Datos del perfil</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-flash text-success"></span>
+                                        <a >Modificar perfil</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file text-info"></span>
+                                        <a href="">Reputación</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordeon" href="#collapseTwo">
+                                <span class="glyphicon glyphicon-th"></span>
+                                Productos
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                         <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Reservas</a> 
+                                         <span class="label label-success">$ 320</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a >Compras</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a >Cupones de descuento</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 col-md-9">
+            <div class="well">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tab1">
+                        <h1>Tab1</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

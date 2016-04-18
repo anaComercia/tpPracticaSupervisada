@@ -35,7 +35,7 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 			controller : "ProductosListController",
 			controllerAs : "prod"
 		})
-    .state("productosDetail", {
+        .state("productosDetail", {
 			url : "/productosDetail",
             params: {
                 prodId: null
@@ -56,19 +56,19 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 			controller : "FormaPagoController",
 			controllerAs : "fp"
 		})
-    .state("iniciarSesion", {
+        .state("iniciarSesion", {
 			url : "/login",
 			templateUrl : "app/iniciarSesion/IniciarSesionTemplate.html",
 			controller : "IniciarSesionController",
 			controllerAs : "login"
 		})
-      .state("crearCuenta", {
+        .state("crearCuenta", {
 			url : "/crearCuenta",
 			templateUrl : "app/crearCuenta/CrearCuentaTemplate.html",
 			controller : "CrearCuentaController",
 			controllerAs : "crearCta"
 		})
-     .state("carrito", {
+        .state("carrito", {
 			url : "/carrito",
 			templateUrl : "app/carrito/CarritoTemplate.html",
 			controller : "CarritoController",
@@ -86,6 +86,19 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 			controller : "PerfilController",
 			controllerAs : "detalleCta"
 		})
+        .state("modificarContrasenia", {
+			url : "/modificarContrasenia",
+			templateUrl : "app/perfil/PerfilModificarContrasenia.html",
+			controller : "PerfilController",
+			controllerAs : "modContrasenia"
+		})
+        .state("reputacion", {
+			url : "/reputacion",
+			templateUrl : "app/perfil/PerfilReputacion.html",
+			controller : "PerfilController",
+			controllerAs : "reputacion"
+		})
+       
     
     //2016/04/11 acastillo*/
         .state("modificarCuenta", {

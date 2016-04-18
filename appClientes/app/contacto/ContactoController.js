@@ -1,5 +1,9 @@
-var contacto = angular.module("backendEcommerceClientes.contacto");
+angular
+    .module("backendEcommerceClientes.contacto")
+    .controller("ContactoController", ContactoCtrl);
 
-contacto.controller("ContactoController", function($state){
-    
-});
+ContactoCtrl.$injector = ["$state"];
+
+function ContactoCtrl($state) {
+
+}

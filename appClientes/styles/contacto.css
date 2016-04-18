@@ -1,11 +1,11 @@
 
 
-#idPaginaCrearCuenta {
+#idPaginaContacto {
     height:0px; 
     padding:0px; 
     
 }
-#idDetalleCrearCuenta .lblTitulo {
+#idDetalleContacto .lblTitulo {
     font-size: 50;
     font-family: -webkit-pictograph;
     text-align: center;
@@ -15,7 +15,7 @@
 }
 
 
-#idDetalleCrearCuenta .lblDetalle{
+#idDetalleContacto .lblDetalle{
     font-style: italic;
     font-size: 20;
 	margin-top: 5px;
@@ -24,16 +24,15 @@
 }
 
 
-#idDetalleCrearCuenta .impDetalle{
+#idDetalleContacto .impDetalle{
     font-style: italic;
     font-size: 18;
-
 	/*margin-top: 10px;
     padding-right: 610px;
     margin-top: 10px;*/
 }
 
-#idDetalleCrearCuenta .btnBoton{
+#idDetalleContacto .btnBoton{
     font-style: italic;
     font-size: 20;
 	margin-top: 40px;
@@ -41,7 +40,7 @@
     margin-top: 10px;*/
 }
 
-#idDetalleCrearCuenta .a{
+#idDetalleContacto .a{
     font-style: italic;
     font-size: 15;
 	margin-top: 40px;
@@ -49,6 +48,13 @@
     margin-top: 10px;*/
 }
 
+#idDetalleContacto .p{
+    font-style: italic;
+    font-size: 18
+	/*margin-top: 10px;
+    padding-right: 610px;
+    margin-top: 10px;*/
+}
 
 /*
 #idDetalleCrearCuenta .emDetalle{

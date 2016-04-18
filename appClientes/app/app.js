@@ -91,7 +91,7 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
         .state("recordarContrasenia", {
 			url : "/recordarContrasenia",
 			templateUrl : "app/iniciarSesion/RecordarContrasenia.html",
-			controller : "InicioSesionController",
+			controller : "IniciarSesionController",
 			controllerAs : "recordarContraseniaCta"
 		});
 	$urlRouterProvider.otherwise("/inicio"); 

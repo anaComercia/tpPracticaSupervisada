@@ -79,7 +79,13 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 			templateUrl : "app/perfil/PerfilTemplate.html",
 			controller : "PerfilController",
 			controllerAs : "prfl"
-		})/*;
+		})
+        .state("detalleCuenta", {
+			url : "/detalleCuenta",
+			templateUrl : "app/perfil/PerfilDetalleCuenta.html",
+			controller : "PerfilController",
+			controllerAs : "detalleCta"
+		})
     
     //2016/04/11 acastillo*/
         .state("modificarCuenta", {

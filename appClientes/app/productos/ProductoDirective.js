@@ -7,7 +7,7 @@ function ProductoDirective() {
     return {
         restrict: "E",
         replace: true,
-        templateUrl:'../appClientes/app/productos/InitProductTemplate.html',
+        templateUrl:'app/productos/InitProductTemplate.html',
         scope: { product: '=productData' }, //product-data="product"
         controller: function($scope, $element, $attrs) {
             //$scope.verDetalle = verDetalle;            

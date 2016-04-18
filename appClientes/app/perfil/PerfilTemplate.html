@@ -3,40 +3,41 @@
     <img  class="img-responsive" src="img/modulos/imgModuloProductos.jpg" />
 </div>
 
-<div ng-controller="PerfilController as perfCtrl" class="col-md-12" style="background-color:red; height:800px; padding:0px; margin-top:30px;" id="perfilTab">
+<div ng-controller="PerfilController as perfCtrl" class="col-md-12" style="padding:0px; margin-top:30px;" id="perfilTab">
   
    <div class="container">
-    <div class="row">
+   <!-- <div class="row">-->
+       <div class="row">
         <div class="col-sm-3 col-md-3">
             <div class="panel-group" id="accordeon">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordeon" href="#collapseOne">
+                            <a >
                                 <span class="glyphicon glyphicon-folder-close"></span>
                                 Perfil
                             </a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-pencil text-primary"></span>
-                                        <a ui-sref="detalleCuenta">Datos del perfil</a>
+                                        <a ui-sref="perfil.detalleCuenta">Datos del perfil</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-flash text-success"></span>
-                                        <a >Modificar perfil</a>
+                                        <a ui-sref="perfil.modificarCuenta">Modificar perfil</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-file text-info"></span>
-                                        <a href="">Reputación</a>
+                                        <a ui-sref="perfil.reputacion">Reputación</a>
                                     </td>
                                 </tr>
                             </table>
@@ -47,18 +48,18 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordeon" href="#collapseTwo">
+                            <a >
                                 <span class="glyphicon glyphicon-th"></span>
                                 Productos
                             </a>
                         </h4>
                     </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
                                     <td>
-                                         <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Reservas</a> 
+                                         <a ui-sref="carrito">Reservas</a> 
                                          <span class="label label-success">$ 320</span>
                                     </td>
                                 </tr>
@@ -79,14 +80,10 @@
             </div>
         </div>
         <div class="col-sm-9 col-md-9">
-            <div class="well">
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active">
-                       
+                  <div  ui-view>
+                      
                     </div>
-                </div>
-            </div>
-        </div>
+         </div>
     </div>
 </div>
 

@@ -1,17 +1,14 @@
-
-
 #idPaginaModificarCuenta {
     height:0px; 
     padding:0px; 
     
 }
 #idDetalleModificarCuenta .lblTitulo {
-    font-size: 50;
+    font-size: 37px;
     font-family: -webkit-pictograph;
     text-align: center;
-    font-weight: 100;
+   font-weight: 100;
     padding-top: 20px;
-    padding-left: 50px;
 }
 
 
@@ -23,6 +20,14 @@
     margin-top: 10px;*/
 }
 
+
+#idDetalleModificarCuenta .impDetalle{
+    font-style: italic;
+    font-size: 18;
+	/*margin-top: 10px;
+    padding-right: 610px;
+    margin-top: 10px;*/
+}
 
 #idDetalleModificarCuenta .impDetalle{
     font-style: italic;
@@ -55,7 +60,8 @@
     font-size: 20;
     padding-right: 500px;
     margin-top: 20px;
+}
+.detalle-cuenta-container{
+    width: 500px;
 }*/
-
-
 

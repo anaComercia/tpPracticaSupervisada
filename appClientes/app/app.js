@@ -80,33 +80,10 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 			controller : "PerfilController",
 			controllerAs : "prfl"
 		})
-        .state("detalleCuenta", {
-			url : "/detalleCuenta",
-			templateUrl : "app/perfil/PerfilDetalleCuenta.html",
-			controller : "PerfilController",
-			controllerAs : "detalleCta"
-		})
-        .state("modificarContrasenia", {
-			url : "/modificarContrasenia",
-			templateUrl : "app/perfil/PerfilModificarContrasenia.html",
-			controller : "PerfilController",
-			controllerAs : "modContrasenia"
-		})
-        .state("reputacion", {
-			url : "/reputacion",
-			templateUrl : "app/perfil/PerfilReputacion.html",
-			controller : "PerfilController",
-			controllerAs : "reputacion"
-		})
-       
+          
     
     //2016/04/11 acastillo*/
-        .state("modificarCuenta", {
-			url : "/modificarCuenta",
-			templateUrl : "app/perfil/PerfilModificarCuenta.html",
-			controller : "PerfilController",
-			controllerAs : "modificarCta"
-		})
+
         .state("recordarContrasenia", {
 			url : "/recordarContrasenia",
 			templateUrl : "app/iniciarSesion/RecordarContrasenia.html",

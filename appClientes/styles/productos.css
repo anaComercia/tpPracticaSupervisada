@@ -102,8 +102,12 @@
 
 #idPrecioImg{
     float: right;
+
 }
 
+#idDetailPrice{
+    margin-right: 40;
+}
 #idImgModProd{
     margin-right: 100px;
     margin-left: 205px;

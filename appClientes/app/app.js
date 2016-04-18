@@ -10,11 +10,12 @@ var backendEcommerce = angular.module("backendEcommerceClientes", [
     "backendEcommerceClientes.formaPago",
     "backendEcommerceClientes.iniciarSesion",
     "backendEcommerceClientes.perfil",
-	"ui.router"
+	//"backendEcommerceClientes.modificarCuenta",
+    //"backendEcommerceClientes.recordarContrasenia",
+    "ui.router"
     
-    /*2016/04/11 acastillo
-    "backendEcommerceClientes.modificarCuenta",
-    "backendEcommerceClientes.recordarContrasenia"*/
+    /*2016/04/11 acastillo*/
+    
 ]);
 
 //Solo se declara en la principal
@@ -30,9 +31,18 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 		})
 		.state("productos", {
 			url : "/productos",
-			templateUrl : "app/productos/ProductosTemplate.html",
-			controller : "ProductosController",
+			templateUrl : "app/productos/ProductosIndex.html",
+			controller : "ProductosListController",
 			controllerAs : "prod"
+		})
+    .state("productosDetail", {
+			url : "/productosDetail",
+            params: {
+                prodId: null
+            },
+			templateUrl : "app/productos/ProductosDetail.html",
+			controller : "ProductosDetailController",
+			controllerAs : "prodDetail"
 		})
        .state("contacto", {
 			url : "/contacto",
@@ -69,10 +79,10 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 			templateUrl : "app/perfil/PerfilTemplate.html",
 			controller : "PerfilController",
 			controllerAs : "prfl"
-		});/*;
+		})/*;
     
-    //2016/04/11 acastillo
-          .state("modificarCuenta", {
+    //2016/04/11 acastillo*/
+        .state("modificarCuenta", {
 			url : "/modificarCuenta",
 			templateUrl : "app/perfil/PerfilModificarCuenta.html",
 			controller : "PerfilController",
@@ -80,11 +90,10 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 		})
         .state("recordarContrasenia", {
 			url : "/recordarContrasenia",
-			templateUrl : "app/iniciarSesion/RecordarContraseña.html",
+			templateUrl : "app/iniciarSesion/RecordarContrasenia.html",
 			controller : "InicioSesionController",
 			controllerAs : "recordarContraseniaCta"
 		});
-	*/
 	$urlRouterProvider.otherwise("/inicio"); 
 	
 });

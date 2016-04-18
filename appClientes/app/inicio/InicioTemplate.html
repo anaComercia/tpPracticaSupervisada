@@ -2,7 +2,7 @@
 <script src="app/inicio/inicio.js"></script>
 
 
-<div id="myCarousel" class="col-md-10 col-md-offset-2 carousel slide" data-ride="carousel" >
+<div id="myCarousel" class="hidden-xs col-md-10 col-md-offset-2 carousel slide" data-ride="carousel" >
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -46,7 +46,8 @@
     <!-- div ng-repeat donde meto la lista de la bbdd ng-model="product" product es cada element
 de la lista-->
  
-   <producto-directive style="margin:20px;" ng-repeat="product in initCtrl.products" product-data="product"></producto-directive>
+   <producto-directive style="margin:20px;" ng-repeat="product in initCtrl.productList" product-data="product">
+   </producto-directive>
 
     
 

@@ -1,0 +1,14 @@
+<div class="col-md-8 col-offser-2" id="idImgModProd">
+    <img  class="img-responsive" src="img/modulos/imgModuloProductos.jpg" />
+</div>
+
+<div id="idPnlImagenes" ng-controller="ProductosListController as prodCtrl" class="col-md-8" style=" padding:0px;">
+
+    <!-- div ng-repeat donde meto la lista de la bbdd ng-model="product" product es cada element
+de la lista-->
+   <producto-directive style="margin:20px;" 
+                       ng-repeat="product in prodCtrl.productList" 
+                       product-data="product">
+    </producto-directive>
+
+</div>

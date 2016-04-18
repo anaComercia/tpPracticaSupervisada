@@ -1,6 +1,7 @@
 <div class="col-md-12 ini-mini-imagen" >
-    <img  src="img/modulos/prueba1.jpg"  class="img-responsive"/>
+    <img  src="{{product.image[0]}}"  class="img-responsive" ui-sref="productosDetail({prodId: product.id})"/>
     
-    <label>CAMPERA MILANO MUJER</label>
-    <label id="idPrecioImg">PRECIO</label>
+    <label id="idDetailPrice">{{product.title}}</label>
+    <label>{{product.gender}}</label>
+    <label id="idPrecioImg">${{product.price}}</label>
 </div>

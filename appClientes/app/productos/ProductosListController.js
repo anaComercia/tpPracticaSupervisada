@@ -1,10 +1,13 @@
-var inicio = angular.module("backendEcommerceClientes.inicio");
+angular
+    .module("backendEcommerceClientes.producto")
+    .controller("ProductosListController", ProductosCtrl);
 
-inicio.controller("InicioController", function($state){
-    var vm = this;
-    vm.productId= 0;
-    
-       vm.productList = [
+ProductosCtrl.$injector = ["$state"];
+
+function ProductosCtrl($state) {
+    vm = this;
+  
+    vm.productList = [
         {
             id: 1,
             title: 'Campera Milano',
@@ -83,4 +86,14 @@ inicio.controller("InicioController", function($state){
             'img/modulos/prueba3.jpg',
             'img/modulos/prueba4.jpg']
         }];
-});
+    function getProductList(filter) {}
+      /*  var obj = {
+        title: 'CAMPERA MILANO',
+        price: 600,
+        gender: 'Mujer',
+        size: ['1','2'],
+        color: ['Azul', 'Rosa', 'Blanca'],
+        stock: 3,
+        image: ['img/modulos/prueba2.jpg', 'img/modulos/prueba3.jpg', 'img/modulos/prueba4.jpg']
+  };*/ 
+}

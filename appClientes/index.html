@@ -37,7 +37,8 @@
         <script src="app/perfil/PerfilController.js"></script>
         
         <script src="app/productos/Productos.js"></script>
-        <script src="app/productos/ProductosController.js"></script>
+        <script src="app/productos/ProductosListController.js"></script>
+        <script src="app/productos/ProductosDetailController.js"></script>
         <script src="app/productos/ProductoDirective.js"></script>
         
         <!-- <Estilos> -->
@@ -56,7 +57,7 @@
     </head>
     <body>
        <div ng-controller="MainController as main" id="container" style="container">
-            <div id="idHeader" class="col-md-10 col-md-offset-1 col-xs-6" >
+            <div id="idHeader" class="row col-md-10 col-md-offset-1 col-xs-6" >
                 <div id="idDivBuscador" class="col-md-3 input--search">
                         <input id="idBuscador" maxlength="15" placeholder="Buscar" style="fa fa-search"/>
                         <button type="submit" class="btn"><i class="fa fa-search"></i></button>
@@ -85,7 +86,7 @@
                 
                 <div id="idModulosPrincipal"  class="col-md-12 col-xs-6" >
                     <div  class="col-md-10 col-md-offset-2" id="mainMenu">
-                         <ul id="idMenuModulos" class="container active">
+                         <ul id="idMenuModulos" class="active">
                                 <li ui-sref-active="active">
                                     <a ui-sref="inicio"> INICIO </a>
                                 </li>
@@ -113,7 +114,7 @@
                 </div>
             </div> <!-- FIN BODY -->
 
-            <div id="idFooter" class="col-md-12 div-footer col-xs-6" >
+            <div id="idFooter" class="row col-md-12 div-footer col-xs-6" >
                 <div id="idPnlDetallesFooter"  class="col-md-10 col-md-offset-1 col-xs-6">
                    <div class="col-md-3 col-xs-4" style=" ">
                        <label class="footer-titles"> REDES SOCIALES </label>

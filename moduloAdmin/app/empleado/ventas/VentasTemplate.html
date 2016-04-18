@@ -1,0 +1,57 @@
+ <div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+<div class="col-md-9">
+    <div class="form-group col-md-9">
+        <label id="filtrarPor" class="col-md-3 control-label">Filtrar por:</label>
+        <div class="col-md-4 selectContainer">
+            <select class="form-control" name="filtrado" ng-model="ven.seleccion" ng-change="ven.update()">
+                <option>Usuario</option>
+                <option>Monto</option>
+                <option>Fecha compra</option>
+                <option>Fecha pago</option>
+                <option>Estado</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="ven.filtroVenta.usuario" ng-show="ven.seleccion=='Usuario'">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="ven.filtroVenta.monto" ng-show="ven.seleccion=='Monto'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="ven.filtroVenta.fechaCompra" ng-show="ven.seleccion=='Fecha compra'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="ven.filtroVenta.fechaPago" ng-show="ven.seleccion=='Fecha pago'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="ven.filtroVenta.estado" ng-show="ven.seleccion=='Estado'"> 
+        </div>
+    </div>
+    
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Monto</th>
+        <th>Fecha compra</th>
+        <th>Fecha pago</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+        <!-- <ng-repeat siempre para llenar una tabla o un combobox con un array guardado en el controller> -->
+      <tr ng-repeat="venta in ven.ventas | filter: ven.filtroVenta">
+          <!-- <ng-class permite cambiar la clase de un elemento en tiempo real si algo sucede> -->
+        <td><li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+            {{venta.usuario}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{venta.monto}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{venta.fechaCompra}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{venta.fechaPago}}</li>
+		  </td>
+           <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{venta.estado}}</li>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

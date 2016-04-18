@@ -1,0 +1,61 @@
+ <div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+<div class="col-md-9">
+      <div class="form-group col-md-9">
+        <label id="filtrarPor" class="col-md-3 control-label">Filtrar por:</label>
+        <div class="col-md-4 selectContainer">
+            <select class="form-control" name="filtrado" ng-model="cli.seleccion" ng-change="cli.update()">
+                <option>Dni</option>
+                <option>Apellido</option>
+                <option>Nombre</option>
+                <option>Email</option>
+                <option>Habilitado</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="cli.filtroCliente.numDni" ng-show="cli.seleccion=='Dni'">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="cli.filtroCliente.apellido" ng-show="cli.seleccion=='Apellido'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="cli.filtroCliente.nombre" ng-show="cli.seleccion=='Nombre'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="cli.filtroCliente.email" ng-show="cli.seleccion=='Email'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="cli.filtroCliente.habilitado" ng-show="cli.seleccion=='Habilitado'"> 
+        </div>
+    </div>
+    
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Dni</th>
+        <th>Email</th>
+        <th>Reputación</th> 
+        <th>Habilitado</th> 
+      </tr>
+    </thead>
+    <tbody>
+        <!-- <ng-repeat siempre para llenar una tabla o un combobox con un array guardado en el controller> -->
+      <tr ng-repeat="cliente in cli.clientes | filter: cli.filtroCliente">
+          <!-- <ng-class permite cambiar la clase de un elemento en tiempo real si algo sucede> -->
+        <td><li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+            {{cliente.nombre}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{cliente.apellido}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{cliente.numDni}}</li>
+		  </td>
+           <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{cliente.email}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{cliente.reputacion}}</li>
+		  </td>
+           <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{cliente.habilitado}}</li>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

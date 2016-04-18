@@ -1,0 +1,66 @@
+<div class="row">
+	<div class="col-md-6">
+		<div class="btn-group" role="group" aria-label="...">
+		  <button type="button" class="btn btn-default" ng-click="mp.nuevaMp()">Nueva Materia Prima</button>
+		  <button type="button" class="btn btn-default" ng-click="cat.putCategoria()" ng-disabled="cat.activado">Editar Materia Prima</button>
+		  <button type="button" class="btn btn-default" ng-click="cat.deleteCategoria()" ng-disabled="cat.activado">Eliminar Materia Prima</button>
+		</div>
+	</div>
+    
+    <div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+    
+    <div class="col-md-12" ui-view>
+	</div>
+    </div>
+    <div ng-show="mp.formLabel != 'Nueva Materia Prima'">
+    <div class="form-group col-md-9" >
+        <label id="filtrarPor" class="col-md-2 control-label">Filtrar por:</label>
+        <div class="col-md-2 selectContainer">
+            <select class="form-control" name="filtrado" ng-model="mp.seleccion"  ng-change="mp.update()">
+                <option>Id</option>
+                <option>Titulo</option>
+                <option>Precio</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="mp.filtroMp.idMP" ng-show="mp.seleccion=='Id'">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="mp.filtroMp.titulo" ng-show="mp.seleccion=='Titulo'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="mp.filtroMp.precio" ng-show="mp.seleccion=='Precio'">
+        </div>
+    </div>
+    
+
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Título</th>
+        <th>Precio</th>
+        <th>Por cada</th>
+        <th>Unidad de medida</th>  
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="materia in mp.mps | filter: mp.filtroMp">
+        <td><li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+            {{materia.idMP}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+			  {{materia.titulo}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+			  {{materia.precio}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+			  {{materia.unidad}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+			  {{materia.medida}}</li>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+</div>

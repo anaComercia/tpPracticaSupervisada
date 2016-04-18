@@ -1,0 +1,78 @@
+<div class="col-md-12" ui-view>
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+<div class="col-md-9">
+    <div class="form-group col-md-9">
+        <label id="filtrarPor" class="col-md-3 control-label">Filtrar por:</label>
+        <div class="col-md-4 selectContainer">
+            <select class="form-control" name="filtrado" ng-model="stock.seleccion" ng-change="stock.update()">
+                <option>N° Sucursal</option>
+                <option>Producto</option>
+                <option>Provincia</option>
+                <option>Localidad</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="stock.filtroStock.titulo" ng-show="stock.seleccion=='Producto'">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="stock.filtroStock.nroSucursal" ng-show="stock.seleccion=='N° Sucursal'"> 
+            <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="stock.filtroStock.provincia_desc" ng-show="stock.seleccion=='Provincia'"> 
+            <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="stock.filtroStock.localidad_desc" ng-show="stock.seleccion=='Localidad'"> 
+        </div>
+    </div>
+    
+       <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                  <li class="sidebar-brand" ui-sref-active="active">
+                     <a>Stock</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="stock">Productos</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="stock.mp">Materia Prima</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+    
+    
+    
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Stock</th>
+        <th>P.Reposición</th>
+        <th>Sucursal</th>
+        <th>Provincia</th>
+        <th>Localidad</th>
+      </tr>
+    </thead>
+    <tbody>
+        <!-- <ng-repeat siempre para llenar una tabla o un combobox con un array guardado en el controller> -->
+      <tr ng-repeat="stock in stock.stocks | filter: stock.filtroStock">
+          <!-- <ng-class permite cambiar la clase de un elemento en tiempo real si algo sucede> -->
+          <td><li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+            {{stock.titulo}}</li>
+		  </td>
+          <td><li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{stock.cantidad}}</li>
+		  </td>
+           <td><li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{stock.puntoReposicion}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{stock.nroSucursal}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{stock.provincia_desc}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{stock.localidad_desc}}</li>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

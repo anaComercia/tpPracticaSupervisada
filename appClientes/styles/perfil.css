@@ -13,3 +13,35 @@ body{
 .panel-body .table {
     margin-bottom: 0px;
 }
+
+.reputacion-cliente h5{
+    font-family: -webkit-pictograph;
+    font-style: italic;
+    color: black;
+    padding-bottom: 10px;
+    text-decoration: underline;
+    margin-top: 40px;
+    font-size: 30px;
+}
+.div-detalle-reputacion{
+    margin-bottom: 60px;
+}
+
+.div-detalle-reputacion hr{
+    border: 0; 
+    border-top: 1px solid #999; 
+    border-bottom: 1px solid #333; 
+    height:0; 
+    width:567px;
+
+}
+.mensaje-detalle-reputacion{
+        font-family: serif;
+    font-weight: 900;
+    font-size: 30px !important;
+}
+.mensaje-informativo{
+    font-size: smaller;
+    color: grey;
+    margin-top: 40px;
+}

@@ -1,4 +1,4 @@
-<div class="col-md-8 col-offser-2" id="idImgModProd">
+<div class="col-md-8 col-offset-2" id="idImgModProd">
     <img  class="img-responsive" src="img/modulos/imgModuloProductos.jpg" />
 </div>
 
@@ -18,7 +18,7 @@
     </div>
 
     <div  id="idDetalleProd" class="col-md-6" style="">
-        <label class="lblTitulo">{{productCtrl.prod.title}}</label>
+        <label class="lblTitulo">{{productCtrl.prod.title | uppercase}}</label>
         
         <div>
             <label class="lblPrecio" >${{productCtrl.prod.price}}</label>

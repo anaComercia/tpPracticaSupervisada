@@ -14,9 +14,6 @@
         <!--  <App acá se declaran todos los js que usa angular>-->
         <script src="app/app.js"></script> 
         <script src="app/MainController.js"></script> 
-               
-        <script src="app/carrito/Carrito.js"></script>
-        <script src="app/carrito/CarritoController.js"></script> 
                  
         <script src="app/contacto/Contacto.js"></script>
         <script src="app/contacto/ContactoController.js"></script>
@@ -35,6 +32,11 @@
         
         <script src="app/perfil/Perfil.js"></script>
         <script src="app/perfil/PerfilController.js"></script>
+        
+                       
+        <script src="app/carrito/Carrito.js"></script>
+        <script src="app/carrito/CarritoController.js"></script> 
+        <script src="app/carrito/CarritoDirective.js"></script> 
         
         <script src="app/productos/Productos.js"></script>
         <script src="app/productos/ProductosListController.js"></script>
@@ -71,8 +73,9 @@
                 </div>
 
                 <div id="idDivCrearCuenta" class="col-md-3 container" >
-                    <a ui-sref="carrito">
-                          <label id="idCarrito" class="fa fa-shopping-cart" > CARRITO </label>
+                  <!-- <a ui-sref="carrito">-->
+                    <a >
+                          <label id="idCarrito" class="fa fa-shopping-cart" > CARRITO  PLATA</label>
                     </a>
                     <a ui-sref="crearCuenta">
                          <label id="idCrearCuenta" >CREAR CUENTA</label>
@@ -116,7 +119,7 @@
                 </div>
             </div> <!-- FIN BODY -->
 
-            <div id="idFooter" class="row col-md-12 div-footer col-xs-6" >
+            <div id="idFooter" class="col-md-12 div-footer col-xs-6" >
                 <div id="idPnlDetallesFooter"  class="col-md-10 col-md-offset-1 col-xs-6">
                    <div class="col-md-3 col-xs-4" style=" ">
                        <label class="footer-titles"> REDES SOCIALES </label>

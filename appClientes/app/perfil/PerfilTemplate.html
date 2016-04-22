@@ -1,9 +1,9 @@
 <script src="app/perfil/Perfil.js"></script>
-   <div class="col-md-8 col-offser-2" id="idImgModProd">
+   <div class="col-md-8 col-offset-2" id="idImgModProd">
     <img  class="img-responsive" src="img/modulos/imgModuloProductos.jpg" />
 </div>
 
-<div ng-controller="PerfilController as perfCtrl" class="col-md-12" style="padding:0px; margin-top:30px;" id="perfilTab">
+<div ng-controller="PerfilController as perfCtrl" class="col-md-12 perfilTab" >
   
    <div class="container">
    <!-- <div class="row">-->
@@ -34,10 +34,22 @@
                                         <a ui-sref="perfil.modificarCuenta">Modificar perfil</a>
                                     </td>
                                 </tr>
+                                 <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-flash text-success"></span>
+                                        <a ui-sref="perfil.modificarContrasenia">Modificar contraseña</a>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-file text-info"></span>
                                         <a ui-sref="perfil.reputacion">Reputación</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-gift text-info"></span>
+                                        <a ui-sref="perfil.cupones">Cupones de descuento</a>
                                     </td>
                                 </tr>
                             </table>
@@ -45,6 +57,27 @@
                     </div>
 
                 </div>
+            </div>
+        </div>
+        <div class="col-sm-9 col-md-9">
+                 <div  ui-view>
+
+                </div>
+         </div>
+    </div>
+</div>
+
+</div> 
+<!-- FIN CONTROLLER PERFIL -->
+
+<!-- INICIO CONTROLLER CARRITO -->
+<div ng-controller="CarritoController as carritoCtrl" class="col-md-12 perfilTab" >
+  
+   <div class="container">
+   
+       <div class="row">
+        <div class="col-sm-3 col-md-3">
+            <div class="panel-group" id="accordeon">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -59,32 +92,25 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                         <a ui-sref="carrito">Reservas</a> 
+                                         <a ui-sref="carrito.compras" class="">Reservas</a> 
                                          <span class="label label-success">$ 320</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a >Compras</a>
+                                        <a ui-sref="carrito.reservas" >Compras</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <a >Cupones de descuento</a>
-                                    </td>
-                                </tr>
+
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-9 col-md-9">
-                  <div  ui-view>
-                      
-                    </div>
-         </div>
+
     </div>
 </div>
 
 </div>
+<!-- FIN CONTROLLER CARRITO -->

@@ -9,7 +9,7 @@ perfil.config(function($stateProvider){
 			templateUrl : "app/perfil/PerfilDetalleCuenta.html"
 
 		})
-        .state("perfil.modificarContrasenia", {
+       .state("perfil.modificarContrasenia", {
 			url : "/modificarContrasenia",
 			templateUrl : "app/perfil/PerfilModificarContrasenia.html"
 
@@ -17,6 +17,11 @@ perfil.config(function($stateProvider){
         .state("perfil.reputacion", {
 			url : "/reputacion",
 			templateUrl : "app/perfil/PerfilReputacion.html"
+
+		})
+      .state("perfil.cupones", {
+			url : "/cupones",
+			templateUrl : "app/perfil/PerfilCupones.html"
 
 		})
         .state("perfil.modificarCuenta", {

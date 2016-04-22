@@ -14,6 +14,11 @@ body{
     margin-bottom: 0px;
 }
 
+.reputacion-cliente
+{
+    padding: 0px;
+}
+
 .reputacion-cliente h5{
     font-family: -webkit-pictograph;
     font-style: italic;
@@ -44,4 +49,9 @@ body{
     font-size: smaller;
     color: grey;
     margin-top: 40px;
+}
+
+.perfilTab{
+    padding:0px; 
+    margin-top:30px;
 }

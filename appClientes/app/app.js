@@ -56,6 +56,12 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 			controller : "FormaPagoController",
 			controllerAs : "fp"
 		})
+        .state("carrito", {
+			url : "/carrito",
+			templateUrl : "app/carrito/CarritoTemplate.html",
+			controller : "CarritoController",
+			controllerAs : "carrito"
+		})
         .state("iniciarSesion", {
 			url : "/login",
 			templateUrl : "app/iniciarSesion/IniciarSesionTemplate.html",
@@ -68,13 +74,7 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 			controller : "CrearCuentaController",
 			controllerAs : "crearCta"
 		})
-        .state("carrito", {
-			url : "/carrito",
-			templateUrl : "app/carrito/CarritoTemplate.html",
-			controller : "CarritoController",
-			controllerAs : "carrito"
-		})
-    	.state("perfil", {
+       	.state("perfil", {
 			url : "/perfil",
 			templateUrl : "app/perfil/PerfilTemplate.html",
 			controller : "PerfilController",

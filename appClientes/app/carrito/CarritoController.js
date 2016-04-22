@@ -1,5 +1,9 @@
-var carrito = angular.module("backendEcommerceClientes.carrito");
+angular
+    .module("backendEcommerceClientes.carrito")
+    .controller("CarritoController", CarritoCtrl);
 
-carrito.controller("CarritoController", function($state){
-    
-});
+CarritoCtrl.$injector = ["$state"];
+
+function CarritoCtrl($state) {
+
+}

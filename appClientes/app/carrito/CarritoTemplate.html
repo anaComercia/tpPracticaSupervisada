@@ -1,0 +1,47 @@
+<script src="app/perfil/Perfil.js"></script>
+   <div class="col-md-8 col-offset-2" id="idImgModProd">
+    <img  class="img-responsive" src="img/modulos/imgModuloProductos.jpg" />
+</div>
+<div ng-controller="CarritoController as carroCtrl" class="col-md-12 perfilTab" >
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+                <div class="panel-group" id="accordeon">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a >
+                                    <span class="glyphicon glyphicon-th"></span>
+                                    Productos
+                                </a>
+                            </h4>
+                        </div>
+                        <div class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                             <a ui-sref="carrito.compras" class="">Reservas</a> 
+                                             <span class="label label-success">$ 320</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a ui-sref="carrito.compras">Compras</a>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9 col-md-9">
+                <div  ui-view>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

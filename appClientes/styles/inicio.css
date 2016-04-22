@@ -10,6 +10,9 @@
     margin-bottom: 0px;
     height: 30px;
 }
+.pnl-filtros{
+    margin-left: 80px;
+}
 
 #idPnlFiltros #show-more-cats i.fa{
     background-color: #E3E3E3;
@@ -23,12 +26,20 @@
 #myCarousel {
     width:700px; 
     padding: 0px;
-    margin-right: 100px;
-    margin-left: 205px;
-    padding-bottom: 20px;
+    /*margin-right: 100px;
+    margin-left: 205px;*/
+    
 }
 
-
+.pnl-banner-costados{
+    height: 340;   
+    width: 210;
+   
+}
+.pnl-imgs{
+     padding: 0px;
+    padding-bottom: 20px;
+}
 /*Menu flotante
 .f-nav{ 
     z-index: 9999;

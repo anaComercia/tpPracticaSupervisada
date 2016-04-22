@@ -1,59 +1,65 @@
 
 <script src="app/inicio/inicio.js"></script>
 
-
-<div id="myCarousel" class="hidden-xs col-md-10 col-md-offset-2 carousel slide" data-ride="carousel" >
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-        <li data-target="#myCarousel" data-slide-to="4"></li>
-        <li data-target="#myCarousel" data-slide-to="5"></li>
-    </ol>
-    <!-- Carousel items -->
-    <div class="carousel-inner">
-        <div class="active item"><img  src="img/carrusel/carrusel1.jpg" alt="banner1" /></div>
-        <div class="item"><img  src="img/carrusel/carrusel2.jpg" alt="banner2" /></div>
-        <div class="item"><img  src="img/carrusel/carrusel3.jpg" alt="banner3" /></div>
-        <div class="item"><img  src="img/carrusel/carrusel4.jpg" alt="banner4" /></div>
-        <div class="item"><img  src="img/carrusel/carrusel5.jpg" alt="banner5" /></div>
-        <div class="item"><img  src="img/carrusel/carrusel6.jpg" alt="banner6" /></div>
-    </div>
-
-</div> <!-- FIN CARRUSEL -->
-
-<div id="idPnlFiltros"  class="col-md-2" >
-    <div id="idPnlCategorias" class="col-md-10" style="">
-        <h4>Categorías principales</h4>
-        <ul>
-            <li>Jeans</li>
-            <li>Camisas</li>
-            <li>Remeras</li>
-            <li>Camperas</li>
-            <li>Hombre</li>
-            <li>Mujer</li>
-            <li>Todos</li>
-        </ul>
-        <a id="show-more-cats" >
-            <i class="fa fa-angle-down"></i>
-        </a>
-    </div>
-
-</div>
-
-<div id="idPnlImagenes" ng-controller="InicioController as initCtrl" class="col-md-8" style=" padding:0px;">
-
-    <!-- div ng-repeat donde meto la lista de la bbdd ng-model="product" product es cada element
-de la lista-->
- 
-   <producto-directive 
-                    style="margin:20px;" 
-                    ng-repeat="product in initCtrl.productList"
-                    product-data="product">
-   </producto-directive>
-
+<div class="pnl-imgs" >
+   
+    <img  src="img/carrusel/bannerMujer1.jpg" class="pnl-banner-costados"/>
     
+    <div id="myCarousel" class="hidden-xs col-md-12 carousel slide" data-ride="carousel" >
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+        </ol>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+            <div class="active item"><img  src="img/carrusel/carrusel1.jpg" alt="banner1" /></div>
+            <div class="item"><img  src="img/carrusel/carrusel2.jpg" alt="banner2" /></div>
+            <div class="item"><img  src="img/carrusel/carrusel3.jpg" alt="banner3" /></div>
+            <div class="item"><img  src="img/carrusel/carrusel4.jpg" alt="banner4" /></div>
+            <div class="item"><img  src="img/carrusel/carrusel5.jpg" alt="banner5" /></div>
+            <div class="item"><img  src="img/carrusel/carrusel6.jpg" alt="banner6" /></div>
+        </div>
 
+    </div> <!-- FIN CARRUSEL -->
+
+    <img  src="img/carrusel/bannerHombre2.jpg" class="pnl-banner-costados"/>
 </div>
+<div class="col-md-12">
+    <div id="idPnlFiltros"  class="col-md-2 pnl-filtros" >
+        <div id="idPnlCategorias" class="col-md-10" style="">
+            <h4>Categorías principales</h4>
+            <ul>
+                <li>Jeans</li>
+                <li>Camisas</li>
+                <li>Remeras</li>
+                <li>Camperas</li>
+                <li>Hombre</li>
+                <li>Mujer</li>
+                <li>Todos</li>
+            </ul>
+            <a id="show-more-cats" >
+                <i class="fa fa-angle-down"></i>
+            </a>
+        </div>
 
+    </div>
+
+    <div id="idPnlImagenes" ng-controller="InicioController as initCtrl" class="col-md-8" style=" padding:0px;">
+
+        <!-- div ng-repeat donde meto la lista de la bbdd ng-model="product" product es cada element
+    de la lista-->
+
+       <producto-directive 
+                        style="margin:20px;" 
+                        ng-repeat="product in initCtrl.productList"
+                        product-data="product">
+       </producto-directive>
+
+
+
+    </div>
+</div>

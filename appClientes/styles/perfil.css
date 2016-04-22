@@ -55,3 +55,35 @@ body{
     padding:0px; 
     margin-top:30px;
 }
+.pnl-prod-perfil{
+    margin-top: 30px;
+    
+}
+.back-color-pnl{
+    background-color: #A7B5BB !important;
+}
+.cupon-usado-back-color-pnl{
+   background-color: antiquewhite;
+}
+.div-cupon{
+    max-height: 200px;
+    margin-top: 40px;
+}
+.cupon-nuevo-back-color-pnl{
+    background-color: #BFF1DE;
+}
+.lista-cupon{
+    margin-top: 15;
+    margin-bottom: 5;
+    font-family: sans-serif;
+    font-size: 20px !important;
+}
+.lista-cupon label{
+    margin-left:50px;
+}
+.lista-cupon .precio-cupon-usado{
+    margin-left:400px;
+}
+.lista-cupon .precio-cupon-nuevo{
+    margin-left:550px;
+}

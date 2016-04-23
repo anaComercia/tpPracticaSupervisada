@@ -87,6 +87,7 @@ body{
 }
 .lista-cupon label{
     margin-left:50px;
+    width: 110px;
 }
 .lista-cupon .precio-cupon-usado{
     margin-left:400px;

@@ -24,13 +24,13 @@ function PerfilCtrl($state) {
         },
         {
             id: 2,
-            code: '87fdswrlkj',
+            code: '87fdswrlkju',
             date: '14/11/2015',
             price: 150
         },
         {
             id: 3,
-            code: 'fdsdfh6wet',
+            code: 'fdsdfh6wet5',
             date: '10/03/2016',
             price: 350
         }];

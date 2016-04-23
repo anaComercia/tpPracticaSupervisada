@@ -12,6 +12,8 @@ function CarritoReservasDirective() {
         link: function($scope, $element, $attrs) {
             //$scope.verDetalle = verDetalle;  
             $scope.buyData.subTotal = $scope.buyData.unitPrice * $scope.buyData.quantity;
+
+
         }       
     }    
 }

@@ -5,7 +5,8 @@ angular
 CarritoCtrl.$injector = ["$state"];
 
 function CarritoCtrl($state) {
-    vm = this;
+   var vm = this;
+    vm.totalReservas = 10;
     
     /* lista compras */
     vm.listaCompras = [
@@ -46,5 +47,16 @@ function CarritoCtrl($state) {
         }
     ];
     
+   /* vm.totalReservas = function(){
+        var total = 0;
+        var aux = 0;
+        for (i = 0; i < listaReservas.length; i++) {
+            debugger;
+            aux = listaReservas[i].quantity * listaReservas[i].unitPrice;
+            totalReservas = totalReservas + aux;
+            debugger;
+        }
+
+    };*/
 
 }

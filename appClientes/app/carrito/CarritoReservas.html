@@ -22,6 +22,17 @@
                                buy-data="reservas">
             </carrito-reservas-directive >
         </div>
+        
+        <div class="div-total-reserva">
+            TOTAL A PAGAR
+            <label class="div-total-reserva-precio">$ {{carritoCtrl.totalReservas}}</label>
+            <div >
+                <button  type="button" class=" btn-pagar btn btn-default btn-md">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    PAGAR
+                </button>
+            </div>
+        </div>
     </div>
 
     

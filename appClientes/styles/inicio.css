@@ -34,7 +34,7 @@
 .pnl-banner-costados{
     height: 340;   
     width: 210;
-   
+    float: left;
 }
 .pnl-imgs{
      padding: 0px;

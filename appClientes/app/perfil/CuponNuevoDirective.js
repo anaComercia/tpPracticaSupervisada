@@ -8,7 +8,7 @@ function CuponNuevoDirective() {
         restrict: "E",
         replace: true,
         templateUrl:'app/perfil/CuponNuevoDirective.html',
-        scope: { product: '=productData' }, //product-data="cupon"
+        scope: { cuponNuevo: '=cuponData' }, //product-data="cupon"
         controller: function($scope, $element, $attrs) {
             //$scope.verDetalle = verDetalle;            
         }       

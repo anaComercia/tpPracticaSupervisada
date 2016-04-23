@@ -8,9 +8,9 @@ function CuponUsadoDirective() {
         restrict: "E",
         replace: true,
         templateUrl:'app/perfil/CuponUsadoDirective.html',
-        scope: { product: '=productData' }, //product-data="cupon"
+        scope: { cuponUsado: '=cuponData' }, //product-data="cupon"
         controller: function($scope, $element, $attrs) {
-            //$scope.verDetalle = verDetalle;            
+            //$scope.verDetalle = verDetalle;     
         }       
     }    
 }

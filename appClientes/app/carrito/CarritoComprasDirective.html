@@ -2,9 +2,9 @@
     <!--<img  src="{{product.image[0]}}"  class="img-responsive" ui-sref="productosDetail({prodId: product.id})"/>-->
     
     <img src="{{buyData.image}}" class="img-compras" />
-    <label style="width: 256px;">{{buyData.detail | uppercase}}</label>
-    <label style="    width: 98px;">{{buyData.quantity}}</label>
-    <label style="    width: 96px;" >${{buyData.price}}</label>
-    <label style="    width: 139px;">{{buyData.buyDate}}</label>
+    <label class="compras-lbl-detalle">{{buyData.detail | uppercase}}</label>
+    <label class=" compras-lbl-cantidad ">{{buyData.quantity}}</label>
+    <label class=" compras-lbl-precio  " >${{buyData.price}}</label>
+    <label class=" compras-lbl-fecha-compra  ">{{buyData.buyDate}}</label>
     <label >{{buyData.payDate}}</label>
 </div>

@@ -95,3 +95,6 @@ body{
 .lista-cupon .precio-cupon-nuevo{
     margin-left:550px;
 }
+.panel-titulo{
+    font-family: cursive !important;
+}

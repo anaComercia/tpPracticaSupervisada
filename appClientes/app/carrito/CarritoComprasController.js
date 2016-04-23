@@ -2,11 +2,11 @@ angular
     .module("backendEcommerceClientes.carrito")
     .controller("CarritoComprasController", CarritoComprasCtrl);
 
-CarritoComprasCtrl.$injector = ["$state"];
+CarritoComprasCtrl.$injector = ["$state , $scope"];
 
-function CarritoComprasCtrl($state) {
+function CarritoComprasCtrl($state,$scope) {
    var vm = this;
-    
+    debugger;
     /* lista compras */
     vm.listaCompras = [
         {

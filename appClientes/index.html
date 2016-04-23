@@ -64,7 +64,7 @@
         <title>MODA SHOW</title>    
     </head>
     <body>
-       <div ng-controller="MainController as main" id="container" style="container">
+       <div id="container" style="container">
             <div id="idHeader" class="row col-md-10 col-md-offset-1 col-xs-6" >
                 <div id="idDivBuscador" class="col-md-3 input--search">
                         <input id="idBuscador" maxlength="15" placeholder="Buscar" style="fa fa-search"/>
@@ -79,22 +79,25 @@
 
                 <div id="idDivCrearCuenta" class="col-md-3 container" >
                   <!-- <a ui-sref="carrito">-->
-                    <a >
-                          <label id="idCarrito" class="fa fa-shopping-cart" > CARRITO  PLATA</label>
-                    </a>
-                    <a ui-sref="crearCuenta">
-                         <label id="idCrearCuenta" >CREAR CUENTA</label>
-                    </a>
-                    <a ui-sref="iniciarSesion">
-                        <label id="idIniciarSesion"  > INICIAR SESION</label>
-                    </a>
-                    <a ui-sref="perfil">
-                        <label class="fa fa-user"> PERFIL</label>
-                    </a>     
-       
+                    <div ng-controller="CarritoController as carritoCtrl">
+                        <a >
+                            <label id="idCarrito" class="fa fa-shopping-cart " > $ {{carritoCtrl.totalReservas}}</label>
+                        </a> 
+                    </div>
+                    <div ng-controller="MainController as main" >
+                        <a ui-sref="crearCuenta">
+                             <label id="idCrearCuenta" >CREAR CUENTA</label>
+                        </a>
+                        <a ui-sref="iniciarSesion">
+                            <label id="idIniciarSesion"  > INICIAR SESION</label>
+                        </a>
+                        <a ui-sref="perfil">
+                            <label class="fa fa-user"> PERFIL</label>
+                        </a>     
+                   </div>
                 </div>
                 
-                <div id="idModulosPrincipal"  class="col-md-12 col-xs-6" >
+                <div id="idModulosPrincipal"  class="col-md-12 col-xs-6" ng-controller="MainController as main" >
                     <div  class="col-md-10 col-md-offset-2" id="mainMenu">
                          <ul id="idMenuModulos" class="active">
                                 <li ui-sref-active="active">
@@ -115,7 +118,7 @@
                 </div>
             </div> <!-- FIN HEADER -->
 
-            <div class="col-md-10 col-md-offset-1 col-xs-6" id="idBodyPrincipal">
+            <div class="col-md-10 col-md-offset-1 col-xs-6" id="idBodyPrincipal" ng-controller="MainController as main" >
                 <div  class="col-md-12" style="padding:0px;" >
                 <!-- <Acá se va a insertar el html ligado al ui-sref de arriba> -->
                     <div class="container" ui-view style="padding:0px;">

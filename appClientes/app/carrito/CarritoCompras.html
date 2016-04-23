@@ -15,13 +15,11 @@
             <label style="  margin-left: 10px;"> FECHA COMPRA </label>
             <label style="  margin-left: 10px;"> FECHA PAGO </label>
         </div>
-        <div class="lista-compras">
-            <img src="../../img/modulos/prueba1.jpg" class="img-compras" />
-            <label style="    margin-left: 24px;"> detalle </label>
-            <label style="    margin-left: 191px;"> cantidad </label>
-            <label style="margin-left: 58px;"> $ precio</label>
-            <label style="    margin-left: 32px;"> fecha compra </label>
-            <label style="margin-left: 50px;"> fecha pago </label>
+        <div >
+            <carrito-compras-directive 
+                               ng-repeat="compras in carritoCtrl.listaCompras" 
+                               buy-data="compras">
+            </carrito-compras-directive >
         </div>
     </div>
 

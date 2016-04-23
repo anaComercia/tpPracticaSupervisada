@@ -11,6 +11,20 @@
     border-left: none;
     border-right: none;
 }
+.lista-reservas{
+    margin-top: 15;
+    margin-bottom: 5;
+    font-family: sans-serif;
+    font-size: 15px !important;
+    border-bottom-color: #ddd;
+    border-width: initial;
+    border-style: inset;
+    border-width: 2px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding-left: 50;
+}
 
 .titulos-compras{
     margin-top: 15;
@@ -24,6 +38,20 @@
     border-top: none;
     border-left: none;
     border-right: none;
+}
+.titulos-reservas{
+    margin-top: 15;
+    margin-bottom: 5;
+    font-family: sans-serif;
+    font-size: 17px !important;
+    border-bottom-color: antiquewhite;
+    border-width: initial;
+    border-style: inset;
+    border-width: 2px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding-left: 50;
 }
 .img-compras{
     height: 50;

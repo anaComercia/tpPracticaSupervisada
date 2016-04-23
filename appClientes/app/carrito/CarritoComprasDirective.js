@@ -6,11 +6,13 @@ function CarritoComprasDirective() {
     
     return {
         restrict: "E",
-        replace: true,
+        //replace: true,
         templateUrl:'app/carrito/CarritoComprasDirective.html',
         scope: { buyData: '=buyData' }, //product-data="cupon"
         controller: function($scope, $element, $attrs) {
-            //$scope.verDetalle = verDetalle;            
+            //$scope.verDetalle = verDetalle;
+
+            //buyData.subTotal = buyData.unitPrice * buyData.quantity;
         }       
     }    
 }

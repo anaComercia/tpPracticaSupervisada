@@ -11,8 +11,9 @@ carrito.config(function($stateProvider){
 		})
        .state("carrito.compras", {
 			url : "/compras",
-			templateUrl : "app/carrito/CarritoCompras.html"
-
+			templateUrl : "app/carrito/CarritoCompras.html",
+            controller : "CarritoComprasController",
+			controllerAs : "comprasCtrl"
 		});
 
 });

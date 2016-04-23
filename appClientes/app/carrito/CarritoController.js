@@ -9,7 +9,7 @@ function CarritoCtrl($state) {
     vm.totalReservas = 10;
     
     /* lista compras */
-    vm.listaCompras = [
+    /*vm.listaCompras = [
         {
             id:1,
             image: 'img/modulos/prueba2.jpg', 
@@ -28,9 +28,9 @@ function CarritoCtrl($state) {
             buyDate: '06/10/2015',
             payDate:'07/20/2015'
         }
-    ];
+    ];*/
     
-     vm.listaReservas = [
+    vm.listaReservas = [
         {
             id:1,
             image: 'img/modulos/prueba2.jpg', 
@@ -47,7 +47,20 @@ function CarritoCtrl($state) {
         }
     ];
     
-   /* vm.totalReservas = function(){
+    vm.totalReservas = _calculationTotal();
+        
+    function _calculationTotal(){
+        var total = 0;
+        for (i = 0; i < vm.listaReservas.length; i++) {
+            var aux = vm.listaReservas[i].quantity * vm.listaReservas[i].unitPrice;
+            total = total + aux;
+        }
+        return total;
+    };
+
+    /*vm.totalReservas = 
+        
+    function _calculationTotal(productList){
         var total = 0;
         var aux = 0;
         for (i = 0; i < listaReservas.length; i++) {
@@ -58,5 +71,4 @@ function CarritoCtrl($state) {
         }
 
     };*/
-
 }

@@ -1,5 +1,5 @@
-<div ng-controller="CarritoController as carritoCtrl" >
-   <div >
+<div>
+   <div class="body-carrito-compras">
         <div class="panel-heading pnl-prod-perfil cupon-usado-back-color-pnl"  >
             <h4 class="panel-title panel-titulo">
                 <b>
@@ -17,7 +17,7 @@
         </div>
         <div >
             <carrito-compras-directive 
-                               ng-repeat="compras in carritoCtrl.listaCompras" 
+                               ng-repeat="compras in comprasCtrl.listaCompras" 
                                buy-data="compras">
             </carrito-compras-directive >
         </div>

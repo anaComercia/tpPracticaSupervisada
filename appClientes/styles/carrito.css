@@ -88,8 +88,9 @@
     margin: 0px;
 }
 .btn-pagar{
-    margin-left: 70px;
+    margin-left: 166px;
     background-color: blanchedalmond;
+    margin-top: 10px;
 }
 
 .btn-pagar:hover{

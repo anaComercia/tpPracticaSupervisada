@@ -98,3 +98,19 @@
 .body-carrito-compras{
     margin-bottom: 50px;
 }
+
+.div-forma-pago{
+    
+}
+.div-pago-tarjeta{
+    
+}
+.div-ingreso-cupon{
+    
+}
+.div-pago-efectivo{
+    
+}
+label{margin-left: 20px;}
+#datepicker{width:180px; margin: 0 20px 20px 20px;}
+#datepicker > span:hover{cursor: pointer;}

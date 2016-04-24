@@ -1,1 +1,95 @@
-PAGAR COMPRA 
+<div ng-controller="PagarCompraController as pagarCtrl">
+   <div class="body-carrito-compras">
+        <div class="panel-heading pnl-prod-perfil cupon-usado-back-color-pnl"  >
+            <h4 class="panel-title panel-titulo">
+                <b>
+                   PAGAR
+                </b>
+             </h4>
+        </div>
+        <div class="div-forma-pago">
+            <label>Forma de Pago</label>
+            <div class="radio">
+                <label>
+                    <input type="radio" value="pagoEfectivo" name="formaPago">Efectivo
+                </label>
+                 <label>Retiro por sucursal.</label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" value="pagoTarjeta" name="formaPago">Tarjeta de Crédito
+                </label>
+                <label>Envío a domicilio.</label>
+            </div>
+        </div>
+        <div class="div-pago-tarjeta" >
+            <select class="select-option" 
+                    ng-model="pagarCtrl.mySelect.tarjeta" 
+                    ng-init="pagarCtrl.mySelect.tarjeta = pagarCtrl.tarjetas[0]" 
+                    ng-options="tarjeta as tarjeta.type for tarjeta in pagarCtrl.tarjetas" 
+                    style="width: 128px;">
+             </select>
+             
+             <label>Cantidad de cuotas</label>
+              <select class="select-option" 
+                    ng-model="pagarCtrl.mySelect.cuotas" 
+                    ng-init="pagarCtrl.mySelect.cuotas = pagarCtrl.cuotas[0]" 
+                    ng-options="cuota as cuota for cuota in pagarCtrl.cuotas" 
+                    style="width: 70px;">
+             </select>
+             
+             <label>Numero de Tarjeta</label>
+             <input maxlength="16"/>
+             
+            <label>Fecha de Vencimiento</label>
+            <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
+                <input class="form-control" type="text" readonly />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+       
+           <label>Envío a Domicilio</label>
+           <select class="select-option" 
+                    ng-model="pagarCtrl.mySelect.domicilioEntrega" 
+                  ng-init="pagarCtrl.mySelect.domicilioEntrega = pagarCtrl.domicilios[0]" 
+                    ng-options="domi as domi.detail for domi in pagarCtrl.domicilios" 
+                    style="width: 200px;">
+             </select>
+        </div>
+        <div class="div-pago-efectivo" >
+            <label>Retiro del Producto</label>
+            <div class="radio">
+                <label>
+                    <input type="radio" value="pagoEfectivo" name="sucRetiro">Bermúdez 1876, CP 1417, Capital Federal, Buenos Aires.
+                </label>
+                <label>Tiempo de entrega: 10 dias</label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" value="pagoTarjeta" name="sucRetiro">Bartolomé Mitre 675, CP 1654, Avellaneda, Buenos Aires.
+                </label>
+                <label>Tiempo de entrega: 5 dias</label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" value="pagoTarjeta" name="sucRetiro">Remedios Escalada 654, CP 1467, Lugano, Buenos Aires.
+                </label>
+                <label>Tiempo de entrega: 15 dias</label>
+            </div>
+       
+        </div>
+        <div class="div-ingreso-cupon">
+            <label>Cupon de Descuento</label>
+            <label>En caso de que tengas un cupon de descuento, ingresalo aquí.</label>
+            <input maxlength="8" />
+        </div>
+         <div >
+                <button  type="button" class=" btn-pagar btn btn-default btn-md" ui-sref="">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    Terminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    
+</div>

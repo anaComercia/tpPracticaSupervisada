@@ -1,4 +1,4 @@
-<div ng-controller="PagarCompraController as pagarCtrl">
+<div ng-controller="PagarCompraController as pagarCtrl" class="div-pagar">
    <div class="body-carrito-compras">
         <div class="panel-heading pnl-prod-perfil cupon-usado-back-color-pnl"  >
             <h4 class="panel-title panel-titulo">
@@ -7,89 +7,99 @@
                 </b>
              </h4>
         </div>
-        <div class="div-forma-pago">
-            <label>Forma de Pago</label>
+        <div class="div-modulos">
+            <label class="pagar-titulos">
+                <b>Forma de Pago</b>
+            </label>
             <div class="radio">
-                <label>
+                <label class="forma-pago">
                     <input type="radio" value="pagoEfectivo" name="formaPago">Efectivo
                 </label>
-                 <label>Retiro por sucursal.</label>
+                 <label class="detalle-informativo"><b>Retiro por sucursal.</b></label>
             </div>
             <div class="radio">
-                <label>
+                <label class="forma-pago">
                     <input type="radio" value="pagoTarjeta" name="formaPago">Tarjeta de Crédito
                 </label>
-                <label>Envío a domicilio.</label>
+                <label class="detalle-informativo"><b>Envío a domicilio.</b></label>
             </div>
         </div>
-        <div class="div-pago-tarjeta" >
-            <select class="select-option" 
+        <div class="div-modulos" >
+           <label class="pagar-titulos">
+                <b>Detalles de la Tarjeta</b>
+            </label>
+            <select class="select-option select-tipo-tarjeta" 
                     ng-model="pagarCtrl.mySelect.tarjeta" 
                     ng-init="pagarCtrl.mySelect.tarjeta = pagarCtrl.tarjetas[0]" 
                     ng-options="tarjeta as tarjeta.type for tarjeta in pagarCtrl.tarjetas" 
-                    style="width: 128px;">
+                    >
              </select>
              
              <label>Cantidad de cuotas</label>
-              <select class="select-option" 
+              <select class="select-option select-cant-cuotas" 
                     ng-model="pagarCtrl.mySelect.cuotas" 
                     ng-init="pagarCtrl.mySelect.cuotas = pagarCtrl.cuotas[0]" 
                     ng-options="cuota as cuota for cuota in pagarCtrl.cuotas" 
-                    style="width: 70px;">
+                   >
              </select>
-             
-             <label>Numero de Tarjeta</label>
+             <div class="nro-tarjeta">
+             <label >Numero de Tarjeta</label>
              <input maxlength="16"/>
-             
+             </div>
+            <div class="vencimiento-tarjeta">
             <label>Fecha de Vencimiento</label>
             <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
                 <input class="form-control" type="text" readonly />
                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
-       
+       </div> 
+          <label class="pagar-titulos">
+                <b>Detalles de Entrega</b>
+            </label>
            <label>Envío a Domicilio</label>
-           <select class="select-option" 
+           <select class="select-option select-domicilio" 
                     ng-model="pagarCtrl.mySelect.domicilioEntrega" 
                   ng-init="pagarCtrl.mySelect.domicilioEntrega = pagarCtrl.domicilios[0]" 
                     ng-options="domi as domi.detail for domi in pagarCtrl.domicilios" 
-                    style="width: 200px;">
+                    >
              </select>
         </div>
-        <div class="div-pago-efectivo" >
-            <label>Retiro del Producto</label>
+        <div class="div-modulos" >
+            <label class="pagar-titulos">
+                <b>Retiro del Producto</b>
+            </label>
             <div class="radio">
-                <label>
-                    <input type="radio" value="pagoEfectivo" name="sucRetiro">Bermúdez 1876, CP 1417, Capital Federal, Buenos Aires.
+                <label class="radio-retiro-prod">
+                    <input type="radio" value="Suc1" name="sucRetiro">Bermúdez 1876, CP 1417, Capital Federal, Buenos Aires.
                 </label>
-                <label>Tiempo de entrega: 10 dias</label>
+                <label class="detalle-informativo"><b>Tiempo de entrega: 10 dias</b></label>
             </div>
             <div class="radio">
-                <label>
-                    <input type="radio" value="pagoTarjeta" name="sucRetiro">Bartolomé Mitre 675, CP 1654, Avellaneda, Buenos Aires.
+                <label class="radio-retiro-prod">
+                    <input type="radio" value="Suc2" name="sucRetiro">Bartolomé Mitre 675, CP 1654, Avellaneda, Buenos Aires.
                 </label>
-                <label>Tiempo de entrega: 5 dias</label>
+                <label class="detalle-informativo"><b>Tiempo de entrega: 5 dias</b></label>
             </div>
             <div class="radio">
-                <label>
-                    <input type="radio" value="pagoTarjeta" name="sucRetiro">Remedios Escalada 654, CP 1467, Lugano, Buenos Aires.
+                <label class="radio-retiro-prod">
+                    <input type="radio" value="Suc3" name="sucRetiro">Remedios Escalada 654, CP 1467, Lugano, Buenos Aires.
                 </label>
-                <label>Tiempo de entrega: 15 dias</label>
+                <label class="detalle-informativo"> <b>Tiempo de entrega: 15 dias</b></label>
             </div>
        
         </div>
-        <div class="div-ingreso-cupon">
-            <label>Cupon de Descuento</label>
-            <label>En caso de que tengas un cupon de descuento, ingresalo aquí.</label>
-            <input maxlength="8" />
+        <div class="div-modulos ">
+            <label class="pagar-titulos"> 
+                <b>Cupon de Descuento</b>
+            </label>
+            <label class="detalle-informativo">En caso de que tengas un cupon de descuento, ingresalo aquí.</label>
+            <input class="div-ingreso-cupon" maxlength="8" />
         </div>
          <div >
-                <button  type="button" class=" btn-pagar btn btn-default btn-md" ui-sref="">
+                <button  type="button" class=" btn-terminar btn btn-default btn-md" >
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     Terminar
                 </button>
             </div>
         </div>
     </div>
-
-    
-</div>

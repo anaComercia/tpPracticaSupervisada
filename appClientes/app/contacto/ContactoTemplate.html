@@ -1,86 +1,87 @@
 <div id="idPaginaContacto" ng-controller="ContactoController as ContactoCtrl" >
-    <div class="container">     
-        <div class="row" id="idDetalleContacto" class="col-md-12" style=" "  >
-            <label class="lblTitulo">CONTACTO</label>
+    <div class="container col-md-12"> 
+        <div class="col-md-12" id="lblTitulo"> 
+        <div class="row col-md-offset-2" style=""  >
+            <label >CONTACTO</label>
         </div>
-
-        <div class="row" id="idDetalleContacto">
-            <div class="row col-md-12"> 
-                <p class="p">
-                    Este espacio está pensado para recibir sus comentarios y sugerencias en caso que necesite realizar algún reclamo,
-                    por favor comunicarse con nuestro centro de atención telefónico    
-                </p>
-            </div>
         </div>
-
-        <div class="row" id="idDetalleContacto" dir=""style=" "  >
-            <div class="row col-md-12"> 
-             <label class="lblDetalle">* Datos Obligatorios</label>
-            </div>
+        
+        <span class="col-md-offset-2 help-block" >
+            Este espacio está pensado para recibir sus comentarios 
+            y sugerencias en caso que necesite realizar algún reclamo,por favor comunicarse con nuestro centro 
+            de atención telefónico. 
+        </span>
+        
+        <div class="row col-md-offset-2" id="lblDatoObligatorio" class="col-md-12" style=""   >
+            <label >* Datos Obligatorios</label>
         </div>
 
         <!-- CUERPO!-->
-        <div class="row" id="idDetalleContacto" class="col-md-12" style=" "  >
-
-            <div class="col-md-12 col-md-offset-4">
-                <label class="lblDetalle">*Nombre:</label>
+        <div class="form-group col-md-offset-4" style="" >
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*Nombre:</label>
+                <input type="text" class="form-control" placeholder="Nombre" >
+            </div>
+            <div  id="divAlineacion">
+                <label>*Apellido:</label>
+                <input type="text" class="form-control" placeholder="Apellido" >
+            </div>
+            </div>
+            
+            
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*E-mail:</label>
+                <input type="text" class="form-control" placeholder="Email" >
+            </div>
             </div>
 
-            <div class="row"> 
-                <div class="col-md-12 col-md-offset-4">
-                    <input type=text name="impNombre" class="impDetalle"/>
-                </div>
-
-                <div class="col-md-12  col-md-offset-4">
-                    <label class="lblDetalle">*E-mail:</label>
-                </div>
-
-
-                <div class="col-md-12 col-md-offset-4">
-                    <input type=text name="impE-mail" class="impDetalle" value="" />
-                </div>
-
-                <div class="col-md-12 col-md-offset-4">
-                    <label class="lblDetalle" >*Tel&eacute;fono/Celular:</label>
-                </div>
-
-                <div class="col-md-12 col-md-offset-4">
-                    <input type=text name="impTelefonoCelular"  maxlength="20" class="impDetalle"/>
-                </div>
-
-                <div class="col-md-12 col-md-offset-4">
-                    <a a class="a">C&oacute;digo de &aacute;rea + N&ordm;. Ej.: 11 43234556.</a>
-                </div>   
-
-                <div class="col-md-12 col-md-offset-4">
-                    <label class="lblDetalle">*Asunto:</label>
-                </div>
-
-                <div class="row"> 
-                    <div class="col-md-12 col-md-offset-4">
-                        <input type=text name="impAsunto" class="impDetalle"/>
-                    </div>
-
-                    <div class="col-md-12 col-md-offset-4">
-                        <label class="lblDetalle" >*Mensaje</label>
-                    </div>
-
-                    <div class="col-md-12 col-md-offset-4">
-                        <textarea class="form_textarea4" cols="40" rows="10" id="Mensaje"></textarea>
-                    </div>
-
-                </div>
-            </div> 
-
-
-            <!-- BOTONES!-->
-            <div class="row" id="idDetalleModificarCuenta" class="col-md-12"style=" "  >
-                <div class="col-md-6  col-md-offset-8">
-                    <button type="button" class="btn btn-primary btn-lg">ACEPTAR</button>
-                    <button type="button" class="btn btn-primary btn-lg">CANCELAR</button>
-                </div>
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>Tel&eacute;fono/Celular:</label>
+                <input type="text" class="form-control" placeholder="Telefono/Celular" >
+            </div>
             </div>
 
-        </div> 
+            <div id="lblAclaracion">
+            <div  id="divAlineacion">
+               <label >C&oacute;digo de &aacute;rea + N&ordm;. Ej.: 11 43234556.</label>
+            </div>
+            </div>
+            
+            
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*Asunto:</label>
+                <input type="text" class="form-control" placeholder="Asunto" >
+            </div>
+            </div>
+            
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*Mensaje:</label>
+                
+            </div>
+            </div>
+            
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <textarea class="form_textarea4" cols="40" rows="10" id="Mensaje" placeholder="Escriba a quí su mensaje....."></textarea>
+            </div>
+            </div>
+            
+
+        </div>     
+        
+        <div class="form-group col-md-offset-4" style="" >
+            
+        <!-- BOTONES!-->
+        <div class="row" class="col-md-12" style=" "   >
+            <div class="col-md-6  col-md-offset-6">
+               <button class="btn btn-default btn-md btnBoton" >Aceptar</button>
+	           <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
+            </div>
+        </div>
     </div>
 </div>

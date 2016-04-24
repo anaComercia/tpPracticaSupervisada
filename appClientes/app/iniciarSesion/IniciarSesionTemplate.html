@@ -1,52 +1,51 @@
-<link rel="stylesheet" href="styles/iniciarSesion.css">
 <div id="idPaginaIniciarSesion" ng-controller="IniciarSesionController as IniciarSesionCtrl" >
  
- <div class="container"> 
-    <div class="row" id="idDetalleIniciarSesion"class="col-md-12" style=" "  >
-        <label class="lblTitulo">INICIAR SESI&Oacute;N</label>
-    </div>
+  <div class="container col-md-12"> 
+        <div class="col-md-12" id="lblTitulo">
+            <div class="row col-md-offset-2"  style=""  >
+            <label >INICIAR SESI&Oacute;N</label>
+            </div>
+        </div>
+      
+        <!--div class="row col-md-offset-2" id="lblTitulo" class="col-md-12" style=""  >
+            <label >INICIAR SESI&Oacute;N</label>
+        </div-->
 
-        <div class="row" id="idDetalleIniciarSesion" class="col-md-12" style=" "  >
-        <label class="lblDetalle">* Datos Obligatorios</label>
-    </div>
-     
-    <!-- CUERPO!-->
-    <div class="row" id="idDetalleIniciarSesion" class="col-md-12" style=" "  >
+        <div class="row col-md-offset-2" id="lblDatoObligatorio" class="col-md-12" style=""   >
+            <label >* Datos Obligatorios</label>
+        </div>
+
+        <!-- CUERPO!-->
+        <div class="form-group col-md-offset-4" style="" >
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*E-mail:</label>
+                <input type="text" class="form-control" placeholder="Email" >
+            </div>
+            </div>
+         
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*Clave:</label>
+                <input type="text" class="form-control" placeholder="Clave" >
+            </div>
+            </div>
+
+            <div id="lblLink ">
+            <div  id="divAlineacion">
+               <label ui-sref="recordarContrasenia" >¿Olvidaste tu contraseña?</label>
+            </div>
+            </div>
+        </div>     
         
-        
-        <div class="col-md-12 col-md-offset-2">
-        <label class="lblDetalle">*E-mail:</label>
-        </div>
-
-        <div class="col-md-12 col-md-offset-2">
-        <input type=text name="impE-mail" class="impDetalle"  value="" />
-        </div>
-
-       
-
-        <div class="col-md-12 col-md-offset-2">
-        <label class="lblDetalle">*Clave:</label> 
-        </div>
-
-
-        <div class="col-md-12 col-md-offset-2">
-        <input type=password name="impClave" maxlength="20" class="impDetalle"/>
-        </div>
-
-        
-        <div class="col-md-12 col-md-offset-2" ui-sref-active="active">
-        <a ui-sref="recordarContrasenia" tabindex="2" class="a" >¿Olvidaste tu contraseña?</a>
+        <div class="form-group col-md-offset-4" style="" >
+            
+        <!-- BOTONES!-->
+        <div class="row" class="col-md-12" style=" "   >
+            <div class="col-md-6  col-md-offset-6">
+               <button class="btn btn-default btn-md btnBoton" >Aceptar</button>
+	           <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
+            </div>
         </div>
     </div>
-    
-
-
-    <!-- BOTONES!-->
-    <div class="row" id="idPaginaIniciarSesion" class="col-md-12"style=" "  >
-        <div class="col-md-6  col-md-offset-8">
-            <button type="button" class="btn btn-primary btn-lg">ACEPTAR</button>
-            <button type="button" class="btn btn-primary btn-lg">CANCELAR</button>
-        </div>
-    </div>
-</div> 
 </div>

@@ -1,191 +1,98 @@
-<link rel="stylesheet" href="styles/modificarCuenta.css">
+
 <div id="idPaginaModificarCuenta" ng-controller="PerfilController as ModificarCuentaCtrl" >
  
-   
-<div class="container"> 
-    <div class="row" id="idDetalleModificarCuenta"class="col-md-12" style=" "  >
-        <label class="lblTitulo">MODIFICAR CUENTA</label>
-    </div>
 
-    <div class="row" id="idDetalleModificarCuenta" class="col-md-12" style=" "  >
-        <label class="lblDetalle">* Datos Obligatorios</label>
-    </div>
-    
-    <!-- CUERPO!-->
-    <div class="row" id="idDetalleModificarCuenta" class="col-md-12" style=" "  >
-        
-        <div class="col-md-4  col-md-offset-2">
-        <label class="lblDetalle">*Nombre:</label>
+ <div class="container col-md-12"> 
+     
+        <div class="col-md-12" id="lblTitulo"> 
+        <div class="row col-md-offset-2" style=""  >
+            <label >MODIFICAR CUENTA</label>
         </div>
-
-        <div class="col-md-4">
-        <label class="lblDetalle" >*Apellido:</label>
         </div>
-
-        <div class="col-md-4  col-md-offset-2">
-        <input type=text name="impNombre" class="impDetalle"/>
-        </div>
-
-        <div class="col-md-4">
-        <input type=text name="impApellido" class="impDetalle"/>
-        </div>
-
-
-        <div class="col-md-12  col-md-offset-2">
-        <label class="lblDetalle">*E-mail:</label>
-        </div>
-
-       
-        <div class="col-md-12   col-md-offset-2">
-        <input type=text name="impE-mail" class="impDetalle" disabled value="" />
-        </div>
-
-
-   
-        <div class="col-md-4 col-md-offset-2">
-        <label class="lblDetalle" >*Fecha Nacimiento:</label>
-        </div>
-
-        <div class="col-md-4">
-        <label class="lblDetalle" >*Tel&eacute;fono/Celular:</label>
-        </div>
-        
-        <!--div class="col-md-4 col-md-offset-2">
-        <input type=text name="impFechaNacimiento" class="impDetalle"/>
+     
+        <!--div class="row col-md-offset-2" id="lblTitulo" class="col-md-12" style=""  >
+            <label >MODIFICAR CUENTA</label>
         </div-->
 
-        <div class="col-md-4 col-md-offset-2">
-            <input name="_D:day" value=" " type="hidden" class="impDetalle">
-            <select id="day" name="day" class="impDetalle" size="1">
-            <option value="">Día</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-            <option value="24">24</option>
-            <option value="25">25</option>
-            <option value="26">26</option>
-            <option value="27">27</option>
-            <option value="28">28</option>
-            <option value="29">29</option>
-            <option value="30">30</option>
-            <option value="31">31</option>
-            </select>
-
-
-            <input name="_D:month" value=" " type="hidden" class="impDetalle">
-
-            <select id="month" name="month" class="impDetalle" size="1">
-            <option value="">Mes</option>
-            <option value="01">Ene</option>
-            <option value="02">Feb</option>
-            <option value="03">Mar</option>
-            <option value="04">Abr</option>
-            <option value="05">May</option>
-            <option value="06">Jun</option>
-            <option value="07">Jul</option>
-            <option value="08">Ago</option>
-            <option value="09">Sep</option>
-            <option value="10">Oct</option>
-            <option value="11">Nov</option>
-            <option value="12">Dic</option>
-            </select>
-
-            <input name="_D:year" value=" " type="hidden" class="impDetalle">
-            <select id="year" name="year" class="impDetalle" size="1">
-            <option value="">Año</option>
-            <option value="2016">2016</option>
-            <option value="2015">2015</option>
-            <option value="2014">2014</option>
-            <option value="2013">2013</option>
-            <option value="2012">2012</option>
-            <option value="2011">2011</option>
-            <option value="2010">2010</option>
-            <option value="2009">2009</option>
-            <option value="2008">2008</option>
-            <option value="2007">2007</option>
-            <option value="2006">2006</option>
-            <option value="2005">2005</option>
-            <option value="2004">2004</option>
-            <option value="2003">2003</option>
-            </select>
+        <div class="row col-md-offset-2" id="lblDatoObligatorio" class="col-md-12" style=""   >
+            <label >* Datos Obligatorios</label>
         </div>
 
+        <!-- CUERPO!-->
+        <div class="form-group col-md-offset-4" style="" >
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*Nombre:</label>
+                <input type="text" class="form-control" placeholder="Nombre" >
+            </div>
+            <div  id="divAlineacion">
+                <label>*Apellido:</label>
+                <input type="text" class="form-control" placeholder="Apellido" >
+            </div>
+            </div>
+            
+            
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*E-mail:</label>
+                <input type="text" class="form-control" placeholder="Email" disabled value="">
+            </div>
+            </div>
+ 
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*Fecha Nacimiento:</label>
+                <input type=date class="form-control" placeholder="Fecha Nacimiento" />
+            </div>
+            </div>
+            
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*Tel&eacute;fono/Celular:</label>
+                <input type="text" class="form-control" placeholder="Telefono/Celular" >
+            </div>
+            </div>
 
-        <div class="col-md-4">
-        <input type=text name="impTelefonoCelular"  maxlength="20" class="impDetalle"/>
-        </div>
+            <div id="lblAclaracion">
+            <div  id="divAlineacion">
+               <label >C&oacute;digo de &aacute;rea + N&ordm;. Ej.: 11 43234556.</label>
+            </div>
+            </div>
+            
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*Pa&iacute;s:</label>
+                <input type="text" class="form-control" placeholder="País" >
+            </div>
+            <div  id="divAlineacion">
+                <label>*Direcci&oacute;n:</label>
+                <input type="text" class="form-control" placeholder="Dirección" >
+            </div>
+            </div>
 
-        <div class="col-md-12 col-md-offset-6">
-        <a a class="a">C&oacute;digo de &aacute;rea + N&ordm;. Ej.: 11 43234556.</a>
-        </div>
-
-        <div class="col-md-4 col-md-offset-2">
-        <label class="lblDetalle" >*Pa&iacute;s:</label>
-        </div>
-
-        <div class="col-md-4">
-        <label class="lblDetalle">*Direcci&oacute;n:</label>
-        </div>
+            <div id="divDetalle">
+            <div  id="divAlineacion">
+                <label>*Localidad:</label>
+                <input type="text" class="form-control" placeholder="Localidad" >
+            </div>
+            <div  id="divAlineacion">
+                <label>*C&oacute;digo Postal:</label>
+                <input type="text" class="form-control" placeholder="Código Postal" >
+            </div>
+            </div>
+            
+        </div>     
         
-        <div class="col-md-4 col-md-offset-2">
-        <input type=text name="impPais"  class="impDetalle"/>
-        </div>
-
-        <div class="col-md-4">
-        <input type=text name="impDireccion" class="impDetalle" />
-        </div>
-
-        <div class="col-md-4 col-md-offset-2">
-        <label class="lblDetalle" >*Localidad:</label>
-        </div>
-
-
-        <div class="col-md-4">
-        <label class="lblDetalle" >*C&oacute;digo Postal:</label>
-        </div>
-
-        <div class="col-md-4 col-md-offset-2">
-        <input type=text name="impLocalidad"  class="impDetalle"/>
-        </div>
-
-
-
-        <div class="col-md-4">
-        <input type=text name="impCodigoPostal" class="impDetalle"/>
-        </div>
-
-    </div>
-    
-
-
-    <!-- BOTONES!-->
-    <div class="row" id="idDetalleModificarCuenta" class="col-md-12"style=" "  >
-        <div class="col-md-6  col-md-offset-8">
-            <button type="button" class="btn btn-primary btn-lg">ACEPTAR</button>
-            <button type="button" class="btn btn-primary btn-lg">CANCELAR</button>
+        <div class="form-group col-md-offset-4" style="" >
+            
+        <!-- BOTONES!-->
+        <div class="row" class="col-md-12" style=" "   >
+            <div class="col-md-6  col-md-offset-6">
+               <button class="btn btn-default btn-md btnBoton" >Aceptar</button>
+	           <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
+            </div>
         </div>
     </div>
-</div> 
 </div>
 
 

@@ -1,0 +1,77 @@
+
+
+#idPagina{
+    height:0px; 
+    padding:0px; 
+    
+}
+
+#divAlineacion{
+display:inline-block;
+}
+
+#divDetalle{
+	font-size: 15;
+	font-style: italic;
+	font-family: -webkit-pictograph;
+	color: black;
+}
+
+#divSubtitulo{
+	font-size: 15;
+	font-style: italic;
+	font-family: -webkit-pictograph;
+	color: red;
+	text-decoration: underline;
+	padding:10px;
+}
+
+#divMensajeInformativo{
+    border: 0; 
+    border-top: 1px solid #999; 
+    border-bottom: 1px solid #333; 
+    height:0; 
+    width:567px;
+
+}
+
+#lblAclaracion{
+	font-size: 10;
+	font-style: italic;
+	font-family: -webkit-pictograph;
+	color: black;
+}
+
+#lblDatoObligatorio{
+	font-size: 15;
+	font-style: italic;
+	font-family: -webkit-pictograph;
+	color: black;
+}
+
+
+#lblTitulo {
+    font-size: 30;
+	font-style: italic;
+	font-family: -webkit-pictograph;
+	color: black;
+	
+	
+	margin-top: 0px;
+	background-color: #BFF1DE;
+}
+
+#lblLink {
+    font-size: 15;
+	font-style: italic;
+	font-family: -webkit-pictograph;
+	color: black;
+	
+}
+
+.btnBoton:hover {
+/* 	margin-top: 50px;
+    width: 200;
+    margin-left: 150px; */
+    background-color: #BFF1DE;
+}

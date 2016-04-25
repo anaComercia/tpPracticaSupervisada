@@ -161,3 +161,11 @@ a:link{
 img{
     cursor: pointer;
 }
+.formato-buscar{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 30px;
+}
+.input-formato-buscar{
+    width: 150px;
+}

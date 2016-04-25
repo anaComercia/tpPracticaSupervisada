@@ -11,11 +11,9 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
 	var self = this;
 	this.productos = [];
 	this.prod_desc = '';
-	this.productoSeleccionado = null;
-	this.activado = true;
     this.categorias = [];
     this.productosFiltrados = [];
-    this.formLabel = "";
+    this.formLabel = "Nuevo Producto";
     this.prodSeleccionadoEditar = null;
     this.selectCategoria = '';
     this.indice ='';
@@ -28,6 +26,7 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
     this.mpsAgregadas = [];
     this.seleccion = "";
     this.filtroProducto = [];
+    this.picFile;
     
 //Traer datos de Bd
     this.getProductosDetalles = function(){
@@ -118,7 +117,9 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
             }});
     }
 
-
+ this.quitarMp = function(index){
+     self.mpsAgregadas.splice(index,1);
+    }
     
 //Filtros   
      this.filtrarProductos = function(catId){
@@ -136,13 +137,7 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
 //Seleccionar objeto clickeado
      this.activeItem = function($index, item){
         self.selectedIndex = $index;
-        self.productoSeleccionado = item;
-        self.activado = false;
-         if (self.formLabel == "Editar Producto")
-         {
-         self.prodSeleccionadoEditar = item;
-         };
-        
+        self.prodSeleccionadoEditar = item;
     };
       
      this.activeItemMp = function($index, item){
@@ -153,8 +148,12 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
 //Disparar cambio de rutas dentro de productos
     this.editarProducto = function(){
 		self.formLabel = "Editar Producto";
-        self.prodSeleccionadoEditar = self.productoSeleccionado;
-		$state.go("productos.editar",  { id : self.productoSeleccionado.producto_id});
+        self.productos.forEach(function(elemento){
+        if(elemento.idProducto == self.prodSeleccionadoEditar.idProducto){
+        self.prodSeleccionadoEditar == elemento;
+        }
+        });
+		$state.go("productos.editar",  { id : self.prodSeleccionadoEditar.idProducto});
     };
    
     this.nuevoProducto = function(){
@@ -176,7 +175,7 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
     }
     
 //Mostrar imagen de formulario
-    this.mostrarImagen = function()
+    this.mostrarImagen = function(file)
     {
         var files = !!this.files ? this.files : [];
         if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
@@ -191,7 +190,8 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
         }
     };
 //Fin - Mostrar imagen de formulario
-
+    
+    
 this.substringMatcher = function(strs) {
   return function findMatches(q, cb) {
     var matches, substringRegex;

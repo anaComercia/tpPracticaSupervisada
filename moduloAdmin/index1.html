@@ -60,7 +60,7 @@
                   <ul class="nav navbar-nav">
                       <!-- <ui-sref indica a que ruta redirigir y active indica que la pestaña se muestre sombreada en dicha ruta> -->
                     <li ui-sref-active="active">
-                        <a ng-click="main.abrir = !main.abrir">Alertas<i class="glyphicon glyphicon-bell"></i></a>
+                        <a ng-click="main.abrir = !main.abrir">Alertas<i class="glyphicon glyphicon-bell" ng-style="main.avisosProdPendientes.length > 0 && main.avisosMpPendientes.length > 0 ? myStyle={color:'red'} : myStyle={color:'black'}"></i></a>
 <div class="dropdown" ng-class="{ 'open' : main.abrir}">
   <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel" >
     <div class="notification-heading"><h4 class="menu-title">Notificaciones</h4>

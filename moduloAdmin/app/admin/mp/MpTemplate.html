@@ -2,19 +2,17 @@
 	<div class="col-md-6">
 		<div class="btn-group" role="group" aria-label="...">
 		  <button type="button" class="btn btn-default" ng-click="mp.nuevaMp()">Nueva Materia Prima</button>
-		  <button type="button" class="btn btn-default" ng-click="cat.putCategoria()" ng-disabled="cat.activado">Editar Materia Prima</button>
-		  <button type="button" class="btn btn-default" ng-click="cat.deleteCategoria()" ng-disabled="cat.activado">Eliminar Materia Prima</button>
+		  <button type="button" class="btn btn-default" ng-click="mp.editarMp()" ng-show="mp.mpSeleccionada != null">Editar Materia Prima</button>
+		  <button type="button" class="btn btn-default" ng-click="mp.deleteCategoria()" ng-show="mp.mpSeleccionada != null">Eliminar Materia Prima</button>
 		</div>
 	</div>
-    
-    <div class="row">
+</div>
+<div class="row">
 	<div class="col-md-12"><hr/></div>
 </div>
     
     <div class="col-md-12" ui-view>
-	</div>
-    </div>
-    <div ng-show="mp.formLabel != 'Nueva Materia Prima'">
+
     <div class="form-group col-md-9" >
         <label id="filtrarPor" class="col-md-2 control-label">Filtrar por:</label>
         <div class="col-md-2 selectContainer">
@@ -62,5 +60,4 @@
       </tr>
     </tbody>
   </table>
-    </div>
 </div>

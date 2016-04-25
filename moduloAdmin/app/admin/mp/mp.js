@@ -11,6 +11,6 @@ mp.config(function($stateProvider){
 		})
 		.state("mp.editar",{
 			url : "/editar/:id",
-			templateUrl : "app/admin/mp/MpFormTemplate.html"
+			templateUrl : "app/admin/mp/MpFormTemplateEditar.html"
 		});
 });

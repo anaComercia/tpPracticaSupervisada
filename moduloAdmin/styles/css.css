@@ -20,7 +20,6 @@ display:inline-block;
 
 #divImg{
 display:inline-block;
-float:right;
 }
 
 #lbCat{
@@ -39,13 +38,21 @@ margin-top: 5px;
 #txtBuscaMp{
 width:400px;
 }
-#imagePreview {
-    width: 180px;
-    height: 180px;
-    background-position: center center;
-    background-size: cover;
-    -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
-    display: inline-block;
+
+#btnRemover{
+align-self: center;
+margin-left: 100px;
+margin-bottom: 5px;
+}
+
+.thumb {
+    width: 150px;
+    height: 200px;
+    height: 200px;
+    float: none;
+    position: relative;
+    bottom: 7px;
+    margin-left: 50px;
 }
 
 #filtrar{
@@ -54,7 +61,7 @@ margin-left: -30px;
 }
 
 #filtrarPor{
-margin-right: -60px;
+margin-right: -40px;
 }
 
 #bloqueGeneroCategoria{
@@ -67,9 +74,16 @@ float:left;
 }
 
 #btnMas{
-height: 33px;
+height: 35px;
+width: 70px;
 float:right;
-width: 50px;
+margin-right: -20px;
+}
+
+#btnBuscar{
+height: 35px;
+float:right;
+width: 150px;
 }
 
 #buscarMp{
@@ -78,6 +92,19 @@ width:712px;
 
 #divBuscarMp{
 float:right;
+}
+
+#buscaFiltros{
+margin-bottom: 10px;
+}
+
+#botonContainer{
+width: 1px;
+margin-left: 20px;
+}
+
+#filtraResultado{
+margin-top:20px;
 }
 
 /*!
@@ -186,7 +213,6 @@ float:right;
   }
 
 .glyphicon-bell {
-   
     font-size:1.5rem;
   }
 

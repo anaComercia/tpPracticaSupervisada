@@ -70,6 +70,8 @@
 .select-option{
     width: 70;
     height: 30;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .btn-agregar{

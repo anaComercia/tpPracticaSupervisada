@@ -12,7 +12,7 @@
           {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
       <img ng-show="prod.file.$valid" ngf-thumbnail="prod.picFile" class="thumb"> 
         <div class="row"><button id="btnRemover" ng-click="prod.picFile = null" ng-show="prod.picFile">Remover</button></div>
-        <input type="file" ngf-select ng-model="prod.productoNuevo.picFile" name="file"    
+        <input type="file" ngf-select ng-model="prod.prodSeleccionadoEditar.picFile" name="file"    
              accept="image/*" ngf-max-size="2MB" required
              ngf-model-invalid="errorFile">        
         </h5>
@@ -21,17 +21,17 @@
           <!-- <ng-model liga directamente el valor de un elemento con un dato del controller en ambas direcciones> -->
           <!-- <Si el valor del elemento cambia, el valor en el controller también y viceversa> -->
     <label class="titulo">Título</label>    
-    <input id="desc" type="text" class="form-control" placeholder="Titulo del producto" ng-model="prod.productoNuevo.titulo"> 
+    <input id="desc" type="text" class="form-control" placeholder="Titulo del producto" ng-model="prod.prodSeleccionadoEditar.titulo"> 
         
           <label class="titulo">Descripcion</label>
-            <textarea id="desc" class="form-control" placeholder="Descripcion del producto" ng-model="prod.productoNuevo.descripcion" rows="5"></textarea>
+            <textarea id="desc" class="form-control" placeholder="Descripcion del producto" ng-model="prod.prodSeleccionadoEditar.descripcion" rows="5"></textarea>
          
           <div id="bloqueGeneroCategoria" >
           <div id="divCat col-md-3">
           <label class="titulo col-md-3" id='lbCat'>Genero</label>
                 <div class="col-md-3 selectContainer">
-                <select class="form-control col-md-3" ng-model="prod.productoNuevo.generoSeleccionado">
-                <option ng-repeat="genero in prod.generos" ng-value = 'genero.generoId'>
+                <select class="form-control col-md-3" ng-model="prod.prodSeleccionadoEditar.idGenero">
+                <option ng-repeat="genero in prod.generos" ng-value = 'genero.generoId' ng-selected = 'prod.prodSeleccionadoEditar.idGenero == genero.idGenero'>
                         {{genero.descripcion}}
                 </option>
                 </select>
@@ -40,8 +40,8 @@
         <div id="divCat col-md-3" >
           <label class="titulo col-md-3" id='lbCat'>Categoria</label> 
             <div class="col-md-3 selectContainer">
-                <select class="form-control col-md-3" ng-model="prod.productoNuevo.idCategoria">
-                <option ng-repeat="categoria in prod.categorias" ng-value = 'categoria.idCategoria' >
+                <select class="form-control col-md-3" ng-model="prod.prodSeleccionadoEditar.idCategoria">
+                <option ng-repeat="categoria in prod.categorias" ng-value = 'categoria.idCategoria' ng-selected = 'prod.prodSeleccionadoEditar.idCategoria == categoria.idCategoria' >
                         {{categoria.descripcion}}
                     </option>
                 </select>
@@ -50,13 +50,13 @@
             
          </div>
           <label class="titulo">Precio</label>
-		<input id="precio" type="text" class="form-control" placeholder="Precio del producto" ng-model="prod.productoNuevo.producto_precio">   
+		<input id="precio" type="text" class="form-control" placeholder="Precio del producto" ng-model="prod.prodSeleccionadoEditar.precio">   
           
                 <label class="titulo">Medidas</label>
-            <input id="medida" type="text" class="form-control" placeholder="Medidas del producto" ng-model="prod.productoNuevo.medidas">
+            <input id="medida" type="text" class="form-control" placeholder="Medidas del producto" ng-model="prod.prodSeleccionadoEditar.medidas">
           
           <label class="titulo">Punto de Reposición</label>
-            <input id="medida" type="text" class="form-control" placeholder="Punto de reposición del producto" ng-model="prod.productoNuevo.puntoReposicion">
+            <input id="medida" type="text" class="form-control" placeholder="Punto de reposición del producto" ng-model="prod.prodSeleccionadoEditar.puntoReposicion">
              
 <div id="col-md-10">          
       <label class="titulo">Materia Prima</label>    
@@ -75,7 +75,7 @@
             <div class="form-control form-control">{{materia.titulo}}</div></li>
 		  </td>
         <td> <li class="list-group-item">
-			  <input id="cantidad" type="text" class="form-control" ng-model="prod.productoNuevo.cantidad"></li>
+			  <input id="cantidad" type="text" class="form-control" ng-model="prod.prodSeleccionadoEditar.cantidad"></li>
 		  </td>
           <td> <li class="list-group-item form-control">
               <div class="form-control">{{materia.medida}}</div></li>
@@ -98,8 +98,8 @@
 	<div class="col-md-12"><hr/></div>
 </div>
 
-          <div>
-    <button class="btn btn-default" ng-click="prod.createProducto()">Guardar</button>
+    <div>
+	<button class="btn btn-default" ng-click="prod.updateProducto()" ng-show="prod.formLabel == 'Editar Producto'">Editar</button>
 	<button class="btn btn-default" ng-click="prod.clearProd()">Cancelar</button>
 </div>
 </div>

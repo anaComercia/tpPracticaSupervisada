@@ -1,10 +1,76 @@
  <div class="row">
 	<div class="col-md-12"><hr/></div>
 </div>
-<div class="col-md-9">
-      <div class="form-group col-md-9">
-        <label id="filtrarPor" class="col-md-3 control-label">Filtrar por:</label>
-        <div class="col-md-4 selectContainer">
+    
+    <div class="form-group col-md-12">     
+    <!-- Buscador-->
+        <a ng-click="cli.busqAv = !cli.busqAv">Busqueda avanzada <span ng-class="!cli.busqAv ? 'glyphicon glyphicon-arrow-down' : 'glyphicon glyphicon-arrow-up'"></span></a>
+        <div ng-show="cli.busqAv">
+           <div>
+            <label class="titulo">Agregar filtro</label>  
+           </div>
+            <div class="row" id="buscaFiltros">
+                <div class="col-md-8">
+                <select class="form-control" name="filtrado" id="cbParametro">
+                <option>Estado de ventas</option>
+                <option>Fecha de compra</option>
+                <option>Fecha de pago</option>
+                </select>
+                </div>
+            <div class="col-md-2" id="botonContainer">
+                  <button id="btnMas" type="button" class="btn btn-primary" ng-click="cli.agregarParametro()" >
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+            </div>
+                <div class="col-md-2">
+                    <button id="btnBuscar" type="button">Buscar</button>
+                </div>
+          </div>
+        
+        
+    <div ng-show="cli.parametrosBusqueda.length > 0">
+    <label class="titulo">Buscar</label>           
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Criterio de búsqueda</th>
+        <th>Valor</th>
+        <th>Quitar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="parametro in cli.parametrosBusqueda">
+        <td>
+            <li class="list-group-item">
+                <div class="form-control">{{parametro}}</div>
+            </li>
+         </td>
+        <td> 
+        <li class="list-group-item" ng-show="parametro != 'Fecha de compra' && parametro != 'Fecha de pago'">
+			  <input type="text" class="form-control">
+            </li>
+            <li class="list-group-item" ng-show="parametro == 'Fecha de compra' || parametro == 'Fecha de pago'">
+              <select class="form-control">
+                <option>Antes</option>
+                <option>Despues</option>
+              </select>
+			  <input type="date" class="form-control">
+            </li>
+		  </td>
+          <td> <li class="list-group-item">
+              <button type="button" class="btn btn-danger form-control" ng-click="cli.quitarParametro($index)"><span class="glyphicon glyphicon-minus">      </span></button></li>
+		  </td>   
+      </tr>    
+    </tbody>
+  </table>
+    </div>
+    </div>
+    <!-- Fin Buscador-->    
+    
+    <!-- Filtrador-->
+     <div class="form-group col-md-12" id="filtraResultado">     
+    <label id="filtrarPor" class="col-md-3 control-label">Filtrar resultados por:</label>
+        <div class="col-md-3 selectContainer">
             <select class="form-control" name="filtrado" ng-model="cli.seleccion" ng-change="cli.update()">
                 <option>Dni</option>
                 <option>Apellido</option>
@@ -21,6 +87,8 @@
         <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="cli.filtroCliente.habilitado" ng-show="cli.seleccion=='Habilitado'"> 
         </div>
     </div>
+    <!-- Fin Filtrador-->
+    
     
     <table class="table table-striped">
     <thead>

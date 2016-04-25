@@ -1,10 +1,64 @@
  <div class="row">
 	<div class="col-md-12"><hr/></div>
 </div>
+
+<div class="row">
+<div class="btn-group" role="group" aria-label="...">
+<button type="button" class="btn btn-default" ng-click="ale.reponerMp = true" ng-disabled="ale.avisoMpSeleccionado.estado != 'Pendiente'">Atender pedido</button>
+</div>
+    
+<!--Reponer-->    
+<div ng-show="ale.reponerMp">
+    <table ng-table="tablaAvisos" class="table table-striped" >
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>M.Prima</th>
+        <th>Stock</th>
+        <th>P.Reposición</th>
+        <th>Estado</th>
+        <th>Cantidad a reponer</th>
+        <th>Confirmar</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> <li class="list-group-item">
+			 {{ale.avisoMpSeleccionado.fecha}}</li>
+		  </td>
+        <td><li class="list-group-item">
+            {{ale.avisoMpSeleccionado.titulo}}</li>
+		  </td>
+        <td> <li class="list-group-item">
+			  {{ale.avisoMpSeleccionado.stock}}</li>
+		  </td>
+          <td> <li class="list-group-item">
+			 Sucursal {{ale.avisoMpSeleccionado.puntoReposicion}}</li>
+		  </td>
+          <td> <li class="list-group-item">
+			  {{ale.avisoMpSeleccionado.estado}}</li>
+		  </td>
+           <td> 
+               <input type="text" class="form-control" placeholder="Reponer" id="cantRepoMp"></input>
+		  </td>
+           <td> 
+               <button class="form-control btn-primary" ng-click="ale.atenderPedidoMp()">OK</button>
+		  </td>    
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--Fin reponer-->
+
+</div>
+    <div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+
 <div class="col-md-9">
-    <div class="form-group col-md-9">
-        <label id="filtrarPor" class="col-md-3 control-label">Filtrar por:</label>
-        <div class="col-md-4 selectContainer">
+    <div class="form-group col-md-12">
+        <label class="col-md-2 control-label">Filtrar por:</label>
+        <div class="col-md-3 selectContainer">
             <select class="form-control" name="filtrado" ng-model="ale.seleccion" ng-change="ale.update()">
                 <option>Producto</option>
                 <option>Estado</option>
@@ -52,19 +106,19 @@
         <!-- <ng-repeat siempre para llenar una tabla o un combobox con un array guardado en el controller> -->
       <tr ng-repeat="aviso in ale.avisosMp | filter: ale.filtroAviso">
           <!-- <ng-class permite cambiar la clase de un elemento en tiempo real si algo sucede> -->
-          <td> <li class="list-group-item" ng-click="prod.activeItem($index, aviso)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="ale.activeItemMp($index, aviso)" ng-class="{ 'active' : $index == ale.selectedIndexMp}">
 			 {{aviso.fecha}}</li>
 		  </td>
-        <td><li class="list-group-item" ng-click="prod.activeItem($index, aviso)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+        <td><li class="list-group-item" ng-click="ale.activeItemMp($index, aviso)" ng-class="{ 'active' : $index == ale.selectedIndexMp}">
             {{aviso.titulo}}</li>
 		  </td>
-        <td> <li class="list-group-item" ng-click="prod.activeItem($index, aviso)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+        <td> <li class="list-group-item" ng-click="ale.activeItemMp($index, aviso)" ng-class="{ 'active' : $index == ale.selectedIndexMp}">
 			  {{aviso.stock}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="prod.activeItem($index, aviso)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="ale.activeItemMp($index, aviso)" ng-class="{ 'active' : $index == ale.selectedIndexMp}">
 			 Sucursal {{aviso.puntoReposicion}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="prod.activeItem($index, aviso)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="ale.activeItemMp($index, aviso)" ng-class="{ 'active' : $index == ale.selectedIndexMp}">
 			  {{aviso.estado}}</li>
 		  </td>
       </tr>

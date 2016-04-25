@@ -21,6 +21,7 @@ require_once("models/admin.php");
 require_once("models/cliente.php");
 require_once("models/venta.php");
 require_once("models/pedido.php");
+require_once("models/color.php");
 
 //Esto va siempre
 require_once("util/jsonResponse.php");
@@ -136,6 +137,12 @@ $app->delete('/categorias/:id', function($id){
 $app->get('/genero', function(){
 	$genero = new Genero();
 	$data = $genero->getAll();
+	sendResult($data);
+});
+
+$app->get('/color', function(){
+	$object = new Color();
+	$data = $object->getAll();
 	sendResult($data);
 });
 

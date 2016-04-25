@@ -13,7 +13,7 @@
       <div class="col-md-12" ui-view>
 	</div>
     </div>
-<div ng-show="user.formLabel != 'Nuevo Empleado'">
+<div>
      <div class="form-group col-md-9" >
         <label id="filtrarPor" class="col-md-2 control-label">Filtrar por:</label>
         <div class="col-md-2 selectContainer">
@@ -56,28 +56,28 @@
     </thead>
     <tbody>
       <tr ng-repeat="empleado in user.empleados | filter: user.filtroEmp">
-        <td><li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+        <td><li class="list-group-item" ng-click="user.activeItem($index, materia)" ng-class="{ 'active' : $index == user.selectedIndex}">
             {{empleado.idEmpleado}}</li>
 		  </td>
-        <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+        <td> <li class="list-group-item" ng-click="user.activeItem($index, materia)" ng-class="{ 'active' : $index == user.selectedIndex}">
 			  {{empleado.apellido}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="user.activeItem($index, materia)" ng-class="{ 'active' : $index == user.selectedIndex}">
 			  {{empleado.nombre}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="user.activeItem($index, materia)" ng-class="{ 'active' : $index == user.selectedIndex}">
 			  {{empleado.usuario}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="user.activeItem($index, materia)" ng-class="{ 'active' : $index == user.selectedIndex}">
 			  {{empleado.email}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="user.activeItem($index, materia)" ng-class="{ 'active' : $index == user.selectedIndex}">
 			  {{empleado.puesto}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="user.activeItem($index, materia)" ng-class="{ 'active' : $index == user.selectedIndex}">
 			  {{empleado.telefono}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="user.activeItem($index, materia)" ng-class="{ 'active' : $index == user.selectedIndex}">
 			  {{empleado.habilitado}}</li>
 		  </td>
       </tr>

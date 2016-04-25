@@ -12,6 +12,6 @@ productos.config(function($stateProvider){
 		})
 		.state("productos.editar",{
 			url : "/editar/:id",
-			templateUrl : "app/admin/productos/ProductosFormTemplate.html"
+			templateUrl : "app/admin/productos/ProductosFormTemplateEdit.html"
 		});
 });

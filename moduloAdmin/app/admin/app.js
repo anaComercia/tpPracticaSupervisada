@@ -6,7 +6,8 @@ var backendEcommerceAdmin = angular.module("backendEcommerceAdmin", [
     "backendEcommerceAdmin.talles",
     "backendEcommerceAdmin.usuarios",
     "backendEcommerceAdmin.perfilAdm",
-	"ui.router"
+	"ui.router",
+    "ngFileUpload"
 ]);
 
 backendEcommerceAdmin.config(function($stateProvider, $urlRouterProvider){

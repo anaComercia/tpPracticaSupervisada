@@ -6,7 +6,7 @@ usuarios.controller("UsuariosController", function($state, EmpleadoService, Prov
 	var self = this;
 	this.empleados = [];
     this.filtroEmp = [];
-    this.formLabel="";
+    this.formLabel="Nuevo Empleado";
     this.seleccion = '';
     this.provincias = [];
     this.localidades = [];
@@ -39,6 +39,11 @@ usuarios.controller("UsuariosController", function($state, EmpleadoService, Prov
     this.formLabel="";
     }
     
+    this.activeItem = function($index, item){
+    self.selectedIndex = $index;
+    self.empleadoSeleccionado = item;
+    };
+     
     this.update = function(){
     self.filtroEmp = [];
     }

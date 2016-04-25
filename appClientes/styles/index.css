@@ -157,3 +157,7 @@ a:link{
 #idCarrito .fa:before{
     margin-right: 50px !important;
 }
+
+img{
+    cursor: pointer;
+}

@@ -90,6 +90,7 @@ function ProductosCtrl($state) {
     vm.prod = getProductDetail($state.params.prodId);
    
     vm.precioXcuota = vm.prod.price / 3;
+    vm.precioXcuota = vm.precioXcuota.toFixed(2);
     vm.mySelect = {};//seleccion de los combos
     
     vm.source = vm.prod.image[0];

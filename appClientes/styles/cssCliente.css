@@ -67,6 +67,16 @@ display:inline-block;
 	
 }
 
+#lblDetDatoPers{
+    font-size: 15;
+	font-style: italic;
+	font-family: -webkit-pictograph;
+	color: #58ACFA;
+	
+}
+
+
+
 .btnBoton:hover {
 /* 	margin-top: 50px;
     width: 200;

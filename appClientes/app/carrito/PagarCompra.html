@@ -13,18 +13,26 @@
             </label>
             <div class="radio">
                 <label class="forma-pago">
-                    <input type="radio" value="pagoEfectivo" name="formaPago" ng-model="myCheckEfectivo">Efectivo
+                    <input type="radio" value="pagoEfectivo" name="formaPago" 
+                           ng-model="pagarCtrl.hiddenSucursal" 
+                           ng-change='mostrarSucursales(pagarCtrl.hiddenSucursal)'
+                           ng-checked="pagarCtrl.isOpenSucursal">Efectivo
                 </label>
                  <label class="detalle-informativo"><b>Retiro por sucursal.</b></label>
             </div>
             <div class="radio">
                 <label class="forma-pago">
-                    <input type="radio" value="pagoTarjeta" name="formaPago" ng-model="myCheckTarjeta">Tarjeta de Crédito
+                    <input type="radio" value="pagoTarjeta" name="formaPago" 
+                            ng-model="pagarCtrl.hiddenTarjeta" 
+                            ng-checked="pagarCtrl.isOpenTarjeta"
+                            ng-change='mostrarTarjetas(pagarCtrl.hiddenTarjeta)'>Tarjeta de Crédito
                 </label>
                 <label class="detalle-informativo"><b>Envío a domicilio.</b></label>
             </div>
         </div>
-        <div class="div-modulos" ng-hide="myCheckTarjeta" >
+        <div class="div-modulos" ng-hide="pagarCtrl.hiddenTarjeta" md-open="pagarCtrl.isOpenTarjeta" 
+              ng-mouseenter="demo.isOpenTarjeta=true" 
+              ng-mouseleave="demo.isOpenTarjeta=false" >
            <label class="pagar-titulos">
                 <b>Detalles de la Tarjeta</b>
             </label>
@@ -66,7 +74,9 @@
              </select>
             <label class="nuevo-domicilio">¿Nuevo domicilio?</label>
         </div>
-        <div class="div-modulos" ng-hide="myCheckEfectivo" >
+        <div class="div-modulos" ng-hide="pagarCtrl.hiddenSucursal" md-open="pagarCtrl.isOpenSucursal" 
+              ng-mouseenter="demo.isOpenSucursal=true" 
+              ng-mouseleave="demo.isOpenSucursal=false"  >
             <label class="pagar-titulos">
                 <b>Retiro del Producto</b>
             </label>

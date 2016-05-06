@@ -1,18 +1,5 @@
 <div ng-controller="PerfilController as perfCtrl" >
-   <div class="div-cupon">
-        <div class="panel-heading pnl-prod-perfil cupon-usado-back-color-pnl"  >
-            <h4 class="panel-title panel-titulo">
-                <b>
-                    <span class="glyphicon glyphicon-check"></span>
-                    CUPONES USADOS
-                </b>
-            </h4>
-        </div>
-       <cupon-usado-directive 
-                           ng-repeat="cuponUsado in perfCtrl.cuponUsadosLista" 
-                           cupon-data="cuponUsado">
-        </cupon-usado-directive>
-    </div>
+
     <div class="div-cupon">
         <div class="panel-heading pnl-prod-perfil cupon-nuevo-back-color-pnl"  >
             <h4 class="panel-title panel-titulo">
@@ -26,6 +13,20 @@
                            ng-repeat="cuponNuevo in perfCtrl.cuponNuevosLista" 
                            cupon-data="cuponNuevo">
         </cupon-nuevo-directive>
+    </div>
+    <div class="div-cupon">
+        <div class="panel-heading pnl-prod-perfil cupon-usado-back-color-pnl"  >
+            <h4 class="panel-title panel-titulo">
+                <b>
+                    <span class="glyphicon glyphicon-check"></span>
+                    CUPONES USADOS
+                </b>
+            </h4>
+        </div>
+       <cupon-usado-directive 
+                           ng-repeat="cuponUsado in perfCtrl.cuponUsadosLista" 
+                           cupon-data="cuponUsado">
+        </cupon-usado-directive>
     </div>
     
 </div>

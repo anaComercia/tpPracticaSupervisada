@@ -40,7 +40,7 @@
        font-size: 40;
     font-family: -webkit-pictograph;
     text-align: center;
-    font-weight: 100;
+    font-weight: 150;
     padding-top: 20px;
     padding-left: 0;
 }
@@ -137,4 +137,31 @@ add browser prefixes**/
 transform: scale(2.5);    
 position:relative;      
 z-index:100;  
+}
+.lblDescripcion{
+  /*  border: 1px solid #ccc;
+    border-radius: 4px;*/
+    width: 492px;
+    height: 82px;
+    font-size: 19px;
+    font-stretch: condensed;
+    font-style: oblique;
+    padding-top: 10px;
+    font-weight: 100;
+}
+.imagenes-detalle{
+    padding-top: 20;
+}
+.cuotas-precio{
+    color: grey;
+}
+.nuevo-domicilio{
+    margin-left: 20px;
+    color: black;
+    font-size: 12;
+    font-style: italic;
+}
+.nuevo-domicilio:hover{
+    color: blue;
+    text-decoration: underline;
 }

@@ -1,4 +1,4 @@
-<div ng-controller="PagarCompraController as pagarCtrl" class="div-pagar">
+<div ng-controller="PagarCompraController as pagarCtrl" class="div-pagar" >
    <div class="body-carrito-compras">
         <div class="panel-heading pnl-prod-perfil cupon-usado-back-color-pnl"  >
             <h4 class="panel-title panel-titulo">
@@ -13,18 +13,18 @@
             </label>
             <div class="radio">
                 <label class="forma-pago">
-                    <input type="radio" value="pagoEfectivo" name="formaPago">Efectivo
+                    <input type="radio" value="pagoEfectivo" name="formaPago" ng-model="myCheckEfectivo">Efectivo
                 </label>
                  <label class="detalle-informativo"><b>Retiro por sucursal.</b></label>
             </div>
             <div class="radio">
                 <label class="forma-pago">
-                    <input type="radio" value="pagoTarjeta" name="formaPago">Tarjeta de Crédito
+                    <input type="radio" value="pagoTarjeta" name="formaPago" ng-model="myCheckTarjeta">Tarjeta de Crédito
                 </label>
                 <label class="detalle-informativo"><b>Envío a domicilio.</b></label>
             </div>
         </div>
-        <div class="div-modulos" >
+        <div class="div-modulos" ng-hide="myCheckTarjeta" >
            <label class="pagar-titulos">
                 <b>Detalles de la Tarjeta</b>
             </label>
@@ -64,8 +64,9 @@
                     ng-options="domi as domi.detail for domi in pagarCtrl.domicilios" 
                     >
              </select>
+            <label class="nuevo-domicilio">¿Nuevo domicilio?</label>
         </div>
-        <div class="div-modulos" >
+        <div class="div-modulos" ng-hide="myCheckEfectivo" >
             <label class="pagar-titulos">
                 <b>Retiro del Producto</b>
             </label>
@@ -73,19 +74,19 @@
                 <label class="radio-retiro-prod">
                     <input type="radio" value="Suc1" name="sucRetiro">Bermúdez 1876, CP 1417, Capital Federal, Buenos Aires.
                 </label>
-                <label class="detalle-informativo"><b>Tiempo de entrega: 10 dias</b></label>
+                <label class="detalle-informativo"><b>Tiempo de retiro: 10 dias</b></label>
             </div>
             <div class="radio">
                 <label class="radio-retiro-prod">
                     <input type="radio" value="Suc2" name="sucRetiro">Bartolomé Mitre 675, CP 1654, Avellaneda, Buenos Aires.
                 </label>
-                <label class="detalle-informativo"><b>Tiempo de entrega: 5 dias</b></label>
+                <label class="detalle-informativo"><b>Tiempo de retiro: 5 dias</b></label>
             </div>
             <div class="radio">
                 <label class="radio-retiro-prod">
                     <input type="radio" value="Suc3" name="sucRetiro">Remedios Escalada 654, CP 1467, Lugano, Buenos Aires.
                 </label>
-                <label class="detalle-informativo"> <b>Tiempo de entrega: 15 dias</b></label>
+                <label class="detalle-informativo"> <b>Tiempo de retiro: 15 dias</b></label>
             </div>
        
         </div>

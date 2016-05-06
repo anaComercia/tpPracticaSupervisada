@@ -75,11 +75,8 @@ a:link{
 #idDivCrearCuenta #idCarrito { 
     text-align:center !important; 
     top:50px !important; 
-    width:200px !important; 
-    background-color:#ccc !important;
-    height: 15px;
-    padding: 0px;
-    padding-top: 3px;
+    width:176px !important; 
+
 }
 
 #idModulosPrincipal{
@@ -161,11 +158,24 @@ a:link{
 img{
     cursor: pointer;
 }
-.formato-buscar{
+.img-banner-modulo{
+    width: 1000px !important;
+    height: 200px !important;
+    margin-bottom: 40px;
+}
+.input-buscador{
+    height: 27;
     border: 1px solid #ccc;
     border-radius: 4px;
-    height: 30px;
 }
-.input-formato-buscar{
-    width: 150px;
+.carrito-inicio{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align:center !important; 
+    top:50px !important; 
+    width:200px !important; 
+    background-color:#d9edf7 !important;
+    height: 15px;
+    padding: 0px;
+    padding-top: 3px;
 }

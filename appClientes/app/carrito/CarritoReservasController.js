@@ -6,7 +6,7 @@ CarritoReservasCtrl.$injector = ["$state , $scope"];
 
 function CarritoReservasCtrl($state,$scope) {
    var vm = this;
-    debugger;
+  
     /* lista reservas */
    vm.listaReservas = [
         {

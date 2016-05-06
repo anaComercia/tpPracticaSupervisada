@@ -37,8 +37,13 @@
     float: left;
 }
 .pnl-imgs{
-     padding: 0px;
+    padding: 0px;
     padding-bottom: 20px;
+
+}
+.img-carrousell{
+    width: 700px !important;
+    height: 340px !important;
 }
 /*Menu flotante
 .f-nav{ 

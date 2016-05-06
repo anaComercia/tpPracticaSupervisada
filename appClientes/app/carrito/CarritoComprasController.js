@@ -6,7 +6,7 @@ CarritoComprasCtrl.$injector = ["$state , $scope"];
 
 function CarritoComprasCtrl($state,$scope) {
    var vm = this;
-    debugger;
+   
     /* lista compras */
     vm.listaCompras = [
         {
@@ -16,7 +16,7 @@ function CarritoComprasCtrl($state,$scope) {
             quantity: 2,
             price: 1600,
             buyDate: '16/01/2016',
-            payDate:'17/01/2016'
+            state:'Pendiente'
         },
         {
             id:2,
@@ -25,7 +25,7 @@ function CarritoComprasCtrl($state,$scope) {
             quantity: 1,
             price: 800,
             buyDate: '06/10/2015',
-            payDate:'07/20/2015'
+            state:'Pagado'
         }
     ];
 }

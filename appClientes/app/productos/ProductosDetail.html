@@ -1,11 +1,11 @@
 <div class="col-md-8 col-offset-2" id="idImgModProd">
-    <img  class="img-responsive" src="img/modulos/imgModuloProductos.jpg" />
+    <img  class="img-responsive img-banner-modulo" src="img/modulos/imgModuloProductos.jpg" />
 </div>
 
 <div id="idPaginaProducto" ng-controller="ProductosDetailController as productCtrl" class="col-md-12">
   
     
-    <div class="col-md-5 col-md-offset-1" >
+    <div class="col-md-5 col-md-offset-1 imagenes-detalle" >
     
         <img  src={{productCtrl.source}} class="img img-first thumbnail zoom" />
 
@@ -19,30 +19,38 @@
 
     <div  id="idDetalleProd" class="col-md-6" style="">
         <label class="lblTitulo">{{productCtrl.prod.title | uppercase}}</label>
+              
+        <div>
+            <label class="lblDescripcion"> {{productCtrl.prod.desc}}</label>
+        </div>  
+        
         
         <div>
             <label class="lblPrecio" >${{productCtrl.prod.price}}</label>
-            <label class="">3 cuotas de ${{productCtrl.precioXcuota}} cada una</label>
+            <label class="cuotas-precio">3 cuotas de ${{productCtrl.precioXcuota}} cada una</label>
         </div>
+
         
         <div>
-            <label class="lblDetalle lblGenero">Género</label>
-            <label class="" >{{productCtrl.prod.gender}}</label>
+            <div>
+                <label class="lblDetalle lblGenero">Género</label>
+                <label class="" >{{productCtrl.prod.gender}}</label>
+            </div>
+
+            <div>
+                <label class="lblDetalle">Elegir talle</label>
+                <select class="select-option" ng-model="productCtrl.mySelect.size" ng-options="option as option for option in productCtrl.prod.size">
+                </select>
+            </div>
+
+
+            <div>
+                <label class="lblDetalle">Elegir color</label>
+                <select class="select-option" ng-model="productCtrl.mySelect.color" ng-options="option as option for option in productCtrl.prod.color">
+                </select>
+            </div>
         </div>
-        
-        <div>
-            <label class="lblDetalle">Elegir talle</label>
-            <select class="select-option" ng-model="productCtrl.mySelect.size" ng-options="option as option for option in productCtrl.prod.size">
-            </select>
-        </div>
-  
-        
-        <div>
-            <label class="lblDetalle">Elegir color</label>
-            <select class="select-option" ng-model="productCtrl.mySelect.color" ng-options="option as option for option in productCtrl.prod.color">
-            </select>
-        </div>
-       
+
         
         <button  type="button" class="btn btn-default btn-md btn-agregar">
             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>

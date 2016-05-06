@@ -7,6 +7,7 @@
         <!-- <Librerías> -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>      
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         
@@ -71,12 +72,10 @@
     <body>
        <div id="container" style="container">
             <div id="idHeader" class="row col-md-10 col-md-offset-1 col-xs-6" >
-                <div id="idDivBuscador" class="col-md-3 input-search">
-                        <input id="idBuscador"  class="formato-buscar input-formato-buscar"
-                                type="text" maxlength="15" placeholder="Buscar" style="fa fa-search"/>
-                        <button type="submit" class="btn formato-buscar"><i class="fa fa-search"></i></button>
+                <div id="idDivBuscador" class="col-md-3 input--search">
+                        <input id="idBuscador" class="input-buscador" maxlength="15" placeholder="Buscar" style="fa fa-search"/>
+                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                 </div>
-
 
                 <div id="idDivEmpresa" class="col-md-6 container"   >
                    <a ui-sref="inicio">
@@ -88,7 +87,7 @@
                   <!-- <a ui-sref="carrito">-->
                     <div ng-controller="CarritoController as carritoCtrl">
                         <a >
-                            <label id="idCarrito" class="fa fa-shopping-cart " > $ {{carritoCtrl.totalReservas}}</label>
+                            <label id="idCarrito" class="fa fa-shopping-cart carrito-inicio" > $ {{carritoCtrl.totalReservas}}</label>
                         </a> 
                     </div>
                     <div ng-controller="MainController as main" >

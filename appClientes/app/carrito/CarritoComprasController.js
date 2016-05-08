@@ -28,4 +28,7 @@ function CarritoComprasCtrl($state,$scope) {
             state:'Pagado'
         }
     ];
+    
+    vm.detallesCompra={};
+    
 }

@@ -13,6 +13,12 @@ function CarritoComprasDirective() {
             //$scope.verDetalle = verDetalle;
 
             //buyData.subTotal = buyData.unitPrice * buyData.quantity;
+            mostrarDetalle = function(){ 
+                
+                console.log($scope);
+                debugger;
+               
+            };
         }       
     }    
 }

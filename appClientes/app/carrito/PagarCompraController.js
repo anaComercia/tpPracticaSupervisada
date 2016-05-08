@@ -64,7 +64,6 @@ function PagarCompraController($state,$scope) {
    
     };
     
-    
   /*  $(function () {
      $("#datepicker").datepicker({ 
             autoclose: true, 

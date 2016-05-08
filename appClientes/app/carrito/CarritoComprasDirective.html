@@ -7,6 +7,8 @@
     <label class=" compras-lbl-precio  " >${{buyData.price}}</label>
     <label class=" compras-lbl-fecha-compra  ">{{buyData.buyDate}}</label>
     <label class=" compras-lbl-estado">{{buyData.state}}</label>
-    <label> <span class="glyphicon glyphicon-search"></span></label>
+    <label> 
+        <span class="glyphicon glyphicon-search" data-target="#myModalCompra" data-toggle="modal" onclick="mostrarDetalle();"></span>
+    </label>
 </div>
 

@@ -11,7 +11,9 @@ mp.controller("MpController", function($state, MpService, ColorService){
     this.formLabel="";
     this.seleccion = '';
     this.filtroMp = [];
-    this.colores = [];
+    this.busqAv = false;
+    this.parametrosBusqueda= [];
+    
     
     this.getMpsDetalles = function(){
             return MpService.getMpsDetalles().then(function(data){
@@ -43,6 +45,17 @@ mp.controller("MpController", function($state, MpService, ColorService){
     $state.go("mp");
     self.formLabel = '';
     };
+    
+    this.agregarParametro = function(){
+     var texto = jQuery('#cbParametro').val();
+    if(self.parametrosBusqueda.indexOf(texto) == -1){
+     self.parametrosBusqueda.push(texto);
+    }
+    }
+        
+    this.quitarParametro = function(index){
+     self.parametrosBusqueda.splice(index,1);
+    }
     
     this.update = function(){
     self.filtroMp = [];

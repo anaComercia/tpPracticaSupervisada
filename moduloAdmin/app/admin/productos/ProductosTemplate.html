@@ -1,4 +1,29 @@
+<div class="col-md-12" ui-view>
 <div class="row">
+    
+    
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand" ui-sref-active="active">
+                    <a>
+                        Opciones
+                    </a>
+                </li>
+                 <li ui-sref-active="active">
+                    <a ui-sref="productos">Productos</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="categorias">Categorias</a>
+                </li>
+                <li ui-sref-active="active">
+						<a ui-sref="mp">Materia Prima</a>
+				</li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+    
+    <!-- Botones-->
 	<div class="col-md-5">
 		<div class="btn-group" role="group" aria-label="...">
             <!-- <ng-click funciona del mismo modo que onclick llamando a un metodo del controller, siempre tiene que anteponer el alias> -->
@@ -7,29 +32,84 @@
 		  <button type="button" class="btn btn-default" ng-click="prod.deleteProducto()" ng-show="prod.prodSeleccionadoEditar != null">Eliminar Producto</button>
 		</div>
 	</div>
+    <!-- Fin Botones-->
+    <div class="col-md-12"><hr/></div>
     
-    <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand" ui-sref-active="active">
-                    <a ui-sref="productos">
-                        Productos
-                    </a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="categorias">Categorias</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-<div class="col-md-8" ui-view>
     <div class="row">
-	<div class="col-md-12"><hr/></div>
-</div>
+   </div>
     
-    <div class="form-group col-md-9">
-        <label id="filtrarPor" class="col-md-2 control-label">Filtrar por:</label>
-        <div class="col-md-2 selectContainer">
+    <div class="row">
+        <!-- Buscador-->
+     <a ng-click="prod.busqAv = !prod.busqAv">Busqueda avanzada <span ng-class="!prod.busqAv ? 'glyphicon glyphicon-arrow-down' : 'glyphicon glyphicon-arrow-up'"></span></a>
+        <div ng-show="prod.busqAv">
+    
+           <div>
+            <label class="titulo">Agregar filtro</label>  
+           </div>
+            <div class="row" id="buscaFiltros">
+                <div class="col-md-8">
+                <select class="form-control" name="filtrado" id="cbParametro">
+                <option>Categoria</option>
+                <option>Precio</option>
+                </select>
+                </div>
+            <div class="col-md-2" id="botonContainer">
+                  <button id="btnMas" type="button" class="btn btn-primary" ng-click="prod.agregarParametro()" >
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+            </div>
+                <div class="col-md-2">
+                    <button id="btnBuscar" type="button">Buscar</button>
+                </div>
+          </div>
+    
+        
+    <div ng-show="prod.parametrosBusqueda.length > 0" class="col-md-9">
+    <label class="titulo">Buscar</label>           
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Criterio de búsqueda</th>
+        <th>Valor</th>
+        <th>Quitar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="parametro in prod.parametrosBusqueda">
+        <td>
+            <li class="list-group-item">
+                <div class="form-control">{{parametro}}</div>
+            </li>
+         </td>
+        <td> 
+          <li class="list-group-item" ng-show="parametro != 'Precio'">
+			  <input type="text" class="form-control">
+            </li>
+              <li id="llenaLinea" class="list-group-item" ng-show="parametro == 'Precio'">
+                  <select id="dosEnLinea" class="form-control col-md-6">
+                <option>Mayor</option>
+                <option>Menor</option>
+              </select>
+			   <input id="dosEnLinea" type="text" class="form-control col-md-6">
+            </li>
+		  </td>
+          <td> <li class="list-group-item">
+              <button type="button" class="btn btn-danger form-control" ng-click="prod.quitarParametro($index)"><span class="glyphicon glyphicon-minus">      </span></button></li>
+		  </td>   
+      </tr>    
+    </tbody>
+  </table>
+    </div>
+    </div>
+    <!-- Fin Buscador-->  
+    </div>
+        
+        
+        
+    <!-- Filtrador -->
+    <div class="form-group col-md-9" id="filtraResultado">
+        <label id="filtrarPor" class="col-md-3 control-label">Filtrar resultados por:</label>
+        <div class="col-md-4 selectContainer">
             <select class="form-control" name="filtrado" ng-model="prod.seleccion" ng-change="prod.update()" >
                 <option>Id</option>
                 <option>Titulo</option>
@@ -46,11 +126,10 @@
             <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="prod.filtroProducto.precio" ng-show="prod.seleccion=='Precio'"> 
         </div>
     </div>
-    
-    
-<div class="col-md-8" ng-show="prod.formLabel != 'Nuevo Producto'">
-    
-	</div>
+    <!-- Fin Filtrador -->
+        
+<!-- Tabla -->
+<div class="col-md-9">
     <table class="table table-striped">
     <thead>
       <tr>
@@ -84,6 +163,7 @@
     </tbody>
   </table>
     </div>
-    
-    
+<!-- Fin Tabla -->
+        
+    </div>
 </div>

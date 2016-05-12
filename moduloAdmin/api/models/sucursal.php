@@ -10,7 +10,7 @@ class Sucursal
     }
     
     public function getAll(){
-        $query = "SELECT * FROM Sucursal";
+        $query = "SELECT suc.*, loc.descripcion as localidad_desc, prov.descripcion as provincia_desc, dir.* FROM Sucursal suc, Localidad loc, Provincia prov,Direccion dir where suc.idDireccion = dir.idDireccion and dir.idLocalidad = loc.idLocalidad and loc.idProvincia = prov.idProvincia";
         $sucursales= array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

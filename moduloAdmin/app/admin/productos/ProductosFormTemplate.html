@@ -4,15 +4,15 @@
  
 	  <div class="form-group">
           <div id="divImg"> 
-            <h5> 
+    <h5> 
     <fieldset>
       <legend>Imagen</legend>
-      <i ng-show="prod.file.$error.required">*required</i><br>
-      <i ng-show="prod.file.$error.maxSize">File too large 
+      <i ng-show="prod.picFile.$error.required">*required</i><br>
+      <i ng-show="prod.picFile.$error.maxSize">File too large 
           {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
-      <img ng-show="prod.file.$valid" ngf-thumbnail="prod.picFile" class="thumb"> 
+      <img ng-show="prod.picFile.$valid" ngf-thumbnail="prod.picFile" class="thumb"> 
         <div class="row"><button id="btnRemover" ng-click="prod.picFile = null" ng-show="prod.picFile">Remover</button></div>
-        <input type="file" ngf-select ng-model="prod.productoNuevo.picFile" name="file"    
+        <input type="file" ngf-select ng-model="prod.picFile" name="file"    
              accept="image/*" ngf-max-size="2MB" required
              ngf-model-invalid="errorFile">        
         </h5>
@@ -58,7 +58,7 @@
           <label class="titulo">Punto de Reposición</label>
             <input id="medida" type="text" class="form-control" placeholder="Punto de reposición del producto" ng-model="prod.productoNuevo.puntoReposicion">
              
-<div id="col-md-10">          
+<div id="col-md-12">          
       <label class="titulo">Materia Prima</label>    
     <table class="table table-striped">
     <thead>
@@ -80,8 +80,8 @@
           <td> <li class="list-group-item form-control">
               <div class="form-control">{{materia.medida}}</div></li>
 		  </td> 
-          <td> <li class="list-group-item form-control">
-<button type="button" class="btn btn-danger" ng-click="prod.quitarMp($index)"><span class="glyphicon glyphicon-minus form-control "></span></button></li>
+          <td> <li class="list-group-item" id="llenaLinea">
+<button type="button" class="btn btn-danger form-control" ng-click="prod.quitarMp($index)"><span class="glyphicon glyphicon-minus"></span></button></li>
 		  </td>   
       </tr>    
     </tbody>

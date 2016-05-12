@@ -49,12 +49,12 @@
         <li class="list-group-item" ng-show="parametro != 'Fecha de compra' && parametro != 'Fecha de pago'">
 			  <input type="text" class="form-control">
             </li>
-            <li class="list-group-item" ng-show="parametro == 'Fecha de compra' || parametro == 'Fecha de pago'">
-              <select class="form-control">
+            <li id="llenaLinea" class="list-group-item" ng-show="parametro == 'Fecha de compra' || parametro == 'Fecha de pago'">
+              <select id="dosEnLinea" class="form-control col-md-6">
                 <option>Antes</option>
                 <option>Despues</option>
               </select>
-			  <input type="date" class="form-control">
+			  <input id="dosEnLinea" type="date" class="form-control col-md-6">
             </li>
 		  </td>
           <td> <li class="list-group-item">
@@ -66,7 +66,8 @@
     </div>
     </div>
     <!-- Fin Buscador-->    
-    
+        
+        
     <!-- Filtrador-->
      <div class="form-group col-md-12" id="filtraResultado">     
     <label id="filtrarPor" class="col-md-3 control-label">Filtrar resultados por:</label>
@@ -105,23 +106,26 @@
         <!-- <ng-repeat siempre para llenar una tabla o un combobox con un array guardado en el controller> -->
       <tr ng-repeat="cliente in cli.clientes | filter: cli.filtroCliente">
           <!-- <ng-class permite cambiar la clase de un elemento en tiempo real si algo sucede> -->
-        <td><li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+        <td><li class="list-group-item" ng-click="cli.activeItem($index, cliente)" ng-class="{ 'active' : $index == cli.selectedIndex}">
             {{cliente.nombre}}</li>
 		  </td>
-        <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+        <td> <li class="list-group-item" ng-click="cli.activeItem($index, cliente)" ng-class="{ 'active' : $index == cli.selectedIndex}">
 			  {{cliente.apellido}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="cli.activeItem($index, cliente)" ng-class="{ 'active' : $index == cli.selectedIndex}">
 			  {{cliente.numDni}}</li>
 		  </td>
-           <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+           <td> <li class="list-group-item" ng-click="cli.activeItem($index, cliente)" ng-class="{ 'active' : $index == cli.selectedIndex}">
 			  {{cliente.email}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="cli.activeItem($index, cliente)" ng-class="{ 'active' : $index == cli.selectedIndex}">
 			  {{cliente.reputacion}}</li>
 		  </td>
-           <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
-			  {{cliente.habilitado}}</li>
+           <td> 
+               <li class="list-group-item" ng-click="cli.activeItem($index, cliente)" ng-class="{ 'active' : $index == cli.selectedIndex}">
+			  <div id="cliHab">{{cliente.habilitado==1?'Si':'No'}}</div></li>
+               <button type="button" class="btn btn-default" id="btnHabCli" ng-click="cli.habilitacion(cliente)" ng-show="cli.clienteSeleccionado == cliente">{{cli.habilitar}}</button>
+              
 		  </td>
       </tr>
     </tbody>

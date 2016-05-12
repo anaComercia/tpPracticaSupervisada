@@ -14,6 +14,7 @@
                 <div class="col-md-8">
                 <select class="form-control" name="filtrado" id="cbParametro">
                 <option>Estado de venta</option>
+                <option>Ventas por sucursal</option>
                 <option>Fecha de compra</option>
                 <option>Fecha de pago</option>
                 </select>
@@ -47,15 +48,22 @@
             </li>
          </td>
         <td> 
-          <li class="list-group-item" ng-show="parametro != 'Fecha de compra' && parametro != 'Fecha de pago'">
+          <li class="list-group-item" ng-show="parametro != 'Fecha de compra' && parametro != 'Fecha de pago' && parametro != 'Ventas por sucursal'">
 			  <input type="text" class="form-control">
             </li>
-            <li class="list-group-item" ng-show="parametro == 'Fecha de compra' || parametro == 'Fecha de pago'">
-              <select class="form-control">
+            <li id="llenaLinea" class="list-group-item" ng-show="parametro == 'Fecha de compra' || parametro == 'Fecha de pago'">
+              <select id="dosEnLinea" class="form-control col-md-6">
                 <option>Antes</option>
                 <option>Despues</option>
               </select>
-			  <input type="date" class="form-control">
+			  <input id="dosEnLinea" type="date" class="form-control col-md-6">
+            </li>
+              <li id="llenaLinea" class="list-group-item" ng-show="parametro == 'Ventas por sucursal'">
+                  <select id="dosEnLinea" class="form-control col-md-6">
+                <option>Mayor</option>
+                <option>Menor</option>
+              </select>
+			   <input id="dosEnLinea" type="text" class="form-control col-md-6">
             </li>
 		  </td>
           <td> <li class="list-group-item">
@@ -66,7 +74,7 @@
   </table>
     </div>
     </div>
-    <!-- Fin Buscador-->    
+    <!-- Fin Buscador-->      
     
     <div class="form-group col-md-12" id="filtraResultado">
         <label id="filtrarPor" class="col-md-3 control-label">Filtrar resultados por:</label>

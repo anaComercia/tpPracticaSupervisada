@@ -6,6 +6,7 @@ var backendEcommerceEmp = angular.module("backendEcommerceEmp", [
     "backendEcommerceEmp.ventas",
     "backendEcommerceEmp.perfilEmp",
     "backendEcommerceEmp.stock",
+    "backendEcommerceEmp.confeccion",
 	"ui.router"
 ]);
 
@@ -42,6 +43,12 @@ backendEcommerceEmp.config(function($stateProvider, $urlRouterProvider){
 			templateUrl : "app/empleado/ventas/VentasTemplate.html",
 			controller : "VentasController",
 			controllerAs : "ven"
+		})
+        .state("confeccion", {
+			url : "/confeccion",
+			templateUrl : "app/empleado/confeccion/ConfeccionTemplate.html",
+			controller : "ConfeccionController",
+			controllerAs : "conf"
 		})
     	.state("perfilEmp", {
 			url : "/perfilEmp",

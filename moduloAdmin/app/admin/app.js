@@ -3,9 +3,15 @@ var backendEcommerceAdmin = angular.module("backendEcommerceAdmin", [
 	"backendEcommerceAdmin.categorias",
 	"backendEcommerceAdmin.productos",
     "backendEcommerceAdmin.mp",
-    "backendEcommerceAdmin.talles",
     "backendEcommerceAdmin.usuarios",
     "backendEcommerceAdmin.perfilAdm",
+    "backendEcommerceAdmin.imagenes",
+    "backendEcommerceAdmin.envios",
+    "backendEcommerceAdmin.sucursales",
+    "backendEcommerceAdmin.cupones",
+    "backendEcommerceAdmin.admGeneral",
+    "backendEcommerceAdmin.bancos",
+    "backendEcommerceAdmin.provincias",
 	"ui.router",
     "ngFileUpload"
 ]);
@@ -38,11 +44,47 @@ backendEcommerceAdmin.config(function($stateProvider, $urlRouterProvider){
 			controller : "UsuariosController",
 			controllerAs : "user"
 		})
-    .state("talles", {
-			url : "/talles",
-			templateUrl : "app/admin/talles/TallesTemplate.html",
-			controller : "TallesController",
-			controllerAs : "tall"
+        .state("imagenes", {
+			url : "/imagenes",
+			templateUrl : "app/admin/imagenes/ImagenesTemplate.html",
+			controller : "ImagenesController",
+			controllerAs : "img"
+		})
+     .state("cupones", {
+			url : "/cupones",
+			templateUrl : "app/admin/cupones/CuponesTemplate.html",
+			controller : "CuponesController",
+			controllerAs : "cup"
+		})
+     .state("envios", {
+			url : "/envios",
+			templateUrl : "app/admin/envios/EnviosTemplate.html",
+			controller : "EnviosController",
+			controllerAs : "env"
+		})
+     .state("sucursales", {
+			url : "/sucursales",
+			templateUrl : "app/admin/sucursales/SucursalesTemplate.html",
+			controller : "SucursalesController",
+			controllerAs : "suc"
+		})
+    .state("admGeneral", {
+			url : "/admGeneral",
+			templateUrl : "app/admin/admGeneral/AdmGeneralTemplate.html",
+			controller : "AdmGeneralController",
+			controllerAs : "adm"
+		})
+      .state("bancos", {
+			url : "/bancos",
+			templateUrl : "app/admin/bancos/BancosTemplate.html",
+			controller : "BancosController",
+			controllerAs : "bank"
+		})
+      .state("provincias", {
+			url : "/provincias",
+			templateUrl : "app/admin/provincias/ProvinciasTemplate.html",
+			controller : "ProvinciasController",
+			controllerAs : "prov"
 		})
     	.state("perfilAdm", {
 			url : "/perfilAdm",

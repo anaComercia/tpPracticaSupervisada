@@ -10,6 +10,8 @@ usuarios.controller("UsuariosController", function($state, EmpleadoService, Prov
     this.seleccion = '';
     this.provincias = [];
     this.localidades = [];
+    this.empleadoSeleccionado;
+    this.habilitar;
     
      this.getEmpleadosDetalles = function(){
     return EmpleadoService.getEmpleadosDetalles().then(function(data){
@@ -42,10 +44,23 @@ usuarios.controller("UsuariosController", function($state, EmpleadoService, Prov
     this.activeItem = function($index, item){
     self.selectedIndex = $index;
     self.empleadoSeleccionado = item;
+    if(item.habilitado == 1){
+    self.habilitar = 'Deshabilitar';
+    }else{
+    self.habilitar = 'Habilitar';
+    }
     };
      
     this.update = function(){
     self.filtroEmp = [];
+    }
+    
+    this.habilitacion = function(empleado){
+    if(empleado.habilitado == 1){
+    empleado.habilitado = 0;
+    }else{
+    empleado.habilitado = 1;
+    }
     }
     
     this.init = function(){

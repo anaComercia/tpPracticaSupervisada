@@ -22,7 +22,11 @@ require_once("models/cliente.php");
 require_once("models/venta.php");
 require_once("models/pedido.php");
 require_once("models/color.php");
-
+require_once("models/receta.php");
+require_once("models/envio.php");
+require_once("models/lugar.php");
+require_once("models/banco.php");
+require_once("models/tarjeta.php");
 //Esto va siempre
 require_once("util/jsonResponse.php");
 require 'Slim/Slim/Slim.php';
@@ -182,6 +186,12 @@ $app->get('/avisoProdDetalles', function(){
 	sendResult($data);
 });
 
+$app->get('/prodDeposito', function(){
+	$avisoProd = new AvisoProd();
+	$data = $avisoProd->getProdDeposito();
+	sendResult($data);
+});
+
 $app->get('/avisoMpDetalles', function(){
 	$avisoProd = new AvisoProd();
 	$data = $avisoProd->getAllDetallesMp();
@@ -233,8 +243,7 @@ $app->get('/empleado', function(){
 $app->get('/empleado/:id', function($id){
 	$objeto = new Empleado();
 	$data = $objeto->getAllPorId($id);
-    sendResult($data);
-                            
+    sendResult($data);                       
 });
 
 $app->get('/empleadoDetalle', function(){
@@ -291,6 +300,54 @@ $app->get('/pedidoDetalle', function(){
 	$objeto = new Pedido();
 	$data = $objeto->getAllDetalles();
 	sendResult($data);
+});
+
+$app->get('/receta', function(){
+	$objeto = new Receta();
+	$data = $objeto->getAll();
+	sendResult($data);
+});
+
+$app->get('/recetaSoloProductos', function(){
+	$objeto = new Receta();
+	$data = $objeto->getSoloProductos();
+	sendResult($data);
+});
+
+$app->get('/receta/:id', function($id){
+	$objeto = new Receta();
+	$data = $objeto->getAllPorId($id);
+    sendResult($data);                       
+});
+
+$app->get('/envio', function(){
+	$objeto = new Envio();
+	$data = $objeto->getAll();
+	sendResult($data);
+});
+
+$app->get('/lugar', function(){
+	$objeto = new Lugar();
+	$data = $objeto->getAll();
+	sendResult($data);
+});
+
+$app->get('/banco', function(){
+	$object = new Banco();
+	$data = $object->getAll();
+	sendResult($data);
+});
+
+$app->get('/tarjeta', function(){
+	$object = new Tarjeta();
+	$data = $object->getAll();
+	sendResult($data);
+});
+
+$app->get('/tarjeta/:id', function($id){
+	$objeto = new Tarjeta();
+	$data = $objeto->getAllPorId($id);
+    sendResult($data);                       
 });
 
 $app->run();

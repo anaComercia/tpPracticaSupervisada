@@ -1,15 +1,95 @@
-<div class="col-md-12" ui-view>
 <div class="row">
 	<div class="col-md-12"><hr/></div>
 </div>
-<div class="col-md-9">
+
+   <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                  <li class="sidebar-brand" ui-sref-active="active">
+                     <a>Stock</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="stock">Productos</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="stock.mp">Materia Prima</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+<div class="col-md-12" ui-view>  
     
     
     
+     <!-- Buscador-->
+     <a ng-click="stock.busqAv = !stock.busqAv">Busqueda avanzada <span ng-class="!stock.busqAv ? 'glyphicon glyphicon-arrow-down' : 'glyphicon glyphicon-arrow-up'"></span></a>
+        <div ng-show="stock.busqAv">
     
-    <div class="form-group col-md-12">
+           <div>
+            <label class="titulo">Agregar filtro</label>  
+           </div>
+            <div class="row" id="buscaFiltros">
+                <div class="col-md-8">
+                <select class="form-control" name="filtrado" id="cbParametro">
+                <option>Stock por punto de reposicion</option>
+                <option>Provincia</option>
+                <option>Localidad</option>
+                </select>
+                </div>
+            <div class="col-md-2" id="botonContainer">
+                  <button id="btnMas" type="button" class="btn btn-primary" ng-click="stock.agregarParametro()" >
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+            </div>
+                <div class="col-md-2">
+                    <button id="btnBuscar" type="button">Buscar</button>
+                </div>
+          </div>
+    
+        
+    <div ng-show="stock.parametrosBusqueda.length > 0" class="col-md-9">
+    <label class="titulo">Buscar</label>           
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Criterio de búsqueda</th>
+        <th>Valor</th>
+        <th>Quitar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="parametro in stock.parametrosBusqueda">
+        <td>
+            <li class="list-group-item">
+                <div class="form-control">{{parametro}}</div>
+            </li>
+         </td>
+        <td> 
+          <li class="list-group-item" ng-show="parametro != 'Stock por punto de reposicion'">
+			  <input type="text" class="form-control">
+            </li>
+              <li id="llenaLinea" class="list-group-item" ng-show="parametro == 'Stock por punto de reposicion'">
+                  <select id="dosEnLinea" class="form-control col-md-6">
+                <option>Mayor</option>
+                <option>Menor</option>
+              </select>
+			   <input id="dosEnLinea" type="text" class="form-control col-md-6">
+            </li>
+		  </td>
+          <td> <li class="list-group-item">
+              <button type="button" class="btn btn-danger form-control" ng-click="stock.quitarParametro($index)"><span class="glyphicon glyphicon-minus">      </span></button></li>
+		  </td>   
+      </tr>    
+    </tbody>
+  </table>
+    </div>
+    </div>
+    <!-- Fin Buscador-->  
+
+    
+    <div class="form-group col-md-12" id="filtraResultado">
        <label id="filtrarPor" class="col-md-3 control-label">Filtrar resultados por:</label>
-        <div class="col-md-3 selectContainer">
+        <div class="col-md-4 selectContainer">
             <select class="form-control" name="filtrado" ng-model="stock.seleccion" ng-change="stock.update()">
                 <option>N° Sucursal</option>
                 <option>Producto</option>
@@ -25,24 +105,12 @@
         </div>
     </div>
     
-       <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                  <li class="sidebar-brand" ui-sref-active="active">
-                     <a>Stock</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="stock">Productos</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="stock.mp">Materia Prima</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
     
     
     
+    
+    
+    <div class="col-md-9">
     <table class="table table-striped">
     <thead>
       <tr>
@@ -68,7 +136,7 @@
 			  {{stock.puntoReposicion}}</li>
 		  </td>
           <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
-			  {{stock.nroSucursal}}</li>
+			  <div id='cliHab'>{{stock.nroSucursal != 0 ? stock.nroSucursal:'En depósito'}}</div></li>
 		  </td>
           <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
 			  {{stock.provincia_desc}}</li>
@@ -79,4 +147,5 @@
       </tr>
     </tbody>
   </table>
+        </div>
 </div>

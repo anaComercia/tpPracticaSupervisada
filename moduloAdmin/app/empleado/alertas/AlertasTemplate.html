@@ -1,14 +1,35 @@
-<div class="col-md-12" ui-view> 
+
        <div class="row">
 	<div class="col-md-12"><hr/></div>
 </div>
+    
+             <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                   <li class="sidebar-brand" ui-sref-active="active">
+                       <a>Alertas</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="alertas">Productos</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="alertas.mp">Materia Prima</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+  <div class="col-md-12" ui-view>   
+    
 <div class="row">
 <div class="btn-group" role="group" aria-label="...">
 <button type="button" class="btn btn-default" ng-click="ale.reponer = true" ng-disabled="ale.avisoSeleccionado.estado != 'Pendiente'">Atender pedido</button>
+<button type="button" class="btn btn-default" ng-click="ale.reponer = false" ng-show="ale.reponer && ale.avisoSeleccionado.estado == 'Pendiente'">Cancelar</button>
 </div>
+
+
     
 <!--Reponer-->    
-<div ng-show="ale.reponer">
+<div ng-show="ale.reponer && ale.avisoSeleccionado.estado == 'Pendiente'" class="col-md-10">
     <table ng-table="tablaAvisos" class="table table-striped" >
     <thead>
       <tr>
@@ -24,23 +45,23 @@
     <tbody>
       <tr>
           <!-- <ng-class permite cambiar la clase de un elemento en tiempo real si algo sucede> -->
-        <td><li class="list-group-item">
+        <td><li class="form-control">
             {{ale.avisoSeleccionado.fecha}}</li>
 		  </td>
-        <td> <li class="list-group-item">
+        <td> <li class="form-control">
 			  {{ale.avisoSeleccionado.titulo}}</li>
 		  </td>
-          <td> <li class="list-group-item">
+          <td> <li class="form-control">
 			 Sucursal {{ale.avisoSeleccionado.nroSucursal}}</li>
 		  </td>
-          <td> <li class="list-group-item">
+          <td> <li class="form-control">
 			 {{ale.avisoSeleccionado.cantidad}}</li>
 		  </td>
-          <td> <li class="list-group-item">
+          <td> <li class="form-control">
 			  {{ale.avisoSeleccionado.puntoReposicion}}</li>
 		  </td>
            <td> 
-               <input type="text" class="form-control" placeholder="Reponer" id="cantRepo"></input>
+               <input type="text" class="form-control" placeholder="{{ale.avisoSeleccionado.enDeposito}}" id="cantRepo"></input>
 		  </td>
            <td> 
                <button class="form-control btn-primary" ng-click="ale.atenderPedido()">OK</button>
@@ -72,21 +93,7 @@
         </div>
     </div>
     
-     <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                   <li class="sidebar-brand" ui-sref-active="active">
-                       <a>Alertas</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="alertas">Productos</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="alertas.mp">Materia Prima</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+
     
     
     <div>

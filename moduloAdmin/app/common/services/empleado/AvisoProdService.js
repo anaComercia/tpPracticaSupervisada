@@ -23,4 +23,11 @@ backendEcommerce.service("AvisoProdService", function($http){
 		})
 	};
     
+    this.getProdDeposito = function(){
+    	var promise = $http.get('api/index.php/prodDeposito');
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    }
+    
 });

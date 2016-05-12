@@ -27,6 +27,9 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
     this.seleccion = "";
     this.filtroProducto = [];
     this.picFile;
+    this.busqAv = false;
+    this.parametrosBusqueda= [];
+    
     
 //Traer datos de Bd
     this.getProductosDetalles = function(){
@@ -158,9 +161,6 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
    
     this.nuevoProducto = function(){
     self.formLabel = "Nuevo Producto";
-    self.prodSeleccionadoEditar = null;
-    self.prodSeleccionadoEditar = {};
-    self.prodSeleccionadoEditar.categoria_id = self.categorias[0].categoria_id;
     $state.go("productos.nuevo");
     };
     
@@ -215,9 +215,19 @@ this.iniciar = function(){
 {
   name: 'mps',
   source: self.substringMatcher(self.nombresMps)
-});
+});}
 
+this.agregarParametro = function(){
+     var texto = jQuery('#cbParametro').val();
+    if(self.parametrosBusqueda.indexOf(texto) == -1){
+     self.parametrosBusqueda.push(texto);
+    }
+    }
+        
+this.quitarParametro = function(index){
+     self.parametrosBusqueda.splice(index,1);
 }
+
     
 //Traer todos los datos que necesito al mostrar el formulario por primera vez
     this.init = function(){

@@ -1,14 +1,12 @@
- <div class="row">
-	<div class="col-md-12"><hr/></div>
-</div>
 
 <div class="row">
 <div class="btn-group" role="group" aria-label="...">
 <button type="button" class="btn btn-default" ng-click="ale.reponerMp = true" ng-disabled="ale.avisoMpSeleccionado.estado != 'Pendiente'">Atender pedido</button>
+<button type="button" class="btn btn-default" ng-click="ale.reponerMp = false" ng-show="ale.reponerMp && ale.avisoMpSeleccionado.estado == 'Pendiente'">Cancelar</button>
 </div>
     
 <!--Reponer-->    
-<div ng-show="ale.reponerMp">
+<div ng-show="ale.reponerMp && ale.avisoMpSeleccionado.estado == 'Pendiente'" class="col-md-10">
     <table ng-table="tablaAvisos" class="table table-striped" >
     <thead>
       <tr>
@@ -23,19 +21,19 @@
     </thead>
     <tbody>
       <tr>
-        <td> <li class="list-group-item">
+        <td> <li class="form-control">
 			 {{ale.avisoMpSeleccionado.fecha}}</li>
 		  </td>
-        <td><li class="list-group-item">
+        <td><li class="form-control">
             {{ale.avisoMpSeleccionado.titulo}}</li>
 		  </td>
-        <td> <li class="list-group-item">
+        <td> <li class="form-control">
 			  {{ale.avisoMpSeleccionado.stock}}</li>
 		  </td>
-          <td> <li class="list-group-item">
-			 Sucursal {{ale.avisoMpSeleccionado.puntoReposicion}}</li>
+          <td> <li class="form-control">
+			  {{ale.avisoMpSeleccionado.puntoReposicion}}</li>
 		  </td>
-          <td> <li class="list-group-item">
+          <td> <li class="form-control">
 			  {{ale.avisoMpSeleccionado.estado}}</li>
 		  </td>
            <td> 
@@ -72,21 +70,7 @@
         </div>
     </div>
     
-     <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                   <li class="sidebar-brand" ui-sref-active="active">
-                       <a>Alertas</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="alertas">Productos</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="alertas.mp">Materia Prima</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+
     
     
     <div>
@@ -116,7 +100,7 @@
 			  {{aviso.stock}}</li>
 		  </td>
           <td> <li class="list-group-item" ng-click="ale.activeItemMp($index, aviso)" ng-class="{ 'active' : $index == ale.selectedIndexMp}">
-			 Sucursal {{aviso.puntoReposicion}}</li>
+			 {{aviso.puntoReposicion}}</li>
 		  </td>
           <td> <li class="list-group-item" ng-click="ale.activeItemMp($index, aviso)" ng-class="{ 'active' : $index == ale.selectedIndexMp}">
 			  {{aviso.estado}}</li>

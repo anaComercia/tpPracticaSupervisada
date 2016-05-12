@@ -9,6 +9,8 @@ cliente.controller("ClientesController", function($state,ClienteService){
     this.seleccion = '';
     this.parametrosBusqueda= [];
     this.busqAv = false;
+    this.clienteSeleccionado = null;
+    this.habilitar;
     
  this.getClientesDetalles = function(){
     return ClienteService.getClientesDetalles().then(function(data){
@@ -22,9 +24,28 @@ cliente.controller("ClientesController", function($state,ClienteService){
      var texto = jQuery('#cbParametro').val();
     if(self.parametrosBusqueda.indexOf(texto) == -1){
      self.parametrosBusqueda.push(texto);
+    }}
+    
+    this.activeItem = function($index, item){
+        self.selectedIndex = $index;
+        self.clienteSeleccionado = item;
+        if(item.habilitado == 1){
+        self.habilitar = 'Deshabilitar';
+        }else{
+        self.habilitar = 'Habilitar';
+        }
+        self.activado = false; 
+    };
+    
+    this.habilitacion = function(cliente){
+    if(cliente.habilitado == 1){
+    cliente.habilitado = 0;
+    }else{
+    cliente.habilitado = 1;
+    cliente.reputacion = 100;
     }
     }
-        
+    
     this.quitarParametro = function(index){
      self.parametrosBusqueda.splice(index,1);
     }

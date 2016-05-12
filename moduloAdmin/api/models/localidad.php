@@ -10,7 +10,7 @@ class Localidad
     }
     
     public function getAll(){
-        $query = "SELECT * FROM Localidad";
+        $query = "SELECT Localidad.*, Provincia.idProvincia, Provincia.descripcion as provincia_desc FROM Localidad, Provincia where Localidad.idProvincia = Provincia.idProvincia";
         $localidades = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

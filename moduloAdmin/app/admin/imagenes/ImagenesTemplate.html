@@ -1,0 +1,169 @@
+ <div class="col-md-12" ui-view>
+        
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+    
+   <div class="row">
+       <div class="col-md-4">
+    <h5> 
+    <fieldset>
+      <legend>Carrusel 1</legend>
+      <i ng-show="img.carrusel1.$error.required">*required</i><br>
+      <i ng-show="img.carrusel1.$error.maxSize">File too large 
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+        <div class="row"><button id="btnRemover" ng-click="img.carrusel1 = null" ng-show="img.carrusel1">Remover</button></div>
+        <input type="file" ngf-select ng-model="img.carrusel1" name="file"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">        
+    </h5>
+      </div>
+         <div class="col-md-4">  
+     <h5> 
+    <fieldset>
+      <legend>Carrusel 2</legend>
+      <i ng-show="img.carrusel2.$error.required">*required</i><br>
+      <i ng-show="img.carrusel2.$error.maxSize">File too large 
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+        <div class="row"><button id="btnRemover" ng-click="img.carrusel2 = null" ng-show="img.carrusel2">Remover</button></div>
+        <input type="file" ngf-select ng-model="img.carrusel2" name="file"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">        
+    </h5>
+       </div>
+         <div class="col-md-4">           
+    <h5> 
+    <fieldset>
+      <legend>Carrusel 3</legend>
+      <i ng-show="img.carrusel3.$error.required">*required</i><br>
+      <i ng-show="img.carrusel3.$error.maxSize">File too large 
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+        <div class="row"><button id="btnRemover" ng-click="img.carrusel3 = null" ng-show="img.carrusel3">Remover</button></div>
+        <input type="file" ngf-select ng-model="img.carrusel3" name="file"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">        
+    </h5>
+          </div>
+             </div>
+             <div class="row">
+         <div class="col-md-4">                
+    <h5> 
+    <fieldset>
+      <legend>Carrusel 4</legend>
+      <i ng-show="img.carrusel4.$error.required">*required</i><br>
+      <i ng-show="img.carrusel4.$error.maxSize">File too large 
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+        <div class="row"><button id="btnRemover" ng-click="img.carrusel4 = null" ng-show="img.carrusel4">Remover</button></div>
+        <input type="file" ngf-select ng-model="img.carrusel4" name="file"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">        
+    </h5>
+             </div>
+             <div class="col-md-4">  
+          <h5> 
+    <fieldset>
+      <legend>Carrusel 5</legend>
+      <i ng-show="img.carrusel5.$error.required">*required</i><br>
+      <i ng-show="img.carrusel5.$error.maxSize">File too large 
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+        <div class="row"><button id="btnRemover" ng-click="img.carrusel5 = null" ng-show="img.carrusel5">Remover</button></div>
+        <input type="file" ngf-select ng-model="img.carrusel5" name="file"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">        
+    </h5>
+              </div>
+             <div class="col-md-4">
+                <h5> 
+    <fieldset>
+      <legend>Carrusel 6</legend>
+      <i ng-show="img.carrusel6.$error.required">*required</i><br>
+      <i ng-show="img.carrusel6.$error.maxSize">File too large 
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+        <div class="row"><button id="btnRemover" ng-click="img.carrusel6 = null" ng-show="img.carrusel6">Remover</button></div>
+        <input type="file" ngf-select ng-model="img.carrusel6" name="file"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">        
+    </h5>
+             </div>
+    </div>
+             <div class="row">
+    <div class="col-md-6">
+    <h5> 
+    <fieldset>
+      <legend>Banner izquierdo</legend>
+      <i ng-show="img.bannerIzq.$error.required">*required</i><br>
+      <i ng-show="img.bannerIzq.$error.maxSize">File too large 
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+        <div class="row"><button id="btnRemover" ng-click="img.bannerIzq = null" ng-show="img.bannerIzq">Remover</button></div>
+        <input type="file" ngf-select ng-model="img.bannerIzq" name="file"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">        
+    </h5>
+      </div>
+        <div class="col-md-6">
+    <h5> 
+    <fieldset>
+      <legend>Banner derecho</legend>
+      <i ng-show="img.bannerDer.$error.required">*required</i><br>
+      <i ng-show="img.bannerDer.$error.maxSize">File too large 
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+        <div class="row"><button id="btnRemover" ng-click="img.bannerDer = null" ng-show="img.bannerDer">Remover</button></div>
+        <input type="file" ngf-select ng-model="img.bannerDer" name="file"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">        
+    </h5>
+                        </div>
+        </div>
+                            <h5> 
+    <fieldset>
+      <legend>Banner modulo</legend>
+      <i ng-show="img.modulo.$error.required">*required</i><br>
+      <i ng-show="img.modulo.$error.maxSize">File too large 
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+        <div class="row"><button id="btnRemover" ng-click="img.modulo = null" ng-show="img.modulo">Remover</button></div>
+        <input type="file" ngf-select ng-model="img.modulo" name="file"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">        
+    </h5>
+
+<div id="vistaPreviaTitulo">
+    <button class="btn btn-default" ng-click="img.createProducto()">Guardar</button>
+	<button class="btn btn-default" ng-click="img.volver()">Cancelar</button>
+</div>
+  
+     
+                                <legend id="vistaPreviaTitulo">Vista previa</legend> 
+<div class="pnl-imgs">
+     
+ <img ngf-thumbnail="img.bannerIzq" class="thumb" alt="banner izquierdo" class="pnl-banner-costados" id="bannerIzq">
+    
+    <div id="myCarousel" class="hidden-xs col-md-12 carousel slide" data-ride="carousel" >
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+        </ol>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+            <div class="active item"><img ngf-thumbnail="img.carrusel1" class="thumb" alt="carrusel 1"></div>
+            <div class="item"><img ngf-thumbnail="img.carrusel2" class="thumb" alt="carrusel 2"> </div>
+            <div class="item"><img ngf-thumbnail="img.carrusel3" class="thumb" alt="carrusel 3"> </div>
+            <div class="item"><img ngf-thumbnail="img.carrusel4" class="thumb" alt="carrusel 4"> </div>
+            <div class="item"><img ngf-thumbnail="img.carrusel5" class="thumb" alt="carrusel 5"> </div>
+            <div class="item"><img ngf-thumbnail="img.carrusel6" class="thumb" alt="carrusel 6"> </div>
+        </div>
+
+    </div> <!-- FIN CARRUSEL -->
+
+    <img ngf-thumbnail="img.bannerDer" class="thumb" alt="banner derecho" class="pnl-banner-costados" id="bannerDer">
+     
+     </div> 
+     <div class="col-md-8 col-offset-2" id="idImgModimg">
+         <img class="img-responsive" ngf-thumbnail="img.modulo" class="thumb" alt="banner modulo" >
+     </div>
+     
+     
+</div>

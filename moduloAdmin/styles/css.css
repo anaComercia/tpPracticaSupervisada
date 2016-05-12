@@ -45,6 +45,14 @@ margin-left: 100px;
 margin-bottom: 5px;
 }
 
+#lblVolver{
+margin-top: 20px;
+}
+
+#lblVolver2{
+margin-top:100px;
+}
+
 .thumb {
     width: 150px;
     height: 200px;
@@ -87,7 +95,7 @@ width: 150px;
 }
 
 #buscarMp{
-width:712px;
+width:1030px;
 }
 
 #divBuscarMp{
@@ -105,6 +113,66 @@ margin-left: 20px;
 
 #filtraResultado{
 margin-top:20px;
+}
+
+#btnHabCli{
+width:100%;
+}
+
+#cliHab{
+text-align: center;
+}
+
+#dosEnLinea{
+width:50%;
+}
+
+#llenaLinea{
+height: 56px;
+}
+
+#myCarousel {
+    width:700px; 
+    padding: 0px;
+    /*margin-right: 100px;
+    margin-left: 205px;*/
+    
+}
+
+.pnl-banner-costados{
+    height: 340;   
+    width: 210;
+    float: left;
+}
+.pnl-imgs{
+     padding: 0px;
+    padding-bottom: 20px;
+}
+
+#idImgModProd{
+    margin-right: 100px;
+    margin-left: 205px;
+}
+
+#vistaPreviaTitulo{
+text-align: center;
+    margin-top: 5%;
+}
+
+#bannerIzq{
+float:left;
+}
+
+#bannerDer{
+float:right;
+}
+
+#idImgModProd{
+    margin-right: 50%;
+}
+
+#filaConfeccion{
+margin-bottom: 20px;
 }
 
 /*!

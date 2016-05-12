@@ -49,12 +49,12 @@
          <li class="list-group-item" ng-show="parametro != 'Fecha'">
 			  <input type="text" class="form-control">
             </li>
-            <li class="list-group-item" ng-show="parametro == 'Fecha'">
-              <select class="form-control">
+            <li id="llenaLinea" class="list-group-item" ng-show="parametro == 'Fecha'">
+              <select id="dosEnLinea" class="form-control col-md-6">
                 <option>Antes</option>
                 <option>Despues</option>
               </select>
-			  <input type="date" class="form-control">
+			  <input id="dosEnLinea" type="date" class="form-control col-md-6">
             </li>
 		  </td>
           <td> <li class="list-group-item">

@@ -57,7 +57,7 @@
 #idDetalleProd .lblDetalle{
     font-style: italic;
     font-size: 20;
-    margin-right: 400px;
+    margin-right: 69px;
     margin-top: 10px;
 }
 
@@ -72,6 +72,14 @@
     height: 30;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.select-option-talle{
+    MARGIN-RIGHT: 101;
+}
+
+.titulo-elegir-color{
+    margin-right: 100 !important;
 }
 
 .btn-agregar{
@@ -155,13 +163,15 @@ z-index:100;
 .cuotas-precio{
     color: grey;
 }
-.nuevo-domicilio{
-    margin-left: 20px;
+
+
+.ver-detalle-cuotas{
+    margin-top: 20px;
     color: black;
     font-size: 12;
     font-style: italic;
 }
-.nuevo-domicilio:hover{
-    color: blue;
+.ver-detalle-cuotas:hover{
+    color: cadetblue;
     text-decoration: underline;
 }

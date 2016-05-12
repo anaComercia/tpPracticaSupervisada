@@ -126,7 +126,13 @@
             <label class="detalle-informativo">En caso de que tengas un cupon de descuento, ingresalo aquí.</label>
             <input class="div-ingreso-cupon" maxlength="8" />
         </div>
-         <div >
+         <div class="div-total-reserva">
+                <div class="total-pagar-finalizar">
+                    TOTAL A PAGAR
+                    <label ng-controller="CarritoController as carroCtrl">
+                        $ {{carroCtrl.totalReservas}} + $entrega
+                    </label> 
+                </div>
                 <button  type="button" class=" btn-terminar btn btn-default btn-md" >
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     Terminar

@@ -197,3 +197,18 @@
   top:-200px;
   left: 200px;
 }
+.nuevo-domicilio{
+    margin-left: 20px;
+    color: black;
+    font-size: 12;
+    font-style: italic;
+}
+.nuevo-domicilio:hover{
+    color: blue;
+    text-decoration: underline;
+}
+.total-pagar-finalizar{
+    border-color: antiquewhite;
+    border-style: double;
+    padding-left: 12px;
+}

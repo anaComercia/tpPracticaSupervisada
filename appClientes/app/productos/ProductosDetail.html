@@ -27,7 +27,7 @@
         
         <div>
             <label class="lblPrecio" >${{productCtrl.prod.price}}</label>
-            <label class="cuotas-precio">3 cuotas de ${{productCtrl.precioXcuota}} cada una</label>
+            <!--<label class="cuotas-precio">3 cuotas de ${{productCtrl.precioXcuota}} cada una</label>-->
         </div>
 
         
@@ -39,18 +39,21 @@
 
             <div>
                 <label class="lblDetalle">Elegir talle</label>
-                <select class="select-option" ng-model="productCtrl.mySelect.size" ng-options="option as option for option in productCtrl.prod.size">
+                <label class="lblDetalle titulo-elegir-color">Elegir color</label>
+                
+                <select class="select-option select-option-talle" ng-model="productCtrl.mySelect.size" ng-options="option as option for option in productCtrl.prod.size">
                 </select>
-            </div>
-
-
-            <div>
-                <label class="lblDetalle">Elegir color</label>
+            
+                
                 <select class="select-option" ng-model="productCtrl.mySelect.color" ng-options="option as option for option in productCtrl.prod.color">
                 </select>
             </div>
         </div>
-
+        
+        <div>
+            <label class="ver-detalle-cuotas">Ver detalles de las cuotas.</label>
+        </div>
+        
         
         <button  type="button" class="btn btn-default btn-md btn-agregar">
             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>

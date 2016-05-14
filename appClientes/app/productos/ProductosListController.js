@@ -2,12 +2,13 @@ angular
     .module("backendEcommerceClientes.producto")
     .controller("ProductosListController", ProductosCtrl);
 
-ProductosCtrl.$injector = ["$state"];
 
-function ProductosCtrl($state) {
+ProductosCtrl.$injector = ["$state","ProductosService"];
+
+function ProductosCtrl($state, ProductosService) {
     vm = this;
   
-    vm.productList = [
+   /* vm.productList = [
         {
             id: 1,
             title: 'Campera Milano',
@@ -85,7 +86,16 @@ function ProductosCtrl($state) {
             'img/modulos/prueba2.jpg',
             'img/modulos/prueba3.jpg',
             'img/modulos/prueba4.jpg']
-        }];
+        }];*/
+    vm.mostrarListaProductos = function(){
+        console.log(1);
+        return ProductosService.getAllProducts().then(function(data){
+            if(data){
+            self.productList = data;
+            }
+        });
+    };
+    
     function getProductList(filter) {}
       /*  var obj = {
         title: 'CAMPERA MILANO',
@@ -96,4 +106,11 @@ function ProductosCtrl($state) {
         stock: 3,
         image: ['img/modulos/prueba2.jpg', 'img/modulos/prueba3.jpg', 'img/modulos/prueba4.jpg']
   };*/ 
+    
+    this.init = function(){
+        this.mostrarListaProductos();
+        
+	};
+    
+    this.init();
 }

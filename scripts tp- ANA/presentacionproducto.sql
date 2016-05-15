@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `presentacionproducto`
 --
 
-CREATE TABLE `presentacionproducto` (
+CREATE TABLE `presentacion_producto` (
   `codSku` int(11) NOT NULL,
   `idProducto` int(11) DEFAULT NULL,
   `idTalle` int(11) DEFAULT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `presentacionproducto` (
 -- Volcado de datos para la tabla `presentacionproducto`
 --
 
-INSERT INTO `presentacionproducto` (`codSku`, `idProducto`, `idTalle`, `idColor`, `stock`) VALUES
+INSERT INTO `presentacion_producto` (`codSku`, `idProducto`, `idTalle`, `idColor`, `stock`) VALUES
 (1, 1, 1, 1, 16),
 (2, 2, 2, 2, 30),
 (3, 2, 3, 2, 45),
@@ -52,7 +52,7 @@ INSERT INTO `presentacionproducto` (`codSku`, `idProducto`, `idTalle`, `idColor`
 --
 -- Indices de la tabla `presentacionproducto`
 --
-ALTER TABLE `presentacionproducto`
+ALTER TABLE `presentacion_producto`
   ADD PRIMARY KEY (`codSku`),
   ADD KEY `fkProducto5_idx` (`idProducto`),
   ADD KEY `fkTalle4_idx` (`idTalle`),
@@ -65,7 +65,7 @@ ALTER TABLE `presentacionproducto`
 --
 -- AUTO_INCREMENT de la tabla `presentacionproducto`
 --
-ALTER TABLE `presentacionproducto`
+ALTER TABLE `presentacion_producto`
   MODIFY `codSku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
@@ -74,7 +74,7 @@ ALTER TABLE `presentacionproducto`
 --
 -- Filtros para la tabla `presentacionproducto`
 --
-ALTER TABLE `presentacionproducto`
+ALTER TABLE `presentacion_producto`
   ADD CONSTRAINT `fkPPColor` FOREIGN KEY (`idColor`) REFERENCES `color` (`idColor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fkPPTalle` FOREIGN KEY (`idTalle`) REFERENCES `talle` (`idTalle`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fkPProducto` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE NO ACTION ON UPDATE NO ACTION;

@@ -7,7 +7,8 @@ ProductosCtrl.$injector = ["$state","ProductosService"];
 
 function ProductosCtrl($state, ProductosService) {
     vm = this;
-  
+    vm.productList=[];
+  debugger;
    /* vm.productList = [
         {
             id: 1,
@@ -91,7 +92,9 @@ function ProductosCtrl($state, ProductosService) {
     
         return ProductosService.getAllProductos().then(function(data){
             if(data){
+                debugger;
             self.productList = data;
+                debugger;
             }
         });
     };
@@ -107,10 +110,11 @@ function ProductosCtrl($state, ProductosService) {
         image: ['img/modulos/prueba2.jpg', 'img/modulos/prueba3.jpg', 'img/modulos/prueba4.jpg']
   };*/ 
     
-    this.init = function(){
-        this.mostrarListaProductos();
+    vm.init = function(){
+        debugger;
+        vm.mostrarListaProductos();
         
 	};
     
-    this.init();
+    vm.init();
 }

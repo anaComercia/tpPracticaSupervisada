@@ -13,10 +13,10 @@ function CarritoComprasDirective() {
             //$scope.verDetalle = verDetalle;
 
             //buyData.subTotal = buyData.unitPrice * buyData.quantity;
-            mostrarDetalle = function(){ 
-                
+            $scope.mostrarDetalle = function(id){ 
                 console.log($scope);
                 debugger;
+                
                
             };
         }       

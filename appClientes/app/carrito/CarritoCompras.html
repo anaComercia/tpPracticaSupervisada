@@ -27,14 +27,39 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Ver detalle</h4>
+                      <h4 class="modal-title" id="myModalLabel">Detalle de la compra</h4>
                   </div>
                   <div class="modal-body">
-                    meter controles aca
+                       <label class="detalle-compra-titulo">Estado</label>
+                        <div>
+                         <label class="detalle-compra-detalle">Pendientes</label>
+                        </div>
+                        
+                        <label class="detalle-compra-titulo">Producto</label>
+                        <div>
+                           <img src="{{buyData.image}}" class="img-compras" />
+                           <label >CAMPERA MILANO</label>
+                        </div>
+                        
+                        <label class="detalle-compra-titulo">Cantidad</label>
+                        <div>
+                            <label class="detalle-compra-detalle">2</label>
+                        </div>
+                        
+                        <label class="detalle-compra-titulo">Precio</label>
+                        <div>
+                           <label class="detalle-compra-detalle">$1600</label>
+                        </div>
+                        
+                        <label class="detalle-compra-titulo">Forma de Pago</label>
+                        <div>
+                            <label class="detalle-compra-detalle">Retiro por sucursal - DIRECCION DE SUCURSAL</label>
+                        </div>
+            
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="alert('Message 2');" data-dismiss="modal" ng-disabled="{{buyData.state}} === 'Pagado'">Guardar</button>
+                    <button type="button" class="btn btn-primary" onclick="alert('Message 2');" data-dismiss="modal" ng-hide="{{buyData.state}} === 'Pagado'">Guardar</button>
                   </div>
                 </div>
               </div>

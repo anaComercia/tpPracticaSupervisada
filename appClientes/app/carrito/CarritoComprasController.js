@@ -6,7 +6,7 @@ CarritoComprasCtrl.$injector = ["$state , $scope"];
 
 function CarritoComprasCtrl($state,$scope) {
    var vm = this;
-   
+    
     /* lista compras */
     vm.listaCompras = [
         {
@@ -30,5 +30,10 @@ function CarritoComprasCtrl($state,$scope) {
     ];
     
     vm.detallesCompra={};
+    
+    vm.getDetailBuy = function(buyID){
+        debugger;
+        //Aca voy con el id a buscar a la base los detalles de la compra y cuando vuelvo lo seteo a vm.DetalleCompras
+    }
     
 }

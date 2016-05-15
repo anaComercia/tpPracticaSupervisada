@@ -36,6 +36,14 @@
            <label class="pagar-titulos">
                 <b>Detalles de la Tarjeta</b>
             </label>
+             <label>Banco</label>
+              <select class="select-option select-banco" 
+                    ng-model="pagarCtrl.mySelect.bancos" 
+                    ng-init="pagarCtrl.mySelect.bancos = pagarCtrl.bancos[0]" 
+                    ng-options="banco as banco.detail for banco in pagarCtrl.bancos" 
+                   >
+             </select>
+             
             <select class="select-option select-tipo-tarjeta" 
                     ng-model="pagarCtrl.mySelect.tarjeta" 
                     ng-init="pagarCtrl.mySelect.tarjeta = pagarCtrl.tarjetas[0]" 
@@ -82,7 +90,32 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar nuevo domicilio.</h4>
                   </div>
                   <div class="modal-body">
-                    meter controles aca
+                    <div>
+                        <label class="detalle-compra-titulo">Domicilio</label>
+                        <input type="text" maxlength="80" class="input-nvo-dom">
+                    </div>
+                    <div>
+                        <label class="detalle-compra-titulo">CP</label>
+                        <input type="text" maxlength="4" class="input-nvo-dom">
+                    </div>
+                    <div>
+                        <label class="detalle-compra-titulo">Provincia</label>
+                        <select class="select-option select-domicilio" 
+                        ng-model="pagarCtrl.nvoDom.provincia" 
+                        ng-init="pagarCtrl.nvoDom.provincia = pagarCtrl.provincias[0]" 
+                        ng-options="prov as prov.detail for prov in pagarCtrl.provincias" 
+                        >
+                        </select>
+                    </div>
+                    <div>
+                        <label class="detalle-compra-titulo">Localidad</label>
+                        <select class="select-option select-domicilio" 
+                        ng-model="pagarCtrl.nvoDom.localidad" 
+                        ng-init="pagarCtrl.nvoDom.localidad = pagarCtrl.localidades[0]" 
+                        ng-options="loc as loc.detail for loc in pagarCtrl.localidades" 
+                        >
+                        </select>
+                    </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -92,6 +125,8 @@
               </div>
             </div>
             <!-- Fin modal Nvo Dom -->
+            
+            
         </div>
         <div class="div-modulos" ng-hide="pagarCtrl.hiddenSucursal" md-open="pagarCtrl.isOpenSucursal" 
               ng-mouseenter="demo.isOpenSucursal=true" 
@@ -133,9 +168,14 @@
                         $ {{carroCtrl.totalReservas}} + $entrega
                     </label> 
                 </div>
+               
                 <button  type="button" class=" btn-terminar btn btn-default btn-md" >
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     Terminar
+                </button>
+                 <button  type="button" class=" btn-cancelar btn btn-default btn-md" >
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    Cancelar
                 </button>
             </div>
         </div>

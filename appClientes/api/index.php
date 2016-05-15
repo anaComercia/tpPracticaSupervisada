@@ -12,10 +12,10 @@ error_reporting(E_ALL | E_STRICT);
 //require_once("models/iniciarSesion.php");
 //require_once("models/inicio.php");
 //require_once("models/perfil.php");
-require_once("models/producto.php");
-require_once("models/footer.php");
+require_once("api/models/producto.php");
+require_once("api/models/footer.php");
 //Esto va siempre
-require_once("util/jsonResponse.php");
+require_once("api/util/jsonResponse.php");
 require 'Slim/Slim/Slim.php';
 
 //Esto va siempre
@@ -49,7 +49,7 @@ $app->delete('/productos/:id', function($id){
 
 
 $app->get('/productos', function(){
-    
+
 	$producto = new Producto();
 	$data = $producto->getAllProductos();
 	sendResult($data);

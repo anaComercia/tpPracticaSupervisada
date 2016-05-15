@@ -12,10 +12,10 @@ class Producto
     public function getAllProductos(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM Categoria c, Genero g, Producto p
+                    FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero";
-        $generos = array();
+        $productos = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
                 $productos[] = $fila;
@@ -26,13 +26,13 @@ class Producto
     }
     
     public function getDetalleProducto($id){
-        $query = "SELECT t.descripcion,c.descripcion, pres.stock
-                    FROM Talle t, PresentacionProducto pres ,Color c, Producto p
+        $query = "SELECT t.descripcion,c.descripcion
+                    FROM talle t, presentacion_producto pres ,color c, producto p
                     WHERE p.idProducto = pres.idProducto 
                     AND pres.idTalle = t.idTalle
                     AND pres.idColor = c.idColor
                     AND p.idProducto = '$id'";
-        $generos = array();
+        $detalle = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
                 $detalle[] = $fila;
@@ -47,11 +47,11 @@ class Producto
     public function getProductosHombre(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM Categoria c, Genero g, Producto p
+                    FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(g.descripcion) = 'H' ";
-        $generos = array();
+        $productosHombre = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
                 $productosHombre[] = $fila;
@@ -64,11 +64,11 @@ class Producto
      public function getProductosMujer(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM Categoria c, Genero g, Producto p
+                     FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(g.descripcion) = 'M' ";
-        $generos = array();
+        $productosMujer = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
                 $productosMujer[] = $fila;
@@ -81,11 +81,11 @@ class Producto
     public function getProductosCamisa(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM Categoria c, Genero g, Producto p
+                     FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'CAMISA' ";
-        $generos = array();
+        $productosCamisa = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
                 $productosCamisa[] = $fila;
@@ -97,11 +97,11 @@ class Producto
     public function getProductosJean(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM Categoria c, Genero g, Producto p
+                    FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'JEAN' ";
-        $generos = array();
+        $productosJean = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
                 $productosJean[] = $fila;
@@ -114,11 +114,11 @@ class Producto
       public function getProductosCampera(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM Categoria c, Genero g, Producto p
+                     FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'CAMPERA' ";
-        $generos = array();
+        $productosCampera = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
                 $productosCampera[] = $fila;
@@ -130,11 +130,11 @@ class Producto
       public function getProductosRemera(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM Categoria c, Genero g, Producto p
+                     FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'REMERA' ";
-        $generos = array();
+        $productosRemera = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
                 $productosRemera[] = $fila;

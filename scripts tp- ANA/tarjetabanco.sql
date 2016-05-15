@@ -37,7 +37,7 @@ CREATE TABLE `tarjetabanco` (
 -- Volcado de datos para la tabla `tarjetabanco`
 --
 
-INSERT INTO `tarjetabanco` (`idTarjeta`, `idBanco`, `cuotas`, `interes`) VALUES
+INSERT INTO `tarjeta_banco` (`idTarjeta`, `idBanco`, `cuotas`, `interes`) VALUES
 (1, 1, 3, 0),
 (1, 1, 6, 10),
 (1, 1, 12, 15),

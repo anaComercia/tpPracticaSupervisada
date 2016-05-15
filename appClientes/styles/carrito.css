@@ -122,6 +122,10 @@
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+.input-nvo-dom{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 .div-pago-efectivo{
    
 }
@@ -151,10 +155,20 @@
     float: right;
     background-color: blanchedalmond;
     margin-top: 10px;
+    margin-left: 16px;
 }
 .btn-terminar:hover{
     background-color: #CDFFEF;
 }
+.btn-cancelar{
+    float: right;
+    background-color: blanchedalmond;
+    margin-top: 10px;
+}
+.btn-cancelar:hover{
+    background-color: #EABEBA;
+}
+
 .select-tipo-tarjeta{
     width: 130px !important;
     margin-right: 10px;
@@ -211,4 +225,17 @@
     border-color: antiquewhite;
     border-style: double;
     padding-left: 12px;
+}
+.detalle-compra-titulo{
+    font-size: large;
+    border-bottom-style: double;
+    margin-bottom: 13px;
+}
+.detalle-compra-detalle{
+    margin-left: 42px;
+}
+.select-banco{
+    width: 200 !important;
+    margin-right: 500;
+    margin-bottom: 10;
 }

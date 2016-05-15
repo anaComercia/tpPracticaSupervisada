@@ -4,7 +4,7 @@ backendEcommerce.service("ProductosService", function($http){
 
 	this.getAllProductos = function(){
 		var promise = $http.get('api/index.php/productos');
-      
+
 		return promise.then(function(response){
 			return response.data.data;
 		})

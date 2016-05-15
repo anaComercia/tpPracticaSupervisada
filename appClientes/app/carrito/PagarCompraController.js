@@ -10,6 +10,8 @@ function PagarCompraController($state,$scope) {
     vm.sumaTotalReservas = $scope.carrito.totalReservas;
     
     vm.mySelect = {};//seleccion de los combos
+    vm.nvoDom = {};//seleccion de los combos
+    
       vm.tarjetas = [
         {
             id: 1,
@@ -39,6 +41,46 @@ function PagarCompraController($state,$scope) {
             detail: 'Jonte 987'
         }];
     
+     vm.bancos = [
+        {
+            id: 1,
+            detail: 'BBVA'
+        },
+        {
+            id: 2,
+            detail: 'Banco Galicia'
+        },
+        {
+            id: 3,
+            detail: 'Santander Rio'
+        }];
+    
+     vm.localidades = [
+        {
+            id: 1,
+            detail: 'San Isidro'
+        },
+        {
+            id: 2,
+            detail: 'Monte Castro'
+        },
+        {
+            id: 3,
+            detail: 'Avellaneda'
+        }];
+    vm.provincias = [
+        {
+            id: 1,
+            detail: 'Buenos Aires'
+        },
+        {
+            id: 2,
+            detail: 'Capital Federal'
+        },
+        {
+            id: 3,
+            detail: 'Gran Buenos Aires'
+        }];
     
     vm.hiddenTarjeta = true;
     vm.isOpenTarjeta = false;

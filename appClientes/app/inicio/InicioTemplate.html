@@ -28,38 +28,14 @@
 
     <img  src="img/carrusel/bannerHombre2.jpg" class="pnl-banner-costados"/>
 </div>
-<div class="col-md-12">
-    <div id="idPnlFiltros"  class="col-md-2 pnl-filtros" >
-        <div id="idPnlCategorias" class="col-md-10" style="">
-            <h4>Categorías principales</h4>
-            <ul>
-                <li>Jeans</li>
-                <li>Camisas</li>
-                <li>Remeras</li>
-                <li>Camperas</li>
-                <li>Hombre</li>
-                <li>Mujer</li>
-                <li>Todos</li>
-            </ul>
-            <a id="show-more-cats" >
-                <i class="fa fa-angle-down"></i>
-            </a>
-        </div>
 
-    </div>
+<div id="idPnlImagenes" ng-controller="InicioController as initCtrl" class="col-md-12" style="padding-left: 0px;">
 
-    <div id="idPnlImagenes" ng-controller="InicioController as initCtrl" class="col-md-8" style=" padding:0px;">
+    <!-- div ng-repeat donde meto la lista de la bbdd ng-model="product" product es cada element
+de la lista-->
+   <producto-directive style="margin:20px;" 
+                       ng-repeat="product in initCtrl.productList" 
+                       product-data="product">
+    </producto-directive>
 
-        <!-- div ng-repeat donde meto la lista de la bbdd ng-model="product" product es cada element
-    de la lista-->
-
-       <producto-directive 
-                        style="margin:20px;" 
-                        ng-repeat="product in initCtrl.productList"
-                        product-data="product">
-       </producto-directive>
-
-
-
-    </div>
 </div>

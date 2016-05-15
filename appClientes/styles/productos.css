@@ -1,3 +1,26 @@
+#idPnlFiltros #show-more-cats{
+    text-align: center;
+    display: block;
+    border-top: 1px solid #ccc;
+    position: relative;
+    margin-top: 20px;
+    float: left;
+    clear: both;
+    width: 80%;
+    margin-bottom: 0px;
+    height: 30px;
+}
+.pnl-filtros{
+    margin-left: 50px;
+}
+
+#idPnlFiltros #show-more-cats i.fa{
+    background-color: #E3E3E3;
+    border: none;
+    color: #0F0F0F;
+    width: 20px;
+    left: 30%;
+}
 #idPaginaProducto {
     height:600px; 
     padding:0px; 

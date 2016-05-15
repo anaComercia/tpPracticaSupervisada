@@ -49,7 +49,7 @@ $app->delete('/productos/:id', function($id){
 
 
 $app->get('/productos', function(){
-    console.log(3);
+    
 	$producto = new Producto();
 	$data = $producto->getAllProductos();
 	sendResult($data);

@@ -9,10 +9,10 @@ class Producto
         $this->connection = Connection::getInstance();
     }
     
-    public function getAllProducts(){
+    public function getAllProductos(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM categoria c, genero g, producto p
+                    FROM Categoria c, Genero g, Producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero";
         $generos = array();
@@ -27,7 +27,7 @@ class Producto
     
     public function getDetalleProducto($id){
         $query = "SELECT t.descripcion,c.descripcion, pres.stock
-                    FROM talle t, presentacionproducto pres ,color c, producto p
+                    FROM Talle t, PresentacionProducto pres ,Color c, Producto p
                     WHERE p.idProducto = pres.idProducto 
                     AND pres.idTalle = t.idTalle
                     AND pres.idColor = c.idColor
@@ -41,13 +41,13 @@ class Producto
         }
         return $detalle;
     }
-}
+
 
     
     public function getProductosHombre(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM categoria c, genero g, producto p
+                    FROM Categoria c, Genero g, Producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(g.descripcion) = 'H' ";
@@ -64,7 +64,7 @@ class Producto
      public function getProductosMujer(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM categoria c, genero g, producto p
+                    FROM Categoria c, Genero g, Producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(g.descripcion) = 'M' ";
@@ -81,7 +81,7 @@ class Producto
     public function getProductosCamisa(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM categoria c, genero g, producto p
+                    FROM Categoria c, Genero g, Producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'CAMISA' ";
@@ -97,7 +97,7 @@ class Producto
     public function getProductosJean(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM categoria c, genero g, producto p
+                    FROM Categoria c, Genero g, Producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'JEAN' ";
@@ -114,7 +114,7 @@ class Producto
       public function getProductosCampera(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM categoria c, genero g, producto p
+                    FROM Categoria c, Genero g, Producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'CAMPERA' ";
@@ -130,7 +130,7 @@ class Producto
       public function getProductosRemera(){
         $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM categoria c, genero g, producto p
+                    FROM Categoria c, Genero g, Producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'REMERA' ";

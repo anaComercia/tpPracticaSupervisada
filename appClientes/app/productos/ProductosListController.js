@@ -88,8 +88,8 @@ function ProductosCtrl($state, ProductosService) {
             'img/modulos/prueba4.jpg']
         }];*/
     vm.mostrarListaProductos = function(){
-        console.log(1);
-        return ProductosService.getAllProducts().then(function(data){
+    
+        return ProductosService.getAllProductos().then(function(data){
             if(data){
             self.productList = data;
             }

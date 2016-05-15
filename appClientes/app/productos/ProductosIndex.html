@@ -2,13 +2,38 @@
     <img  class="img-responsive img-banner-modulo" src="img/modulos/imgModuloProductos.jpg" />
 </div>
 
-<div id="idPnlImagenes" ng-controller="ProductosListController as prodCtrl" class="col-md-12">
+<div class="col-md-12">
+    <div id="idPnlFiltros"  class="col-md-2 pnl-filtros" >
+        <div id="idPnlCategorias" class="col-md-10" style="">
+            <h4>Categorías principales</h4>
+            <ul>
+                <li>Jeans</li>
+                <li>Camisas</li>
+                <li>Remeras</li>
+                <li>Camperas</li>
+                <li>Hombre</li>
+                <li>Mujer</li>
+                <li>Todos</li>
+            </ul>
+            <a id="show-more-cats" >
+                <i class="fa fa-angle-down"></i>
+            </a>
+        </div>
 
-    <!-- div ng-repeat donde meto la lista de la bbdd ng-model="product" product es cada element
-de la lista-->
-   <producto-directive style="margin:20px;" 
-                       ng-repeat="product in prodCtrl.productList" 
-                       product-data="product">
-    </producto-directive>
+    </div>
 
+    <div id="idPnlImagenes" ng-controller="ProductosListController as prodCtrl" class="col-md-8" style=" padding:0px;">
+
+        <!-- div ng-repeat donde meto la lista de la bbdd ng-model="product" product es cada element
+    de la lista-->
+
+       <producto-directive 
+                        style="margin:20px;" 
+                        ng-repeat="product in prodCtrl.productList"
+                        product-data="product">
+       </producto-directive>
+
+
+
+    </div>
 </div>

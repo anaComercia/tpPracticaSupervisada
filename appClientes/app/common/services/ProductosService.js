@@ -2,9 +2,9 @@ var backendEcommerce = angular.module("backendEcommerceClientes");
 
 backendEcommerce.service("ProductosService", function($http){
 
-	this.getAllProducts = function(){
+	this.getAllProductos = function(){
 		var promise = $http.get('api/index.php/productos');
-        console.log(2);
+      
 		return promise.then(function(response){
 			return response.data.data;
 		})

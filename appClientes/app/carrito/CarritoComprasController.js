@@ -31,9 +31,14 @@ function CarritoComprasCtrl($state,$scope) {
     
     vm.detallesCompra={};
     
-    vm.getDetailBuy = function(buyID){
+    vm.onClickDetail = function(compraId){
+        //carritoComprasController.js
+        //carritoCompras.html
+        //carritoComprasDirective.js
+        //carritoComprasDirective.html
         debugger;
         //Aca voy con el id a buscar a la base los detalles de la compra y cuando vuelvo lo seteo a vm.DetalleCompras
+        //creo el evento
     }
     
 }

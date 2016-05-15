@@ -19,7 +19,8 @@
         <div >
             <carrito-compras-directive 
                                ng-repeat="compras in comprasCtrl.listaCompras" 
-                               buy-data="compras">
+                               buy-data="compras"
+                               on-click-detail="comprasCtrl.onClickDetail(compras.id)">
             </carrito-compras-directive >
             
             <!-- Modal compra-->

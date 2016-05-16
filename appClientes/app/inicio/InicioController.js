@@ -1,8 +1,13 @@
-var inicio = angular.module("backendEcommerceClientes.inicio");
+angular
+    .module("backendEcommerceClientes.inicio")
+    .controller("InicioController", InicioCtrl);
 
-inicio.controller("InicioController", function($state){
+InicioCtrl.$injector = ["$state","InicioService"];
+
+function InicioCtrl($state, InicioService) {
     var vm = this;
     vm.productId= 0;
+    vm.telefonos=[];
     
        vm.productList = [
         {
@@ -83,4 +88,22 @@ inicio.controller("InicioController", function($state){
             'img/modulos/prueba3.jpg',
             'img/modulos/prueba4.jpg']
         }];
-});
+    
+    /*  vm.mostrarTelfonos = function(){
+        return InicioService.getTelefonos().then(function(data){
+            if(data){
+                debugger;
+            self.telefonos = data;
+                debugger;
+            }
+        });
+    };
+    
+    vm.init = function(){
+        debugger;
+        vm.mostrarTelfonos();
+        
+	};
+    
+    vm.init();*/
+};

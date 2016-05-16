@@ -10,10 +10,11 @@ class Producto
     }
     
     public function getAllProductos(){
-        $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
+        $query = "SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,               p.descripcion as prodDesc, pres.codSku as sku, p.idProducto as idProd,
                     p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                    FROM categoria c, genero g, producto p
+                    FROM categoria c, genero g, producto p, presentacion_producto pres
                     WHERE p.idCategoria = c.idCategoria 
+                    AND pres.idProducto = p.idProducto
                     AND p.idGenero = g.idGenero";
         $productos = array();
         if( $result = $this->connection->query($query) ){

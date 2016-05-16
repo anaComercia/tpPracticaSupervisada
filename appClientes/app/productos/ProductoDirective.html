@@ -1,7 +1,7 @@
 <div class="col-md-12 ini-mini-imagen detalle-prod" >
     <img  src="{{product.image[0]}}"  class="img-responsive" ui-sref="productosDetail({prodId: product.id})"/>
     
-    <label id="idDetailPrice">{{product.title | uppercase}}</label>
-    <label>{{product.gender}}</label>
-    <label id="idPrecioImg">${{product.price}}</label>
+    <label id="idDetailPrice">{{product.prodTit | uppercase}}</label>
+    <label>{{product.gendDesc}}</label>
+    <label id="idPrecioImg">${{product.prodPrecio}}</label>
 </div>

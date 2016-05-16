@@ -93,7 +93,7 @@ function ProductosCtrl($state, ProductosService) {
         return ProductosService.getAllProductos().then(function(data){
             if(data){
                 debugger;
-            self.productList = data;
+            vm.productList = data;
                 debugger;
             }
         });

@@ -60,6 +60,42 @@ $app->get('/productos', function(){
 	$data = $producto->getAllProductos();
 	sendResult($data);
 });
+$app->get('/productos', function(){
+
+	$producto = new Producto();
+	$data = $producto->getProductosHombre();
+	sendResult($data);
+});
+$app->get('/productos', function(){
+
+	$producto = new Producto();
+	$data = $producto->getProductosMujer();
+	sendResult($data);
+});
+$app->get('/productos', function(){
+
+	$producto = new Producto();
+	$data = $producto->getProductosCamisa();
+	sendResult($data);
+});
+$app->get('/productos', function(){
+
+	$producto = new Producto();
+	$data = $producto->getProductosJean();
+	sendResult($data);
+});
+$app->get('/productos', function(){
+
+	$producto = new Producto();
+	$data = $producto->getProductosCampera();
+	sendResult($data);
+});
+$app->get('/productos', function(){
+
+	$producto = new Producto();
+	$data = $producto->getProductosRemera();
+	sendResult($data);
+});
 /*
 $app->get('/productos', function(){
 	$producto = new Producto();

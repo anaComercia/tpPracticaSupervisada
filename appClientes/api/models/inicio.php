@@ -71,5 +71,17 @@ class Inicio
         return $productosIniMujer;
     }
     
-
+    public function getImgFijas(){
+        $query = "select carrusel1 as c1, carrusel2 as c2, carrusel3 as c3,
+                    carrusel4 as c4, carrusel5 as c5, carrusel6 as c6, bannerIzq as izq, bannerDer as der
+                    from imagenes";
+        $imgFijas = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $imgFijas[] = $fila;
+            }
+            $result->free();
+        }
+        return $imgFijas;
+    }
 }

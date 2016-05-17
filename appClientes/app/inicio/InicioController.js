@@ -10,7 +10,7 @@ function InicioCtrl($state, InicioService) {
     vm.telefonos=[];
     vm.productListMujer=[];
     vm.productListHombre = [];
-  
+    vm.imagenesFijas = [];
 
      vm.mostrarProductosInicioHombre = function(){
         return InicioService.getInicioHombre().then(function(data){
@@ -22,12 +22,23 @@ function InicioCtrl($state, InicioService) {
     vm.mostrarProductosInicioMujer = function(){
         return InicioService.getInicioMujer().then(function(data){
             if(data){
+                debugger;
                 vm.productListMujer = data;
+            }
+        });
+    };
+       vm.traerImagenesFijas = function(){
+        return InicioService.getImgFijas().then(function(data){
+            if(data){
+                debugger;
+                vm.imagenesFijas = data;
             }
         });
     };
     
     vm.init = function(){
+        vm.traerImagenesFijas();
+        debugger;
         vm.mostrarProductosInicioMujer();
         vm.mostrarProductosInicioHombre();
 	};

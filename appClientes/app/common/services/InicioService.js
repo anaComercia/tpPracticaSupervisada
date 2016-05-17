@@ -24,5 +24,11 @@ backendEcommerce.service("InicioService", function($http){
 			return response.data.data;
 		})
     };
+                this.getImgFijas = function(){
+    	var promise = $http.get('api/index.php/IniImgFijas');
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
   
 });

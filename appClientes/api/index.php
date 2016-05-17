@@ -82,8 +82,14 @@ $app->get('/IniHombre', function(){
 });
 $app->get('/IniMujer', function(){
 
-	$producto = new Inicio();
-	$data = $producto->getInicioMujer();
+	$inicio= new Inicio();
+	$data = $inicio->getInicioMujer();
+	sendResult($data);
+});
+$app->get('/IniImgFijas', function(){
+
+	$inicio = new Inicio();
+	$data = $inicio->getImgFijas();
 	sendResult($data);
 });
 /*

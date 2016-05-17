@@ -38,37 +38,37 @@ $app->get('/productos', function(){
 	$data = $producto->getAllProductos();
 	sendResult($data);
 });
-$app->get('/productos', function(){
+$app->get('/productosHombre', function(){
 
 	$producto = new Producto();
 	$data = $producto->getProductosHombre();
 	sendResult($data);
 });
-$app->get('/productos', function(){
+$app->get('/productosMujer', function(){
 
 	$producto = new Producto();
 	$data = $producto->getProductosMujer();
 	sendResult($data);
 });
-$app->get('/productos', function(){
+$app->get('/productosCamisa', function(){
 
 	$producto = new Producto();
 	$data = $producto->getProductosCamisa();
 	sendResult($data);
 });
-$app->get('/productos', function(){
+$app->get('/productosJean', function(){
 
 	$producto = new Producto();
 	$data = $producto->getProductosJean();
 	sendResult($data);
 });
-$app->get('/productos', function(){
+$app->get('/productosCampera', function(){
 
 	$producto = new Producto();
 	$data = $producto->getProductosCampera();
 	sendResult($data);
 });
-$app->get('/productos', function(){
+$app->get('/productosRemera', function(){
 
 	$producto = new Producto();
 	$data = $producto->getProductosRemera();

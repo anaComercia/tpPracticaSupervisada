@@ -56,5 +56,6 @@ backendEcommerce.service("ProductosService", function($http){
 			return response.data.data;
 		})
     };
+
     
 });

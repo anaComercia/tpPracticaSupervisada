@@ -10,5 +10,19 @@ backendEcommerce.service("InicioService", function($http){
 		})
 	};
     
+        
+    this.getInicioMujer = function(){
+    	var promise = $http.get('api/index.php/IniMujer');
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
+    
+             this.getInicioHombre = function(){
+    	var promise = $http.get('api/index.php/IniHombre');
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
   
 });

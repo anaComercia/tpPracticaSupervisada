@@ -28,7 +28,7 @@ $app = new Slim\Slim();
 
 $app->get('/inicio', function(){
 
-	$telefono = new Producto();
+	$telefono = new Inicio();
 	$data = $telefono->getTelefonos();
 	sendResult($data);
 });
@@ -72,6 +72,18 @@ $app->get('/productosRemera', function(){
 
 	$producto = new Producto();
 	$data = $producto->getProductosRemera();
+	sendResult($data);
+});
+$app->get('/IniHombre', function(){
+
+	$producto = new Inicio();
+	$data = $producto->getInicioHombre();
+	sendResult($data);
+});
+$app->get('/IniMujer', function(){
+
+	$producto = new Inicio();
+	$data = $producto->getInicioMujer();
 	sendResult($data);
 });
 /*

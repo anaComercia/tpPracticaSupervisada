@@ -34,7 +34,11 @@
     <!-- div ng-repeat donde meto la lista de la bbdd ng-model="product" product es cada element
 de la lista-->
    <producto-directive style="margin:20px;" 
-                       ng-repeat="product in initCtrl.productList" 
+                       ng-repeat="product in initCtrl.productListHombre" 
+                       product-data="product">
+    </producto-directive>
+    <producto-directive style="margin:20px;" 
+                       ng-repeat="product in initCtrl.productListMujer" 
                        product-data="product">
     </producto-directive>
 

@@ -16,7 +16,7 @@ backendEcommerce.service("ProductosService", function($http){
 			return response.data.data;
 		})
 	};
-  /*  
+    
     this.getProductosHombre = function(){
 		var promise = $http.get('api/index.php/productos');
 		return promise.then(function(response){
@@ -29,32 +29,32 @@ backendEcommerce.service("ProductosService", function($http){
 		return promise.then(function(response){
 			return response.data.data;
 		})
-    }
+    };
     
     this.getProductosCamisa = function(){
     	var promise = $http.get('api/index.php/productos');
 		return promise.then(function(response){
 			return response.data.data;
 		})
-    }
+    };
     
      this.getProductosJean = function(){
     	var promise = $http.get('api/index.php/productos');
 		return promise.then(function(response){
 			return response.data.data;
 		})
-    }
+    };
       this.getProductosCampera = function(){
     	var promise = $http.get('api/index.php/productos');
 		return promise.then(function(response){
 			return response.data.data;
 		})
-    }
+    };
           this.getProductosRemera = function(){
     	var promise = $http.get('api/index.php/productos');
 		return promise.then(function(response){
 			return response.data.data;
 		})
-    }
-    */
+    };
+    
 });

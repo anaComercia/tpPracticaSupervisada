@@ -2,25 +2,39 @@
     <img  class="img-responsive img-banner-modulo" src="img/modulos/imgModuloProductos.jpg" />
 </div>
 
-<div class="col-md-12">
+<div class="col-md-12" ng-controller="ProductosListController as prodCtrl">
     <div id="idPnlFiltros"  class="col-md-2 pnl-filtros" >
         <div id="idPnlCategorias" class="col-md-10" style="">
             <h4>Categorías principales</h4>
             <ul>
-                <li>Jeans</li>
-                <li>Camisas</li>
-                <li>Remeras</li>
-                <li>Camperas</li>
-                <li>Hombre</li>
-                <li>Mujer</li>
-                <li>Todos</li>
+                <li>
+                    <label  ng-click="prodCtrl.mostrarListaJeans()">Jeans</label>
+                </li>
+                <li>
+                    <label  ng-click="prodCtrl.mostrarListaCamisas()">Camisas</label>
+                </li>
+                <li>
+                    <label  ng-click="prodCtrl.mostrarListaRemeras()">Remeras</label>
+                </li>
+                <li>
+                    <label  ng-click="prodCtrl.mostrarListaCamperas()">Camperas</label>
+                </li>
+                <li>
+                    <label  ng-click="prodCtrl.mostrarListaHombre()">Hombre</label>
+                </li>
+                <li>
+                    <label  ng-click="prodCtrl.mostrarListaMujer()">Mujer</label>
+                </li>
+                <li>
+                    <label  ng-click="prodCtrl.mostrarListaProductos()">Todos</label>
+                </li>
             </ul>
 
         </div>
 
     </div>
 
-    <div id="idPnlImagenes" ng-controller="ProductosListController as prodCtrl" class="col-md-8" style=" padding:0px;">
+    <div id="idPnlImagenes"  class="col-md-8" style=" padding:0px;">
 
         <!-- div ng-repeat donde meto la lista de la bbdd ng-model="product" product es cada element
     de la lista-->

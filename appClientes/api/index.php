@@ -25,28 +25,6 @@ $app = new Slim\Slim();
 //Acá están operaciones de la bd a las que se llega desde el ProductoService al pegarle a index.php
 
 //Se llega a cada una si coincide la operacion get, put, delete o post con la ruta solicitada y los parámetros
-/*$app->get('/carrito', function(){
-    $producto = new Producto();
-	$data = $producto->getAll();
-	sendResult($data);
-});
-
-$app->get('/contacto', function(){
-    $producto = new Producto();
-	$data = $producto->getAllDetalles();
-	sendResult($data);
-});
-
-$app->delete('/productos/:id', function($id){
-	$producto = new Producto();
-	$result = $producto->remove($id);
-	if($result){
-		sendResult("producto eliminado");
-	}else{
-		sendError("Error al eliminar el producto");
-	}
-});*/
-
 
 $app->get('/inicio', function(){
 
@@ -134,45 +112,4 @@ $app->get('/productosDetail/:id', function($id){
 	sendResult($data);
 });
 
-/*
-$app->get('/producto/:id', function($id){
-	$categoria = new Categoria();
-	$data = $categoria->get($id);
-	sendResult($data);
-});
-
-
-
-$app->get('/crearCuenta', function(){
-	$genero = new Genero();
-	$data = $genero->getAll();
-	sendResult($data);
-});
-
-$app->get('/footer', function(){
-	$object = new Color();
-	$data = $object->getAll();
-	sendResult($data);
-});
-
-$app->get('/formaPago', function(){
-	$mp = new Mp();
-	$data = $mp->getAll();
-	sendResult($data);
-});
-
-$app->get('/IniciarSesion', function(){
-	$mp = new Mp();
-	$data = $mp->getAllDetalles();
-	sendResult($data);
-});
-
-$app->get('/perfil', function(){
-	$mp = new Mp();
-	$data = $mp->getAllPrecios();
-	sendResult($data);
-});
-
-
-*/
 $app->run();

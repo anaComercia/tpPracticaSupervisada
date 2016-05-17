@@ -8,7 +8,7 @@ ProductosCtrl.$injector = ["$state","ProductosService"];
 function ProductosCtrl($state, ProductosService) {
     vm = this;
     vm.productList=[];
-  debugger;
+  
    /* vm.productList = [
         {
             id: 1,
@@ -23,97 +23,87 @@ function ProductosCtrl($state, ProductosService) {
             'img/modulos/prueba3.jpg',
             'img/modulos/prueba4.jpg']
         },
-        {
-            id: 2,
-            title: 'Jean Chupin',
-            price: 800,
-            gender: 'Hombre',
-             size: ['1','2'],
-            color: ['Azul', 'Rosa', 'Blanca'],
-            stock: 3,
-            image: ['img/modulos/prueba2.jpg',
-            'img/modulos/prueba2.jpg',
-            'img/modulos/prueba3.jpg',
-            'img/modulos/prueba4.jpg']
-        },
-        {
-            id: 3,
-            title: 'Remera Hawai',
-            price: 250,
-            gender: 'Mujer',
-             size: ['1','2'],
-            color: ['Azul', 'Rosa', 'Blanca'],
-            stock: 3,
-            image: ['img/modulos/prueba3.jpg',
-            'img/modulos/prueba2.jpg',
-            'img/modulos/prueba3.jpg',
-            'img/modulos/prueba4.jpg']
-        },
-        {
-            id: 4,
-            title: 'Remera NY',
-            price: 250,
-            gender: 'Hombre',
-             size: ['1','2'],
-            color: ['Azul', 'Rosa', 'Blanca'],
-            stock: 3,
-            image: ['img/modulos/prueba1.jpg',
-            'img/modulos/prueba2.jpg',
-            'img/modulos/prueba3.jpg',
-            'img/modulos/prueba4.jpg']
-        },
-        {
-            id: 5,
-            title: 'Remera Roxana',
-            price: 250,
-            gender: 'Mujer',
-             size: ['1','2'],
-            color: ['Azul', 'Rosa', 'Blanca'],
-            stock: 3,
-            image: ['img/modulos/prueba4.jpg',
-            'img/modulos/prueba2.jpg',
-            'img/modulos/prueba3.jpg',
-            'img/modulos/prueba4.jpg']
-        },
-        {
-            id: 6,
-            title: 'Camisa Polly',
-            price: 400,
-            gender: 'Mujer',
-             size: ['1','2'],
-            color: ['Azul', 'Rosa', 'Blanca'],
-            stock: 3,
-            image: ['img/modulos/prueba2.jpg',
-            'img/modulos/prueba2.jpg',
-            'img/modulos/prueba3.jpg',
-            'img/modulos/prueba4.jpg']
-        }];*/
-    vm.mostrarListaProductos = function(){
-    
-        return ProductosService.getAllProductos().then(function(data){
-            if(data){
-                debugger;
-            vm.productList = data;
-                debugger;
-            }
-        });
-    };
+    */
+        vm.mostrarListaProductos = function(){
+             return ProductosService.getAllProductos().then(function(data){
+                if(data){
+                    vm.productList=[];
+                    vm.productList = data;
+                   
+                }
+            });
+        };
+
+        vm.mostrarListaJeans = function(){
+            return ProductosService.getProductosJean().then(function(data){
+                if(data){
+                    debugger;
+                    vm.productList=[];
+                    vm.productList = data;
+                    debugger;
+                }
+            });
+        };
+
+        vm.mostrarListaCamperas = function(){
+            return ProductosService.getProductosCampera().then(function(data){
+                if(data){
+                    debugger;
+                    vm.productList=[];
+                    vm.productList = data;
+                    debugger;
+                }
+            });
+        };
+        vm.mostrarListaRemeras = function(){
+            return ProductosService.getProductosRemera().then(function(data){
+                if(data){
+                    debugger;
+                    vm.productList=[];
+                    vm.productList = data;
+                    debugger;
+                }
+            });
+        };
+
+        vm.mostrarListaCamisas = function(){
+            return ProductosService.getProductosCamisa().then(function(data){
+                if(data){
+                    debugger;
+                    vm.productList=[];
+                    vm.productList = data;
+                    debugger;
+                }
+            });
+        };
+
+        vm.mostrarListaHombre = function(){
+            return ProductosService.getProductosHombre().then(function(data){
+                if(data){
+                    debugger;
+                    vm.productList=[];
+                    vm.productList = data;
+                    debugger;
+                }
+            });
+        };
+
+        vm.mostrarListaMujer = function(){
+            return ProductosService.getProductosMujer().then(function(data){
+                if(data){
+                    debugger;
+                    vm.productList=[];
+                    vm.productList = data;
+                    debugger;
+                }
+            });
+        };
     
     function getProductList(filter) {}
-      /*  var obj = {
-        title: 'CAMPERA MILANO',
-        price: 600,
-        gender: 'Mujer',
-        size: ['1','2'],
-        color: ['Azul', 'Rosa', 'Blanca'],
-        stock: 3,
-        image: ['img/modulos/prueba2.jpg', 'img/modulos/prueba3.jpg', 'img/modulos/prueba4.jpg']
-  };*/ 
     
     vm.init = function(){
         debugger;
-        vm.mostrarListaProductos();
-        
+       vm.mostrarListaProductos();
 	};
     
     vm.init();

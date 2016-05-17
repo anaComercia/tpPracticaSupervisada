@@ -45,8 +45,8 @@ class Producto
 
     
     public function getProductosHombre(){
-        $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
-                    p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
+        $query = "SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,               p.descripcion as prodDesc, p.idProducto as idProd,
+                    p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                     FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
@@ -62,8 +62,8 @@ class Producto
     }
     
      public function getProductosMujer(){
-        $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
-                    p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
+        $query = "SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,               p.descripcion as prodDesc, p.idProducto as idProd,
+                    p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                      FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
@@ -79,9 +79,8 @@ class Producto
     }
     
     public function getProductosCamisa(){
-        $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
-                    p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
-                     FROM categoria c, genero g, producto p
+        $query = "SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,               p.descripcion as prodDesc, p.idProducto as idProd,
+                    p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'CAMISA' ";
@@ -95,8 +94,8 @@ class Producto
         return $productosCamisa; 
     }
     public function getProductosJean(){
-        $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
-                    p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
+        $query = "SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,               p.descripcion as prodDesc, p.idProducto as idProd,
+                    p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                     FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
@@ -112,8 +111,8 @@ class Producto
     }
     
       public function getProductosCampera(){
-        $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
-                    p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
+        $query = "SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,               p.descripcion as prodDesc, p.idProducto as idProd,
+                    p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                      FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero
@@ -128,8 +127,8 @@ class Producto
         return $productosCampera; 
     }
       public function getProductosRemera(){
-        $query = "SELECT c.descripcion, g.descripcion, p.titulo, p.precio, p.descripcion
-                    p.urlImagen, p.urlImagenAlt1, p.urlImagenAlt2, p.urlImagenAlt3
+        $query = "SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,               p.descripcion as prodDesc, p.idProducto as idProd,
+                    p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                      FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
                     AND p.idGenero = g.idGenero

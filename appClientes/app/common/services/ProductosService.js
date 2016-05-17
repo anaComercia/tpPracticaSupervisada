@@ -56,6 +56,11 @@ backendEcommerce.service("ProductosService", function($http){
 			return response.data.data;
 		})
     };
-
+          this.getImgModulo = function(){
+    	var promise = $http.get('api/index.php/ProdImgModulo');
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
     
 });

@@ -8,6 +8,7 @@ ProductosCtrl.$injector = ["$state","ProductosService"];
 function ProductosCtrl($state, ProductosService) {
     vm = this;
     vm.productList=[];
+    vm.banner = '';
   
    /* vm.productList = [
         {
@@ -37,10 +38,10 @@ function ProductosCtrl($state, ProductosService) {
         vm.mostrarListaJeans = function(){
             return ProductosService.getProductosJean().then(function(data){
                 if(data){
-                    debugger;
+                   
                     vm.productList=[];
                     vm.productList = data;
-                    debugger;
+                    
                 }
             });
         };
@@ -48,20 +49,20 @@ function ProductosCtrl($state, ProductosService) {
         vm.mostrarListaCamperas = function(){
             return ProductosService.getProductosCampera().then(function(data){
                 if(data){
-                    debugger;
+                   
                     vm.productList=[];
                     vm.productList = data;
-                    debugger;
+                   
                 }
             });
         };
         vm.mostrarListaRemeras = function(){
             return ProductosService.getProductosRemera().then(function(data){
                 if(data){
-                    debugger;
+                    
                     vm.productList=[];
                     vm.productList = data;
-                    debugger;
+                    
                 }
             });
         };
@@ -69,10 +70,10 @@ function ProductosCtrl($state, ProductosService) {
         vm.mostrarListaCamisas = function(){
             return ProductosService.getProductosCamisa().then(function(data){
                 if(data){
-                    debugger;
+                   
                     vm.productList=[];
                     vm.productList = data;
-                    debugger;
+                    
                 }
             });
         };
@@ -80,10 +81,10 @@ function ProductosCtrl($state, ProductosService) {
         vm.mostrarListaHombre = function(){
             return ProductosService.getProductosHombre().then(function(data){
                 if(data){
-                    debugger;
+                   
                     vm.productList=[];
                     vm.productList = data;
-                    debugger;
+                    
                 }
             });
         };
@@ -91,10 +92,17 @@ function ProductosCtrl($state, ProductosService) {
         vm.mostrarListaMujer = function(){
             return ProductosService.getProductosMujer().then(function(data){
                 if(data){
-                    debugger;
                     vm.productList=[];
                     vm.productList = data;
-                    debugger;
+                     }
+            });
+        };
+      vm.mostrarBanner = function(){
+            return ProductosService.getImgModulo().then(function(data){
+                if(data){
+                    vm.banner = data;
+                   
+                    
                 }
             });
         };
@@ -103,6 +111,7 @@ function ProductosCtrl($state, ProductosService) {
     
     vm.init = function(){
         debugger;
+        vm.mostrarBanner();
        vm.mostrarListaProductos();
 	};
     

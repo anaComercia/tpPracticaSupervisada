@@ -92,6 +92,12 @@ $app->get('/IniImgFijas', function(){
 	$data = $inicio->getImgFijas();
 	sendResult($data);
 });
+$app->get('/ProdImgModulo', function(){
+
+	$inicio = new Producto();
+	$data = $inicio->getImgModulo();
+	sendResult($data);
+});
 /*
 $app->get('/productos', function(){
 	$producto = new Producto();

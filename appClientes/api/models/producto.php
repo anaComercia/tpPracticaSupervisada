@@ -142,6 +142,19 @@ class Producto
         }
         return $productosRemera; 
     }
+    
+    public function getImgModulo(){
+        $query = "SELECT modulo from imagenes ";
+        $imagen = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $imagen[] = $fila;
+            }
+            $result->free();
+        }
+        return $imagen; 
+    }
+    
 }
 /*
 SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,

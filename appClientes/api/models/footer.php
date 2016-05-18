@@ -9,16 +9,16 @@ class Footer
         $this->connection = Connection::getInstance();
     }
     
-    public function getAll(){
+    public function getTelefonos(){
         $query = "SELECT telefono FROM sucursal";
-        $generos = array();
+        $telSucursal = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
                 $telSucursal[] = $fila;
             }
             $result->free();
         }
-        return $$telSucursal;
+        return $telSucursal;
     }
 }
 

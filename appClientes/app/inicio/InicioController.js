@@ -22,7 +22,6 @@ function InicioCtrl($state, InicioService) {
     vm.mostrarProductosInicioMujer = function(){
         return InicioService.getInicioMujer().then(function(data){
             if(data){
-                debugger;
                 vm.productListMujer = data;
             }
         });
@@ -30,7 +29,6 @@ function InicioCtrl($state, InicioService) {
        vm.traerImagenesFijas = function(){
         return InicioService.getImgFijas().then(function(data){
             if(data){
-                debugger;
                 vm.imagenesFijas = data;
             }
         });
@@ -38,7 +36,6 @@ function InicioCtrl($state, InicioService) {
     
     vm.init = function(){
         vm.traerImagenesFijas();
-        debugger;
         vm.mostrarProductosInicioMujer();
         vm.mostrarProductosInicioHombre();
 	};

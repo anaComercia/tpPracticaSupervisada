@@ -12,14 +12,13 @@
         
         <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
         <!--  <App acá se declaran todos los js que usa angular>-->
-        <script src="app/app.js"></script> 
-        <script src="app/MainController.js"></script> 
+        <script src="app/app.js"></script>
                  
         <script src="app/contacto/Contacto.js"></script>
-        <script src="app/contacto/ContactoController.js"></script>
+        
                 
         <script src="app/crearCuenta/CrearCuenta.js"></script>
-        <script src="app/crearCuenta/CrearCuentaController.js"></script>
+
         
         <script src="app/formaPago/FormaPago.js"></script>
         <script src="app/formaPago/FormaPagoController.js"></script>
@@ -38,19 +37,23 @@
                   
         <!-- <Servicios> -->
         <script src="app/common/services/ProductosService.js"></script>  
-        <script src="app/common/services/InicioService.js"></script>   
+        <script src="app/common/services/InicioService.js"></script>
+        <script src="app/common/services/FooterService.js"></script>   
+        <script src="app/common/services/CrearCuentaService.js"></script> 
           
         <!-- <Controllers> -->
+        <script src="app/MainController.js"></script> 
         <script src="app/carrito/Carrito.js"></script>
         <script src="app/carrito/CarritoController.js"></script> 
         <script src="app/carrito/CarritoComprasController.js"></script> 
         <script src="app/carrito/CarritoComprasDirective.js"></script> 
         <script src="app/carrito/CarritoReservasDirective.js"></script> 
         <script src="app/carrito/PagarCompraController.js"></script>
-        
+        <script src="app/contacto/ContactoController.js"></script>
+        <script src="app/crearCuenta/CrearCuentaController.js"></script>
         <script src="app/productos/Productos.js"></script>
         <script src="app/productos/ProductosListController.js"></script>
-        <script src="app/productos/ProductosDetailController.js"></script>
+        <!--  <script src="app/productos/ProductosDetailController.js"></script>-->
         <script src="app/productos/ProductoDirective.js"></script>
         
         <!-- <Estilos> -->
@@ -130,7 +133,7 @@
                 </div>
             </div> <!-- FIN BODY -->
 
-            <div id="idFooter" class="col-md-12 div-footer col-xs-6" >
+            <div id="idFooter" class="col-md-12 div-footer col-xs-6"  ng-controller="MainController as main">
                 <div id="idPnlDetallesFooter">
                    <div class="col-md-3 col-xs-4" style=" ">
                        <label class="footer-titles"> REDES SOCIALES </label>
@@ -161,9 +164,15 @@
                        <label class="footer-titles" > CONTACTANOS </label>
                         <div class="col-md-12" >
                             <label  class="fa fa-envelope footer-label-detalle"> shop@modashow.com.ar</label>
-                            <label  class="fa fa-phone footer-label-detalle"> 54 11 4576 8876 (Sucursal Capital)</label>
-                            <label  class="fa fa-phone footer-label-detalle" > 54 11 4865 7645 (Sucursal San Isidro)</label>
-                            <label  class="fa fa-phone footer-label-detalle"> 54 11 4967 3125 (Sucursal Avellaneda)</label>
+                            <label  class="fa fa-phone footer-label-detalle"> 
+                                {{main.telefonos[0].telefono}} (Sucursal Capital)
+                            </label>
+                            <label  class="fa fa-phone footer-label-detalle" > 
+                                {{main.telefonos[1].telefono}} (Sucursal San Isidro)
+                            </label>
+                            <label  class="fa fa-phone footer-label-detalle">
+                                 {{main.telefonos[2].telefono}} (Sucursal Avellaneda)
+                            </label>
                         </div>
                     </div>
                     <div class="col-md-3 col-xs-4" style="">

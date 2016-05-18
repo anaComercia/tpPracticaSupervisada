@@ -1,5 +1,10 @@
-var crearCuenta = angular.module("backendEcommerceClientes.crearCuenta");
+angular
+    .module("backendEcommerceClientes.crearCuenta")
+    .controller("CrearCuentaController", CrearCtaCtrl);
 
-crearCuenta.controller("CrearCuentaController", function($state){
-    
-});
+
+CrearCtaCtrl.$injector = ["$state","CrearCuentaService"];
+
+function CrearCtaCtrl($state, CrearCuentaService) {
+
+}

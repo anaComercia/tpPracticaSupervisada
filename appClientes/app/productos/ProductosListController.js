@@ -9,22 +9,7 @@ function ProductosCtrl($state, ProductosService) {
     vm = this;
     vm.productList=[];
     vm.banner = '';
-  
-   /* vm.productList = [
-        {
-            id: 1,
-            title: 'Campera Milano',
-            price: 600,
-            gender: 'Mujer',
-            size: ['1','2'],
-            color: ['Azul', 'Rosa', 'Blanca'],
-            stock: 3,
-            image: ['img/modulos/prueba1.jpg',
-            'img/modulos/prueba2.jpg',
-            'img/modulos/prueba3.jpg',
-            'img/modulos/prueba4.jpg']
-        },
-    */
+
         vm.mostrarListaProductos = function(){
              return ProductosService.getAllProductos().then(function(data){
                 if(data){
@@ -108,23 +93,19 @@ function ProductosCtrl($state, ProductosService) {
         };
     
      vm.onClickDetail = function(prodId){
-        //carritoComprasController.js
-        //carritoCompras.html
-        //carritoComprasDirective.js
-        //carritoComprasDirective.html
         debugger;
-        //Aca voy con el id a buscar a la base los detalles de la compra y cuando vuelvo lo seteo a vm.DetalleCompras
-        //creo el evento
+  
     }
      
     
     function getProductList(filter) {}
-    debugger;
+  
     vm.prodDetalle = $state.params.prodId;
     vm.prodDetallePresentacion = getProductDetail($state.params.prodId);
-    debugger;
-     vm.source = vm.prodDetalle.img1;
-    function _changeImage($event){
+    vm.source = vm.prodDetalle.img1;
+ 
+    
+   vm.changeImage=  function($event){
         debugger;
         vm.source = $event.target.src;
     }
@@ -135,9 +116,14 @@ function ProductosCtrl($state, ProductosService) {
        
     }
     
+      vm.init = function(){
+        vm.mostrarBanner();
+        vm.mostrarListaProductos();
+	};
     
+    vm.init();
     
-    
+  
    /* DETALLE */ 
     
  
@@ -172,21 +158,5 @@ function ProductosCtrl($state, ProductosService) {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    vm.init = function(){
-        vm.mostrarBanner();
-        vm.mostrarListaProductos();
-	};
-    
-    vm.init();
+  
 }

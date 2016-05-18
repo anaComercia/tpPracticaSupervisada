@@ -42,6 +42,7 @@
        <producto-directive 
                         style="margin:20px;" 
                         ng-repeat="product in prodCtrl.productList"
+                        on-click-detail="prodCtrl.onClickDetail(product.idProd)"
                         product-data="product">
        </producto-directive>
 

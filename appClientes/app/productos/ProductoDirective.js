@@ -8,9 +8,12 @@ function ProductoDirective() {
         restrict: "E",
         replace: true,
         templateUrl:'app/productos/ProductoDirective.html',
-        scope: { product: '=productData' }, //product-data="product"
+        scope: { product: '=productData',
+                   productosDetail: '&onClickDetail'
+               }, //product-data="product"
         controller: function($scope, $element, $attrs) {
             //$scope.verDetalle = verDetalle;            
         }       
     }    
 }
+

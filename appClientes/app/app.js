@@ -41,8 +41,8 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
                 prodId: null //reconstruir estado 
             },
 			templateUrl : "app/productos/ProductosDetail.html",
-			controller : "ProductosDetailController",
-			controllerAs : "prodDetail"
+			controller : "ProductosListController",
+			controllerAs : "prod"
 		})
        .state("contacto", {
 			url : "/contacto",

@@ -1,10 +1,10 @@
-angular
+/*angular
     .module("backendEcommerceClientes.producto")
     .controller("ProductosDetailController", ProductosCtrl);
 
-ProductosCtrl.$injector = ["$state"];
+ProductosCtrl.$injector = ["$state","$scope"];
 
-function ProductosCtrl($state) {
+function ProductosCtrl($state,$scope) {
     vm = this;
     vm.productList = [
         {
@@ -108,6 +108,9 @@ function ProductosCtrl($state) {
     }
 
     function getProductDetail(id) {
+        debugger;
+        console.log($scope);
+        console.log($state);
          for (index = 0; index <  vm.productList.length; ++index) {
              if(vm.productList[index].id == id){
                  return vm.productList[index];
@@ -116,4 +119,4 @@ function ProductosCtrl($state) {
        
     } 
     
-}
+}*/

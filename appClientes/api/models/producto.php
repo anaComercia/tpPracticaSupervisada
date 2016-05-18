@@ -164,7 +164,8 @@ p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImag
        				 from stock_producto sp 
          			 left join presentacion_producto pp on pp.codSku = sp.codSku 
         			 where p.idProducto =  pp.idProducto
-           			 GROUP by pp.idProducto)  as stock
+           			 GROUP by pp.idProducto)  as stock,  pp.codSku
  FROM categoria c, genero g
  left join producto p on  p.idGenero = g.idGenero
+left join presentacion_producto pp on p.idProducto =  pp.idProducto
  where p.idCategoria = c.idCategoria*/

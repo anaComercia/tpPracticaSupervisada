@@ -10,23 +10,23 @@
         <img  src={{productCtrl.source}} class="img img-first thumbnail zoom" />
 
         <div id="idImgProdSecundario" >
-            <img src={{productCtrl.prod.image[0]}} ng-click="productCtrl.changeImage($event)" />
-            <img src={{productCtrl.prod.image[1]}}  ng-click="productCtrl.changeImage($event)"/>
-            <img src={{productCtrl.prod.image[2]}}  ng-click="productCtrl.changeImage($event)" />
+            <img src={{productCtrl.prodDetalle.img2}} ng-click="productCtrl.changeImage($event)" />
+            <img src={{productCtrl.prodDetalle.img3}}  ng-click="productCtrl.changeImage($event)"/>
+            <img src={{productCtrl.prodDetalle.img4}}  ng-click="productCtrl.changeImage($event)" />
         </div> 
         
     </div>
 
     <div  id="idDetalleProd" class="col-md-6" style="">
-        <label class="lblTitulo">{{productCtrl.prod.title | uppercase}}</label>
+        <label class="lblTitulo">{{productCtrl.prodDetalle.prodTit | uppercase}}</label>
               
         <div>
-            <label class="lblDescripcion"> {{productCtrl.prod.desc}}</label>
+            <label class="lblDescripcion"> {{productCtrl.prodDetalle.prodDesc}}</label>
         </div>  
         
         
         <div>
-            <label class="lblPrecio" >${{productCtrl.prod.price}}</label>
+            <label class="lblPrecio" >${{productCtrl.prodDetalle.prodPrecio}}</label>
             <!--<label class="cuotas-precio">3 cuotas de ${{productCtrl.precioXcuota}} cada una</label>-->
         </div>
 
@@ -34,7 +34,7 @@
         <div>
             <div>
                 <label class="lblDetalle lblGenero">Género</label>
-                <label class="" >{{productCtrl.prod.gender}}</label>
+                <label class="" >{{productCtrl.prodDetalle.genDesc}}</label>
             </div>
 
             <div>

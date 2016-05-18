@@ -120,9 +120,12 @@ function ProductosCtrl($state, ProductosService) {
     
     function getProductList(filter) {}
     debugger;
-    vm.prodDetalle = getProductDetail($state.params.prodId);
-    
+    vm.prodDetalle = $state.params.prodId;
+    vm.prodDetallePresentacion = getProductDetail($state.params.prodId);
+    debugger;
+     vm.source = vm.prodDetalle.img1;
     function _changeImage($event){
+        debugger;
         vm.source = $event.target.src;
     }
 

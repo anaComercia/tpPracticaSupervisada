@@ -7,7 +7,7 @@ error_reporting(E_ALL | E_STRICT);
 //Acá se traen todos los archivos php que tienen los métodos para operar con la bd
 //require_once("models/carrito.php");
 //require_once("models/contacto.php");
-//require_once("models/crearCuenta.php");
+require_once("models/crearCuenta.php");
 //require_once("models/formaPago.php");
 //require_once("models/iniciarSesion.php");
 require_once("models/inicio.php");
@@ -25,6 +25,12 @@ $app = new Slim\Slim();
 //Acá están operaciones de la bd a las que se llega desde el ProductoService al pegarle a index.php
 
 //Se llega a cada una si coincide la operacion get, put, delete o post con la ruta solicitada y los parámetros
+$app->get('/telSucursales', function(){
+
+	$telefono = new Footer();
+	$data = $telefono->getTelefonos();
+	sendResult($data);
+});
 
 $app->get('/inicio', function(){
 

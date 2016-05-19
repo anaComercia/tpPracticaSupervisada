@@ -25,6 +25,23 @@ $app = new Slim\Slim();
 //Acá están operaciones de la bd a las que se llega desde el ProductoService al pegarle a index.php
 
 //Se llega a cada una si coincide la operacion get, put, delete o post con la ruta solicitada y los parámetros
+
+//acastillo 17/05/2016
+$app->post('/altaDeCuenta', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
+	
+	$altaCuenta = new CrearCuenta();
+    $result = $altaCuenta->create($data);
+	
+	if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al crear la cuenta del cliente");
+	}
+});
+//------------------------------------------------------------
+
 $app->get('/telSucursales', function(){
 
 	$telefono = new Footer();

@@ -14,9 +14,13 @@ require_once("models/inicio.php");
 //require_once("models/perfil.php");
 require_once("models/producto.php");
 require_once("models/footer.php");
+require_once("models/genero.php");//acastillo 19/05/2016
+
+
 //Esto va siempre
 require_once("util/jsonResponse.php");
-require 'Slim/Slim/Slim.php';
+require 'slim/Slim/Slim.php';
+
 
 //Esto va siempre
 Slim\Slim::registerAutoloader();
@@ -38,6 +42,18 @@ $app->post('/altaDeCuenta', function(){
 		sendResult($result);
 	}else{
 		sendError("Error al crear la cuenta del cliente");
+	}
+});
+//------------------------------------------------------------
+//acastillo 19/05/2016
+$app->get('/altaDeCuentaGenero', function(){
+    $genero = new Genero();
+	$data = $genero->getAll();
+    
+    if($data){
+		sendResult($data);
+	}else{
+		sendError("Error al mostrar el genero");
 	}
 });
 //------------------------------------------------------------

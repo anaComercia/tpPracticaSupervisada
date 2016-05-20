@@ -7,7 +7,16 @@ backendEcommerce.service("CrearCuentaService", function($http){
 
     
 //Se realiza un post para insertar un cliente y se le pasa por parámetro los datos a insertar
-      this.crearNuevaCuenta = function(
+    
+    //Genero
+    this.getGeneros = function(){
+		var promise = $http.get('api/index.php/altaDeCuentaGenero');
+		return promise.then(function(response){
+			return response.data.data;
+		})
+	};
+    
+    this.crearNuevaCuenta = function(
                                        
           nombre
           , apellido 
@@ -27,7 +36,7 @@ backendEcommerce.service("CrearCuentaService", function($http){
           ,idDireccion
           )
       
-         {
+    {
         
           
           data = 
@@ -57,5 +66,8 @@ backendEcommerce.service("CrearCuentaService", function($http){
             return response;
         });
     };
+    
+    
+
   
 });

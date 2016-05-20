@@ -6,12 +6,24 @@ angular
 CrearCtaCtrl.$injector = ["$state","CrearCuentaService"];
 
 function CrearCtaCtrl($state, CrearCuentaService) {
+    
     var self = this;
     
     self.clienteNuevo = {};
+    self.generos = [];
+    self.generoSeleccionado = "";
 
+
+    
+    self.getGeneros = function(){
+          return CrearCuentaService.getGeneros().then(function(data){
+            //console.log(data);
+            self.generos = data;
+        });
+    };
+    
     self.altaDeCuenta = function(){
-        console.log(self.clienteNuevo);
+        //console.log(self.clienteNuevo);
         CrearCuentaService.crearNuevaCuenta(
            self.clienteNuevo.nombre
          , self.clienteNuevo.apellido
@@ -41,6 +53,14 @@ function CrearCtaCtrl($state, CrearCuentaService) {
             })
     };
     
-	
-	//this.init();
+    
+    //Traer todos los datos que necesito al mostrar el formulario por primera vez
+    this.init = function(){
+        this.getGeneros();
+        
+	};
+    
+	//Inicializar el formulario, esto es lo primero que se ejecuta siempre
+	this.init();
 }
+                   

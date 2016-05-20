@@ -29,13 +29,13 @@ class CrearCuenta
         $codigoPostal = $this->connection->real_escape_string($data['codigoPostal']);
         $clave = $this->connection->real_escape_string($data['clave']);
         $repetirClave= $this->connection->real_escape_string($data['repetirClave']);
-        $idGenero =2;// $this->connection->real_escape_string($producto['idGenero']);
+        $idGenero =$this->connection->real_escape_string($data['idGenero']);
+       
         $idDireccion=0;
         $idPersona=0;
+        $reputacion=100;
+
        
-       
-        
-         
        //Insert en tabla: direccion
         $queryDireccion =
          "INSERT INTO direccion
@@ -47,9 +47,7 @@ class CrearCuenta
         '$codigoPostal')";   
         
        //var_dump($queryDireccion);
-       
-        
-       
+
        if($this->connection->query($queryDireccion)){
             $data['idDireccion'] = $this->connection->insert_id;
             $idDireccion=$data['idDireccion'] ;
@@ -84,8 +82,8 @@ class CrearCuenta
         }
        
    
-       //Insert en tabla: contraseña
-       $queryContrasenia=
+       //Insert en tabla: usuario
+       $queryUsuario=
         "INSERT INTO usuario
         (idUsuario, usuario, contraseña, idPersona, habilitado) 
         VALUES 
@@ -93,13 +91,41 @@ class CrearCuenta
        
        //print($queryPersona);
        
-        if($this->connection->query($queryContrasenia)){
+       //print($reputacion);
+       
+        if($this->connection->query($queryUsuario)){
             $data['idUsuario'] = $this->connection->insert_id;
+            $idUsuario=$data['idUsuario'];
+            
+            //print($idUsuario);
+
+        }else{
+            return false;
+        }
+       
+       
+       //Insert en tabla: cliente
+       
+       
+       $queryCliente=
+        "INSERT INTO cliente
+        (idCliente, idUsuario, reputacion)
+        VALUES
+        (DEFAULT,'$idUsuario','$reputacion')";
+       
+        //print($queryCliente);
+       
+       
+        if($this->connection->query($queryCliente)){
+            $data['idCliente'] = $this->connection->insert_id;
+            
             return $data;
         }else{
             return false;
         }
        
     }
+    
+
   
 }

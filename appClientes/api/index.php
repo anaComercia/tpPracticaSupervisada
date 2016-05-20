@@ -147,5 +147,10 @@ $app->get('/ProdTalles/:id', function($id){
 	$data = $producto->getTalles($id);
 	sendResult($data);
 });
+$app->get('/ProdColores/:colorBusqueda', function($colorBusqueda){
+	$color = new Producto();
+	$data = $color->getColores($colorBusqueda);
+	sendResult($data);
+});
 
 $app->run();

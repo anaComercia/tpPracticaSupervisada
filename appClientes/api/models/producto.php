@@ -181,6 +181,24 @@ class Producto
         return $talle; 
     }
     
+    public function getColores($producto){
+        $idProd = (int) $this->connection->real_escape_string($producto['productoSeleccionado']);
+        $idTalle = (int) $this->connection->real_escape_string($producto['talleSeleccionado']);
+        $query = "SELECT t.descripcion as descripcion, t.idColor as idColor
+                    FROM presentacion_producto pp
+                    left join color t on t.idColor = pp.idColor
+                    where pp.idTalle = $idTalle 
+                    and pp.idProducto = $idProd";
+         $color = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $color[] = $fila;
+            }
+            $result->free();
+        }
+        return $color; 
+    }
+    
 }
 /*
 SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,

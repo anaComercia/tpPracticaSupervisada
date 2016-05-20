@@ -15,6 +15,7 @@ function ProductosCtrl($state, ProductosService) {
     vm.colorDesHabilitado = true;
     vm.talleSelecId;
     vm.bancos = [];
+    vm.objColor = [];
 
      vm.mostrarBancos = function(){
              return ProductosService.getAllBancos().then(function(data){
@@ -113,7 +114,11 @@ function ProductosCtrl($state, ProductosService) {
         };
     
     vm.mostrarColores = function(){
-            return ProductosService.getColores(talleSelecId).then(function(data){
+            vm.objColor = [{
+                talleSeleccionado: vm.talleSelecId,
+                productoSeleccionado: vm.prodDetalle.idProd
+            } ];
+            return ProductosService.getColores(vm.objColor).then(function(data){
                 if(data){
                     vm.colores = data;    
                 }
@@ -141,17 +146,17 @@ function ProductosCtrl($state, ProductosService) {
             vm.prodDetalle = $state.params.prodId;
             vm.source = vm.prodDetalle.img1;
             vm.mostrarTalles();
-            if(vm.talles.length == 0){
+            if(vm.talles.length != 0){
                 vm.talleDesHabilitado = false;
             }
         }
      
     }
     
-    function traerColores (id){
-        vm.talleSelecId = id;
+   vm.ejectuarCambioTalle =  function traerColores (talle){
+        vm.talleSelecId = talle.idTalle;
         vm.mostrarColores();
-        if(vm.colores.length == 0){
+        if(vm.colores.length != 0){
             vm.colorDesHabilitado = false;
         }
     }

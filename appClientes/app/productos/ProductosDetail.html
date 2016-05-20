@@ -44,7 +44,7 @@
                 <select class="select-option select-option-talle" 
                     ng-model="productCtrl.mySelect.size" 
                     ng-disabled="productCtrl.talleDesHabilitado"
-                    ng-change="productCtrl.traerColores(option.idTalle)"
+                    ng-change="productCtrl.ejectuarCambioTalle(productCtrl.mySelect.size)"
                     ng-options="option as option.descripcion for option in productCtrl.talles">
                 </select>
             

@@ -9,11 +9,25 @@ function ProductosCtrl($state, ProductosService) {
     vm = this;
     vm.productList=[];
     vm.banner = '';
+    vm.talles = [];
+    vm.colores = [];
+    vm.talleDesHabilitado = true;
+    vm.colorDesHabilitado = true;
+    vm.talleSelecId;
+    vm.bancos = [];
 
+     vm.mostrarBancos = function(){
+             return ProductosService.getAllBancos().then(function(data){
+                if(data){
+                    vm.bancos = data;
+                   
+                }
+            });
+        };
+    
         vm.mostrarListaProductos = function(){
              return ProductosService.getAllProductos().then(function(data){
                 if(data){
-                    vm.productList=[];
                     vm.productList = data;
                    
                 }
@@ -23,8 +37,6 @@ function ProductosCtrl($state, ProductosService) {
         vm.mostrarListaJeans = function(){
             return ProductosService.getProductosJean().then(function(data){
                 if(data){
-                   
-                    vm.productList=[];
                     vm.productList = data;
                     
                 }
@@ -92,17 +104,31 @@ function ProductosCtrl($state, ProductosService) {
             });
         };
     
+       vm.mostrarTalles = function(){
+            return ProductosService.getTalles($state.params.prodId.idProd).then(function(data){
+                if(data){
+                    vm.talles = data;    
+                }
+            });
+        };
+    
+    vm.mostrarColores = function(){
+            return ProductosService.getColores(talleSelecId).then(function(data){
+                if(data){
+                    vm.colores = data;    
+                }
+            });
+        };
+    
      vm.onClickDetail = function(prodId){
         debugger;
   
     }
-     
-    
-    function getProductList(filter) {}
+
   
-    vm.prodDetalle = $state.params.prodId;
-    vm.prodDetallePresentacion = getProductDetail($state.params.prodId);
-    vm.source = vm.prodDetalle.img1;
+    if(($state.params != null) && (typeof $state.params != "undefined")){  
+        vm.prodDetallePresentacion = getProductDetail($state.params.prodId);
+    }
  
     
    vm.changeImage=  function($event){
@@ -110,15 +136,30 @@ function ProductosCtrl($state, ProductosService) {
         vm.source = $event.target.src;
     }
 
-    function getProductDetail(id) {
-        debugger;
+    function getProductDetail(prod) {
+        if(prod != null){
+            vm.prodDetalle = $state.params.prodId;
+            vm.source = vm.prodDetalle.img1;
+            vm.mostrarTalles();
+            if(vm.talles.length == 0){
+                vm.talleDesHabilitado = false;
+            }
+        }
      
-       
+    }
+    
+    function traerColores (id){
+        vm.talleSelecId = id;
+        vm.mostrarColores();
+        if(vm.colores.length == 0){
+            vm.colorDesHabilitado = false;
+        }
     }
     
       vm.init = function(){
         vm.mostrarBanner();
         vm.mostrarListaProductos();
+        vm.mostrarBancos();
 	};
     
     vm.init();

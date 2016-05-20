@@ -38,6 +38,12 @@ $app->get('/inicio', function(){
 	$data = $telefono->getTelefonos();
 	sendResult($data);
 });
+$app->get('/bancos', function(){
+
+	$producto = new Producto();
+	$data = $producto->getAllBancos();
+	sendResult($data);
+});
 $app->get('/productos', function(){
 
 	$producto = new Producto();
@@ -136,9 +142,9 @@ $app->get('/productos', function(){
 	sendResult($data);
 });
 */
-$app->get('/productosDetail/:id', function($id){
+$app->get('/ProdTalles/:id', function($id){
 	$producto = new Producto();
-	$data = $producto->getDetalleProducto($id);
+	$data = $producto->getTalles($id);
 	sendResult($data);
 });
 

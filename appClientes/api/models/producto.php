@@ -24,7 +24,17 @@ class Producto
         }
         return $productos;
     }
-    
+    public function getAllBancos(){
+        $query = "select b.descripcion as banco, t.descripcion as tarjeta, tb.cuotas as cuotas, tb.interes as interes from              banco b left join tarjeta_banco tb on b.idBanco = tb.idBanco left join tarjeta t on t.idTarjeta =                    tb.idTarjeta order by b.descripcion desc, t.descripcion DESC";
+        $productos = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $productos[] = $fila;
+            }
+            $result->free();
+        }
+        return $productos;
+    }
     public function getDetalleProducto($id){
         $query = "SELECT t.descripcion as talle,c.descripcion, as color, pres.sku as sku
                     FROM talle t, presentacion_producto pres ,color c, producto p
@@ -153,6 +163,22 @@ class Producto
             $result->free();
         }
         return $imagen; 
+    }
+    
+      public function getTalles($prodId){
+        $id = (int) $this->connection->real_escape_string($prodId);
+        $query = "SELECT t.descripcion as descripcion, t.idTalle as idTalle
+                    FROM presentacion_producto pp
+                    left join talle t on t.idTalle = pp.idTalle
+                    where pp.idProducto = $prodId";
+         $talle = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $talle[] = $fila;
+            }
+            $result->free();
+        }
+        return $talle; 
     }
     
 }

@@ -2,7 +2,15 @@ var backendEcommerce = angular.module("backendEcommerceClientes");
 
 backendEcommerce.service("ProductosService", function($http){
 
-	this.getAllProductos = function(){
+	this.getAllBancos = function(){
+		var promise = $http.get('api/index.php/bancos');
+
+		return promise.then(function(response){
+			return response.data.data;
+		})
+	};
+    
+    this.getAllProductos = function(){
 		var promise = $http.get('api/index.php/productos');
 
 		return promise.then(function(response){
@@ -58,6 +66,13 @@ backendEcommerce.service("ProductosService", function($http){
     };
           this.getImgModulo = function(){
     	var promise = $http.get('api/index.php/ProdImgModulo');
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
+    
+    this.getTalles = function($id){
+    	var promise = $http.get('api/index.php/ProdTalles/'+$id);
 		return promise.then(function(response){
 			return response.data.data;
 		})

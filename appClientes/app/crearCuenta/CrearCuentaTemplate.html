@@ -17,11 +17,11 @@
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*Nombre:</label>
-                <input type="text" class="form-control" placeholder="Nombre" >
+                <input id="nombre" type="text" class="form-control" placeholder="Nombre" ng-model="crearCta.clienteNuevo.nombre">
             </div>
             <div  id="divAlineacion">
                 <label>*Apellido:</label>
-                <input type="text" class="form-control" placeholder="Apellido" >
+                <input id="apellido" type="text" class="form-control" placeholder="Apellido" ng-model="crearCta.clienteNuevo.apellido" >
             </div>
             </div>
             
@@ -29,25 +29,36 @@
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*E-mail:</label>
-                <input type="text" class="form-control" placeholder="Email" >
+                <input id="email" type="text" class="form-control" placeholder="Email" ng-model="crearCta.clienteNuevo.email"  >
             </div>
             <div  id="divAlineacion">
                 <label>*Repetir Mail:</label>
-                <input type="text" class="form-control" placeholder="Repetir Mail" >
+                <input id="repetirEmail" type="text" class="form-control" placeholder="Repetir Mail" ng-model="crearCta.clienteNuevo.repetirEmail">
             </div>
             </div>
  
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*Fecha Nacimiento:</label>
-                <input type=date class="form-control" placeholder="Fecha Nacimiento" />
+                <input id="fechaNacimiento" type=date class="form-control" placeholder="Fecha Nacimiento" ng-model="crearCta.clienteNuevo.fechaNacimiento"/>
+            </div>
+            <div  id="divAlineacion">
+                <label>*Sexo:</label>
+                <div class="selectContainer">
+                <select id="idGenero" ng-model="crearCta.clienteNuevo.idGenero">
+                <option ng-repeat="genero in crearCta.generos" ng-value = 'genero.idGenero'>
+                        {{genero.descripcion}}
+                </option>
+                </select>
+                </div>
+                <!--input id="idGenero" type="text" class="form-control" placeholder="Genero" ng-model="crearCta.clienteNuevo.idGenero"!-->
             </div>
             </div>
             
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*Tel&eacute;fono/Celular:</label>
-                <input type="text" class="form-control" placeholder="Telefono/Celular" >
+                <input id="telefono" type="text" class="form-control" placeholder="Telefono/Celular" ng-model="crearCta.clienteNuevo.telefono">
             </div>
             </div>
 
@@ -60,22 +71,23 @@
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*Pa&iacute;s:</label>
-                <input type="text" class="form-control" placeholder="País" >
+                <input id="pais" type="text" class="form-control" placeholder="País" ng-model="crearCta.clienteNuevo.pais" >
             </div>
             <div  id="divAlineacion">
-                <label>*Direcci&oacute;n:</label>
-                <input type="text" class="form-control" placeholder="Dirección" >
+                <label>*Localidad:</label>
+                <input id="idLocalidad" type="text" class="form-control" placeholder="Localidad" ng-model="crearCta.clienteNuevo.idLocalidad" >
             </div>
             </div>
 
             <div id="divDetalle">
             <div  id="divAlineacion">
-                <label>*Localidad:</label>
-                <input type="text" class="form-control" placeholder="Localidad" >
+                <label>*Direcci&oacute;n:</label>
+                <input id="direccion" type="text" class="form-control" placeholder="Dirección" ng-model="crearCta.clienteNuevo.direccion" >
             </div>
+
             <div  id="divAlineacion">
                 <label>*C&oacute;digo Postal:</label>
-                <input type="text" class="form-control" placeholder="Código Postal" >
+                <input id="codigoPostal" type="text" class="form-control" placeholder="Código Postal" ng-model="crearCta.clienteNuevo.codigoPostal" >
             </div>
             </div>
             
@@ -88,11 +100,11 @@
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*Crear Clave:</label>
-                <input type="text" class="form-control" placeholder="Crear Clave" >
+                <input id="clave" type="text" class="form-control" placeholder="Crear Clave" ng-model="crearCta.clienteNuevo.clave">
             </div>
             <div  id="divAlineacion">
                 <label>*Repetir Clave:</label>
-                <input type="text" class="form-control" placeholder="Repetir Clave" >
+                <input id="repetirClave" type="text" class="form-control" placeholder="Repetir Clave" ng-model="crearCta.clienteNuevo.repetirClave">
             </div>
             </div>
             
@@ -108,7 +120,7 @@
         <!-- BOTONES!-->
         <div class="row" class="col-md-12" style=" "   >
             <div class="col-md-6  col-md-offset-6">
-               <button class="btn btn-default btn-md btnBoton" >Aceptar</button>
+               <button class="btn btn-default btn-md btnBoton" ng-click="crearCta.altaDeCuenta()">Aceptar</button>
 	           <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
             </div>
         </div>

@@ -14,9 +14,13 @@ require_once("models/inicio.php");
 //require_once("models/perfil.php");
 require_once("models/producto.php");
 require_once("models/footer.php");
+require_once("models/genero.php");//acastillo 19/05/2016
+
+
 //Esto va siempre
 require_once("util/jsonResponse.php");
-require 'Slim/Slim/Slim.php';
+require 'slim/Slim/Slim.php';
+
 
 //Esto va siempre
 Slim\Slim::registerAutoloader();
@@ -25,6 +29,35 @@ $app = new Slim\Slim();
 //Acá están operaciones de la bd a las que se llega desde el ProductoService al pegarle a index.php
 
 //Se llega a cada una si coincide la operacion get, put, delete o post con la ruta solicitada y los parámetros
+
+//acastillo 17/05/2016
+$app->post('/altaDeCuenta', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
+	
+	$altaCuenta = new CrearCuenta();
+    $result = $altaCuenta->create($data);
+	
+	if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al crear la cuenta del cliente");
+	}
+});
+//------------------------------------------------------------
+//acastillo 19/05/2016
+$app->get('/altaDeCuentaGenero', function(){
+    $genero = new Genero();
+	$data = $genero->getAll();
+    
+    if($data){
+		sendResult($data);
+	}else{
+		sendError("Error al mostrar el genero");
+	}
+});
+//------------------------------------------------------------
+
 $app->get('/telSucursales', function(){
 
 	$telefono = new Footer();

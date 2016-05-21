@@ -76,10 +76,12 @@
                         <label class="lblDetalle titulo-elegir-color">Interes</label>
 
                         <label ng-repeat="s in productCtrl.bancos" >
+                              <div>
                                <label>{{s.banco | uppercase}}</label> 
                                <label>{{s.tarjeta  | uppercase}}</label> 
                                <label>{{s.cuotas | uppercase}}</label> 
                                <label> {{s.interes | uppercase}} % </label> 
+                              </div>
                         </label> 
                     </div>
             

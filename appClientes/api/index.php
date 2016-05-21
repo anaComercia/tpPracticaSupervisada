@@ -14,7 +14,7 @@ require_once("models/inicio.php");
 //require_once("models/perfil.php");
 require_once("models/producto.php");
 require_once("models/footer.php");
-require_once("models/genero.php");//acastillo 19/05/2016
+require_once("models/genero.php");
 
 
 //Esto va siempre
@@ -30,7 +30,7 @@ $app = new Slim\Slim();
 
 //Se llega a cada una si coincide la operacion get, put, delete o post con la ruta solicitada y los parámetros
 
-//acastillo 17/05/2016
+
 $app->post('/altaDeCuenta', function(){
     $request = Slim\Slim::getInstance()->request();
     $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
@@ -44,8 +44,7 @@ $app->post('/altaDeCuenta', function(){
 		sendError("Error al crear la cuenta del cliente");
 	}
 });
-//------------------------------------------------------------
-//acastillo 19/05/2016
+
 $app->get('/altaDeCuentaGenero', function(){
     $genero = new Genero();
 	$data = $genero->getAll();
@@ -56,7 +55,6 @@ $app->get('/altaDeCuentaGenero', function(){
 		sendError("Error al mostrar el genero");
 	}
 });
-//------------------------------------------------------------
 
 $app->get('/telSucursales', function(){
 
@@ -143,38 +141,7 @@ $app->get('/ProdImgModulo', function(){
 	$data = $inicio->getImgModulo();
 	sendResult($data);
 });
-/*
-$app->get('/productos', function(){
-	$producto = new Producto();
-	$data = $producto->getProductosHombre();
-	sendResult($data);
-});
-$app->get('/productos', function(){
-	$producto = new Producto();
-	$data = $producto->getProductosMujer();
-	sendResult($data);
-});
-$app->get('/productos', function(){
-	$producto = new Producto();
-	$data = $producto->getProductosCamisa();
-	sendResult($data);
-});
-$app->get('/productos', function(){
-	$producto = new Producto();
-	$data = $producto->getProductosJean();
-	sendResult($data);
-});
-$app->get('/productos', function(){
-	$producto = new Producto();
-	$data = $producto->getProductosCampera();
-	sendResult($data);
-});
-$app->get('/productos', function(){
-	$producto = new Producto();
-	$data = $producto->getProductosRemera();
-	sendResult($data);
-});
-*/
+
 $app->get('/ProdTalles/:id', function($id){
 	$producto = new Producto();
 	$data = $producto->getTalles($id);

@@ -108,7 +108,8 @@ function ProductosCtrl($state, ProductosService) {
        vm.mostrarTalles = function(){
             return ProductosService.getTalles($state.params.prodId.idProd).then(function(data){
                 if(data){
-                    vm.talles = data;    
+                    vm.talles = data; 
+                    vm.talleDesHabilitado = false;
                 }
             });
         };
@@ -120,7 +121,8 @@ function ProductosCtrl($state, ProductosService) {
             } ];
             return ProductosService.getColores(vm.objColor).then(function(data){
                 if(data){
-                    vm.colores = data;    
+                    vm.colores = data; 
+                    vm.colorDesHabilitado = false;
                 }
             });
         };
@@ -146,9 +148,7 @@ function ProductosCtrl($state, ProductosService) {
             vm.prodDetalle = $state.params.prodId;
             vm.source = vm.prodDetalle.img1;
             vm.mostrarTalles();
-            if(vm.talles.length != 0){
-                vm.talleDesHabilitado = false;
-            }
+            
         }
      
     }
@@ -156,9 +156,6 @@ function ProductosCtrl($state, ProductosService) {
    vm.ejectuarCambioTalle =  function traerColores (talle){
         vm.talleSelecId = talle.idTalle;
         vm.mostrarColores();
-        if(vm.colores.length != 0){
-            vm.colorDesHabilitado = false;
-        }
     }
     
       vm.init = function(){

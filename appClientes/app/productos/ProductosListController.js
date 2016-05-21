@@ -1,4 +1,4 @@
-angular
+    angular
     .module("backendEcommerceClientes.producto")
     .controller("ProductosListController", ProductosCtrl);
 
@@ -6,7 +6,7 @@ angular
 ProductosCtrl.$injector = ["$state","ProductosService"];
 
 function ProductosCtrl($state, ProductosService) {
-    vm = this;
+   var  vm = this;
     vm.productList=[];
     vm.banner = '';
     vm.talles = [];

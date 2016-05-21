@@ -11,12 +11,18 @@ class Perfil
 
     public function getReputacion($idUser){
         $id = (int) $this->connection->real_escape_string($idUser);
-        $query = "select  c.reputacion as reputacion
+        $query = "select  c.reputacion as rep
                     from cliente c
                     where c.idUsuario = $id";
         
-        $r = $this->connection->query($query);
-        return $r->fetch_assoc();
+        $reputacion = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $reputacion[] = $fila;
+            }
+            $result->free();
+        }
+        return $reputacion; 
     }
     
     public function getCuponesUsados($prodId){

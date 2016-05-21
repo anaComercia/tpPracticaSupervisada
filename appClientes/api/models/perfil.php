@@ -31,7 +31,7 @@ class Perfil
                     from cupon c
                     left join cupon_cliente cc on cc.idCupon = c.idCupon
                     where cc.idCliente = $id 
-                    and cc.estado = SI          ";
+                    and cc.estado = 'SI'";
          $cuponNuevo = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -48,7 +48,7 @@ class Perfil
                     from cupon c
                     left join cupon_cliente cc on cc.idCupon = c.idCupon
                     where cc.idCliente = $id 
-                    and cc.estado = NO";
+                    and cc.estado = 'NO'";
          $cuponUsado = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

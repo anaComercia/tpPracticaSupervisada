@@ -15,25 +15,29 @@ class CrearCuenta
        
         //var_dump($data);
 
-        $nombre= $this->connection->real_escape_string($data['nombre']);
-        $apellido = $this->connection->real_escape_string($data['apellido']);
-        $email = $this->connection->real_escape_string($data['email']);
-        $repetirEmail =$this->connection->real_escape_string($data['repetirEmail']);
-        $numDni = 32479609;//$this->connection->real_escape_string($data['numDni']);
-        $tipoDni = 'dni';//$this->connection->real_escape_string($data['tipoDni']);
-        $fechaNacimiento =$this->connection->real_escape_string($data['fechaNacimiento']);
-        $telefono = $this->connection->real_escape_string($data['telefono']);
-        $pais= $this->connection->real_escape_string($data['pais']);
-        $direccion =$this->connection->real_escape_string($data['direccion']);
-        $idLocalidad =1;// $this->connection->real_escape_string($data['idLocalidad']);
-        $codigoPostal = $this->connection->real_escape_string($data['codigoPostal']);
-        $clave = $this->connection->real_escape_string($data['clave']);
-        $repetirClave= $this->connection->real_escape_string($data['repetirClave']);
-        $idGenero =$this->connection->real_escape_string($data['idGenero']);
+        $nombre=            $this->connection->real_escape_string($data['nombre']);
+        $apellido =         $this->connection->real_escape_string($data['apellido']);
+        $email =            $this->connection->real_escape_string($data['email']);
+        $repetirEmail =     $this->connection->real_escape_string($data['repetirEmail']);
+        $numDni =           $this->connection->real_escape_string($data['numDni']);
+        $tipoDni =          $this->connection->real_escape_string($data['tipoDni']);
+        $fechaNacimiento =  $this->connection->real_escape_string($data['fechaNacimiento']);
+        $telefono =         $this->connection->real_escape_string($data['telefono']);
+        $pais=              $this->connection->real_escape_string($data['pais']);
+        $direccion =        $this->connection->real_escape_string($data['direccion']);
+        $idLocalidad =1;    // $this->connection->real_escape_string($data['idLocalidad']);
+        $codigoPostal =     $this->connection->real_escape_string($data['codigoPostal']);
+        $clave =            $this->connection->real_escape_string($data['clave']);
+        $repetirClave=      $this->connection->real_escape_string($data['repetirClave']);
+        $idGenero =         $this->connection->real_escape_string($data['idGenero']);
        
-        $idDireccion=0;
-        $idPersona=0;
-        $reputacion=100;
+        $idDireccion=   0;
+        $idPersona=     0;
+        $reputacion=    100;
+        $Fila=          array();
+        $IdCupon=       0;
+        $EstadoCupon=   1;
+        $idCliente=     0;
 
        
        //Insert en tabla: direccion
@@ -105,8 +109,6 @@ class CrearCuenta
        
        
        //Insert en tabla: cliente
-       
-       
        $queryCliente=
         "INSERT INTO cliente
         (idCliente, idUsuario, reputacion)
@@ -118,6 +120,38 @@ class CrearCuenta
        
         if($this->connection->query($queryCliente)){
             $data['idCliente'] = $this->connection->insert_id;
+            $idCliente=$data['idCliente'];
+            //return $data;
+        }else{
+            return false;
+        }
+       
+       
+        //Obtención IdCupon para descuento por alta
+       $queryCuponId=
+       "SELECT idCupon
+       FROM cupon 
+       WHERE montoDescuento=100";
+       
+       
+       if( $result = $this->connection->query($queryCuponId) ){
+           $Fila= $result->fetch_assoc();
+           $IdCupon=$Fila["idCupon"];
+           $result->free();
+        }
+       //print($IdCupon);
+       
+       //Insert en tabla:
+       $queryCupon_cliente=
+       "INSERT INTO cupon_cliente
+       (idCupon,idCliente,estado) 
+       VALUES 
+       ('$IdCupon','$idCliente','$EstadoCupon')";
+       
+       //print($queryCupon_cliente);
+           
+      if($this->connection->query($queryCupon_cliente)){
+            $data['idCupon'] = $this->connection->insert_id;
             
             return $data;
         }else{
@@ -125,7 +159,4 @@ class CrearCuenta
         }
        
     }
-    
-
-  
 }

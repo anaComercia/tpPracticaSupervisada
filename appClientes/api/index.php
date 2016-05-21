@@ -11,7 +11,7 @@ require_once("models/crearCuenta.php");
 //require_once("models/formaPago.php");
 //require_once("models/iniciarSesion.php");
 require_once("models/inicio.php");
-//require_once("models/perfil.php");
+require_once("models/perfil.php");
 require_once("models/producto.php");
 require_once("models/footer.php");
 require_once("models/genero.php");
@@ -54,6 +54,13 @@ $app->get('/altaDeCuentaGenero', function(){
 	}else{
 		sendError("Error al mostrar el genero");
 	}
+});
+
+$app->get('/reputacionPerf/:id', function($idUser){
+
+	$reputacion = new Perfil();
+	$data = $reputacion->getReputacion($idUser);
+	sendResult($data);
 });
 
 $app->get('/telSucursales', function(){
@@ -147,9 +154,9 @@ $app->get('/ProdTalles/:id', function($id){
 	$data = $producto->getTalles($id);
 	sendResult($data);
 });
-$app->get('/ProdColores/:colorBusqueda', function($colorBusqueda){
+$app->get('/ProdColores/:idTalle&:idProd', function($idTalle,$idProd){
 	$color = new Producto();
-	$data = $color->getColores($colorBusqueda);
+	$data = $color->getColores($idTalle,$idProd);
 	sendResult($data);
 });
 

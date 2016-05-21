@@ -115,11 +115,12 @@ function ProductosCtrl($state, ProductosService) {
         };
     
     vm.mostrarColores = function(){
-            vm.objColor = [{
+            var objColor = [{
                 talleSeleccionado: vm.talleSelecId,
                 productoSeleccionado: vm.prodDetalle.idProd
             } ];
-            return ProductosService.getColores(vm.objColor).then(function(data){
+      //  return ProductosService.getColores(objColor).then(function(data){
+            return ProductosService.getColores(vm.talleSelecId,vm.prodDetalle.idProd).then(function(data){
                 if(data){
                     vm.colores = data; 
                     vm.colorDesHabilitado = false;

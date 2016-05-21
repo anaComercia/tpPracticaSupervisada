@@ -181,14 +181,16 @@ class Producto
         return $talle; 
     }
     
-    public function getColores($producto){
-        $idProd = (int) $this->connection->real_escape_string($producto['productoSeleccionado']);
-        $idTalle = (int) $this->connection->real_escape_string($producto['talleSeleccionado']);
+    public function getColores($idTalle,$idProd){
+      //  $idProd = (int) $this->connection->real_escape_string($producto['productoSeleccionado']);
+       // $idTalle = (int) $this->connection->real_escape_string($producto['talleSeleccionado']);
+        $idPro = (int) $this->connection->real_escape_string($idProd);
+        $idTall = (int)  $this->connection->real_escape_string($idTalle);
         $query = "SELECT t.descripcion as descripcion, t.idColor as idColor
                     FROM presentacion_producto pp
                     left join color t on t.idColor = pp.idColor
-                    where pp.idTalle = $idTalle 
-                    and pp.idProducto = $idProd";
+                    where pp.idTalle = $idTall 
+                    and pp.idProducto = $idPro";
          $color = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

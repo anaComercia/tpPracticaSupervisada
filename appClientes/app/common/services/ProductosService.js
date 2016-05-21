@@ -78,8 +78,9 @@ backendEcommerce.service("ProductosService", function($http){
 		})
     };
     
-    this.getColores = function($colorBusqueda){
-    	var promise = $http.get('api/index.php/ProdColores/'+$colorBusqueda);
+   // $app->get('/ProdColores/:colorBusqueda', function($colorBusqueda){
+    this.getColores = function($idTalle,$idProd){
+    	var promise = $http.get('api/index.php/ProdColores/'+$idTalle+'&'+$idProd);
 		return promise.then(function(response){
 			return response.data.data;
 		})

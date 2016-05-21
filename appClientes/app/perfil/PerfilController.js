@@ -2,17 +2,26 @@ angular
     .module("backendEcommerceClientes.perfil")
     .controller("PerfilController", PerfilCtrl);
 
-PerfilCtrl.$injector = ["$state"];
+PerfilCtrl.$injector = ["$state","PerfilService"];
 
-function PerfilCtrl($state) {
+function PerfilCtrl($state, PerfilService) {
     vm = this;
+    vm.idUsuario = 1; //SACAR HARDCODE
     
     /* reputacion */
-    vm.reputacionCliente = 75;
+    vm.reputacionCliente = 0;
     vm.mensajeReputacion = "Tu reputación es de ";
     
     vm.mensajeInformativo= "La reputación es un acumulador de puntos que comenzará con un valor de 100 al crearse la cuenta."
                          + "Ésta disminuirá en 25 cada vez que usted realice una compra y no la concrete. Cuando la reputación llegue a 0 (cero), su cuenta será inhabilitada y deberá comunicarse con una sucursal para aclarar su situación; Del mismo modo, cada vez que usted realice una compra satisfactoria la reputación incrementará en 25 hasta un máximo de 100. ";
+    
+     vm.mostrarReputacion = function(){
+            return PerfilService.getReputacion(vm.idUsuario).then(function(data){
+                if(data){
+                    vm.reputacionCliente = data; 
+                }
+            });
+        };
     
     /* lista cupones */
     vm.cuponUsadosLista = [
@@ -46,4 +55,11 @@ function PerfilCtrl($state) {
             code: 'fhs437use4',
             price: 250
         }];
+    
+     vm.init = function(){
+        vm.mostrarReputacion();
+	};
+    
+    vm.init();
+    
 }

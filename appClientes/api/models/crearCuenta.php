@@ -87,7 +87,7 @@ class CrearCuenta
         "INSERT INTO usuario
         (idUsuario, usuario, contraseña, idPersona, habilitado) 
         VALUES 
-        (DEFAULT,'$email','$clave','$idPersona','s')";
+        (DEFAULT,'$email','$clave','$idPersona',1)";
        
        //print($queryPersona);
        

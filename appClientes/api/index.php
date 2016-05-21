@@ -63,6 +63,18 @@ $app->get('/reputacionPerf/:id', function($idUser){
 	sendResult($data);
 });
 
+$app->get('/cuponNuevo/:id', function($idUser){
+
+	$reputacion = new Perfil();
+	$data = $reputacion->getCuponesUsados($idUser);
+	sendResult($data);
+});
+$app->get('/cuponUsado/:id', function($idUser){
+
+	$reputacion = new Perfil();
+	$data = $reputacion->getCuponesNuevos($idUser);
+	sendResult($data);
+});
 $app->get('/telSucursales', function(){
 
 	$telefono = new Footer();

@@ -19,7 +19,39 @@ class Perfil
         return $r->fetch_assoc();
     }
     
+    public function getCuponesUsados($prodId){
+        $id = (int) $this->connection->real_escape_string($prodId);
+        $query = "select c.descripcion,c.montoDescuento, cc.estado
+                    from cupon c
+                    left join cupon_cliente cc on cc.idCupon = c.idCupon
+                    where cc.idCliente = $id 
+                    and cc.estado = SI          ";
+         $cuponNuevo = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $cuponNuevo[] = $fila;
+            }
+            $result->free();
+        }
+        return $cuponNuevo; 
+    }
     
+    public function getCuponesNuevos($prodId){
+        $id = (int) $this->connection->real_escape_string($prodId);
+        $query = "select c.descripcion,c.montoDescuento, cc.estado
+                    from cupon c
+                    left join cupon_cliente cc on cc.idCupon = c.idCupon
+                    where cc.idCliente = $id 
+                    and cc.estado = NO";
+         $cuponUsado = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $cuponUsado[] = $fila;
+            }
+            $result->free();
+        }
+        return $cuponUsado; 
+    }
     
     
 }

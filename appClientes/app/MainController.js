@@ -3,9 +3,9 @@ angular
     .controller("MainController", MainCtrl);
 
 
-MainCtrl.$injector = ["$state","FooterService"];
+MainCtrl.$injector = ["$state","FooterService","$rootScope"];
 
-function MainCtrl($state, FooterService) {
+function MainCtrl($state, FooterService, $rootScope) {
 
 //Siempre que se trabaje con angular en js se tiene que traer el modulo declarado en index.html ng-app
 //var backendEcommerce = angular.module("backendEcommerceClientes");
@@ -16,6 +16,13 @@ function MainCtrl($state, FooterService) {
 	this.brand = "Usuario";
     vm = this;
 	vm.telefonos=[];
+    vm.totalReservas = localStorage.contador == undefined ? 0 : JSON.parse(localStorage.contador);
+    
+    $rootScope.$on('actualizarTotal', _actualizarTotal);
+    
+    function _actualizarTotal(event, newTotal){
+        vm.totalReservas = newTotal;
+    }
     
     jQuery("document").ready(function($){
     

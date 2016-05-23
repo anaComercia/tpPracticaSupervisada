@@ -3,10 +3,10 @@
     
     <img src="{{buyData.image}}" class="img-compras" />
     <label class="compras-lbl-detalle">{{buyData.detail | uppercase}}</label>
-    <label class=" compras-lbl-cantidad ">{{buyData.quantity}}</label>
-    <label class=" compras-lbl-cantidad ">{{buyData.unitPrice}}</label>
-    <label class=" compras-lbl-precio ng-cloak " >$ {{buyData.subTotal}}</label>
-    <label>
+    <label class="compras-lbl-color" >{{buyData.color}}</label>
+    <label class="compras-lbl-size" > {{buyData.size}}</label>
+    <label class=" compras-lbl-cantidad ">$ {{buyData.unitPrice}}</label>
+    <label ng-click="reservaItem()">
         <span class="glyphicon glyphicon-remove"></span>
     </label>
 </div>

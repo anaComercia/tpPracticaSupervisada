@@ -30,7 +30,7 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 			controllerAs : "ini"// es el alias que usamos para referirnos al controller
 		})
 		.state("productos", {
-			url : "/productos",
+			url : "/productos", 
 			templateUrl : "app/productos/ProductosIndex.html",
 			controller : "ProductosListController",
 			controllerAs : "prod"
@@ -59,7 +59,7 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
         .state("carrito", {
 			url : "/carrito",
 			templateUrl : "app/carrito/CarritoTemplate.html",
-			controller : "CarritoController",
+			//controller : "CarritoController",
 			controllerAs : "carrito"
 		})
         .state("iniciarSesion", {
@@ -81,15 +81,12 @@ backendEcommerce.config(function($stateProvider, $urlRouterProvider){
 			controllerAs : "prfl"
 		})
           
-    
-    //2016/04/11 acastillo*/
-
         .state("recordarContrasenia", {
-			url : "/recordarContrasenia",
-			templateUrl : "app/iniciarSesion/RecordarContrasenia.html",
-			controller : "IniciarSesionController",
-			controllerAs : "recordarContraseniaCta"
-		});
+            url : "/recordarContrasenia",
+            templateUrl : "app/iniciarSesion/RecordarContrasenia.html",
+            controller : "IniciarSesionController",
+            controllerAs : "recordarContraseniaCta"
+        });
 	$urlRouterProvider.otherwise("/inicio"); 
 	
 });

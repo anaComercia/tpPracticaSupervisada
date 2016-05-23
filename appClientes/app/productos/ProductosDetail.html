@@ -49,10 +49,11 @@
                 </select>
             
                 
-                <select class="select-option" 
+                <select class="select-option-prodDetail" 
                         ng-model="productCtrl.mySelect.color" 
                         ng-disabled="productCtrl.colorDesHabilitado"
-                        ng-options="option as option for option in productCtrl.prod.color">
+                        ng-change="productCtrl.ejectuarCambioColor() "
+                        ng-options="option as option.descripcion for option in productCtrl.colores">
                 </select>
             </div>
         </div>
@@ -94,11 +95,15 @@
             </div>
         <!--FIN MODAL -->
         
-        <button  type="button" class="btn btn-default btn-md btn-agregar">
+        <button  type="button" 
+                class="btn btn-default btn-md btn-agregar" 
+                ng-click="productCtrl.agregarProductoTemporal()"
+                ng-disabled="productCtrl.deshabilitarBtnAgregar">
             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
             Agregar al carrito
         </button>
         
+        <div class="alert alert-success msg-success" role="alert" ng-hide="productCtrl.hideMsgSuccess">{{productCtrl.messageSuccess}}</div>
 
     </div>    
 </div>

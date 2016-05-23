@@ -39,6 +39,7 @@
              <label>Banco</label>
               <select class="select-option select-banco" 
                     ng-model="pagarCtrl.mySelect.bancos" 
+                    ng-change="pagarCtrl.cambioBanco()"
                     ng-init="pagarCtrl.mySelect.bancos = pagarCtrl.bancos[0]" 
                     ng-options="banco as banco.detail for banco in pagarCtrl.bancos" 
                    >
@@ -46,6 +47,8 @@
              
             <select class="select-option select-tipo-tarjeta" 
                     ng-model="pagarCtrl.mySelect.tarjeta" 
+                    ng-disabled="pagarCtrl.disableTarjetas"
+                     ng-change="pagarCtrl.cambioTarjeta()"
                     ng-init="pagarCtrl.mySelect.tarjeta = pagarCtrl.tarjetas[0]" 
                     ng-options="tarjeta as tarjeta.type for tarjeta in pagarCtrl.tarjetas" 
                     >
@@ -54,8 +57,9 @@
              <label>Cantidad de cuotas</label>
               <select class="select-option select-cant-cuotas" 
                     ng-model="pagarCtrl.mySelect.cuotas" 
-                    ng-init="pagarCtrl.mySelect.cuotas = pagarCtrl.cuotas[0]" 
-                    ng-options="cuota as cuota for cuota in pagarCtrl.cuotas" 
+                      ng-disabled="pagarCtrl.disableCuotas"
+                    ng-init="pagarCtrl.mySelect.cuotas = pagarCtrl.cuotas" 
+                    ng-options="cuota as cuota.cuotas for cuota in pagarCtrl.cuotas" 
                    >
              </select>
              <div class="nro-tarjeta">
@@ -164,9 +168,10 @@
          <div class="div-total-reserva">
                 <div class="total-pagar-finalizar">
                     TOTAL A PAGAR
-                    <label ng-controller="CarritoController as carroCtrl">
-                        $ {{carroCtrl.totalReservas}} + $entrega
+                    <label>
+                        $ {{pagarCtrl.totalReservas}}
                     </label> 
+                   
                 </div>
                
                 <button  type="button" class=" btn-terminar btn btn-default btn-md" >

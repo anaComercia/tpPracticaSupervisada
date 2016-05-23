@@ -67,6 +67,12 @@
 .compras-lbl-cantidad{
       width: 98px;
 }
+.compras-lbl-color{
+    width: 141px;
+}
+.compras-lbl-size{
+    width: 60;
+}
 .compras-lbl-precio{
      width: 96px;
 }

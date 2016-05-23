@@ -2,30 +2,27 @@ angular
     .module("backendEcommerceClientes.carrito")
     .controller("PagarCompraController", PagarCompraController);
 
-PagarCompraController.$injector = ["$state, $scope"];
+PagarCompraController.$injector = ["$state", "$scope", "CarritoService"];
 
-function PagarCompraController($state,$scope) {
+function PagarCompraController($state,$scope,CarritoService) {
    var vm = this;
     
-    vm.sumaTotalReservas = $scope.carrito.totalReservas;
-    
+    //vm.sumaTotalReservas = $scope.carrito.totalReservas;
+    debugger;
+    vm.totalReservas = localStorage.contador == undefined ? new Number() : JSON.parse(localStorage.contador);
+    vm.sumaTotalReservas = vm.totalReservas ;
     vm.mySelect = {};//seleccion de los combos
     vm.nvoDom = {};//seleccion de los combos
-    
-      vm.tarjetas = [
-        {
-            id: 1,
-            type: 'VISA'
-        },
-        {
-            id: 2,
-            type: 'MASTER CARD'
-        },
-        {
-            id: 3,
-            type: 'AMEX'
-        }];
-      vm.cuotas = [1,2,3];
+    vm.bancos = [];
+    vm.disableTarjetas = true;
+    vm.disableCuotas=true;
+    vm.tarjetas = [];
+    vm.cuotas = [];
+    vm.hiddenTarjeta = true;
+    vm.isOpenTarjeta = false;
+    vm.hiddenSucursal = true;
+    vm.isOpenSucursal = false;  
+     
     
       vm.domicilios = [
         {
@@ -41,19 +38,7 @@ function PagarCompraController($state,$scope) {
             detail: 'Jonte 987'
         }];
     
-     vm.bancos = [
-        {
-            id: 1,
-            detail: 'BBVA'
-        },
-        {
-            id: 2,
-            detail: 'Banco Galicia'
-        },
-        {
-            id: 3,
-            detail: 'Santander Rio'
-        }];
+     
     
      vm.localidades = [
         {
@@ -82,10 +67,7 @@ function PagarCompraController($state,$scope) {
             detail: 'Gran Buenos Aires'
         }];
     
-    vm.hiddenTarjeta = true;
-    vm.isOpenTarjeta = false;
-    vm.hiddenSucursal = true;
-    vm.isOpenSucursal = false;
+   
     
     $scope.mostrarTarjetas = function(value) {
         if(value){
@@ -106,6 +88,47 @@ function PagarCompraController($state,$scope) {
    
     };
     
+    vm.cambioBanco = function(){
+        vm.traerTarjetas();
+    }
+    
+    vm.cambioTarjeta = function(){
+        vm.traerCuotas();
+    }
+    
+    vm.mostrarBancos = function(){
+     return CarritoService.getBancos().then(function(data){
+            if(data){
+                vm.bancos = data;
+
+            }
+        });
+    }
+    
+    vm.traerTarjetas = function(){
+     return CarritoService.getTarjetas(vm.mySelect.bancos.id).then(function(data){
+            if(data){
+                vm.tarjetas = data;
+                vm.disableTarjetas = false;
+            }
+        });
+    }
+    
+     vm.traerCuotas = function(){
+     return CarritoService.getCuotas(vm.mySelect.bancos.id,vm.mySelect.tarjeta.id).then(function(data){
+            if(data){
+                vm.cuotas = data;
+                vm.disableCuotas = false;
+            }
+        });
+    }
+    
+    vm.init = function(){
+       
+        vm.mostrarBancos();
+	};
+    
+    vm.init();
   /*  $(function () {
      $("#datepicker").datepicker({ 
             autoclose: true, 

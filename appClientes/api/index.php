@@ -5,7 +5,7 @@ ini_set('display_errors', 'On');
 error_reporting(E_ALL | E_STRICT);
 
 //Acá se traen todos los archivos php que tienen los métodos para operar con la bd
-//require_once("models/carrito.php");
+require_once("models/carrito.php");
 //require_once("models/contacto.php");
 require_once("models/crearCuenta.php");
 //require_once("models/formaPago.php");
@@ -75,6 +75,12 @@ $app->get('/cuponUsado/:id', function($idUser){
 	$data = $reputacion->getCuponesNuevos($idUser);
 	sendResult($data);
 });
+$app->get('/carritoTarjetas/:id', function($id){
+
+	$reputacion = new Carrito();
+	$data = $reputacion->getTarjetas($id);
+	sendResult($data);
+});
 $app->get('/telSucursales', function(){
 
 	$telefono = new Footer();
@@ -92,6 +98,12 @@ $app->get('/bancos', function(){
 
 	$producto = new Producto();
 	$data = $producto->getAllBancos();
+	sendResult($data);
+});
+$app->get('/bancosCarrito', function(){
+
+	$producto = new Carrito();
+	$data = $producto->getBancos();
 	sendResult($data);
 });
 $app->get('/productos', function(){
@@ -169,6 +181,16 @@ $app->get('/ProdTalles/:id', function($id){
 $app->get('/ProdColores/:idTalle&:idProd', function($idTalle,$idProd){
 	$color = new Producto();
 	$data = $color->getColores($idTalle,$idProd);
+	sendResult($data);
+});
+$app->get('/ProdSku/:idTalle&:idColor:idProd', function($idTalle,$idColor,$idProd){
+	$color = new Producto();
+	$data = $color->getSKU($idTalle,$idColor,$idProd);
+	sendResult($data);
+});
+$app->get('/CuotasCarrito/:banco&:tarjeta', function($banco,$tarjeta){
+	$color = new Carrito();
+	$data = $color->getCuotas($banco,$tarjeta);
 	sendResult($data);
 });
 

@@ -86,4 +86,11 @@ backendEcommerce.service("ProductosService", function($http){
 		})
     };
     
+    this.getSKU = function($idTalle,$idColor,$idProd){
+    	var promise = $http.get('api/index.php/ProdSku/'+$idTalle+'&'+$idColor+'&'+$idProd);
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
+    
 });

@@ -158,6 +158,9 @@ a:link{
 img{
     cursor: pointer;
 }
+a label{
+    cursor: pointer;
+}
 .img-banner-modulo{
     width: 1000px !important;
     height: 200px !important;

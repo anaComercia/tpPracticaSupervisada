@@ -2,52 +2,40 @@ angular
     .module("backendEcommerceClientes.carrito")
     .controller("CarritoController", CarritoCtrl);
 
-CarritoCtrl.$injector = ["$state"];
+CarritoCtrl.$injector = ["$state","$rootScope"];
 
-function CarritoCtrl($state) {
-   var vm = this;
-    vm.totalReservas = 10;
+function CarritoCtrl($state,$rootScope) {
+    var vm = this;
+    vm.totalReservas = localStorage.contador == undefined ? new Number() : JSON.parse(localStorage.contador);
     
+    vm.listaReservas = localStorage.listaTemporal == undefined ? new Array() : JSON.parse(localStorage.listaTemporal);
+    var precio;
+    
+    vm.onClickDetail= function(reserva){ //remueve item de la lista temporal de reservas
+        for (i = 0; i < vm.listaReservas.length; i++) {
+            if(vm.listaReservas[i] == reserva){
+                precio = vm.listaReservas[i].unitPrice;
+                vm.listaReservas.splice(i,1);
+                vm.actualizarListaTemp();
+            }
+            
+        }
+    };
+    
+    vm.actualizarListaTemp = function(){ //actualiza datos desde la lista temporal
+        localStorage.listaTemporal = JSON.stringify(vm.listaReservas);
+
+        var contador =localStorage.contador == undefined ? new Number() : JSON.parse(localStorage.contador) ;
+        contador = contador - precio;
+        vm.totalReservas = contador;
+        localStorage.contador = JSON.stringify(contador);
+       
+        $rootScope.$emit('actualizarTotal', contador);
+       
+    }
     /* lista compras */
-    /*vm.listaCompras = [
-        {
-            id:1,
-            image: 'img/modulos/prueba2.jpg', 
-            detail: 'campera milano', 
-            quantity: 2,
-            price: 1600,
-            buyDate: '16/01/2016',
-            payDate:'17/01/2016'
-        },
-        {
-            id:2,
-            image: 'img/modulos/prueba1.jpg', 
-            detail: 'remera ny',
-            quantity: 1,
-            price: 800,
-            buyDate: '06/10/2015',
-            payDate:'07/20/2015'
-        }
-    ];*/
     
-    vm.listaReservas = [
-        {
-            id:1,
-            image: 'img/modulos/prueba2.jpg', 
-            detail: 'campera milano', 
-            quantity: 1,
-            unitPrice: 800
-        },
-        {
-            id:1,
-            image: 'img/modulos/prueba2.jpg', 
-            detail: 'campera milano', 
-            quantity: 2,
-            unitPrice: 550
-        }
-    ];
-    
-    vm.totalReservas = _calculationTotal();
+    /*vm.totalReservas = _calculationTotal();
         
     function _calculationTotal(){
         var total = 0;
@@ -58,7 +46,7 @@ function CarritoCtrl($state) {
         return total;
     };
 
-    /*vm.totalReservas = 
+    vm.totalReservas = 
         
     function _calculationTotal(productList){
         var total = 0;

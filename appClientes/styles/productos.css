@@ -90,6 +90,13 @@
     
 }
 
+.select-option-prodDetail{
+    width: 121px;
+    height: 30;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 .select-option{
     width: 70;
     height: 30;
@@ -197,4 +204,12 @@ z-index:100;
 .ver-detalle-cuotas:hover{
     color: cadetblue;
     text-decoration: underline;
+}
+
+.msg-success{
+    padding: 0px !important;
+    margin-top: 15;
+    width: 350;
+    margin-left: 79px;
+    padding-left: 31px !important;
 }

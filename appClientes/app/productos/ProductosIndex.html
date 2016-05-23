@@ -41,7 +41,7 @@
 
        <producto-directive 
                         style="margin:20px;" 
-                        ng-repeat="product in prodCtrl.productList"
+                        ng-repeat="product in prodCtrl.productList | filter:prodCtrl.filtroTienda"
                         on-click-detail="prodCtrl.onClickDetail(product.idProd)"
                         product-data="product">
        </producto-directive>

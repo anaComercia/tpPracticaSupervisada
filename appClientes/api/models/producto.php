@@ -167,7 +167,7 @@ class Producto
     
       public function getTalles($prodId){
         $id = (int) $this->connection->real_escape_string($prodId);
-        $query = "SELECT t.descripcion as descripcion, t.idTalle as idTalle
+        $query = "SELECT DISTINCT t.descripcion as descripcion, t.idTalle as idTalle
                     FROM presentacion_producto pp
                     left join talle t on t.idTalle = pp.idTalle
                     where pp.idProducto = $prodId";
@@ -199,6 +199,27 @@ class Producto
             $result->free();
         }
         return $color; 
+    }
+    
+     public function getSKU($idTalle,$idColor,$idProd){
+      //  $idProd = (int) $this->connection->real_escape_string($producto['productoSeleccionado']);
+       // $idTalle = (int) $this->connection->real_escape_string($producto['talleSeleccionado']);
+        $idPro = (int) $this->connection->real_escape_string($idProd);
+        $idTall = (int)  $this->connection->real_escape_string($idTalle);
+        $idColo = (int)  $this->connection->real_escape_string($idColor);
+        $query = "select pp.codSku
+                    from presentacion_producto pp
+                    where pp.idProducto = $idPro 
+                    and pp.idTalle = $idTall 
+                    and pp.idColor = $idColo ";
+         $sku = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $sku[] = $fila;
+            }
+            $result->free();
+        }
+        return $sku; 
     }
     
 }

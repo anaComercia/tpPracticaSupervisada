@@ -11,17 +11,18 @@
         <div class="titulos-reservas">
             <label style="  margin-left: 20px;"> IMAGEN </label>
             <label style="  margin-left: 10px;"> DETALLE </label>
-            <label style="  margin-left: 149px;"> CANTIDAD </label>
+            <label style="  margin-left: 175px;"> COLOR </label>
+            <label style="  margin-left: 61px;"> TALLE </label>
             <label style="  margin-left: 30px;">  PRECIO </label>
-            <label style="  margin-left: 30px;">   TOTAL</label>
             
 
         </div>
         <div >
-            <carrito-reservas-directive 
+            <reservas-directive 
                                ng-repeat="reservas in carritoCtrl.listaReservas" 
-                               buy-data="reservas">
-            </carrito-reservas-directive >
+                               buy-data="reservas"
+                               on-click-detail="carritoCtrl.onClickDetail(reservas)">
+            </reservas-directive >
   
         </div>
         

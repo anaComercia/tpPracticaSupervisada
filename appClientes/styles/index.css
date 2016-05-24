@@ -158,6 +158,9 @@ a:link{
 img{
     cursor: pointer;
 }
+li label{
+    cursor: pointer;
+}
 a label{
     cursor: pointer;
 }

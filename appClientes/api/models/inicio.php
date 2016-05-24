@@ -92,6 +92,7 @@ class Inicio
                     p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                     FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
+                    and p.baja = 0
                     AND p.idGenero = g.idGenero
                     and upper(p.titulo) like upper('%$dato%')";
          $buscado = array();

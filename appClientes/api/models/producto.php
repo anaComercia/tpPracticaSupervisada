@@ -36,11 +36,13 @@ class Producto
         return $productos;
     }
     public function getDetalleProducto($id){
-        $query = "SELECT t.descripcion as talle,c.descripcion, as color, pres.sku as sku
+        $query = "SELECT t.descripcion as talle,c.descripcion as color, pres.codSku as sku
                     FROM talle t, presentacion_producto pres ,color c, producto p
                     WHERE p.idProducto = pres.idProducto 
                     AND pres.idTalle = t.idTalle
                     AND pres.idColor = c.idColor
+                    and p.baja = 0 
+                    and pres.baja = 0
                     AND p.idProducto = '$id'";
         $detalle = array();
         if( $result = $this->connection->query($query) ){
@@ -59,6 +61,7 @@ class Producto
                     p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                     FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
+                    and p.baja = 0 
                     AND p.idGenero = g.idGenero
                     AND UPPER(g.descripcion) = 'HOMBRE' ";
         $productosHombre = array();
@@ -76,6 +79,7 @@ class Producto
                     p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                      FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
+                    and p.baja = 0 
                     AND p.idGenero = g.idGenero
                     AND UPPER(g.descripcion) = 'MUJER' ";
         $productosMujer = array();
@@ -91,7 +95,9 @@ class Producto
     public function getProductosCamisa(){
         $query = "SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,               p.descripcion as prodDesc, p.idProducto as idProd,
                     p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
+                     FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
+                    and p.baja = 0 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'CAMISA' ";
         $productosCamisa = array();
@@ -108,6 +114,7 @@ class Producto
                     p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                     FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
+                    and p.baja = 0 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'JEAN' ";
         $productosJean = array();
@@ -125,6 +132,7 @@ class Producto
                     p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                      FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
+                    and p.baja = 0 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'CAMPERA' ";
         $productosCampera = array();
@@ -141,6 +149,7 @@ class Producto
                     p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
                      FROM categoria c, genero g, producto p
                     WHERE p.idCategoria = c.idCategoria 
+                    and p.baja = 0 
                     AND p.idGenero = g.idGenero
                     AND UPPER(c.descripcion) = 'REMERA' ";
         $productosRemera = array();
@@ -170,7 +179,8 @@ class Producto
         $query = "SELECT DISTINCT t.descripcion as descripcion, t.idTalle as idTalle
                     FROM presentacion_producto pp
                     left join talle t on t.idTalle = pp.idTalle
-                    where pp.idProducto = $prodId";
+                    where pp.idProducto = $prodId
+                    and pp.baja = 0 ";
          $talle = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -190,7 +200,8 @@ class Producto
                     FROM presentacion_producto pp
                     left join color t on t.idColor = pp.idColor
                     where pp.idTalle = $idTall 
-                    and pp.idProducto = $idPro";
+                    and pp.idProducto = $idPro
+                    and pp.baja = 0";
          $color = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -211,7 +222,8 @@ class Producto
                     from presentacion_producto pp
                     where pp.idProducto = $idPro 
                     and pp.idTalle = $idTall 
-                    and pp.idColor = $idColo ";
+                    and pp.idColor = $idColo
+                    and pp.baja = 0";
          $sku = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

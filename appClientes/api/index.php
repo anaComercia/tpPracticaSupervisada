@@ -178,6 +178,11 @@ $app->get('/ProdTalles/:id', function($id){
 	$data = $producto->getTalles($id);
 	sendResult($data);
 });
+$app->get('/IniBuscadorProd/:dato', function($dato){
+	$producto = new Inicio();
+	$data = $producto->getProductoCliente($dato);
+	sendResult($data);
+});
 $app->get('/ProdColores/:idTalle&:idProd', function($idTalle,$idProd){
 	$color = new Producto();
 	$data = $color->getColores($idTalle,$idProd);

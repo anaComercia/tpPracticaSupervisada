@@ -84,4 +84,23 @@ class Inicio
         }
         return $imgFijas;
     }
+    
+     public function getProductoCliente($dato){
+    
+        $query = "SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,
+                    p.descripcion as prodDesc, p.idProducto as idProd,
+                    p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
+                    FROM categoria c, genero g, producto p
+                    WHERE p.idCategoria = c.idCategoria 
+                    AND p.idGenero = g.idGenero
+                    and upper(p.titulo) like upper('%$dato%')";
+         $buscado = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $buscado[] = $fila;
+            }
+            $result->free();
+        }
+        return $buscado; 
+    }
 }

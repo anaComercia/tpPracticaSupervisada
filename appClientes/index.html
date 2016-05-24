@@ -67,8 +67,12 @@
        <div id="container" style="container" ng-controller="MainController as main">
             <div id="idHeader" class="row col-md-10 col-md-offset-1 col-xs-6" >
                 <div id="idDivBuscador" class="col-md-3 input--search">
-                        <input id="idBuscador" class="input-buscador" maxlength="15" placeholder="Buscar" style="fa fa-search"/>
-                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                        <input id="idBuscador" class="input-buscador" 
+                                maxlength="15"  ng-model="main.mySelect.buscador"
+                                placeholder="Buscar" style="fa fa-search"/>
+                        <button type="submit" class="btn" 
+                                ng-click="main.buscarProducto()"
+                                ui-sref="inicio"><i class="fa fa-search"></i></button>
                 </div>
 
                 <div id="idDivEmpresa" class="col-md-6 container"   >

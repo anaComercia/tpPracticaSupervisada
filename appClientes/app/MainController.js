@@ -17,6 +17,7 @@ function MainCtrl($state, FooterService, $rootScope) {
     vm = this;
 	vm.telefonos=[];
     vm.totalReservas = localStorage.contador == undefined ? 0 : JSON.parse(localStorage.contador);
+    vm.mySelect = localStorage.buscador == undefined ?  new String() :  new String();
     
     $rootScope.$on('actualizarTotal', _actualizarTotal);
     
@@ -46,6 +47,16 @@ function MainCtrl($state, FooterService, $rootScope) {
                 }
             });
         };
+    
+    vm.buscarProducto= function(){
+        if((typeof vm.mySelect != 'undefined') 
+            && (typeof vm.mySelect.buscador != 'undefined')){
+            
+            localStorage.buscador = JSON.stringify(vm.mySelect.buscador);
+            vm.mySelect = undefined;
+             $rootScope.$emit('actualizarBuscador');
+        }
+    };
     
     vm.init = function(){
         vm.mostrarTelefonos();

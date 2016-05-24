@@ -22,6 +22,7 @@ function ProductosCtrl($state, ProductosService,$rootScope) {
     vm.mySelect = {};//seleccion de los combos
     vm.messageSuccess = "El producto se agregó con éxito a tus reservas."
     vm.hideMsgSuccess = true;
+ 
   
     
     //lista del carrito
@@ -211,6 +212,7 @@ function ProductosCtrl($state, ProductosService,$rootScope) {
     };
    
       vm.init = function(){
+        vm.mostrarListaProductos(); 
         vm.mostrarBanner();
         vm.mostrarListaProductos();
         vm.mostrarBancos();

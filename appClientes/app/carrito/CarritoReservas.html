@@ -30,7 +30,10 @@
             TOTAL A PAGAR
             <label class="div-total-reserva-precio">$ {{carritoCtrl.totalReservas}}</label>
             <div >
-                <button  type="button" class=" btn-pagar btn btn-default btn-md" ui-sref="carrito.pagarCompra">
+                <button  type="button" 
+                           class=" btn-pagar btn btn-default btn-md" 
+                           ng-disabled="carritoCtrl.disablePagar"
+                           ui-sref="carrito.pagarCompra">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     PAGAR
                 </button>

@@ -6,8 +6,9 @@ CarritoCtrl.$injector = ["$state","$rootScope"];
 
 function CarritoCtrl($state,$rootScope) {
     var vm = this;
+    vm.disablePagar = vm.totalReservas == 0 ? true : false;
     vm.totalReservas = localStorage.contador == undefined ? new Number() : JSON.parse(localStorage.contador);
-    
+    var contador;
     vm.listaReservas = localStorage.listaTemporal == undefined ? new Array() : JSON.parse(localStorage.listaTemporal);
     var precio;
     
@@ -25,11 +26,17 @@ function CarritoCtrl($state,$rootScope) {
     vm.actualizarListaTemp = function(){ //actualiza datos desde la lista temporal
         localStorage.listaTemporal = JSON.stringify(vm.listaReservas);
 
-        var contador =localStorage.contador == undefined ? new Number() : JSON.parse(localStorage.contador) ;
+        contador =localStorage.contador == undefined ? new Number() : JSON.parse(localStorage.contador) ;
         contador = contador - precio;
         vm.totalReservas = contador;
         localStorage.contador = JSON.stringify(contador);
        
+        if(vm.totalReservas == 0){
+            vm.disablePagar = true;
+        }else{
+            vm.disablePagar = false;
+        }
+        
         $rootScope.$emit('actualizarTotal', contador);
        
     }

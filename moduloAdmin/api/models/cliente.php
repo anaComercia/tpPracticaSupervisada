@@ -10,7 +10,7 @@ class Cliente
     }
     
     public function getAll(){
-        $query = "SELECT * from Cliente";
+        $query = "SELECT * from cliente";
         $array = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -22,7 +22,7 @@ class Cliente
     }
     
      public function getAllDetalles(){
-        $query = "SELECT cli.*, usu.*, per.* from Cliente cli, Usuario usu, Persona per where cli.idUsuario = usu.idUsuario and usu.idPersona = per.idPersona";
+        $query = "SELECT cli.*, usu.*, per.* from cliente cli, usuario usu, persona per where cli.idUsuario = usu.idUsuario and usu.idPersona = per.idPersona";
         $array = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

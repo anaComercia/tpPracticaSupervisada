@@ -10,7 +10,7 @@ class Talle
     }
     
     public function getAll(){
-        $query = "SELECT idTalle, idGenero, Descripcion FROM Talle";
+        $query = "SELECT * FROM talle";
         $talles = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

@@ -4,7 +4,6 @@ var backendEcommerceAdmin = angular.module("backendEcommerceAdmin", [
 	"backendEcommerceAdmin.productos",
     "backendEcommerceAdmin.mp",
     "backendEcommerceAdmin.usuarios",
-    "backendEcommerceAdmin.perfilAdm",
     "backendEcommerceAdmin.imagenes",
     "backendEcommerceAdmin.envios",
     "backendEcommerceAdmin.sucursales",
@@ -12,6 +11,7 @@ var backendEcommerceAdmin = angular.module("backendEcommerceAdmin", [
     "backendEcommerceAdmin.admGeneral",
     "backendEcommerceAdmin.bancos",
     "backendEcommerceAdmin.provincias",
+    "backendEcommerceAdmin.colores",
 	"ui.router",
     "ngFileUpload"
 ]);
@@ -25,6 +25,12 @@ backendEcommerceAdmin.config(function($stateProvider, $urlRouterProvider){
 			templateUrl : "app/admin/categorias/CategoriasTemplate.html",
 			controller : "CategoriasController",
 			controllerAs : "cat"
+		})
+        .state("colores", {
+			url : "/colores",
+			templateUrl : "app/admin/colores/ColoresTemplate.html",
+			controller : "ColoresController",
+			controllerAs : "col"
 		})
 		.state("productos", {
 			url : "/productos",
@@ -85,14 +91,8 @@ backendEcommerceAdmin.config(function($stateProvider, $urlRouterProvider){
 			templateUrl : "app/admin/provincias/ProvinciasTemplate.html",
 			controller : "ProvinciasController",
 			controllerAs : "prov"
-		})
-    	.state("perfilAdm", {
-			url : "/perfilAdm",
-			templateUrl : "app/admin/perfil/PerfilAdmTemplate.html",
-			controller : "PerfilAdmController",
-			controllerAs : "pfAdm"
 		});
 	
-	$urlRouterProvider.otherwise("/perfilAdm");
+	$urlRouterProvider.otherwise("/admGeneral");
 	
 });

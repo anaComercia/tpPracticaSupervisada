@@ -1,6 +1,6 @@
 var mp = angular.module("backendEcommerceAdmin.mp");
 
-mp.controller("MpController", function($state, MpService, ColorService){
+mp.controller("MpController", function($state, MpService){
 	
 	this.title = "Modulo de Materia Prima";
 	var self = this;
@@ -13,11 +13,20 @@ mp.controller("MpController", function($state, MpService, ColorService){
     this.filtroMp = [];
     this.busqAv = false;
     this.parametrosBusqueda= [];
+    this.mpSeleccionadaEditar = [];
+    this.precios = [];
+    this.nuevoPrecio = null;
+    this.nuevaCantidad = null;
     
-    
-    this.getMpsDetalles = function(){
-            return MpService.getMpsDetalles().then(function(data){
+    this.getMps = function(){
+            return MpService.getMps().then(function(data){
             self.mps = data;
+        });
+    };
+    
+    this.getPrecios = function(){
+            return MpService.getPrecios(self.mpSeleccionadaEditar.idMP).then(function(data){
+            self.precios = data;
         });
     };
     
@@ -27,6 +36,49 @@ mp.controller("MpController", function($state, MpService, ColorService){
         self.activado = false; 
     };
 
+    
+    this.createMp = function(){
+        MpService.createMp(self.nuevaMp.titulo,self.nuevaMp.medida, self.nuevaMp.puntoReposicion, self.precios).then(function(response){
+            if(response.data.error){
+                alert("Ocurrio un error");
+                return;
+            }
+            self.nuevaMp = null;
+            self.precios = [];
+            self.getMps();
+            $state.go("mp");
+        })
+    };
+    
+      this.updateMp = function(){
+ MpService.updateMp(self.mpSeleccionadaEditar.idMP,self.mpSeleccionadaEditar.titulo, self.mpSeleccionadaEditar.medida, self.mpSeleccionadaEditar.puntoReposicion, self.precios).then(function(response){
+            if(response.data.error){
+                alert("Ocurrio un error");
+                return;
+            }
+            
+            self.getMps();
+			$state.go("mp");
+        })
+    };
+    
+     this.deleteMp= function(){
+         var r = confirm("¿Está seguro que desea borrar?");
+         if (r == true) {
+        MpService.deleteMp(self.mpSeleccionada.idMP).then(function(response){
+            if(response.data.error){
+                alert("Ocurrio un error");
+                return;
+            }
+            self.mpSeleccionada = null;
+            self.getMps();
+            self.activeItem(-1, null);
+			$state.go("mp");
+            })
+        } 
+    };
+    
+    
     this.nuevaMp = function(){
     self.formLabel = "Nueva Materia Prima";
     $state.go("mp.nueva");
@@ -34,12 +86,24 @@ mp.controller("MpController", function($state, MpService, ColorService){
    
     this.editarMp = function(){
 		self.formLabel = "Editar Materia Prima";
-        self.mps.forEach(function(elemento){
-        if(elemento.idMP == self.mpSeleccionada.idMP){
-        self.mpSeleccionada == elemento;
-        }});
-        $state.go("mp.editar",  { id : self.mpSeleccionada.idMP});
+        self.mpSeleccionadaEditar = JSON.parse(JSON.stringify(self.mpSeleccionada));
+        self.getPrecios(self.mpSeleccionadaEditar.idMP);
+        $state.go("mp.editar",  { id : self.mpSeleccionadaEditar.idMP});
     };
+    
+    this.agregarPrecio = function(){
+    data = {
+    'precio' : self.nuevoPrecio,
+    'cantidad' : self.nuevaCantidad
+    }
+    self.nuevoPrecio = null;
+    self.nuevaCantidad = null;
+    self.precios.push(data);
+    }
+    
+    this.quitarPrecio = function(index){
+     self.precios.splice(index,1);
+    }
     
     this.clearMp = function(){
     $state.go("mp");
@@ -62,7 +126,7 @@ mp.controller("MpController", function($state, MpService, ColorService){
     }
     
     this.init = function(){
-		this.getMpsDetalles();
+		this.getMps();
 	};
     
     this.init();

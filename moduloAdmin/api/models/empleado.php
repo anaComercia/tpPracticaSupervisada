@@ -10,7 +10,7 @@ class Empleado
     }
     
     public function getAll(){
-        $query = "SELECT * from Empleado";
+        $query = "SELECT * from empleado";
         $array = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -22,7 +22,7 @@ class Empleado
     }
     
      public function getAllDetalles(){
-        $query = "SELECT emp.*, usu.*, per.* from Empleado emp, Usuario usu, Persona per where emp.idUsuario = usu.idUsuario and usu.idPersona = per.idPersona";
+        $query = "SELECT emp.*, usu.*, per.* from empleado emp, usuario usu, persona per where emp.idUsuario = usu.idUsuario and usu.idPersona = per.idPersona";
         $array = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

@@ -1,0 +1,185 @@
+
+       <div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+
+<div class="row">
+<div class="btn-group" role="group" aria-label="...">
+<button type="button" class="btn btn-default" ng-click="conf.confeccionar = true" ng-show="conf.prodSeleccionado != null">Confeccionar</button>
+<button type="button" class="btn btn-default" ng-click="conf.confeccionar = false" ng-show="conf.confeccionar">Cancelar</button>
+<div class="row" ng-show="conf.confeccionar">
+	<div class="col-md-12"><hr/></div>
+</div>
+</div>
+</div>
+
+<!--Confeccionar-->  
+<div ng-show="conf.confeccionar">
+<div class="row" id="filaConfeccion">
+<label class="col-md-3">Cantidad a confeccionar:</label>
+<input type="text" class="col-md-4" ng-model="conf.cantidad"></input>
+<button class="col-md-2 btn-primary" ng-click="conf.ordenarConfeccion()">OK</button>
+</div>
+<div class="col-md-10">
+    <table ng-table="tablaConfeccion" class="table table-striped" >
+    <thead>
+      <tr>
+        <th>Materia Prima</th>
+        <th>Stock</th>
+        <th>Cantidad necesaria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="mp in conf.receta" >
+          <!-- <ng-class permite cambiar la clase de un elemento en tiempo real si algo sucede> -->
+        <td><li class="form-control">
+            {{mp.titulo}}</li>
+		  </td>
+        <td> <li class="form-control">
+			  {{mp.stock}}</li>
+		  </td>
+           <td> 
+               <li class="form-control" ng-attr-id="{{'mp-' + mp.idMP}}">{{mp.stock * conf.cantidad}}</li>
+		  </td>   
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+<!--Fin confeccionar-->
+    
+</div>
+<div class="row">
+    <div class="col-md-12"><hr/></div>
+    <div class="row">
+   </div>
+    
+    <div class="row">
+        <!-- Buscador-->
+     <a ng-click="conf.busqAv = !conf.busqAv">Busqueda avanzada <span ng-class="!conf.busqAv ? 'glyphicon glyphicon-arrow-down' : 'glyphicon glyphicon-arrow-up'"></span></a>
+        <div ng-show="conf.busqAv">
+    
+           <div>
+            <label class="titulo">Agregar filtro</label>  
+           </div>
+            <div class="row" id="buscaFiltros">
+                <div class="col-md-8">
+                <select class="form-control" name="filtrado" id="cbParametro">
+                <option>Categoria</option>
+                <option>SKU</option>
+                </select>
+                </div>
+            <div class="col-md-2" id="botonContainer">
+                  <button id="btnMas" type="button" class="btn btn-primary" ng-click="conf.agregarParametro()" >
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+            </div>
+                <div class="col-md-2">
+                    <button id="btnBuscar" type="button">Buscar</button>
+                </div>
+          </div>
+    
+        
+    <div ng-show="conf.parametrosBusqueda.length > 0" class="col-md-9">
+    <label class="titulo">Buscar</label>           
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Criterio de búsqueda</th>
+        <th>Valor</th>
+        <th>Quitar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="parametro in conf.parametrosBusqueda">
+        <td>
+            <li class="list-group-item">
+                <div class="form-control">{{parametro}}</div>
+            </li>
+         </td>
+        <td> 
+          <li class="list-group-item" ng-show="parametro != 'Precio'">
+			  <input type="text" class="form-control">
+            </li>
+              <li id="llenaLinea" class="list-group-item" ng-show="parametro == 'Precio'">
+                  <select id="dosEnLinea" class="form-control col-md-6">
+                <option>Mayor</option>
+                <option>Menor</option>
+              </select>
+			   <input id="dosEnLinea" type="text" class="form-control col-md-6">
+            </li>
+		  </td>
+          <td> <li class="list-group-item">
+              <button type="button" class="btn btn-danger form-control" ng-click="conf.quitarParametro($index)"><span class="glyphicon glyphicon-minus">      </span></button></li>
+		  </td>   
+      </tr>    
+    </tbody>
+  </table>
+    </div>
+    </div>
+    <!-- Fin Buscador-->  
+    </div>
+        
+        
+        
+    <!-- Filtrador -->
+    <div class="form-group col-md-9" id="filtraResultado">
+        <label id="filtrarPor" class="col-md-3 control-label">Filtrar resultados por:</label>
+        <div class="col-md-4 selectContainer">
+            <select class="form-control" name="filtrado" ng-model="conf.seleccion" ng-change="conf.update()" >
+                <option>SKU</option>
+                <option>Cantidad</option>
+                <option>Titulo</option>
+                <option>Talle</option>
+                <option>Color</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="conf.filtroRecetas.codSku" ng-show="conf.seleccion=='Id'">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="conf.filtroRecetas.cantidad" ng-show="conf.seleccion=='Cantidad'">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="conf.filtroRecetas.titulo" ng-show="conf.seleccion=='Titulo'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="conf.filtroRecetas.talle_desc" ng-show="conf.seleccion=='Talle'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="conf.filtroRecetas.color_desc" ng-show="conf.seleccion=='Color'"> 
+        </div>
+    </div>
+    <!-- Fin Filtrador -->
+        
+<!-- Tabla -->
+<div class="col-md-9">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>SKU</th>
+        <th>Cantidad</th>
+        <th>Título</th>
+        <th>Talle</th>
+        <th>Color</th>
+      </tr>
+    </thead>
+    <tbody>
+        <!-- <ng-repeat siempre para llenar una tabla o un combobox con un array guardado en el controller> -->
+      <tr ng-repeat="receta in conf.recetasProductos | filter: conf.filtroRecetas">
+          <!-- <ng-class permite cambiar la clase de un elemento en tiempo real si algo sucede> -->
+        <td><li class="list-group-item" ng-click="conf.activeItem($index, receta)" ng-class="{ 'active' : $index == conf.selectedIndex}">
+            {{receta.codSku}}</li>
+		  </td>
+          <td><li class="list-group-item" ng-click="conf.activeItem($index, receta)" ng-class="{ 'active' : $index == conf.selectedIndex}">
+            {{receta.cantidad}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="conf.activeItem($index, receta)" ng-class="{ 'active' : $index == conf.selectedIndex}">
+			  {{receta.titulo}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="conf.activeItem($index, receta)" ng-class="{ 'active' : $index == conf.selectedIndex}">
+			  {{receta.talle_desc}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="conf.activeItem($index, receta)" ng-class="{ 'active' : $index == conf.selectedIndex}">
+			  {{receta.color_desc}}</li>
+		  </td>
+          
+      </tr>
+    </tbody>
+  </table>
+    </div>
+<!-- Fin Tabla -->
+        
+    </div>

@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
+
 //Esto va siempre
 require_once("connection.php");
 
@@ -15,7 +18,7 @@ class Producto
     
     //El metodo getAll realiza una query
     public function getAll(){
-        $query = "SELECT * FROM Producto";
+        $query = "SELECT * FROM producto";
         //Se declara un array productos
         $productos = array();
         //Se realiza la query y si result no es vacio
@@ -32,7 +35,7 @@ class Producto
     }
     
      public function getAllDetalles(){
-        $query = "SELECT prod.*, cat.idCategoria, cat.descripcion as categoria_desc, gen.idGenero, gen.descripcion as genero_desc FROM Producto prod, Categoria cat, Genero gen where prod.idCategoria = cat.idCategoria and prod.idGenero = gen.idGenero";
+        $query = "SELECT prod.*, cat.idCategoria, cat.descripcion as categoria_desc, gen.idGenero, gen.descripcion as genero_desc FROM producto prod, categoria cat, genero gen where prod.idCategoria = cat.idCategoria and prod.idGenero = gen.idGenero and prod.baja = 0";
         //Se declara un array productos
         $productos = array();
         //Se realiza la query y si result no es vacio
@@ -49,14 +52,21 @@ class Producto
     }
 
    public function create($producto){
-        $descripcion = $this->connection->real_escape_string($producto['producto_desc']);
-        $precio = (int) $this->connection->real_escape_string($producto['producto_precio']);
-        $idCat = $this->connection->real_escape_string($producto['categoria_id']);
-        $query = "INSERT INTO productos VALUES (
-                    DEFAULT,
-                    '$idCat', '$descripcion', '$precio')";
+        $titulo = $this->connection->real_escape_string($producto['titulo']);
+        try{
+        $descripcion = $this->connection->real_escape_string($producto['descripcion']);
+        }catch(\Exception $e){$descripcion = null;}
+        $idGenero = $this->connection->real_escape_string($producto['idGenero']);
+        $idCategoria =$this->connection->real_escape_string($producto['idCategoria']);
+         try{
+        $precio = $this->connection->real_escape_string($producto['precio']);
+        }catch(\Exception $e){$precio = null;}
+        try{
+        $puntoReposicion = $this->connection->real_escape_string($producto['puntoReposicion']);
+        }catch(\Exception $e){$puntoReposicion = null;}
+        $query = "INSERT INTO producto(idProducto,idCategoria, idGenero, titulo, precio, descripcion, puntoReposicion, urlImagen, urlImagenAlt1, urlImagenAlt2, urlImagenAlt3, baja) VALUES (DEFAULT,'$idCategoria','$idGenero','$titulo','$precio','$descripcion','$puntoReposicion',null,null,null,null,0)";
         if($this->connection->query($query)){
-            $producto['producto_id'] = $this->connection->insert_id;
+            $producto['idProducto'] = $this->connection->insert_id;
             return $producto;
         }else{
             return false;
@@ -64,20 +74,57 @@ class Producto
     }
 
     public function update($producto){
-        $id = (int) $this->connection->real_escape_string($producto['producto_id']);
-        $descripcion = $this->connection->real_escape_string($producto['producto_desc']);
-         $precio = (int) $this->connection->real_escape_string($producto['producto_precio']);
-        $idCat = $this->connection->real_escape_string($producto['categoria_id']);
-        $query = "UPDATE productos SET
-                         producto_desc = '$descripcion', producto_precio = '$precio', categoria_id = '$idCat'
-                  WHERE  producto_id = $id";
+        $idProducto = $this->connection->real_escape_string($producto['idProducto']);
+        $titulo = $this->connection->real_escape_string($producto['titulo']);
+        try{
+        $descripcion = $this->connection->real_escape_string($producto['descripcion']);
+        }catch(\Exception $e){$descripcion = null;}
+        $idGenero = $this->connection->real_escape_string($producto['idGenero']);
+        $idCategoria =$this->connection->real_escape_string($producto['idCategoria']);
+        try{
+        $precio = $this->connection->real_escape_string($producto['precio']);
+        }catch(\Exception $e){$precio = null;}
+        try{
+        $puntoReposicion = $this->connection->real_escape_string($producto['puntoReposicion']);
+        }catch(\Exception $e){$puntoReposicion = null;}
+        $query = "UPDATE producto SET titulo = '$titulo', descripcion = '$descripcion', idGenero = '$idGenero', idCategoria = '$idCategoria', precio = '$precio', puntoReposicion = '$puntoReposicion' WHERE  idProducto = '$idProducto'";
+        return $this->connection->query($query);
+    }
+    
+     public function updateImagen($producto){
+         $idProducto = $this->connection->real_escape_string($producto['idProducto']);
+         $urls = $producto['urls'];
+         $urlImagen = null;
+         $urlImagen1 = null;
+         $urlImagen2 = null;
+         $urlImagen3 = null;
+         
+         $len = count($urls);
+            for($i = 0; $i < $len; $i++) {
+                switch ($i) {
+                case 0:
+                    $urlImagen = $urls[$i];
+                    break;
+                case 1:
+                    $urlImagen1 = $urls[$i];
+                    break;
+                case 2:
+                    $urlImagen2 = $urls[$i];
+                    break;
+                case 3:
+                    $urlImagen3 = $urls[$i];
+                    break;
+                }
+            }
+         
+        $query = "UPDATE producto SET urlImagen = '$urlImagen', urlImagenAlt1 = '$urlImagen1', urlImagenAlt2 = '$urlImagen2', urlImagenAlt3 = '$urlImagen3' WHERE  idProducto = '$idProducto'";
         return $this->connection->query($query);
     }
 
     public function remove($productoId){
-        $id = (int) $this->connection->real_escape_string($productoId);
-        $query = "DELETE FROM productos
-                  WHERE producto_id = $productoId";
+        $id = $this->connection->real_escape_string($productoId);
+        $query = "UPDATE producto SET baja='1'
+                  WHERE idProducto = $id";
         return $this->connection->query($query);
     }
 }

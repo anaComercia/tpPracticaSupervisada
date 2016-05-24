@@ -23,9 +23,10 @@ class CrearCuenta
         $tipoDni =          $this->connection->real_escape_string($data['tipoDni']);
         $fechaNacimiento =  $this->connection->real_escape_string($data['fechaNacimiento']);
         $telefono =         $this->connection->real_escape_string($data['telefono']);
-        $pais=              $this->connection->real_escape_string($data['pais']);
+        //$pais=              $this->connection->real_escape_string($data['pais']);
+        $idProvincia=       $this->connection->real_escape_string($data['idProvincia']);
         $direccion =        $this->connection->real_escape_string($data['direccion']);
-        $idLocalidad =1;    // $this->connection->real_escape_string($data['idLocalidad']);
+        $idLocalidad =      $this->connection->real_escape_string($data['idLocalidad']);
         $codigoPostal =     $this->connection->real_escape_string($data['codigoPostal']);
         $clave =            $this->connection->real_escape_string($data['clave']);
         $repetirClave=      $this->connection->real_escape_string($data['repetirClave']);

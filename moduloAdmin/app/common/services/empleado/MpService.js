@@ -9,12 +9,6 @@ backendEcommerceEmp.service("MpService", function($http){
 		})
 	};
     
-    this.getMpsDetalles = function(){
-		var promise = $http.get('api/index.php/mpDetalles');
-		return promise.then(function(response){
-			return response.data.data;
-		})
-	};
     
     
 });

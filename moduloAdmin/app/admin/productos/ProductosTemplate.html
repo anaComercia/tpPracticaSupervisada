@@ -17,6 +17,9 @@
                     <a ui-sref="categorias">Categorias</a>
                 </li>
                 <li ui-sref-active="active">
+						<a ui-sref="colores">Colores</a>
+				</li>
+                <li ui-sref-active="active">
 						<a ui-sref="mp">Materia Prima</a>
 				</li>
             </ul>
@@ -28,8 +31,8 @@
 		<div class="btn-group" role="group" aria-label="...">
             <!-- <ng-click funciona del mismo modo que onclick llamando a un metodo del controller, siempre tiene que anteponer el alias> -->
 		  <button type="button" class="btn btn-default" ng-click="prod.nuevoProducto()">Nuevo Producto</button>
-		  <button type="button" class="btn btn-default" ng-click="prod.editarProducto()" ng-show="prod.prodSeleccionadoEditar != null">Editar Producto</button>
-		  <button type="button" class="btn btn-default" ng-click="prod.deleteProducto()" ng-show="prod.prodSeleccionadoEditar != null">Eliminar Producto</button>
+		  <button type="button" class="btn btn-default" ng-click="prod.editarProducto()" ng-show="prod.productoSeleccionado != null">Editar Producto</button>
+		  <button type="button" class="btn btn-default" ng-click="prod.deleteProducto()" ng-show="prod.productoSeleccionado != null">Eliminar Producto</button>
 		</div>
 	</div>
     <!-- Fin Botones-->

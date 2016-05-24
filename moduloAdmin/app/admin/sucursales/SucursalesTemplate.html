@@ -21,7 +21,7 @@
 		<div class="btn-group" role="group" aria-label="...">
 		  <button type="button" class="btn btn-default" ng-click="suc.nuevaSucursal()">Nueva Sucursal</button>
 		  <button type="button" class="btn btn-default" ng-click="suc.editarSucursal()" ng-show="suc.sucSeleccionada != null">Editar Sucursal</button>
-		  <button type="button" class="btn btn-default" ng-click="suc.deleteCategoria()" ng-show="suc.sucSeleccionada != null">Eliminar Sucursal</button>
+		  <button type="button" class="btn btn-default" ng-click="suc.deleteSucursal()" ng-show="suc.sucSeleccionada != null">Eliminar Sucursal</button>
 		</div>
 	</div>
 </div>
@@ -126,19 +126,19 @@
     </thead>
     <tbody>
       <tr ng-repeat="sucursal in suc.sucursales | filter: suc.filtrosuc">
-        <td><li class="list-group-item" ng-click="suc.activeItem($index, materia)" ng-class="{ 'active' : $index == suc.selectedIndex}">
+        <td><li class="list-group-item" ng-click="suc.activeItem($index, sucursal)" ng-class="{ 'active' : $index == suc.selectedIndex}">
             {{sucursal.nroSucursal}}</li>
 		  </td>
-        <td> <li class="list-group-item" ng-click="suc.activeItem($index, materia)" ng-class="{ 'active' : $index == suc.selectedIndex}">
+        <td> <li class="list-group-item" ng-click="suc.activeItem($index, sucursal)" ng-class="{ 'active' : $index == suc.selectedIndex}">
 			  {{sucursal.provincia_desc}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="suc.activeItem($index, materia)" ng-class="{ 'active' : $index == suc.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="suc.activeItem($index, sucursal)" ng-class="{ 'active' : $index == suc.selectedIndex}">
 			  {{sucursal.localidad_desc}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="suc.activeItem($index, materia)" ng-class="{ 'active' : $index == suc.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="suc.activeItem($index, sucursal)" ng-class="{ 'active' : $index == suc.selectedIndex}">
 			  {{sucursal.telefono}}</li>
 		  </td>
-          <td> <li class="list-group-item" ng-click="suc.activeItem($index, materia)" ng-class="{ 'active' : $index == suc.selectedIndex}">
+          <td> <li class="list-group-item" ng-click="suc.activeItem($index, sucursal)" ng-class="{ 'active' : $index == suc.selectedIndex}">
 			  {{sucursal.horarioAtencion}}</li>
 		  </td>
       </tr>

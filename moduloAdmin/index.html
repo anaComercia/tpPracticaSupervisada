@@ -36,6 +36,8 @@
         <script src="app/common/services/admin/LugarService.js"></script>
         <script src="app/common/services/admin/BancoTarjetaService.js"></script>
         <script src="app/common/services/admin/SucursalService.js"></script>
+        <script src="app/admin/colores/colores.js"></script>
+		<script src="app/admin/colores/ColoresController.js"></script>   
 		<script src="app/admin/categorias/categorias.js"></script>
 		<script src="app/admin/categorias/CategoriasController.js"></script>     
 		<script src="app/admin/productos/productos.js"></script>
@@ -44,8 +46,6 @@
 		<script src="app/admin/mp/MpController.js"></script>   
         <script src="app/admin/usuarios/usuarios.js"></script>
 		<script src="app/admin/usuarios/UsuariosController.js"></script>   
-        <script src="app/admin/perfil/perfilAdm.js"></script>
-		<script src="app/admin/perfil/PerfilAdmController.js"></script> 
         <script src="app/admin/imagenes/imagenes.js"></script>
 		<script src="app/admin/imagenes/ImagenesController.js"></script>
         <script src="app/admin/cupones/cupones.js"></script>
@@ -92,9 +92,6 @@
                       <li ui-sref-active="active">
 						<a ui-sref="cupones">Cupones</a>
 				      </li>
-                        <li ui-sref-active="active">
-						<a ui-sref="perfilAdm">Perfil</a>
-					</li>
                   </ul>
                      <div id="sesion"><h5>Logueado como: {{main.user}}</h2><a href="#">Cerrar sesión</a></div>
                 </div>

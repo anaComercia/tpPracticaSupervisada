@@ -15,7 +15,9 @@ require_once("models/perfil.php");
 require_once("models/producto.php");
 require_once("models/footer.php");
 require_once("models/genero.php");
-
+require_once("models/mostrarDatosCuenta.php");//acastillo 22/05/2016
+require_once("models/provincia.php");//acastillo 24/05/2016
+require_once("models/localidad.php");//acastillo 24/05/2016
 
 //Esto va siempre
 require_once("util/jsonResponse.php");
@@ -55,6 +57,38 @@ $app->get('/altaDeCuentaGenero', function(){
 		sendError("Error al mostrar el genero");
 	}
 });
+
+// acastillo 24/05/2016-------------------------------------------------------------
+$app->get('/altaDeCuentaProvincia', function(){
+    $genero = new Provincia();
+	$data = $genero->getAll();
+    
+    if($data){
+		sendResult($data);
+	}else{
+		sendError("Error al mostrar el genero");
+	}
+});
+// acastillo 24/05/2016-------------------------------------------------------------
+$app->get('/altaDeCuentaLocalidad/:id', function($id){
+	$localidad = new Localidad();
+	$data = $localidad->getAllByIdProvincia($id);
+	sendResult($data);
+});
+
+// acastillo 22/05/2016-------------------------------------------------------------
+$app->get('/mostrarDatosCuenta', function(){
+    $datosCliente = new MostrarCuenta();
+	$data = $datosCliente->getAll();
+    
+    if($data){
+		sendResult($data);
+	}else{
+		sendError("Error al obtener datos del cliente");
+	}
+});
+
+//----------------------------------------------------------------------------------
 
 $app->get('/reputacionPerf/:id', function($idUser){
 

@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="styles/modificarCuenta.css">
-<div id="idPaginaModificarCuenta" ng-controller="PerfilController as DetalleCuentaCtrl" >
+<div id="idPaginaModificarCuenta" ng-controller="PerfilController as perfCtrl" >
  
   <div class="container col-md-12"> 
         <div class="col-md-12" id="lblTitulo"> 
@@ -17,66 +17,73 @@
         <div class="form-group col-md-offset-4" style="" >
             <div id="divDetalle">
                 <label>Nombre:</label>
-                <label id="lblDetDatoPers">Adriana</label>
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].nombre}}</label>
                 <!--input type="text" class="form-control" placeholder="Nombre" readonly="readonly"-->
             </div>
-            
+                        
             <div id="divDetalle">
                 <label>Apellido:</label>
-                <label id="lblDetDatoPers">Castillo</label>
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].apellido}}</label>
                 <!--input type="text" class="form-control" placeholder="Apellido" readonly="readonly"-->
             </div>
             
+            <div id="divDetalle">
+                <label>D.N.I:</label>
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].numDni}}</label>
+                <!--input type="text" class="form-control" placeholder="Apellido" readonly="readonly"-->
+            </div>
+            
+            <!--div id="divDetalle">
+                <label>Tipo Dni:</label>
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].tipoDni}}</label>
+            </div!-->
             
             <div id="divDetalle">
-                <label>E-mail:</label>
-                <label id="lblDetDatoPers">adriana.castillo2025@gmail.com</label>
-                <!--input type="text" class="form-control" placeholder="Email" readonly="readonly"-->
-            </div>
- 
-            <div id="divDetalle">
                 <label>Fecha Nacimiento:</label>
-                <label id="lblDetDatoPers">06/07/1987</label>
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].fechaNacimiento}}</label>
+                <!--input type="text" class="form-control" placeholder="Fecha Nacimiento" readonly="readonly"-->
+            </div>
+
+            <div id="divDetalle">
+                <label>Sexo:</label>
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].descripcion_genero}}</label>
                 <!--input type="text" class="form-control" placeholder="Fecha Nacimiento" readonly="readonly"-->
             </div>
             
             <div id="divDetalle">
+                <label>E-mail:</label>
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].email}}</label>
+                <!--input type="text" class="form-control" placeholder="Email" readonly="readonly"-->
+            </div>
+
+            
+            <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>Tel&eacute;fono/Celular:</label>
-                <label id="lblDetDatoPers">1567498122</label>
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].telefono}}</label>
                 <!--input type="text" class="form-control" placeholder="Telefono/Celular" readonly="readonly"-->
             </div>
             </div>
 
-            <!--div id="lblAclaracion">
-            <div  id="divAlineacion">
-               <label >C&oacute;digo de &aacute;rea + N&ordm;. Ej.: 11 43234556.</label>
+            <div id="divDetalle">
+                <label>Provincia:</label>
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].descripcion_provincia}}</label>
             </div>
-            </div-->
             
             <div id="divDetalle">
-                <label>Pa&iacute;s:</label>
-                <label id="lblDetDatoPers">Argentina</label>
-                <!--input type="text" class="form-control" placeholder="País" readonly="readonly"-->
+                <label>Localidad:</label>
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].descripcion_localidad}}</label>
             </div>
-            
+                    
             <div id="divDetalle">
                 <label>Direcci&oacute;n:</label>
-                <label id="lblDetDatoPers">El Lazo 405</label>
-                <!--input type="text" class="form-control" placeholder="Dirección" readonly="readonly"-->
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].direccion}}</label>
             </div>
 
             <div id="divDetalle">
-                <label>Localidad:</label>
-                <label id="lblDetDatoPers">Isidro Casanova</label>
-                <!--input type="text" class="form-control" placeholder="Localidad" readonly="readonly"-->
-            </div>
             
-            <div id="divDetalle">
-            
-                <label>C&oacute;digo Postal:</label>
-                <label id="lblDetDatoPers">1765</label>
-                <!--input type="text" class="form-control" placeholder="Código Postal" readonly="readonly"-->
+                <label>C&oacute;digo Postal:</label>    
+                <label id="lblDetDatoPers">{{perfCtrl.datosDelCliente[0].cp}}</label>
             </div>
             
 

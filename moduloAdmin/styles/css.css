@@ -41,7 +41,13 @@ width:400px;
 
 #btnRemover{
 align-self: center;
-margin-left: 100px;
+margin-left: 80px;
+margin-bottom: 5px;
+}
+
+#btnRemover2{
+align-self: center;
+margin-left: 50px;
 margin-bottom: 5px;
 }
 
@@ -53,14 +59,17 @@ margin-top: 20px;
 margin-top:100px;
 }
 
+#tablaTalle{
+margin-top: -25px;
+}
+
 .thumb {
-    width: 150px;
+    width: 200px;
     height: 200px;
     height: 200px;
     float: none;
     position: relative;
     bottom: 7px;
-    margin-left: 50px;
 }
 
 #filtrar{

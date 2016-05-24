@@ -1,0 +1,96 @@
+<h2>{{user.formLabel}}</h2>
+<div>
+	  <div class="form-group">
+          
+          <div class="row">
+          <div  id="divMp" class="col-md-3">
+          <label>Usuario</label>
+		<input type="text" class="form-control" placeholder="Usuario" ng-model="mp.nuevaMp.precio">
+          </div>
+          <div  id="divMp" class="col-md-3">
+          <label>Contraseña</label>
+		<input type="text" class="form-control" placeholder="Contraseña" ng-model="mp.nuevaMp.porCada">
+          </div>
+             <div  id="divMp" class="col-md-3">
+           <label>Repetir contraseña</label>
+		<input type="text" class="form-control" placeholder="Repetir contraseña" ng-model="mp.nuevaMp.medida">
+          </div> 
+                <div  id="divMp" class="col-md-3">
+           <label>Puesto</label>
+		<input type="text" class="form-control" placeholder="Puesto" ng-model="mp.nuevaMp.medida">
+          </div> 
+          </div>
+          
+          <div class="row">
+          <div  id="divMp" class="col-md-4">
+          <label>Nombre</label>
+		<input type="text" class="form-control" placeholder="Nombre" ng-model="mp.nuevaMp.precio">
+          </div>
+          <div  id="divMp" class="col-md-4">
+          <label>Apellido</label>
+		<input type="text" class="form-control" placeholder="Apellido" ng-model="mp.nuevaMp.porCada">
+          </div>
+          <div  id="divMp" class="col-md-2">
+           <label>Tipo de documento</label>
+		<select class="form-control"  ng-model="user.tipoDoc"  >
+                <option>DNI</option>
+                <option>DNI Extranjero</option>
+                <option>L.E</option>
+                <option>L.C</option>
+            </select>
+          </div>
+             <div  id="divMp" class="col-md-2">
+           <label>Número</label>
+		<input type="text" class="form-control" placeholder="Número" ng-model="mp.nuevaMp.medida">
+          </div> 
+          </div>
+          
+          <div class="row">
+          <div  id="divMp" class="col-md-4">
+          <label>Teléfono</label>
+		<input type="text" class="form-control" placeholder="Teléfono" ng-model="mp.nuevaMp.precio">
+          </div>
+          <div  id="divMp" class="col-md-4">
+          <label>Email</label>
+		<input type="text" class="form-control" placeholder="Correo electrónico" ng-model="mp.nuevaMp.porCada">
+          </div>
+          <div  id="divMp" class="col-md-2">
+           <label>Género</label>
+		<select class="form-control"  ng-model="user.tipoDoc"  >
+                <option>Hombre</option>
+                <option>Mujer</option>
+            </select>
+          </div>
+             <div  id="divMp" class="col-md-2">
+           <label>Fecha de nacimiento</label>
+		<input type="date" class="form-control" ng-model="mp.nuevaMp.medida">
+          </div> 
+          </div>
+          
+           <div class="row">
+          <div  id="divMp" class="col-md-4">
+          <label>Direccion</label>
+		<input type="text" class="form-control" placeholder="Dirección" ng-model="mp.nuevaMp.precio">
+          </div>
+          <div  id="divMp" class="col-md-4">
+           <label>Provincia</label>
+		<select class="form-control">
+                <option ng-repeat="provincia in user.provincias"  >{{provincia.descripcion}}</option>
+            </select>
+          </div>
+          <div  id="divMp" class="col-md-4">
+           <label>Localidad</label>
+		<select class="form-control"   >
+                <option ng-repeat="localidad in user.localidades" >{{localidad.descripcion}}</option>
+            </select>
+          </div>
+          </div>
+          
+          <div class="row"></div>
+	  </div>
+	  <button class="btn btn-default" ng-click="cat.createCategoria()" ng-hide="cat.editOn">Guardar</button>
+	<button class="btn btn-default" ng-click="user.clear()" >Cancelar</button>
+</div>
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>

@@ -10,7 +10,7 @@ class Admin
     }
     
     public function getAll($id){
-        $query = "SELECT * from Empleado, Usuario, Persona, Direccion where Empleado.idUsuario = Usuario.idUsuario and Usuario.idPersona = Persona.idPersona and Empleado.puesto = 'Administrador' and Usuario.usuario = '$id' and Persona.idDireccion = Direccion.idDireccion";
+        $query = "SELECT * from empleado, usuario, persona, direccion where empleado.idUsuario = usuario.idUsuario and usuario.idPersona = persona.idPersona and empleado.puesto = 'Administrador' and usuario.usuario = '$id' and persona.idDireccion = direccion.idDireccion";
         $array = array();
         try {
         if( $result = $this->connection->query($query) ){

@@ -9,10 +9,10 @@ categorias.controller("CategoriasController", function($state, CategoriaService,
 	this.formLabel = "Nueva Categoría";
 	this.categoriaSeleccionada = null;
 	this.activado = true;
-	this.generos=[];
-    this.generoSeleccionado="";
     this.seleccion = "";
     this.filtroCategoria = [];
+    this.categoriaNueva = null;
+    this.categoriaSeleccionadaEditar = null;
     
     this.getCategorias = function(){
     return CategoriaService.getCategorias().then(function(data){
@@ -22,47 +22,39 @@ categorias.controller("CategoriasController", function($state, CategoriaService,
     
     
     this.createCategoria = function(){
-        CategoriaService.createCategoria(self.cat_desc).then(function(response){
+        CategoriaService.createCategoria(self.categoriaNueva.descripcion).then(function(response){
             if(response.data.error){
                 alert("Ocurrio un error");
                 return;
             }
-            alert("Categoria creada con el id: " + response.data.data.categoria_id);
+            $state.go("categorias");
             self.getCategorias();
-            self.cat_desc = '';
         })
     };
     
     this.activeItem = function($index, item){
         self.selectedIndex = $index;
         self.categoriaSeleccionada = item;
-        self.activado = false;  
-        if (self.editOn) {
-        self.cat_desc = self.categoriaSeleccionada.categoria_desc;}
+        self.categoriaSeleccionadaEditar = JSON.parse(JSON.stringify(self.categoriaSeleccionada));
     };
 
     this.updateCategoria = function(){
-        CategoriaService.updateCategoria(self.cat_desc,         self.categoriaSeleccionada.categoria_id).then(function(response){
+ CategoriaService.updateCategoria(self.categoriaSeleccionadaEditar.descripcion,self.categoriaSeleccionadaEditar.idCategoria).then(function(response){
             if(response.data.error){
                 alert("Ocurrio un error");
                 return;
             }
-            alert("Categoria actualizada");
+            $state.go("categorias");
             self.getCategorias();
-			self.activeItem(-1, null);
-            self.cat_desc = '';
-            self.editOn = false;
-			$state.go("categorias");
+			
         })
     };
     
     
      this.deleteCategoria = function(){
          var r = confirm("¿Está seguro que desea borrar?");
-
-         
          if (r == true) {
-        CategoriaService.deleteCategoria(self.categoriaSeleccionada.categoria_id).then(function(response){
+        CategoriaService.deleteCategoria(self.categoriaSeleccionadaEditar.idCategoria).then(function(response){
             if(response.data.error){
                 alert("Ocurrio un error");
                 return;
@@ -70,8 +62,6 @@ categorias.controller("CategoriasController", function($state, CategoriaService,
             alert("Categoria eliminada");
             self.getCategorias();
 			self.activeItem(-1, null);
-            self.cat_desc = '';
-            self.editOn = false;
 			$state.go("categorias");
             })
         } 
@@ -79,17 +69,14 @@ categorias.controller("CategoriasController", function($state, CategoriaService,
     
     
     this.putCategoria = function(){
-        self.cat_desc = self.categoriaSeleccionada.categoria_desc;
+        self.cat_desc = self.categoriaSeleccionadaEditar.descripcion;
 		self.formLabel = "Editar Categoria";
-        self.editOn = true;
-		$state.go("categorias.editar",  { id : self.categoriaSeleccionada.categoria_id});
+		$state.go("categorias.editar",  { id : self.categoriaSeleccionadaEditar.categoria_id});
     };
     
 	this.nuevaCategoria = function(){
 		self.formLabel = "Nueva Categoria";
-		self.editOn = false;
 		$state.go("categorias.nueva");
-        self.cat_desc = '';
 	};
 	
   this.clearCat = function(){

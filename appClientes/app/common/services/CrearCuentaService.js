@@ -15,6 +15,22 @@ backendEcommerce.service("CrearCuentaService", function($http){
 			return response.data.data;
 		})
 	};
+  
+    //Provincia
+    this.getProvincias = function(){
+		var promise = $http.get('api/index.php/altaDeCuentaProvincia');
+		return promise.then(function(response){
+			return response.data.data;
+		})
+	};
+    
+    //Localidad
+    this.getLocalidadesById = function($id){
+		var promise = $http.get('api/index.php/altaDeCuentaLocalidad/'+$id);
+		return promise.then(function(response){
+			return response.data.data;
+		})
+	};
     
     this.crearNuevaCuenta = function(
                                        
@@ -26,7 +42,8 @@ backendEcommerce.service("CrearCuentaService", function($http){
           , tipoDni
           , fechaNacimiento
           , telefono
-          , pais
+          //, pais
+          ,idProvincia
           , direccion
           , idLocalidad
           , codigoPostal
@@ -49,7 +66,8 @@ backendEcommerce.service("CrearCuentaService", function($http){
          , 'tipoDni':tipoDni
          , 'fechaNacimiento':fechaNacimiento
          , 'telefono':telefono
-         , 'pais':pais
+         //, 'pais':pais
+         , 'idProvincia':idProvincia
          , 'direccion':direccion
          , 'idLocalidad':idLocalidad
          , 'codigoPostal':codigoPostal

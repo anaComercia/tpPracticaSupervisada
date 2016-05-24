@@ -13,4 +13,11 @@ backendEcommerceAdmin.service("LocalidadService", function($http){
 		})
 	};
  
+    
+     this.getLocalidadesById = function($id){
+		var promise = $http.get('api/index.php/localidad/'+$id);
+		return promise.then(function(response){
+			return response.data.data;
+		})
+	};
 });

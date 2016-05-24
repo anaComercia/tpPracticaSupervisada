@@ -1,6 +1,6 @@
  <div class="col-md-12" ui-view>
 
-      <!-- Sidebar -->
+     <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand" ui-sref-active="active">
@@ -15,6 +15,9 @@
                     <a ui-sref="categorias">Categorias</a>
                 </li>
                 <li ui-sref-active="active">
+						<a ui-sref="colores">Colores</a>
+				</li>
+                <li ui-sref-active="active">
 						<a ui-sref="mp">Materia Prima</a>
 				</li>
             </ul>
@@ -25,8 +28,8 @@
 	<div class="col-md-5">
 		<div class="btn-group" role="group" aria-label="...">
 		  <button type="button" class="btn btn-default" ng-click="cat.nuevaCategoria()">Nueva Categoría</button>
-		  <button type="button" class="btn btn-default" ng-click="cat.putCategoria()" ng-show="!cat.activado">Editar Categoría</button>
-		  <button type="button" class="btn btn-default" ng-click="cat.deleteCategoria()" ng-show="!cat.activado">Eliminar Categoría</button>
+		  <button type="button" class="btn btn-default" ng-click="cat.putCategoria()" ng-show="cat.categoriaSeleccionada != null">Editar Categoría</button>
+		  <button type="button" class="btn btn-default" ng-click="cat.deleteCategoria()" ng-show="cat.categoriaSeleccionada != null">Eliminar Categoría</button>
 		</div>
 	</div>
 </div>

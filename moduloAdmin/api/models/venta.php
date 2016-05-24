@@ -10,7 +10,7 @@ class Venta
     }
     
     public function getAll(){
-        $query = "SELECT * from Cliente";
+        $query = "SELECT * from cliente";
         $array = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -22,7 +22,7 @@ class Venta
     }
     
      public function getAllDetalles(){
-        $query = "SELECT * from Compra, Cliente, Usuario where Compra.idCliente = Cliente.idCliente and Cliente.idUsuario = Usuario.idUsuario";
+        $query = "SELECT * from compra, cliente, usuario where compra.idCliente = cliente.idCliente and cliente.idUsuario = usuario.idUsuario";
         $array = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

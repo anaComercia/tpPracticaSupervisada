@@ -6,9 +6,10 @@ PerfilCtrl.$injector = ["$state","PerfilService", "$scope"];
 
 function PerfilCtrl($state, PerfilService, $scope) {
     var vm = this;
-    vm.idUsuario = 1; //SACAR HARDCODE
-    vm.cuponUsadosLista =[]; //TOMO EN CONSIDERACION usado = SI
-    vm.cuponNuevosLista = []; //TOMO EN CONSIDERACION usado = NO
+    vm.idUsuario = 18;           //SACAR HARDCODE
+    vm.cuponUsadosLista =[];    //TOMO EN CONSIDERACION usado = SI
+    vm.cuponNuevosLista = [];   //TOMO EN CONSIDERACION usado = NO
+    vm.datosDelCliente=[];      //acastillo 22/05/2016
     
     /* reputacion */
     //vm.mensajeReputacion = "";
@@ -43,6 +44,31 @@ function PerfilCtrl($state, PerfilService, $scope) {
                 }
             });
         };
+    
+    //acastillo 22/05/2016--------------------------------------------------------------------------
+    
+    
+    //vm.detalleDelCliente ={};
+
+    //console.log('--->getDatos');
+    
+    vm.getDatos = function(){
+          return PerfilService.getDatosDelCliente().then(function(data){
+            console.log('AFUERA');
+            if(data){
+                console.log('ENTREEEEEEEEEEEE');
+                    vm.datosDelCliente = data;
+                }
+          
+            console.log(data);
+            console.log(vm.datosDelCliente[0].nombre);
+              
+        });
+    };
+    
+
+
+    //----------------------------------------------------------------------------------------------
     
     /* lista cupones 
     vm.cuponUsadosLista = [
@@ -81,6 +107,8 @@ function PerfilCtrl($state, PerfilService, $scope) {
         vm.mostrarReputacion();
         vm.mostrarCuponesUsados();
         vm.mostrarCuponesNuevos();
+         
+        vm.getDatos();//acastillo 22/05/2016
 	};
     
     vm.init();

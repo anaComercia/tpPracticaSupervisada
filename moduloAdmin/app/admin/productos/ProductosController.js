@@ -5,37 +5,41 @@ var productos = angular.module("backendEcommerceAdmin.productos");
 //Todas las rutas llevan $state como dependencia y todos los services que van a usar para operar con la BD
 
 
-productos.controller("ProductosController", function($state, ProductoService, CategoriaService, GeneroService,MpService){
+productos.controller("ProductosController", function($state, ProductoService, CategoriaService, GeneroService,MpService, ColorService, TalleService,$scope, $http){
 	
 	this.title = "Modulo de Productos";
 	var self = this;
 	this.productos = [];
-	this.prod_desc = '';
-    this.categorias = [];
     this.productosFiltrados = [];
+    this.categorias = [];
+    this.mps =[];
+    this.generos = [];
     this.formLabel = "Nuevo Producto";
-    this.prodSeleccionadoEditar = null;
+    this.productoSeleccionado = null;
+    this.productoSeleccionadoEditar = null;
     this.selectCategoria = '';
     this.indice ='';
     this.productoNuevo="";
-    this.generos = [];
     this.generoSeleccionado = "";
-    this.mps =[];
     this.cantidad = "";
     this.nombresMps = [];
     this.mpsAgregadas = [];
+    this.tallesAgregados = [];
+    this.coloresAgregados = [];
     this.seleccion = "";
     this.filtroProducto = [];
-    this.picFile;
     this.busqAv = false;
     this.parametrosBusqueda= [];
-    
+    this.talles = null;
+    this.colores = null;
+    this.talleElegido = null;
+    this.colorElegido = null;
     
 //Traer datos de Bd
     this.getProductosDetalles = function(){
     return ProductoService.getProductosDetalles().then(function(data){
             self.productos = data;
-        self.productosFiltrados = self.productos;
+            self.productosFiltrados = self.productos;
         });
     };
     
@@ -49,7 +53,9 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
     return MpService.getMps().then(function(data){
             self.mps = data;
          self.mps.forEach(function(elemento){
+             if(self.nombresMps.indexOf(elemento.titulo) == -1){
          self.nombresMps.push(elemento.titulo);
+             }
          });
         });
     };
@@ -59,51 +65,85 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
             self.generos = data;
         });
     };
+    
+    this.getTalles = function(){
+        return TalleService.getTalles().then(function(data){
+            self.talles = data;
+        });
+    };
+    
+      this.getColores = function(){
+          return ColorService.getColores().then(function(data){
+            self.colores = data;
+        });
+    };
+    
+       this.getPresentacionTalle = function(id){
+          return ProductoService.getPresentacionTalle(id).then(function(data){
+            self.tallesAgregados = data;
+        });
+    };
+    
+      this.getPresentacionColor = function(id){
+          return ProductoService.getPresentacionColor(id).then(function(data){
+            self.coloresAgregados = data;
+        });
+    };
+    
+          this.getProdMp = function(id){
+          return ProductoService.getProdMp(id).then(function(data){
+            self.mpsAgregadas = data;
+        });
+    };
 //Fin - Traer datos de Bd
     
 //Borrar, insertar y actualizar BD
     this.deleteProducto= function(){
          var r = confirm("¿Está seguro que desea borrar?");
          if (r == true) {
-        ProductoService.deleteProducto(self.productoSeleccionado.producto_id).then(function(response){
+        ProductoService.deleteProducto(self.productoSeleccionadoEditar.idProducto).then(function(response){
             if(response.data.error){
                 alert("Ocurrio un error");
                 return;
             }
             alert("Producto eliminado");
             self.productoSeleccionado = null;
-            self.getProductos();
+            self.getProductosDetalles();
             self.activeItem(-1, null);
 			$state.go("productos");
-            self.activado = true;
             })
         } 
     };
     
      this.updateProducto = function(){
-        ProductoService.updateProducto(self.prodSeleccionadoEditar.producto_id,     self.prodSeleccionadoEditar.producto_desc,self.prodSeleccionadoEditar.producto_precio,self.prodSeleccionadoEditar.categoria_id).then(function(response){
+        ProductoService.updateProducto(self.productoSeleccionadoEditar.idProducto, self.productoSeleccionadoEditar.idCategoria, self.productoSeleccionadoEditar.idGenero, self.productoSeleccionadoEditar.titulo,self.productoSeleccionadoEditar.descripcion, self.productoSeleccionadoEditar.precio, self.productoSeleccionadoEditar.puntoReposicion,self.mpsAgregadas, self.tallesAgregados, self.coloresAgregados,self.productoSeleccionadoEditar.picFile1, self.productoSeleccionadoEditar.picFile2, self.productoSeleccionadoEditar.picFile3, self.productoSeleccionadoEditar.picFile4).then(function(response){
             if(response.data.error)
             {
                 alert("Ocurrio un error");
                 return;
             }
-            alert("Producto actualizado");
-            self.getProductos();
+            self.coloresAgregados = [];
+            self.tallesAgregados = [];
+            self.mpsAgregadas = [];
+            self.productoSeleccionadoEditar = null;
+            self.init();
 			self.activeItem(-1, null);
 			$state.go("productos");
-            self.activado = true;
         })
     };
      
     this.createProducto = function(){
- ProductoService.createProducto(self.prodSeleccionadoEditar.producto_desc,self.prodSeleccionadoEditar.producto_precio,self.prodSeleccionadoEditar.categoria_id).then(function(response){
+ ProductoService.createProducto(self.productoNuevo.titulo,self.productoNuevo.descripcion,self.productoNuevo.idGenero, self.productoNuevo.idCategoria, self.productoNuevo.precio, self.productoNuevo.puntoReposicion, self.mpsAgregadas, self.tallesAgregados, self.coloresAgregados, self.productoNuevo.picFile1, self.productoNuevo.picFile2, self.productoNuevo.picFile3, self.productoNuevo.picFile4).then(function(response){
             if(response.data.error){
-                alert("Ocurrio un error");
+                alert("Ha ocurrido un error");
                 return;
             }
-            alert("Producto creada con el id: " + response.data.data.producto_id);
-            self.getProductos();
-            self.prodSeleccionadoEditar = null;
+            self.coloresAgregados = [];
+            self.tallesAgregados = [];
+            self.mpsAgregadas = [];
+            self.productoNuevo = null;
+            self.init();
+            self.activeItem(-1, null);
             $state.go("productos");
         })
     };
@@ -112,7 +152,7 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
     this.agregarMp = function(){
         var texto = jQuery('#buscarMp').val();
         self.mps.forEach(function(elemento){
-            if(texto== elemento.titulo){
+            if(texto.toUpperCase()== elemento.titulo.toUpperCase()){
                 if((jQuery.inArray(elemento, self.mpsAgregadas)) < 0){
                 self.mpsAgregadas.push(elemento);
                 jQuery('#buscarMp').val("")
@@ -124,6 +164,30 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
      self.mpsAgregadas.splice(index,1);
     }
     
+ this.agregarTalle = function(){
+    self.talles.forEach(function(elemento){
+    if(elemento.idTalle == self.talleElegido && self.tallesAgregados.indexOf(elemento) == -1){
+        self.tallesAgregados.push(elemento);
+        }
+    });
+ }
+ 
+  this.quitarTalle = function(index){
+     self.tallesAgregados.splice(index,1);
+    }
+ 
+  this.agregarColor = function(){
+    var colorElect;
+    self.colores.forEach(function(elemento){
+    if(elemento.idColor == self.colorElegido && self.coloresAgregados.indexOf(elemento) == -1){
+        self.coloresAgregados.push(elemento);
+        }
+    });
+ }
+  
+   this.quitarColor = function(index){
+     self.coloresAgregados.splice(index,1);
+    }
 //Filtros   
      this.filtrarProductos = function(catId){
         if (catId == "indice"){
@@ -140,7 +204,8 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
 //Seleccionar objeto clickeado
      this.activeItem = function($index, item){
         self.selectedIndex = $index;
-        self.prodSeleccionadoEditar = item;
+        self.productoSeleccionado = item;
+        
     };
       
      this.activeItemMp = function($index, item){
@@ -151,12 +216,11 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
 //Disparar cambio de rutas dentro de productos
     this.editarProducto = function(){
 		self.formLabel = "Editar Producto";
-        self.productos.forEach(function(elemento){
-        if(elemento.idProducto == self.prodSeleccionadoEditar.idProducto){
-        self.prodSeleccionadoEditar == elemento;
-        }
-        });
-		$state.go("productos.editar",  { id : self.prodSeleccionadoEditar.idProducto});
+        self.productoSeleccionadoEditar = JSON.parse(JSON.stringify(self.productoSeleccionado));
+        self.getPresentacionTalle(self.productoSeleccionadoEditar.idProducto);
+        self.getPresentacionColor(self.productoSeleccionadoEditar.idProducto);
+        self.getProdMp(self.productoSeleccionadoEditar.idProducto);
+		$state.go("productos.editar",  { id : self.productoSeleccionadoEditar.idProducto});
     };
    
     this.nuevoProducto = function(){
@@ -167,6 +231,10 @@ productos.controller("ProductosController", function($state, ProductoService, Ca
     this.clearProd = function(){
     $state.go("productos");
         self.formLabel = "";
+        self.coloresAgregados = [];
+        self.tallesAgregados = [];
+        self.mpsAgregadas = [];
+        self.productoNuevo = null;
     };
 //Fin - Disparar cambio de rutas dentro de productos
     
@@ -228,13 +296,21 @@ this.quitarParametro = function(index){
      self.parametrosBusqueda.splice(index,1);
 }
 
-    
+this.isNullOrEmpty = function(item){
+if(item){
+return false;
+}
+return true;
+}
+
 //Traer todos los datos que necesito al mostrar el formulario por primera vez
     this.init = function(){
         this.getGeneros();
         this.getCategorias();
         this.getMps();
 		this.getProductosDetalles();
+        this.getTalles();
+        this.getColores();
 	};
 //Fin - Traer datos
     

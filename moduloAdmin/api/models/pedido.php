@@ -10,7 +10,7 @@ class Pedido
     }
     
     public function getAll(){
-        $query = "SELECT * from PedidoProveedor";
+        $query = "SELECT * from pedido_proveedor";
         $array = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -22,7 +22,7 @@ class Pedido
     }
     
      public function getAllDetalles(){
-        $query = "SELECT * from PedidoProveedor, MP, Pedido_Mp where PedidoProveedor.idPedidoProveedor = Pedido_Mp.idPedidoProveedor and Pedido_Mp.idMp = MP.idMP";
+        $query = "SELECT * from pedido_proveedor, mp, pedido_mp where pedido_proveedor.idPedidoProveedor = pedido_mp.idPedidoProveedor and pedido_mp.idMp = mp.idMP";
         $array = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

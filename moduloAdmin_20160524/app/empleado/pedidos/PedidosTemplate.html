@@ -1,0 +1,130 @@
+ <div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+<div class="col-md-12">
+    
+    <!-- Buscador-->
+    <a ng-click="ped.busqAv = !ped.busqAv">Busqueda avanzada <span ng-class="!ped.busqAv ? 'glyphicon glyphicon-arrow-down' : 'glyphicon glyphicon-arrow-up'"></span></a>
+        <div ng-show="ped.busqAv">
+           <div>
+            <label class="titulo">Agregar filtro</label>  
+           </div>
+            <div class="row" id="buscaFiltros">
+                <div class="col-md-8">
+                <select class="form-control" name="filtrado" id="cbParametro">
+                <option>Estado de pedido</option>
+                <option>Monto</option>
+                <option>Fecha</option>
+                </select>
+                </div>
+            <div class="col-md-2" id="botonContainer">
+                  <button id="btnMas" type="button" class="btn btn-primary" ng-click="ped.agregarParametro()" >
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+            </div>
+                <div class="col-md-2">
+                    <button id="btnBuscar" type="button">Buscar</button>
+                </div>
+          </div>
+    
+        
+    <div ng-show="ped.parametrosBusqueda.length > 0">
+    <label class="titulo">Buscar</label>           
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Criterio de búsqueda</th>
+        <th>Valor</th>
+        <th>Quitar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="parametro in ped.parametrosBusqueda">
+        <td>
+            <li class="list-group-item">
+                <div class="form-control">{{parametro}}</div>
+            </li>
+         </td>
+        <td> 
+         <li class="list-group-item" ng-show="parametro != 'Fecha'">
+			  <input type="text" class="form-control">
+            </li>
+            <li id="llenaLinea" class="list-group-item" ng-show="parametro == 'Fecha'">
+              <select id="dosEnLinea" class="form-control col-md-6">
+                <option>Antes</option>
+                <option>Despues</option>
+              </select>
+			  <input id="dosEnLinea" type="date" class="form-control col-md-6">
+            </li>
+		  </td>
+          <td> <li class="list-group-item">
+              <button type="button" class="btn btn-danger form-control" ng-click="ped.quitarParametro($index)"><span class="glyphicon glyphicon-minus">      </span></button></li>
+		  </td>   
+      </tr>    
+    </tbody>
+  </table>
+    </div>
+    </div>
+            
+    <!-- Fin Buscador-->    
+    
+    <div class="form-group col-md-12" id="filtraResultado">
+        <label id="filtrarPor" class="col-md-3 control-label">Filtrar resultados por:</label>
+        <div class="col-md-3 selectContainer">
+            <select class="form-control" name="filtrado" ng-model="ped.seleccion" ng-change="ped.update()">
+                <option>Materia Prima</option>
+                <option>Cantidad</option>
+                <option>Monto</option>
+                <option>Fecha</option>
+                <option>Estado</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="ped.filtroPedido.titulo" ng-show="ped.seleccion=='Materia Prima'">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="ped.filtroPedido.cantidad" ng-show="ped.seleccion=='Cantidad'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="ped.filtroPedido.monto" ng-show="ped.seleccion=='Monto'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="ped.filtroPedido.fechaPedido" ng-show="ped.seleccion=='Fecha'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="ped.filtroPedido.estado" ng-show="ped.seleccion=='Estado'"> 
+        </div>
+    </div>
+    
+     <div class="col-md-12" ui-view>
+	</div>
+    
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Materia Prima</th>
+        <th>Cantidad</th>
+        <th>Unidad</th>
+        <th>Monto</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+        <!-- <ng-repeat siempre para llenar una tabla o un combobox con un array guardado en el controller> -->
+      <tr ng-repeat="pedido in ped.pedidos | filter: ped.filtroPedido">
+          <!-- <ng-class permite cambiar la clase de un elemento en tiempo real si algo sucede> -->
+        <td><li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+            {{pedido.titulo}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{pedido.cantidad}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{pedido.medida}}</li>
+		  </td>
+          <td><li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+            {{pedido.monto}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{pedido.fechaPedido}}</li>
+		  </td>
+          <td> <li class="list-group-item" ng-click="prod.activeItem($index, producto)" ng-class="{ 'active' : $index == prod.selectedIndex}">
+			  {{pedido.estado}}</li>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

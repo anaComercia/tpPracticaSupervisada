@@ -10,7 +10,7 @@ class Envio
     }
     
     public function getAll(){
-        $query = "SELECT distinct suc1.nroSucursal as nroSucursal1, suc2.nroSucursal as nroSucursal2, EnvioSucursal.tardanza FROM EnvioSucursal, Sucursal, (SELECT Sucursal.nroSucursal from Sucursal, EnvioSucursal where Sucursal.idSucursal = EnvioSucursal.idSucursal1) suc1, (SELECT Sucursal.nroSucursal from Sucursal, EnvioSucursal where Sucursal.idSucursal = EnvioSucursal.idSucursal2) suc2  where EnvioSucursal.idSucursal1 in (SELECT idSucursal from Sucursal) and EnvioSucursal.idSucursal2 in (SELECT idSucursal from Sucursal) group by Sucursal.nroSucursal";
+        $query = "SELECT distinct suc1.nroSucursal as nroSucursal1, suc2.nroSucursal as nroSucursal2, envio_sucursal.tardanza FROM envio_sucursal, Sucursal, (SELECT sucursal.nroSucursal from sucursal, envio_sucursal where sucursal.idSucursal = envio_sucursal.idSucursal1) suc1, (SELECT sucursal.nroSucursal from sucursal, envio_sucursal where sucursal.idSucursal = envio_sucursal.idSucursal2) suc2  where envio_sucursal.idSucursal1 in (SELECT idSucursal from sucursal) and envio_sucursal.idSucursal2 in (SELECT idSucursal from sucursal) group by sucursal.nroSucursal";
         $envios = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

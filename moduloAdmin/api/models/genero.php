@@ -10,7 +10,7 @@ class Genero
     }
     
     public function getAll(){
-        $query = "SELECT idGenero, descripcion FROM Genero";
+        $query = "SELECT idGenero, descripcion FROM genero";
         $generos = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

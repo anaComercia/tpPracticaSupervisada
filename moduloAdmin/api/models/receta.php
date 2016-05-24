@@ -10,7 +10,7 @@ class Receta
     }
     
     public function getAll(){
-        $query = "select * from Receta, Prod_MP, Producto, MP, PresentacionProducto where Receta.idReceta = Prod_MP.idReceta and Prod_MP.idProducto = Producto.idProducto and Prod_MP.idMP = MP.idMP and PresentacionProducto.idProducto = Producto.idProducto";
+        $query = "select * from prod_mp, producto, mp, presentacion_producto where prod_mp.idProducto = producto.idProducto and prod_mp.idMP = mp.idMP and presentacion_producto.idProducto = producto.idProducto";
         $receta= array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -22,8 +22,8 @@ class Receta
     }
     
     public function getSoloProductos(){
-       $query = "select distinct Producto.*, PresentacionProducto.*, Talle.descripcion as talle_desc, Color.descripcion as color_desc, Receta.idReceta, Stock_Producto.cantidad from Prod_MP, Producto, MP, PresentacionProducto, Color, Talle, Receta, Stock_Producto
-where Prod_MP.idProducto = Producto.idProducto and PresentacionProducto.idProducto = Producto.idProducto and PresentacionProducto.idTalle = Talle.idTalle and PresentacionProducto.idColor = Color.idColor and Receta.idReceta = Prod_MP.idReceta and Prod_MP.idProducto = Producto.idProducto and PresentacionProducto.codSku = Stock_Producto.codSku";
+       $query = "select distinct producto.*, presentacion_producto.*, talle.descripcion as talle_desc, color.descripcion as color_desc, stock_producto.cantidad from prod_mp, producto, MP, presentacion_producto, color, talle, stock_producto
+where prod_mp.idProducto = producto.idProducto and presentacion_producto.idProducto = producto.idProducto and presentacion_producto.idTalle = talle.idTalle and presentacion_producto.idColor = color.idColor and prod_mp.idProducto = producto.idProducto and presentacion_producto.codSku = stock_producto.codSku";
         $receta= array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -35,7 +35,7 @@ where Prod_MP.idProducto = Producto.idProducto and PresentacionProducto.idProduc
     }
     
      public function getAllPorId($id){
-        $query = "select distinct MP.* from Receta, Prod_MP, Producto, MP, PresentacionProducto where Receta.idReceta = '$id' and Receta.idReceta = Prod_MP.idReceta and Prod_MP.idProducto = Producto.idProducto and Prod_MP.idMP = MP.idMP and PresentacionProducto.idProducto = Producto.idProducto";
+        $query = "select distinct mp.* from prod_mp, producto, mp, presentacion_producto where producto.idProducto = '$id' and producto.idProducto = prod_mp.idProducto and prod_mp.idMP = mp.idMP and presentacion_producto.idProducto = producto.idProducto";
         $array = array();
         try {
         if( $result = $this->connection->query($query) ){

@@ -13,4 +13,11 @@ backendEcommerceAdmin.service("ProvinciaService", function($http){
 		})
 	};
  
+    this.getProvinciasById = function($id){
+		var promise = $http.get('api/index.php/provincia/'+$id);
+		return promise.then(function(response){
+			return response.data.data;
+		})
+	};
+    
 });

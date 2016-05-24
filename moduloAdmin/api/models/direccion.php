@@ -10,7 +10,7 @@ class Direccion
     }
     
     public function getAll(){
-        $query = "SELECT * FROM Direccion";
+        $query = "SELECT * FROM direccion";
         $direcciones = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

@@ -12,6 +12,8 @@ function CrearCtaCtrl($state, CrearCuentaService) {
     self.clienteNuevo = {};
     self.generos = [];
     self.generoSeleccionado = "";
+    self.provincias = [];
+    self.localidades = [];
 
 
     
@@ -21,6 +23,23 @@ function CrearCtaCtrl($state, CrearCuentaService) {
             self.generos = data;
         });
     };
+    
+// acastillo 24/05/2016-------------------------------------------------------------    
+    self.getProvincias = function(){
+          return CrearCuentaService.getProvincias().then(function(data){
+            //console.log(data);
+            self.provincias = data;
+        });
+    };
+    
+// acastillo 24/05/2016-------------------------------------------------------------    
+    self.getLocalidadesById = function(id){
+    return CrearCuentaService.getLocalidadesById(id).then(function(data){
+            self.localidades = data;
+        });
+    };
+
+
     
     self.altaDeCuenta = function(){
         //console.log(self.clienteNuevo);
@@ -33,7 +52,8 @@ function CrearCtaCtrl($state, CrearCuentaService) {
          , self.clienteNuevo.tipoDni
          , self.clienteNuevo.fechaNacimiento
          , self.clienteNuevo.telefono
-         , self.clienteNuevo.pais
+         //, self.clienteNuevo.pais
+         , self.clienteNuevo.idProvincia   
          , self.clienteNuevo.direccion
          , self.clienteNuevo.idLocalidad
          , self.clienteNuevo.codigoPostal
@@ -57,6 +77,7 @@ function CrearCtaCtrl($state, CrearCuentaService) {
     //Traer todos los datos que necesito al mostrar el formulario por primera vez
     this.init = function(){
         this.getGeneros();
+        this.getProvincias();
         
 	};
     

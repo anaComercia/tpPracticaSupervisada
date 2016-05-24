@@ -1,6 +1,6 @@
  <div class="col-md-12" ui-view>
 
-       <!-- Sidebar -->
+     <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand" ui-sref-active="active">
@@ -15,6 +15,9 @@
                     <a ui-sref="categorias">Categorias</a>
                 </li>
                 <li ui-sref-active="active">
+						<a ui-sref="colores">Colores</a>
+				</li>
+                <li ui-sref-active="active">
 						<a ui-sref="mp">Materia Prima</a>
 				</li>
             </ul>
@@ -26,7 +29,7 @@
 		<div class="btn-group" role="group" aria-label="...">
 		  <button type="button" class="btn btn-default" ng-click="mp.nuevaMp()">Nueva Materia Prima</button>
 		  <button type="button" class="btn btn-default" ng-click="mp.editarMp()" ng-show="mp.mpSeleccionada != null">Editar Materia Prima</button>
-		  <button type="button" class="btn btn-default" ng-click="mp.deleteCategoria()" ng-show="mp.mpSeleccionada != null">Eliminar Materia Prima</button>
+		  <button type="button" class="btn btn-default" ng-click="mp.deleteMp()" ng-show="mp.mpSeleccionada != null">Eliminar Materia Prima</button>
 		</div>
 	</div>
 </div>
@@ -124,8 +127,6 @@
       <tr>
         <th>Id</th>
         <th>Título</th>
-        <th>Precio</th>
-        <th>Por cada</th>
         <th>Unidad de medida</th>  
       </tr>
     </thead>
@@ -136,12 +137,6 @@
 		  </td>
         <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
 			  {{materia.titulo}}</li>
-		  </td>
-          <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
-			  {{materia.precio}}</li>
-		  </td>
-          <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
-			  {{materia.unidad}}</li>
 		  </td>
           <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
 			  {{materia.medida}}</li>

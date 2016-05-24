@@ -35,7 +35,7 @@ confeccion.controller("ConfeccionController", function($state, RecetaService){
     };
     
     this.traerConfeccion = function(){
-    self.getReceta(self.prodSeleccionado.idReceta);
+    self.getReceta(self.prodSeleccionado.idProducto);
     }
     
     this.ordenarConfeccion = function(){

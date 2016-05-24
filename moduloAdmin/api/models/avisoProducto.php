@@ -10,7 +10,7 @@ class AvisoProd
     }
     
      public function getAll(){
-        $query = "SELECT * FROM AvisoProducto";
+        $query = "SELECT * FROM aviso_producto";
         $avisos = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -22,7 +22,7 @@ class AvisoProd
     }
     
     public function getAllDetalles(){
-        $query = "SELECT * FROM AvisoProducto, Stock_Producto, Producto, Sucursal, PresentacionProducto where AvisoProducto.idStock = Stock_Producto.idStock and Stock_Producto.idSucursal = Sucursal.idSucursal and Producto.idProducto = PresentacionProducto.idProducto and PresentacionProducto.codSku = Stock_Producto.codSku";
+        $query = "SELECT * FROM aviso_producto, stock_producto, producto, sucursal, presentacion_producto where aviso_producto.idStock = stock_producto.idStock and stock_producto.idSucursal = sucursal.idSucursal and producto.idProducto = presentacion_producto.idProducto and presentacion_producto.codSku = stock_producto.codSku";
         $avisos = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -34,7 +34,7 @@ class AvisoProd
     }
     
       public function getAllDetallesMp(){
-        $query = "SELECT * FROM AvisoMp, MP where AvisoMp.idMp = MP.idMP";
+        $query = "SELECT * FROM aviso_mp, mp where aviso_mp.idMp = mp.idMP";
         $avisos = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -46,7 +46,7 @@ class AvisoProd
     }
     
       public function getProdDeposito(){
-        $query = "SELECT * FROM Producto prod, Stock_Producto sp, Sucursal suc where suc.nroSucursal = 0 and sp.idSucursal = suc.idSucursal and sp.idProducto = prod.idProducto";
+        $query = "SELECT * FROM producto prod, stock_producto sp, sucursal suc where suc.nroSucursal = 0 and sp.idSucursal = suc.idSucursal and sp.idProducto = prod.idProducto";
         $avisos = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

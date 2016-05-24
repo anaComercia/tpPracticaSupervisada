@@ -10,7 +10,7 @@ class Banco
     }
     
     public function getAll(){
-        $query = "SELECT * from Banco";
+        $query = "SELECT * from banco where baja = 0";
         $array = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -19,6 +19,35 @@ class Banco
             $result->free();
         }
         return $array;
+    }
+    
+      public function createBanco($banco){
+        $descripcion = $this->connection->real_escape_string($banco['descripcion']);
+        $query = "INSERT INTO banco VALUES (
+                    DEFAULT,
+                    '$descripcion',0)";
+        if($this->connection->query($query)){
+            $banco['idBanco'] = $this->connection->insert_id;
+            return $banco;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateBanco($banco){
+        $id = $this->connection->real_escape_string($banco['idBanco']);
+        $descripcion = $this->connection->real_escape_string($banco['descripcion']);
+        $query = "UPDATE banco SET
+                         descripcion = '$descripcion'
+                  WHERE  idBanco = '$id'";
+        return $this->connection->query($query);
+    }
+    
+    public function deleteBanco($idBanco){
+        $id = $this->connection->real_escape_string($idBanco);
+        $query = "UPDATE banco SET baja = 1
+                  WHERE  idBanco = '$id'";
+        return $this->connection->query($query);
     }
     
 }

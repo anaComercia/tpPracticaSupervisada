@@ -1,0 +1,12 @@
+<h2>{{col.formLabel}}</h2>
+<div class="col-md-6">
+	  <div class="form-group">
+		<label>Descripcion</label>
+		<input type="text" class="form-control col-md-6" placeholder="Descripcion del color" ng-model="col.colorNuevo.descripcion">
+	  </div>
+	  <button class="btn btn-default" ng-click="col.createColor()">Guardar</button>
+	<button class="btn btn-default" ng-click="col.clearCol()" >Cancelar</button>
+</div>
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>

@@ -1,0 +1,142 @@
+
+
+      <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand" ui-sref-active="active">
+                    <a>
+                  Opciones
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="provincias">Provincias</a>
+                </li>
+                <li ui-sref-active="active">
+						<a ui-sref="provincias.localidades">Localidades</a>
+				</li>
+                
+                 <li ui-sref-active="active" id="lblVolver">
+						<a ui-sref="admGeneral">Volver</a>
+				</li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+ <div class="col-md-12" ui-view>     
+<div class="row">
+	<div class="col-md-6">
+		<div class="btn-group" role="group" aria-label="...">
+		  <button type="button" class="btn btn-default" ng-click="mp.nuevaMp()">Nueva Provincia</button>
+		  <button type="button" class="btn btn-default" ng-click="mp.editarMp()" ng-show="mp.mpSeleccionada != null">Editar Provincia</button>
+		  <button type="button" class="btn btn-default" ng-click="mp.deleteCategoria()" ng-show="mp.mpSeleccionada != null">Eliminar Provincia</button>
+		</div>
+	</div>
+</div>
+
+     
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+    
+     <div class="row">
+      <!-- Buscador-->
+     <a ng-click="mp.busqAv = !mp.busqAv">Busqueda avanzada <span ng-class="!mp.busqAv ? 'glyphicon glyphicon-arrow-down' : 'glyphicon glyphicon-arrow-up'"></span></a>
+        <div ng-show="mp.busqAv">
+    
+           <div>
+            <label class="titulo">Agregar filtro</label>  
+           </div>
+            <div class="row" id="buscaFiltros">
+                <div class="col-md-8">
+                <select class="form-control" name="filtrado" id="cbParametro">
+                <option>Precio</option>
+                </select>
+                </div>
+            <div class="col-md-2" id="botonContainer">
+                  <button id="btnMas" type="button" class="btn btn-primary" ng-click="mp.agregarParametro()" >
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+            </div>
+                <div class="col-md-2">
+                    <button id="btnBuscar" type="button">Buscar</button>
+                </div>
+          </div>
+    
+        
+    <div ng-show="mp.parametrosBusqueda.length > 0" class="col-md-9">
+    <label class="titulo">Buscar</label>           
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Criterio de búsqueda</th>
+        <th>Valor</th>
+        <th>Quitar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="parametro in mp.parametrosBusqueda">
+        <td>
+            <li class="list-group-item">
+                <div class="form-control">{{parametro}}</div>
+            </li>
+         </td>
+        <td> 
+          <li class="list-group-item" ng-show="parametro != 'Precio'">
+			  <input type="text" class="form-control">
+            </li>
+              <li id="llenaLinea" class="list-group-item" ng-show="parametro == 'Precio'">
+                  <select id="dosEnLinea" class="form-control col-md-6">
+                <option>Mayor</option>
+                <option>Menor</option>
+              </select>
+			   <input id="dosEnLinea" type="text" class="form-control col-md-6">
+            </li>
+		  </td>
+          <td> <li class="list-group-item">
+              <button type="button" class="btn btn-danger form-control" ng-click="mp.quitarParametro($index)"><span class="glyphicon glyphicon-minus">      </span></button></li>
+		  </td>   
+      </tr>    
+    </tbody>
+  </table>
+    </div>
+    </div>
+    <!-- Fin Buscador-->  
+     </div>
+   
+
+    <div class="form-group col-md-9" id="filtraResultado">
+        <label id="filtrarPor" class="col-md-3 control-label">Filtrar resultados por:</label>
+        <div class="col-md-3 selectContainer">
+            <select class="form-control" name="filtrado" ng-model="mp.seleccion"  ng-change="mp.update()">
+                <option>Id</option>
+                <option>Titulo</option>
+                <option>Precio</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="mp.filtroMp.idMP" ng-show="mp.seleccion=='Id'">
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="mp.filtroMp.titulo" ng-show="mp.seleccion=='Titulo'"> 
+        <input id="filtrar" type="text" class="form-control" placeholder="Filtrar" ng-model="mp.filtroMp.precio" ng-show="mp.seleccion=='Precio'">
+        </div>
+    </div>
+    
+     <div class="col-md-10">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="provincia in prov.provincias">
+        <td><li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+            {{provincia.idProvincia}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="mp.activeItem($index, materia)" ng-class="{ 'active' : $index == mp.selectedIndex}">
+			  {{provincia.descripcion}}</li>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

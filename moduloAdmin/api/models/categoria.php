@@ -10,7 +10,7 @@ class Categoria
     }
     
     public function getAll(){
-        $query = "SELECT * FROM Categoria";
+        $query = "SELECT * FROM categoria";
         $categorias = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -30,7 +30,7 @@ class Categoria
     
     public function create($categoria){
         $descripcion = $this->connection->real_escape_string($categoria['categoria_desc']);
-        $query = "INSERT INTO categorias VALUES (
+        $query = "INSERT INTO categoria VALUES (
                     DEFAULT,
                     '$descripcion')";
         if($this->connection->query($query)){
@@ -44,16 +44,16 @@ class Categoria
     public function update($categoria){
         $id = (int) $this->connection->real_escape_string($categoria['categoria_id']);
         $descripcion = $this->connection->real_escape_string($categoria['categoria_desc']);
-        $query = "UPDATE categorias SET
-                         categoria_desc = '$descripcion'
-                  WHERE  categoria_id = $id";
+        $query = "UPDATE categoria SET
+                         descripcion = '$descripcion'
+                  WHERE  idCategoria = '$id'";
         return $this->connection->query($query);
     }
 
     public function remove($categoriaId){
         $id = (int) $this->connection->real_escape_string($categoriaId);
-        $query = "DELETE FROM categorias
-                  WHERE categoria_id = $categoriaId";
+        $query = "DELETE FROM categoria
+                  WHERE idCategoria = $categoriaId";
         return $this->connection->query($query);
     }
 }

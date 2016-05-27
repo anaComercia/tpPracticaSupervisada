@@ -1,0 +1,24 @@
+<h2>Nueva Localidad</h2>
+<div>
+	  <div class="form-group">
+          <div class="row">
+          <div class="col-md-4 selectContainer">
+              <label>Provincia</label>
+                <select class="form-control col-md-3" ng-model="prov.nuevaLocalidad.idProvincia">
+                <option ng-repeat="provincia in prov.provincias" ng-value = 'provincia.idProvincia'>
+                        {{provincia.descripcion}}
+                </option>
+                </select>
+        </div>
+        <div class="col-md-4">
+          <label>Nombre</label>
+		<input type="text" class="form-control" placeholder="Nombre de la Localidad" ng-model="prov.nuevaLocalidad.descripcion">
+          </div>
+        </div>
+	  </div>
+	  <button class="btn btn-default" ng-click="prov.createLocalidad()">Guardar</button>
+	<button class="btn btn-default" ng-click="prov.clearLocalidad()" >Cancelar</button>
+</div>
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>

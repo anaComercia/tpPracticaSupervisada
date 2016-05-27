@@ -1,0 +1,95 @@
+<div class="col-md-12" ui-view>    
+<div class="row">
+	<div class="col-md-6">
+		<div class="btn-group" role="group" aria-label="...">
+		  <button type="button" class="btn btn-default" ng-click="bank.nuevaTarjeta()">Nueva Tarjeta</button>
+		  <button type="button" class="btn btn-default" ng-click="bank.editarTarjeta()" ng-show="bank.tarjetaSeleccionada != null">Editar Tarjeta Prima</button>
+		  <button type="button" class="btn btn-default" ng-click="bank.deleteTarjeta()" ng-show="bank.tarjetaSeleccionada != null">Eliminar Tarjeta</button>
+		</div>
+	</div>
+</div>
+
+    <!--Cuotas-->  
+<div ng-show="bank.mostrar">
+<div class="col-md-10">
+    <table ng-table="tablaCuotas" class="table table-striped" >
+    <thead>
+      <tr>
+        <th>Banco</th>
+        <th>Cuotas</th>
+        <th>Interés</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="cuota in bank.cuotas" >
+          <!-- <ng-class permite cambiar la clase de un elemento en tiempo real si algo sucede> -->
+        <td><li class="form-control">
+            {{cuota.banco_desc}}</li>
+		  </td>
+        <td>
+            <input id="cantidad" type="text" class="form-control" ng-model="cuota.cuotas"</li>
+		  </td>
+           <td> 
+               <input id="cantidad" type="text" class="form-control" ng-model="cuota.interes"</li>
+		  </td>
+          <td> <li class="list-group-item" style="float:right">
+<button type="button" class="btn btn-danger form-control" ng-click="bank.quitarCuota($index)"><span class="glyphicon glyphicon-minus"></span></button></li>
+		  </td>      
+      </tr>
+    </tbody>
+  </table>
+    <div class="col-md-12">
+    <div id="divCat" class="col-md-3">
+        <label class="titulo col-md-3" id='lbCat'>Bancos</label>
+                <div class="selectContainer">
+                <select class="form-control" ng-model="bank.cuotaBanco">
+                <option ng-repeat="banco in bank.bancos" ng-value = 'banco.idBanco'>
+                        {{banco.descripcion}}
+                </option>
+                </select>
+        </div>
+    </div>
+        <div id="divCat" class="col-md-3">
+        <label class="titulo col-md-3" id='lbCat'>Cuotas</label>
+        <input id="cantidad" type="text" class="form-control" ng-model="bank.cuotaValor"</li>
+        </div>
+        <div id="divCat" class="col-md-3">
+        <label class="titulo col-md-3" id='lbCat'>Interes</label>
+        <input id="cantidad" type="text" class="form-control" ng-model="bank.interes"</li>
+        </div>
+        <div id="divCat" class="col-md-3" style="margin-top:25px">
+        <button type="button" class="btn btn-primary form-control " ng-click="bank.agregarCuota()" ><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+        <div style="margin-top:80px">
+        <button class="btn btn-default" ng-click="bank.updateCuota()">Actualizar</button>
+	    <button class="btn btn-default" ng-click="bank.mostrar = false" >Cancelar</button>
+        </div>
+    </div>
+</div>
+</div>
+<!--Fin Cuotas-->
+     
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+     <div class="col-md-10">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Título</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="tarjeta in bank.tarjetas">
+        <td><li class="list-group-item" ng-click="bank.activeItemTarjeta($index, tarjeta)" ng-class="{ 'active' : $index == bank.selectedIndexTarjeta}">
+            {{tarjeta.idTarjeta}}</li>
+		  </td>
+        <td> <li class="list-group-item" ng-click="bank.activeItemTarjeta($index, tarjeta)" ng-class="{ 'active' : $index == bank.selectedIndexTarjeta}">
+			  {{tarjeta.descripcion}}</li>
+		  </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

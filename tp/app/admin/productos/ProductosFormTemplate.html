@@ -1,0 +1,235 @@
+<div>
+<h2 id="divCat">{{prod.formLabel}}</h2>
+</div>
+ 
+	  <div class="form-group">
+          
+          <!-- Imagenes-->
+          <div id="divImg"> 
+              <div class="row">
+    <div class="col-md-3">
+                  <h5> 
+                <fieldset>
+                    <legend>Imagen 1</legend>
+                        <i ng-show="prod.productoNuevo.picFile1.$error.required">*required</i><br>
+                        <i ng-show="prod.productoNuevo.picFile1.$error.maxSize">File too large 
+                                {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                        <img ng-show="prod.productoNuevo.picFile1.$valid" ngf-thumbnail="prod.productoNuevo.picFile1" class="thumb"> 
+                        <div class="row"><button id="btnRemover" ng-click="prod.productoNuevo.picFile1 = null" ng-show="prod.productoNuevo.picFile1">Remover</button>                         </div>
+                        <input type="file" ngf-select ng-model="prod.productoNuevo.picFile1" name="file"    
+                            accept="image/*" ngf-max-size="2MB" required
+                            ngf-model-invalid="errorFile" ngf-pattern="'image/*'">        
+                  </h5>
+    </div>
+    <div class="col-md-3">
+                  <h5> 
+                <fieldset>
+                    <legend>Imagen 2</legend>
+                        <i ng-show="prod.productoNuevo.picFile2.$error.required">*required</i><br>
+                        <i ng-show="prod.productoNuevo.picFile2.$error.maxSize">File too large 
+                                {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                        <img ng-show="prod.productoNuevo.picFile2.$valid" ngf-thumbnail="prod.productoNuevo.picFile2" class="thumb"> 
+                        <div class="row"><button id="btnRemover" ng-click="prod.productoNuevo.picFile2 = null" ng-show="prod.productoNuevo.picFile2">Remover</button>                         </div>
+                        <input type="file" ngf-select ng-model="prod.productoNuevo.picFile2" name="file"    
+                            accept="image/*" ngf-max-size="2MB" required
+                            ngf-model-invalid="errorFile"  ng-disabled="prod.isNullOrEmpty(prod.productoNuevo.picFile1)">        
+                    </h5>
+    </div>
+    <div class="col-md-3">
+                  <h5> 
+                <fieldset>
+                    <legend>Imagen 3</legend>
+                        <i ng-show="prod.productoNuevo.picFile3.$error.required">*required</i><br>
+                        <i ng-show="prod.productoNuevo.picFile3.$error.maxSize">File too large 
+                                {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                        <img ng-show="prod.productoNuevo.picFile3.$valid" ngf-thumbnail="prod.productoNuevo.picFile3" class="thumb"> 
+                        <div class="row"><button id="btnRemover" ng-click="prod.productoNuevo.picFile3 = null" ng-show="prod.productoNuevo.picFile3">Remover</button>                         </div>
+                        <input type="file" ngf-select ng-model="prod.productoNuevo.picFile3" name="file"    
+                            accept="image/*" ngf-max-size="2MB" required
+                            ngf-model-invalid="errorFile"  ng-disabled="prod.isNullOrEmpty(prod.productoNuevo.picFile2)">        
+                    </h5>
+    </div>
+    <div class="col-md-3">
+                  <h5> 
+                <fieldset>
+                    <legend>Imagen 4</legend>
+                        <i ng-show="prod.productoNuevo.picFile4.$error.required">*required</i><br>
+                        <i ng-show="prod.productoNuevo.picFile4.$error.maxSize">File too large 
+                                {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                        <img ng-show="prod.productoNuevo.picFile4.$valid" ngf-thumbnail="prod.productoNuevo.picFile4" class="thumb"> 
+                        <div class="row"><button id="btnRemover" ng-click="prod.productoNuevo.picFile4 = null" ng-show="prod.productoNuevo.picFile4">Remover</button>                         </div>
+                        <input type="file" ngf-select ng-model="prod.productoNuevo.picFile4" name="file"    
+                            accept="image/*" ngf-max-size="2MB" required
+                            ngf-model-invalid="errorFile"  ng-disabled="prod.isNullOrEmpty(prod.productoNuevo.picFile3)">        
+                    </h5>
+    </div>
+        </div>
+          </div>
+        
+        <!-- Fin Imagenes-->
+        
+          <!-- <ng-model liga directamente el valor de un elemento con un dato del controller en ambas direcciones> -->
+          <!-- <Si el valor del elemento cambia, el valor en el controller también y viceversa> -->
+    <label class="titulo">Título</label>    
+    <input id="desc" type="text" class="form-control" placeholder="Titulo del producto" ng-model="prod.productoNuevo.titulo"> 
+        
+          <label class="titulo">Descripcion</label>
+            <textarea id="desc" class="form-control" placeholder="Descripcion del producto" ng-model="prod.productoNuevo.descripcion" rows="5"></textarea>
+         
+          <div id="bloqueGeneroCategoria" >
+          <div id="divCat col-md-3">
+          <label class="titulo col-md-3" id='lbCat'>Genero</label>
+                <div class="col-md-3 selectContainer">
+                <select class="form-control col-md-3" ng-model="prod.productoNuevo.idGenero">
+                <option ng-repeat="genero in prod.generos" ng-value = 'genero.idGenero'>
+                        {{genero.descripcion}}
+                </option>
+                </select>
+                </div>
+        </div>
+        <div id="divCat col-md-3" >
+          <label class="titulo col-md-3" id='lbCat'>Categoria</label> 
+            <div class="col-md-3 selectContainer">
+                <select class="form-control col-md-3" ng-model="prod.productoNuevo.idCategoria">
+                <option ng-repeat="categoria in prod.categorias" ng-value = 'categoria.idCategoria' >
+                        {{categoria.descripcion}}
+                    </option>
+                </select>
+           </div>
+              </div>
+            
+         </div>
+          <label class="titulo">Precio</label>
+		<input id="precio" type="text" class="form-control" placeholder="Precio del producto" ng-model="prod.productoNuevo.precio">   
+          
+          <label class="titulo">Punto de Reposición</label>
+            <input id="medida" type="text" class="form-control" placeholder="Punto de reposición del producto" ng-model="prod.productoNuevo.puntoReposicion">
+
+<br>       
+<!-- Talles -->
+    <label class="titulo">Talles</label>    
+    <div class="row"> 
+    <div class="col-md-5">
+                <div class="selectContainer">
+                <select class="form-control" ng-model="prod.talleElegido">
+                <option ng-repeat="talle in prod.talles" ng-value = 'talle.idTalle'>
+                        {{talle.descripcion}}
+                </option>
+                </select>
+                </div>
+</div>
+<div class="col-md-1">
+<button type="button" class="btn btn-primary form-control " ng-click="prod.agregarTalle()" ><span class="glyphicon glyphicon-plus"></span></button>
+</div>
+      
+    <table class="col-md-6 table-striped" ng-show="prod.tallesAgregados.length>0" id="tablaTalle">
+    <thead>
+      <tr>
+        <th>Talle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="talle in prod.tallesAgregados">
+        <td>
+            <li  class="list-group-item">
+            <div class="form-control form-control">{{talle.descripcion}}</div></li>
+		  </td>
+          <td> <li class="list-group-item" style="float:right">
+<button type="button" class="btn btn-danger form-control" ng-click="prod.quitarTalle($index)"><span class="glyphicon glyphicon-minus"></span></button></li>
+		  </td>   
+      </tr>    
+    </tbody>
+  </table>
+</div>
+<!-- Fin Talles-->                  
+        <br>
+<!-- Colores -->
+<label class="titulo">Colores</label>    
+    <div class="row">
+        <div class="col-md-5">
+                <div class="selectContainer">
+                <select class="form-control" ng-model="prod.colorElegido">
+                <option ng-repeat="color in prod.colores" ng-value = 'color.idColor'>
+                        {{color.descripcion}}
+                </option>
+                </select>
+                </div>
+</div>
+<div class="col-md-1">
+<button type="button" class="btn btn-primary form-control " ng-click="prod.agregarColor()" ><span class="glyphicon glyphicon-plus"></span></button>
+</div>
+      
+    <table class="col-md-6 table-striped" ng-show="prod.coloresAgregados.length>0" id="tablaTalle">
+    <thead>
+      <tr>
+        <th>Color</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="color in prod.coloresAgregados" >
+        <td><li class="list-group-item">
+            <div class="form-control form-control">{{color.descripcion}}</div></li>
+		  </td>
+          <td> <li class="list-group-item" style="float:right">
+<button type="button" class="btn btn-danger form-control" ng-click="prod.quitarColor($index)"><span class="glyphicon glyphicon-minus"></span></button></li>
+		  </td>   
+      </tr>    
+    </tbody>
+  </table>
+
+</div>
+<!-- Fin Colores-->  
+                    
+<br>                  
+<!-- Materia Prima -->
+<div id="col-md-12">          
+      <label class="titulo">Materia Prima</label>    
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Cantidad</th>
+        <th>Unidad de medida</th>
+        <th>Quitar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="materia in prod.mpsAgregadas">
+        <td><li class="list-group-item">
+            <div class="form-control">{{materia.titulo}}</div></li>
+		  </td>
+        <td> <li class="list-group-item">
+			  <input id="cantidad" type="text" class="form-control" ng-model="materia.cantidad"></li>
+		  </td>
+          <td> <li class="list-group-item form-control" id="llenaLinea">
+              <div class="form-control">{{materia.medida}}</div></li>
+		  </td> 
+          <td> <li class="list-group-item" id="llenaLinea">
+<button type="button" class="btn btn-danger form-control" ng-click="prod.quitarMp($index)"><span class="glyphicon glyphicon-minus"></span></button></li>
+		  </td>   
+      </tr>    
+    </tbody>
+  </table>
+<div class="col-md-10">
+<input id="buscarMp" type="text" class="form-control typeahead" placeholder="Agregar Materia Prima" ng-mouseover="prod.iniciar()"> 
+</div>
+<div class="col-md-2">
+<button id="btnMas" type="button" class="btn btn-primary form-control " ng-click="prod.agregarMp()" ><span class="glyphicon glyphicon-plus"></span></button>
+</div>
+</div>
+<!-- Fin Materia Prima -->    
+                
+                  
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+
+          <div>
+    <button class="btn btn-default" ng-click="prod.createProducto()">Guardar</button>
+	<button class="btn btn-default" ng-click="prod.clearProd()">Cancelar</button>
+</div>
+</div>
+<div class="row">
+	<div class="col-md-12"><hr/></div>
+</div>
+         </div>  

@@ -73,9 +73,12 @@ a:link{
 }
 
 #idDivCrearCuenta #idCarrito { 
-    text-align:center !important; 
-    top:50px !important; 
-    width:176px !important; 
+    text-align: center !important;
+    top: 50px !important;
+    width: 176px !important;
+    height: 20;
+    /* padding-top: 5; */
+    font-size: 14px !important;
 
 }
 

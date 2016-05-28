@@ -26,7 +26,13 @@ class Producto
         return $productos;
     }
     public function getAllBancos(){
-        $query = "select b.descripcion as banco, t.descripcion as tarjeta, tb.cuotas as cuotas, tb.interes as interes from              banco b left join tarjeta_banco tb on b.idBanco = tb.idBanco left join tarjeta t on t.idTarjeta =                    tb.idTarjeta order by b.descripcion desc, t.descripcion DESC";
+        $query = "select b.descripcion as banco, t.descripcion as tarjeta, tb.cuotas as cuotas, tb.interes as interes 
+                    from  banco b 
+                    left join tarjeta_banco tb on b.idBanco = tb.idBanco 
+                    left join tarjeta t on t.idTarjeta = tb.idTarjeta 
+                    WHERE t.baja = 0
+                    AND b.baja = 0
+                    order by b.descripcion desc, t.descripcion DESC";
         $productos = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

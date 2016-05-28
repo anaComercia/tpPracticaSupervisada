@@ -12,6 +12,7 @@ class Carrito
     public function getBancos(){
         $query = "SELECT b.idBanco as id, b.descripcion as detail 
                 FROM banco b 
+                WHERE b.baja = 0
                 order by b.descripcion desc";
         $productos = array();
         if( $result = $this->connection->query($query) ){
@@ -28,7 +29,8 @@ class Carrito
         $query = "select DISTINCT t.idTarjeta as id, t.descripcion as type
                     from tarjeta_banco tb
                     left join tarjeta t on t.idTarjeta = tb.idTarjeta
-                    where tb.idBanco =  $prodId";
+                    where tb.idBanco =  $prodId
+                    and t.baja = 0";
          $talle = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

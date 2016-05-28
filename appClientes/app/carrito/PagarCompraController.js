@@ -8,12 +8,12 @@ function PagarCompraController($state,$scope,CarritoService) {
    var vm = this;
     
     //vm.sumaTotalReservas = $scope.carrito.totalReservas;
-    debugger;
-    vm.totalReservas = localStorage.contador == undefined ? new Number() : JSON.parse(localStorage.contador);
     vm.sumaTotalReservas = vm.totalReservas ;
     vm.mySelect = {};//seleccion de los combos
     vm.nvoDom = {};//seleccion de los combos
     vm.bancos = [];
+    vm.cupon=[];
+    vm.sucursales = [];
     vm.disableTarjetas = true;
     vm.disableCuotas=true;
     vm.tarjetas = [];
@@ -22,6 +22,11 @@ function PagarCompraController($state,$scope,CarritoService) {
     vm.isOpenTarjeta = false;
     vm.hiddenSucursal = true;
     vm.isOpenSucursal = false;  
+    vm.idUsuario = 1; //sacar HARDCODE
+    vm.subTotal = localStorage.contador == undefined ? new Number() : JSON.parse(localStorage.contador);
+    vm.valorCupon = 0;
+    vm.totalReservas = vm.subTotal - vm.valorCupon;
+    
      
     
       vm.domicilios = [
@@ -76,8 +81,51 @@ function PagarCompraController($state,$scope,CarritoService) {
             vm.hiddenSucursal = true;
             vm.isOpenSucursal = false;
         }
+        
+        
    
     };
+    vm.prueba = function(){
+    debugger;   
+        console.log(vm.mySelect);
+    };
+    
+    vm.pagarCarrito = function(){
+        debugger;
+        if(vm.isOpenSucursal == true){ //pago en efectivo
+            
+        }
+        if(vm.isOpenTarjeta == true){ //pago con tarjeta
+           console.log(vm.mySelect);
+            //necesito estos cambios 
+            //tabla compra -> idTarjetaBanco
+            //tabla tarjeta_banco -> idTarjetaBanco
+            if((typeof vm.mySelect.bancos != undefined)
+                &&(typeof vm.mySelect.cuotas != undefined)
+                &&(typeof vm.mySelect.domicilioEntrega != undefined)
+                &&(typeof vm.mySelect.fechaTarjeta != undefined)
+                &&(typeof vm.mySelect.nroTarjeta != undefined)
+                &&(typeof vm.mySelect.tarjeta != undefined)){
+                //puedo pagar
+                if(typeof vm.mySelect.cupon != undefined){ //verifico cupon
+                    vm.verificoCupon();
+                }
+                
+            }
+        }
+    };
+    
+    vm.verificoCupon = function(){
+        return CarritoService.getVerifCupon(vm.mySelect.cupon, vm.idUsuario).then(function(data){
+            if(data){
+                debugger;
+                vm.cupon = data;
+                vm.totalReservas = vm.subTotal - parseInt(vm.cupon[0].descuento);
+                vm.valorCupon = parseInt(vm.cupon[0].descuento);
+            }
+        });
+    };
+    
      $scope.mostrarSucursales = function(value) {
         if(value){
             vm.hiddenTarjeta= true;
@@ -85,7 +133,18 @@ function PagarCompraController($state,$scope,CarritoService) {
             vm.hiddenSucursal = false;
             vm.isOpenSucursal = true;
         }
+        
+         vm.cargarSucursales();
    
+    };
+    
+    vm.cargarSucursales = function(){
+        return CarritoService.getSucursales().then(function(data){
+            if(data){
+                debugger;
+                vm.sucursales = data;
+            }
+        });
     };
     
     vm.cambioBanco = function(){

@@ -48,6 +48,7 @@ class Perfil
                     from cupon c
                     left join cupon_cliente cc on cc.idCupon = c.idCupon
                     where cc.idCliente = $id 
+                    and c.baja = 0
                     and cc.estado = 'NO'";
          $cuponUsado = array();
         if( $result = $this->connection->query($query) ){

@@ -140,6 +140,12 @@ $app->get('/bancosCarrito', function(){
 	$data = $producto->getBancos();
 	sendResult($data);
 });
+$app->get('/traerSucursales', function(){
+
+	$producto = new Carrito();
+	$data = $producto->getSucursales();
+	sendResult($data);
+});
 $app->get('/productos', function(){
 
 	$producto = new Producto();
@@ -210,6 +216,11 @@ $app->get('/ProdImgModulo', function(){
 $app->get('/ProdTalles/:id', function($id){
 	$producto = new Producto();
 	$data = $producto->getTalles($id);
+	sendResult($data);
+});
+$app->get('/verifCupon/:descCupon&:idUsr', function($descCupon, $idUsr){
+	$producto = new Carrito();
+	$data = $producto->getVerifCupon($descCupon,$idUsr);
 	sendResult($data);
 });
 $app->get('/IniBuscadorProd/:dato', function($dato){

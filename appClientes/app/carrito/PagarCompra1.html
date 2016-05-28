@@ -64,7 +64,10 @@
              </select>
              <div class="nro-tarjeta">
                  <label >Numero de Tarjeta</label>
-                 <input type="text"  class="form-control form-pagar-input" pattern="[0-9]*" maxlength="16"/>
+                 <input type="text"  
+                     class="form-control form-pagar-input" 
+                     ng-model="pagarCtrl.mySelect.nroTarjeta" 
+                     pattern="[0-9]*" maxlength="16"/>
              </div>
             <div class="vencimiento-tarjeta">
                 <label>Fecha de Vencimiento</label>
@@ -72,7 +75,10 @@
                     <input class="form-control" type="text" readonly />
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                 </div>-->
-                <input type="date" class="form-control form-pagar-input" placeholder="Fecha Nacimiento" />
+                <input type="date" 
+                    class="form-control form-pagar-input" 
+                    ng-model="pagarCtrl.mySelect.fechaTarjeta" 
+                    placeholder="Fecha Nacimiento" />
            </div> 
           <label class="pagar-titulos">
                 <b>Detalles de Entrega</b>
@@ -80,7 +86,7 @@
            <label>Envío a Domicilio</label>
            <select class="select-option select-domicilio" 
                     ng-model="pagarCtrl.mySelect.domicilioEntrega" 
-                  ng-init="pagarCtrl.mySelect.domicilioEntrega = pagarCtrl.domicilios[0]" 
+                    ng-init="pagarCtrl.mySelect.domicilioEntrega = pagarCtrl.domicilios[0]" 
                     ng-options="domi as domi.detail for domi in pagarCtrl.domicilios" 
                     >
              </select>
@@ -137,7 +143,7 @@
               ng-mouseleave="demo.isOpenSucursal=false"  >
             <label class="pagar-titulos">
                 <b>Retiro del Producto</b>
-            </label>
+            </label><!--
             <div class="radio">
                 <label class="radio-retiro-prod">
                     <input type="radio" value="Suc1" name="sucRetiro">Bermúdez 1876, CP 1417, Capital Federal, Buenos Aires.
@@ -155,7 +161,18 @@
                     <input type="radio" value="Suc3" name="sucRetiro">Remedios Escalada 654, CP 1467, Lugano, Buenos Aires.
                 </label>
                 <label class="detalle-informativo"> <b>Tiempo de retiro: 15 dias</b></label>
-            </div>
+            </div> -->
+            
+            <div  class="radio" >
+                <div>
+                   <label  ng-repeat="s in pagarCtrl.sucursales" style="    width: 600;">
+                      <input type="radio"  
+                              name="sucRetiro" 
+                              ng-change="pagarCtrl.prueba()"
+                              ng-model="pagarCtrl.mySelect.retiro">{{s.dir | uppercase}}, {{s.cp | uppercase}}, {{s.des | uppercase}} 
+                     </label>
+                </div>
+            </div> 
        
         </div>
         <div class="div-modulos ">
@@ -163,9 +180,18 @@
                 <b>Cupon de Descuento</b>
             </label>
             <label class="detalle-informativo">En caso de que tengas un cupon de descuento, ingresalo aquí.</label>
-            <input class="div-ingreso-cupon" maxlength="8" />
+            <input class="div-ingreso-cupon" maxlength="8" ng-model="pagarCtrl.mySelect.cupon" />
         </div>
          <div class="div-total-reserva">
+               <div class="total-pagar-finalizar">
+                       Subtotal
+                    </label>
+                        $ {{pagarCtrl.subTotal}}
+                    </label>
+                    </label> 
+                     </label> 
+                   
+                </div>
                 <div class="total-pagar-finalizar">
                     TOTAL A PAGAR
                     <label>
@@ -174,7 +200,9 @@
                    
                 </div>
                
-                <button  type="button" class=" btn-terminar btn btn-default btn-md" >
+                <button  type="button" 
+                           ng-click="pagarCtrl.pagarCarrito()"
+                           class=" btn-terminar btn btn-default btn-md" >
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     Terminar
                 </button>

@@ -55,6 +55,40 @@ class Carrito
         }
         return $talle; 
     }
+    
+     public function getSucursales(){
+        $query = "SELECT d.direccion as dir, d.cp as cp , l.descripcion as des
+                    FROM sucursal s
+                    left join direccion d on d.idDireccion = s.idDireccion
+                    left join localidad l on l.idLocalidad = d.idLocalidad
+                    WHERE s.baja = 0";
+        $sucursal = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $sucursal[] = $fila;
+            }
+            $result->free();
+        }
+        return $sucursal;
+    }
+    
+      public function getVerifCupon($descCupon,$idUsr){
+           $usuario = (int) $this->connection->real_escape_string($idUsr);
+        $query = "select c.idCupon as idCup, c.descripcion as desCup, c.montoDescuento as descuento
+                    from cupon_cliente cc
+                    left join cupon c on c.idCupon = cc.idCupon
+                    where cc.idCliente = $usuario
+                    and cc.estado = 'SI'
+                    and c.descripcion = '$descCupon'";
+        $cupon = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $cupon[] = $fila;
+            }
+            $result->free();
+        }
+        return $cupon;
+    }
  
     
 }

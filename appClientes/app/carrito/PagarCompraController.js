@@ -130,6 +130,7 @@ function PagarCompraController($state,$scope,CarritoService) {
         }
         //TODO: restar productos del carrito
         //TODO: impactar en las tablas
+        //TODO: front - input numero tarjeta
     };
     
     vm.verificoCupon = function(){

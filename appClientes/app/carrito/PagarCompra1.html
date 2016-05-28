@@ -64,9 +64,10 @@
              <div class="nro-tarjeta">
                  <label >Numero de Tarjeta</label>
                  <input type="text"  
+                    pattern="([0-9]|[0-9]|[0-9])"
                      class="form-control form-pagar-input" 
                      ng-model="pagarCtrl.mySelect.nroTarjeta" 
-                     pattern="[0-9]*" maxlength="16"/>
+                     maxlength="16" />
              </div>
             <div class="vencimiento-tarjeta">
                 <label>Fecha de Vencimiento</label>

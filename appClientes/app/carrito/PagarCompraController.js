@@ -128,6 +128,8 @@ function PagarCompraController($state,$scope,CarritoService) {
                 
             }
         }
+        //TODO: restar productos del carrito
+        //TODO: impactar en las tablas
     };
     
     vm.verificoCupon = function(){

@@ -40,6 +40,10 @@ function CarritoCtrl($state,$rootScope) {
         $rootScope.$emit('actualizarTotal', contador);
        
     }
+    
+    //TODO: timer de productos, reputacion?? si cuando agrego al carrito no resto de mi stock
+    //TODO: validar que los productos antes de apgar, sigan estando con stock y si no, alert
+    
     /* lista compras */
     
     /*vm.totalReservas = _calculationTotal();

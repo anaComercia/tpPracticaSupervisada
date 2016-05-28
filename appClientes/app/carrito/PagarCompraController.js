@@ -13,6 +13,7 @@ function PagarCompraController($state,$scope,CarritoService) {
     vm.nvoDom = {};//seleccion de los combos
     vm.bancos = [];
     vm.hideErrorLongTarjeta = true;
+    vm.hideErrorFechaTarjeta = true;
     vm.cupon=[];
     vm.sucursales = [];
     vm.disableTarjetas = true;
@@ -112,6 +113,16 @@ function PagarCompraController($state,$scope,CarritoService) {
                 if(vm.mySelect.nroTarjeta.length != 16){
                     vm.hideErrorLongTarjeta = false;
                     vm.mensajeLongTarjeta = "El número de la tarjeta debe ser de 16 dígitos."
+                }
+                
+                //valido fecha de tarjeta
+                var today = new Date();
+                debugger;
+                var dateCard = new Date(vm.mySelect.fechaTarjeta);
+                console.log(dateCard);
+                if(dateCard < today){
+                    vm.hideErrorFechaTarjeta = false;
+                    vm.mensajeFechaTarjeta = "La fecha de la tarjeta ingresada debe ser mayor al día de hoy."
                 }
               
                 

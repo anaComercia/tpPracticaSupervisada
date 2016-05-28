@@ -180,7 +180,11 @@
                 <b>Cupon de Descuento</b>
             </label>
             <label class="detalle-informativo">En caso de que tengas un cupon de descuento, ingresalo aquí.</label>
-            <input class="div-ingreso-cupon" maxlength="8" ng-model="pagarCtrl.mySelect.cupon" />
+            <input class="div-ingreso-cupon" maxlength="8" 
+                   ng-blur="pagarCtrl.verificoCupon()"
+                   ng-paste="pagarCtrl.verificoCupon()"
+                   ng-change="pagarCtrl.verificoCupon()"
+                    ng-model="pagarCtrl.mySelect.cupon" />
         </div>
          <div class="div-total-reserva">
                <div class="total-pagar-finalizar">

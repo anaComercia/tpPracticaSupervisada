@@ -107,23 +107,23 @@ function PagarCompraController($state,$scope,CarritoService) {
                 &&(typeof vm.mySelect.nroTarjeta != undefined)
                 &&(typeof vm.mySelect.tarjeta != undefined)){
                 //puedo pagar
-                if(typeof vm.mySelect.cupon != undefined){ //verifico cupon
-                    vm.verificoCupon();
-                }
+              
                 
             }
         }
     };
     
     vm.verificoCupon = function(){
-        return CarritoService.getVerifCupon(vm.mySelect.cupon, vm.idUsuario).then(function(data){
-            if(data){
-                debugger;
-                vm.cupon = data;
-                vm.totalReservas = vm.subTotal - parseInt(vm.cupon[0].descuento);
-                vm.valorCupon = parseInt(vm.cupon[0].descuento);
-            }
-        });
+        if(vm.mySelect.cupon.length == 8 ){
+            return CarritoService.getVerifCupon(vm.mySelect.cupon, vm.idUsuario).then(function(data){
+                if(data){
+                    debugger;
+                    vm.cupon = data;
+                    vm.totalReservas = vm.subTotal - parseInt(vm.cupon[0].descuento);
+                    vm.valorCupon = parseInt(vm.cupon[0].descuento);
+                }
+            });
+        }
     };
     
      $scope.mostrarSucursales = function(value) {

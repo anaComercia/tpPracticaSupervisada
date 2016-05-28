@@ -143,6 +143,11 @@
     font-size: 10px;
     color: grey;
 }
+
+.detalle-informativo-precio{
+    color: #999;
+    font-size: inherit;
+}
 .forma-pago{
     width: 134px;
 }

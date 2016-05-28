@@ -1,10 +1,9 @@
 <script src="app/perfil/Perfil.js"></script>
-   <div class="col-md-8 col-offset-2" id="idImgModProd">
-    <img  class="img-responsive img-banner-modulo" src="img/modulos/imgModuloProductos.jpg" />
-</div>
 
-<div  class="col-md-12 perfilTab" >
-  
+<div  class="col-md-12 perfilTab" ng-controller="PerfilController as perfCtrl" >
+    <div class="col-md-8 col-offset-2" id="idImgModProd">
+        <img  class="img-responsive img-banner-modulo" src="{{perfCtrl.banner}}" />
+    </div>
    <div class="container">
    <!-- <div class="row">-->
        <div class="row">
@@ -19,7 +18,7 @@
                             </a>
                         </h4>
                     </div>
-                    <div ng-controller="PerfilController as perfCtrl" class="panel-collapse collapse in">
+                    <div  class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>

@@ -36,6 +36,7 @@ function ProductosCtrl($state, ProductosService,$rootScope) {
             }
         });
     };
+    
 
     vm.mostrarListaProductos = function(){
         return ProductosService.getAllProductos().then(function(data){
@@ -102,7 +103,8 @@ function ProductosCtrl($state, ProductosService,$rootScope) {
     vm.mostrarBanner = function(){
         return ProductosService.getImgModulo().then(function(data){
             if(data){
-                vm.banner = data;
+                debugger;
+                vm.banner = data[0].modulo;
             }
         });
     };

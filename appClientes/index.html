@@ -6,6 +6,7 @@
         
         <!-- <Librerías> -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
+       <!-- <script src="bower_components/typeahead.js/dist/typeahead.jquery.min.js"></script>-->
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>      
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -67,9 +68,13 @@
        <div id="container" style="container" ng-controller="MainController as main">
             <div id="idHeader" class="row col-md-10 col-md-offset-1 col-xs-6" >
                 <div id="idDivBuscador" class="col-md-3 input--search">
-                        <input id="idBuscador" class="input-buscador" 
+                       <input id="idBuscador" class="input-buscador" 
                                 maxlength="15"  ng-model="main.mySelect.buscador"
                                 placeholder="Buscar" style="fa fa-search"/>
+                       <!--  <input id="idBuscador" class="input-buscador form-control typeahead"  type="text" 
+                                maxlength="15"  ng-model="main.mySelect.buscador"
+                                 ng-mouseover="main.iniciar()"
+                                placeholder="Buscar" style="fa fa-search"/>-->
                         <button type="submit" class="btn" 
                                 ng-click="main.buscarProducto()"
                                 ui-sref="inicio"><i class="fa fa-search"></i></button>

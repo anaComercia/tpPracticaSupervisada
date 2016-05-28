@@ -15,6 +15,7 @@ function MainCtrl($state, FooterService, $rootScope) {
 	
 	this.brand = "Usuario";
     vm = this;
+    vm.nombresMps = [];
 	vm.telefonos=[];
     vm.totalReservas = localStorage.contador == undefined ? 0 : JSON.parse(localStorage.contador);
     vm.mySelect = localStorage.buscador == undefined ?  new String() :  new String();
@@ -57,6 +58,46 @@ function MainCtrl($state, FooterService, $rootScope) {
              $rootScope.$emit('actualizarBuscador');
         }
     };
+    
+    
+    vm.substringMatcher = function(strs) {
+        return function findMatches(q, cb) {
+            var matches, substringRegex;
+            matches = [];
+            substrRegex = new RegExp(q, 'i');
+            jQuery.each(strs, function(i, str) {
+                if (substrRegex.test(str)) {
+                    matches.push(str);
+                }
+            });
+            cb(matches);
+        };
+    };
+    
+    this.iniciar = function(){
+        jQuery('#idBuscador').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        },
+        {
+            name: 'mps',
+            source: vm.substringMatcher(vm.nombresMps)
+        });
+    }
+    
+    /*
+      this.getMps = function(){
+    return MpService.getMps().then(function(data){
+            self.mps = data;
+         self.mps.forEach(function(elemento){
+             if(self.nombresMps.indexOf(elemento.titulo) == -1){
+         self.nombresMps.push(elemento.titulo);
+             }
+         });
+        });
+    };
+    */
     
     vm.init = function(){
         vm.mostrarTelefonos();

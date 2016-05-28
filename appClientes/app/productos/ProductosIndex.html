@@ -1,8 +1,7 @@
-<div class="col-md-8 col-offset-2" id="idImgModProd">
-    <img  class="img-responsive img-banner-modulo" src="img/modulos/imgModuloProductos.jpg" />
-</div>
-
 <div class="col-md-12" ng-controller="ProductosListController as prodCtrl">
+    <div class="col-md-8 col-offset-2" id="idImgModProd">
+        <img  class="img-responsive img-banner-modulo" src="{{prodCtrl.banner}}" />
+    </div>
     <div id="idPnlFiltros"  class="col-md-2 pnl-filtros" >
         <div id="idPnlCategorias" class="col-md-10" style="">
             <h4>Categorías principales</h4>

@@ -1,109 +1,109 @@
-<div class="col-md-8 col-offset-2" id="idImgModProd">
-    <img  class="img-responsive img-banner-modulo" src="img/modulos/imgModuloProductos.jpg" />
-</div>
-
-<div id="idPaginaProducto" ng-controller="ProductosListController as productCtrl" class="col-md-12">
-  
-    
-    <div class="col-md-5 col-md-offset-1 imagenes-detalle" >
-    
-        <img  src={{productCtrl.source}} class="img img-first thumbnail zoom" />
-
-        <div id="idImgProdSecundario" >
-            <img src={{productCtrl.prodDetalle.img2}} ng-click="productCtrl.changeImage($event)" />
-            <img src={{productCtrl.prodDetalle.img3}}  ng-click="productCtrl.changeImage($event)"/>
-            <img src={{productCtrl.prodDetalle.img4}}  ng-click="productCtrl.changeImage($event)" />
-        </div> 
-        
+<div ng-controller="ProductosListController as productCtrl">
+    <div class="col-md-8 col-offset-2" id="idImgModProd">
+        <img  class="img-responsive img-banner-modulo" src="{{productCtrl.banner}}" />
     </div>
+    <div id="idPaginaProducto"  class="col-md-12">
 
-    <div  id="idDetalleProd" class="col-md-6" style="">
-        <label class="lblTitulo">{{productCtrl.prodDetalle.prodTit | uppercase}}</label>
-              
-        <div>
-            <label class="lblDescripcion"> {{productCtrl.prodDetalle.prodDesc}}</label>
-        </div>  
-        
-        
-        <div>
-            <label class="lblPrecio" >${{productCtrl.prodDetalle.prodPrecio}}</label>
-            <!--<label class="cuotas-precio">3 cuotas de ${{productCtrl.precioXcuota}} cada una</label>-->
+        <div class="col-md-5 col-md-offset-1 imagenes-detalle" >
+
+            <img  src={{productCtrl.source}} class="img img-first thumbnail zoom" />
+
+            <div id="idImgProdSecundario" >
+                <img src={{productCtrl.prodDetalle.img2}} ng-click="productCtrl.changeImage($event)" />
+                <img src={{productCtrl.prodDetalle.img3}}  ng-click="productCtrl.changeImage($event)"/>
+                <img src={{productCtrl.prodDetalle.img4}}  ng-click="productCtrl.changeImage($event)" />
+            </div> 
+
         </div>
 
-        
-        <div>
+        <div  id="idDetalleProd" class="col-md-6" style="">
+            <label class="lblTitulo">{{productCtrl.prodDetalle.prodTit | uppercase}}</label>
+
             <div>
-                <label class="lblDetalle lblGenero">Género</label>
-                <label class="" >{{productCtrl.prodDetalle.gendDesc}}</label>
+                <label class="lblDescripcion"> {{productCtrl.prodDetalle.prodDesc}}</label>
+            </div>  
+
+
+            <div>
+                <label class="lblPrecio" >${{productCtrl.prodDetalle.prodPrecio}}</label>
+                <!--<label class="cuotas-precio">3 cuotas de ${{productCtrl.precioXcuota}} cada una</label>-->
+            </div>
+
+
+            <div>
+                <div>
+                    <label class="lblDetalle lblGenero">Género</label>
+                    <label class="" >{{productCtrl.prodDetalle.gendDesc}}</label>
+                </div>
+
+                <div>
+                    <label class="lblDetalle">Elegir talle</label>
+                    <label class="lblDetalle titulo-elegir-color">Elegir color</label>
+
+                    <select class="select-option select-option-talle" 
+                        ng-model="productCtrl.mySelect.size" 
+                        ng-disabled="productCtrl.talleDesHabilitado"
+                        ng-change="productCtrl.ejectuarCambioTalle(productCtrl.mySelect.size)"
+                        ng-options="option as option.descripcion for option in productCtrl.talles">
+                    </select>
+
+
+                    <select class="select-option-prodDetail" 
+                            ng-model="productCtrl.mySelect.color" 
+                            ng-disabled="productCtrl.colorDesHabilitado"
+                            ng-change="productCtrl.ejectuarCambioColor() "
+                            ng-options="option as option.descripcion for option in productCtrl.colores">
+                    </select>
+                </div>
             </div>
 
             <div>
-                <label class="lblDetalle">Elegir talle</label>
-                <label class="lblDetalle titulo-elegir-color">Elegir color</label>
-                
-                <select class="select-option select-option-talle" 
-                    ng-model="productCtrl.mySelect.size" 
-                    ng-disabled="productCtrl.talleDesHabilitado"
-                    ng-change="productCtrl.ejectuarCambioTalle(productCtrl.mySelect.size)"
-                    ng-options="option as option.descripcion for option in productCtrl.talles">
-                </select>
-            
-                
-                <select class="select-option-prodDetail" 
-                        ng-model="productCtrl.mySelect.color" 
-                        ng-disabled="productCtrl.colorDesHabilitado"
-                        ng-change="productCtrl.ejectuarCambioColor() "
-                        ng-options="option as option.descripcion for option in productCtrl.colores">
-                </select>
+                <label class="ver-detalle-cuotas" data-target="#myModalBanco" data-toggle="modal">Ver detalles de las cuotas.</label>
             </div>
-        </div>
-        
-        <div>
-            <label class="ver-detalle-cuotas" data-target="#myModalBanco" data-toggle="modal">Ver detalles de las cuotas.</label>
-        </div>
-        
-        <!-- INICIO MODAL-->
-            <div class="modal fade" id="myModalBanco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title" id="myModalLabel">Detalle de bancos y cuotas.</h4>
-                  </div>
-                  <div class="modal-body">
-                    <div>
-                        <label class="lblDetalle">Banco</label>
-                        <label class="lblDetalle">Tarjeta</label>
-                        <label class="lblDetalle">Cuota</label>
-                        <label class="lblDetalle">Interes</label>
 
-                        <label ng-repeat="s in productCtrl.bancos" >
-                              <div>
-                               <label style="width: 150;">{{s.banco | uppercase}}</label> 
-                               <label style="width: 125;">{{s.tarjeta  | uppercase}}</label> 
-                               <label style="width: 125;">{{s.cuotas | uppercase}}</label> 
-                               <label> {{s.interes | uppercase}} % </label> 
-                              </div>
-                        </label> 
+            <!-- INICIO MODAL-->
+                <div class="modal fade" id="myModalBanco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel">Detalle de bancos y cuotas.</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div>
+                            <label class="lblDetalle">Banco</label>
+                            <label class="lblDetalle">Tarjeta</label>
+                            <label class="lblDetalle">Cuota</label>
+                            <label class="lblDetalle">Interes</label>
+
+                            <label ng-repeat="s in productCtrl.bancos" >
+                                  <div>
+                                   <label style="width: 150;">{{s.banco | uppercase}}</label> 
+                                   <label style="width: 125;">{{s.tarjeta  | uppercase}}</label> 
+                                   <label style="width: 125;">{{s.cuotas | uppercase}}</label> 
+                                   <label> {{s.interes | uppercase}} % </label> 
+                                  </div>
+                            </label> 
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                      </div>
                     </div>
-            
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                   </div>
                 </div>
-              </div>
-            </div>
-        <!--FIN MODAL -->
-        
-        <button  type="button" 
-                class="btn btn-default btn-md btn-agregar" 
-                ng-click="productCtrl.agregarProductoTemporal()"
-                ng-disabled="productCtrl.deshabilitarBtnAgregar">
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            Agregar al carrito
-        </button>
-        
-        <div class="alert alert-success msg-success" role="alert" ng-hide="productCtrl.hideMsgSuccess">{{productCtrl.messageSuccess}}</div>
+            <!--FIN MODAL -->
 
-    </div>    
+            <button  type="button" 
+                    class="btn btn-default btn-md btn-agregar" 
+                    ng-click="productCtrl.agregarProductoTemporal()"
+                    ng-disabled="productCtrl.deshabilitarBtnAgregar">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                Agregar al carrito
+            </button>
+
+            <div class="alert alert-success msg-success" role="alert" ng-hide="productCtrl.hideMsgSuccess">{{productCtrl.messageSuccess}}</div>
+
+        </div>    
+    </div>
 </div>

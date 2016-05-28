@@ -2,15 +2,25 @@ angular
     .module("backendEcommerceClientes.carrito")
     .controller("CarritoController", CarritoCtrl);
 
-CarritoCtrl.$injector = ["$state","$rootScope"];
+CarritoCtrl.$injector = ["$state","$rootScope", "ProductosService"];
 
-function CarritoCtrl($state,$rootScope) {
+function CarritoCtrl($state,$rootScope,ProductosService) {
     var vm = this;
     vm.disablePagar = vm.totalReservas == 0 ? true : false;
     vm.totalReservas = localStorage.contador == undefined ? new Number() : JSON.parse(localStorage.contador);
     var contador;
     vm.listaReservas = localStorage.listaTemporal == undefined ? new Array() : JSON.parse(localStorage.listaTemporal);
     var precio;
+    vm.banner = '';
+    
+    vm.mostrarBanner = function(){
+        return ProductosService.getImgModulo().then(function(data){
+            if(data){
+                debugger;
+                vm.banner = data[0].modulo;
+            }
+        });
+    };
     
     vm.onClickDetail= function(reserva){ //remueve item de la lista temporal de reservas
         for (i = 0; i < vm.listaReservas.length; i++) {
@@ -43,6 +53,12 @@ function CarritoCtrl($state,$rootScope) {
     
     //TODO: timer de productos, reputacion?? si cuando agrego al carrito no resto de mi stock
     //TODO: validar que los productos antes de apgar, sigan estando con stock y si no, alert
+    
+    vm.init = function(){
+        vm.mostrarBanner();
+	};
+    
+    vm.init();
     
     /* lista compras */
     

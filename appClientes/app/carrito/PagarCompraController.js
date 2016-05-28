@@ -12,6 +12,7 @@ function PagarCompraController($state,$scope,CarritoService) {
     vm.mySelect = {};//seleccion de los combos
     vm.nvoDom = {};//seleccion de los combos
     vm.bancos = [];
+    vm.hideErrorLongTarjeta = true;
     vm.cupon=[];
     vm.sucursales = [];
     vm.disableTarjetas = true;
@@ -100,13 +101,18 @@ function PagarCompraController($state,$scope,CarritoService) {
             //necesito estos cambios 
             //tabla compra -> idTarjetaBanco
             //tabla tarjeta_banco -> idTarjetaBanco
-            if((typeof vm.mySelect.bancos != undefined)
-                &&(typeof vm.mySelect.cuotas != undefined)
-                &&(typeof vm.mySelect.domicilioEntrega != undefined)
-                &&(typeof vm.mySelect.fechaTarjeta != undefined)
-                &&(typeof vm.mySelect.nroTarjeta != undefined)
-                &&(typeof vm.mySelect.tarjeta != undefined)){
-                //puedo pagar
+            if((typeof vm.mySelect.bancoSelec != 'undefined')
+                &&(typeof vm.mySelect.cuotaSelec != 'undefined')
+                &&(typeof vm.mySelect.domicilioEntrega != 'undefined')
+                &&(typeof vm.mySelect.fechaTarjeta != 'undefined')
+                &&(typeof vm.mySelect.nroTarjeta != 'undefined')
+                &&(typeof vm.mySelect.tarjeta != 'undefined')){
+                //valido longitud de tarjeta
+                
+                if(vm.mySelect.nroTarjeta.length != 16){
+                    vm.hideErrorLongTarjeta = false;
+                    vm.mensajeLongTarjeta = "El número de la tarjeta debe ser de 16 dígitos."
+                }
               
                 
             }
@@ -165,7 +171,7 @@ function PagarCompraController($state,$scope,CarritoService) {
     }
     
     vm.traerTarjetas = function(){
-     return CarritoService.getTarjetas(vm.mySelect.bancos.id).then(function(data){
+     return CarritoService.getTarjetas(vm.mySelect.bancoSelec.id).then(function(data){
             if(data){
                 vm.tarjetas = data;
                 vm.disableTarjetas = false;
@@ -174,7 +180,7 @@ function PagarCompraController($state,$scope,CarritoService) {
     }
     
      vm.traerCuotas = function(){
-     return CarritoService.getCuotas(vm.mySelect.bancos.id,vm.mySelect.tarjeta.id).then(function(data){
+     return CarritoService.getCuotas(vm.mySelect.bancoSelec.id,vm.mySelect.tarjeta.id).then(function(data){
             if(data){
                 vm.cuotas = data;
                 vm.disableCuotas = false;

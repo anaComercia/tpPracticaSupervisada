@@ -103,7 +103,6 @@ function ProductosCtrl($state, ProductosService,$rootScope) {
     vm.mostrarBanner = function(){
         return ProductosService.getImgModulo().then(function(data){
             if(data){
-                debugger;
                 vm.banner = data[0].modulo;
             }
         });

@@ -86,11 +86,13 @@
            <label>Envío a Domicilio</label>
            <select class="select-option select-domicilio" 
                     ng-model="pagarCtrl.mySelect.domicilioEntrega" 
-                    ng-init="pagarCtrl.mySelect.domicilioEntrega = pagarCtrl.domicilios[0]" 
-                    ng-options="domi as domi.detail for domi in pagarCtrl.domicilios" 
+                    ng-options="domi as domi.dire for domi in pagarCtrl.domicilios" 
                     >
              </select>
-            <label class="nuevo-domicilio" data-toggle="modal" data-target="#myModal">¿Nuevo domicilio?</label>
+            <label class="nuevo-domicilio" 
+                    data-toggle="modal" 
+                   ng-click="pagarCtrl.ejecutarModal()"
+                   data-target="#myModal">¿Nuevo domicilio?</label>
             
             <!-- Modal Nvo Dom-->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -102,18 +104,24 @@
                   <div class="modal-body">
                     <div>
                         <label class="detalle-compra-titulo">Domicilio</label>
-                        <input type="text" maxlength="80" class="input-nvo-dom">
+                        <input type="text" maxlength="80" 
+                               class="input-nvo-dom" 
+                               ng-change="pagarCtrl.habilitarGuardar()"
+                               ng-model="pagarCtrl.nvoDom.direccion">
                     </div>
                     <div>
                         <label class="detalle-compra-titulo">CP</label>
-                        <input type="text" maxlength="4" class="input-nvo-dom">
+                        <input type="number" 
+                               class="input-nvo-dom" 
+                               ng-change="pagarCtrl.habilitarGuardar()"
+                               ng-model="pagarCtrl.nvoDom.cp">
                     </div>
                     <div>
                         <label class="detalle-compra-titulo">Provincia</label>
                         <select class="select-option select-domicilio" 
-                        ng-model="pagarCtrl.nvoDom.provincia" 
-                        ng-init="pagarCtrl.nvoDom.provincia = pagarCtrl.provincias[0]" 
-                        ng-options="prov as prov.detail for prov in pagarCtrl.provincias" 
+                        ng-model="pagarCtrl.nvoDom.provincia"
+                        ng-change="pagarCtrl.buscarLocalidades()"
+                        ng-options="prov as prov.descr for prov in pagarCtrl.provincias" 
                         >
                         </select>
                     </div>
@@ -121,15 +129,22 @@
                         <label class="detalle-compra-titulo">Localidad</label>
                         <select class="select-option select-domicilio" 
                         ng-model="pagarCtrl.nvoDom.localidad" 
-                        ng-init="pagarCtrl.nvoDom.localidad = pagarCtrl.localidades[0]" 
-                        ng-options="loc as loc.detail for loc in pagarCtrl.localidades" 
+                        ng-disabled="pagarCtrl.disableLocalidad"
+                        ng-change="pagarCtrl.habilitarGuardar()"
+                        ng-options="loc as loc.descri for loc in pagarCtrl.localidades" 
                         >
                         </select>
                     </div>
                   </div>
+                    <div class="alert alert-danger" role="alert" ng-hide="pagarCtrl.showError">   
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>                                          {{pagarCtrl.msgErrorCp}}
+                    </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="alert('Message 2');" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-primary" 
+                            ng-click="pagarCtrl.guardarNvoDom()" 
+                            ng-disabled="pagarCtrl.disableBtnGuardar"
+                            data-dismiss="modal">Guardar</button>
                   </div>
                 </div>
               </div>
@@ -143,34 +158,20 @@
               ng-mouseleave="demo.isOpenSucursal=false"  >
             <label class="pagar-titulos">
                 <b>Retiro del Producto</b>
-            </label><!--
-            <div class="radio">
-                <label class="radio-retiro-prod">
-                    <input type="radio" value="Suc1" name="sucRetiro">Bermúdez 1876, CP 1417, Capital Federal, Buenos Aires.
-                </label>
-                <label class="detalle-informativo"><b>Tiempo de retiro: 10 dias</b></label>
-            </div>
-            <div class="radio">
-                <label class="radio-retiro-prod">
-                    <input type="radio" value="Suc2" name="sucRetiro">Bartolomé Mitre 675, CP 1654, Avellaneda, Buenos Aires.
-                </label>
-                <label class="detalle-informativo"><b>Tiempo de retiro: 5 dias</b></label>
-            </div>
-            <div class="radio">
-                <label class="radio-retiro-prod">
-                    <input type="radio" value="Suc3" name="sucRetiro">Remedios Escalada 654, CP 1467, Lugano, Buenos Aires.
-                </label>
-                <label class="detalle-informativo"> <b>Tiempo de retiro: 15 dias</b></label>
-            </div> -->
-            
+            </label>
             <div  class="radio" >
                 <div>
-                   <label  ng-repeat="s in pagarCtrl.sucursales" style="    width: 600;">
-                      <input type="radio"  
-                              name="sucRetiro" 
-                              ng-change="pagarCtrl.prueba()"
-                              ng-model="pagarCtrl.mySelect.retiro">{{s.dir | uppercase}}, {{s.cp | uppercase}}, {{s.des | uppercase}} 
-                     </label>
+                   <label ng-repeat="s in pagarCtrl.sucursales" style="width: 600;">
+                      <input type="radio" value="pagarCtrl.sucursalesSelects[$index].value"
+                             name="sucRetiro" 
+                             ng-checked='true'
+                             ng-change='pagarCtrl.setearSucRetiro($index)'
+                             ng-model="pagarCtrl.sucursalesSelects[$index].value">
+                               <label style="width: 200;">{{s.dir | uppercase}},</label>
+                               <label>Cp: {{s.cp | uppercase}},</label>
+                               <label>Localidad: {{s.des | uppercase}} </label>
+                              
+                    </label>
                 </div>
             </div> 
        

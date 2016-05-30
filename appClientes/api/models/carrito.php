@@ -58,8 +58,59 @@ class Carrito
         return $talle; 
     }
     
+      public function getDomicilios($idUsuario){
+        $id = (int) $this->connection->real_escape_string($idUsuario);
+        
+        $query = "SELECT d.direccion as dire, d.cp as cp, d.idDireccion as id 
+                    FROM persona_direccion pd
+                    left join usuario u on u.idPersona = pd.idPersona
+                    left join direccion d on d.idDireccion = pd.idDireccion
+                    WHERE u.idUsuario = $idUsuario ";
+         $talle = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $talle[] = $fila;
+            }
+            $result->free();
+        }
+        return $talle; 
+    }
+    
+    public function getLocalidades($idProv){
+        $id = (int) $this->connection->real_escape_string($idProv);
+        
+        $query = "SELECT l.idLocalidad as idLoc, l.descripcion as descri 
+                FROM localidad l
+                WHERE l.idProvincia = $idProv
+                and l.baja = 0
+                order by l.descripcion asc ";
+         $talle = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $talle[] = $fila;
+            }
+            $result->free();
+        }
+        return $talle; 
+    }
+    
+    public function getProvincias(){
+        $query = "select p.idProvincia as idProv, p.descripcion as descr
+                    from provincia p
+                    where p.baja = 0
+                    order by p.descripcion asc";
+        $sucursal = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $sucursal[] = $fila;
+            }
+            $result->free();
+        }
+        return $sucursal;
+    }
+    
      public function getSucursales(){
-        $query = "SELECT d.direccion as dir, d.cp as cp , l.descripcion as des
+        $query = "SELECT d.idDireccion as id, d.direccion as dir, d.cp as cp , l.descripcion as des
                     FROM sucursal s
                     left join direccion d on d.idDireccion = s.idDireccion
                     left join localidad l on l.idLocalidad = d.idLocalidad
@@ -80,7 +131,7 @@ class Carrito
                     from cupon_cliente cc
                     left join cupon c on c.idCupon = cc.idCupon
                     where cc.idCliente = $usuario
-                    and cc.estado = 'SI'
+                    and cc.estado = 'NO'
                     and c.descripcion = '$descCupon'";
         $cupon = array();
         if( $result = $this->connection->query($query) ){
@@ -91,7 +142,148 @@ class Carrito
         }
         return $cupon;
     }
- 
+    public function getIdPersona($idUsr){
+           $usuario = (int) $this->connection->real_escape_string($idUsr);
+        $query = "select idPersona as id from usuario where idUsuario= $usuario";
+        $cupon = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $cupon[] = $fila;
+            }
+            $result->free();
+        }
+        return $cupon;
+    }
+    
+    public function create($data){
+       
+        $dire=       $this->connection->real_escape_string($data['direccion']);
+        $cp =        $this->connection->real_escape_string($data['cp']);
+        $provId =    $this->connection->real_escape_string($data['provincia']);
+        $locId =     $this->connection->real_escape_string($data['localidad']);
+        $persId =    $this->connection->real_escape_string($data['usuario']);
+        
+       //Insert en tabla: direccion
+        $queryDireccion =
+         "INSERT INTO direccion
+        (idDireccion, idLocalidad, direccion, cp) 
+            VALUES
+        (DEFAULT,
+        '$locId',
+        '$dire',
+        '$cp')";   
+        
+       //var_dump($queryDireccion);
+
+       if($this->connection->query($queryDireccion)){
+            $data['idDireccion'] = $this->connection->insert_id;
+            $idDireccion=$data['idDireccion'] ;
+        }else{
+            return false;
+        }
+       
+   
+       //Insert en tabla: persona_direccion
+       $queryPersona =
+        "INSERT INTO persona_direccion
+        (idPersona, idDireccion) 
+           VALUES
+        ('$persId'
+         ,'$idDireccion')";
+
+       //print($queryPersona);
+       
+        if($this->connection->query($queryPersona)){
+            $data['idPersona'] = $this->connection->insert_id;
+            $idPersona=$data['idPersona'];
+            return $data;
+        }else{
+            return false;
+        }
+       
+        
+    }
+     public function createCompra($data){
+
+            $clienteId=       $this->connection->real_escape_string($data['idUsuario']);
+            $cuponId =        $this->connection->real_escape_string($data['idCupon']);
+            $sucuId =     $this->connection->real_escape_string($data['idSucursal']);
+            $total=       $this->connection->real_escape_string($data['totalPagar']);
+            $estadoCompra=       $this->connection->real_escape_string($data['estado']);
+            $formaPago=       $this->connection->real_escape_string($data['tipoPago']);
+            $lista=       $this->connection->real_escape_string($entryArray[$data['detalle']]);
+           
+             if($cuponId == 0){
+                 $queryCompra =
+                 "INSERT INTO compra
+                (idCompra, idCliente, idCupon, idTarjetaBanco, idSucursal, idDireccion, monto, fechaCompra,
+                fechaTarjeta, estado,numeroTarjeta,tipoPago) 
+                    VALUES
+                (DEFAULT,
+                '$clienteId',
+                NULL,
+                NULL,
+                '$sucuId',
+                NULL,
+                '$total',
+                NULL,
+                NULL,
+                '$estadoCompra',
+                NULL,
+                '$formaPago')";
+             }else{
+                 $queryCompra =
+                 "INSERT INTO compra
+                (idCompra, idCliente, idCupon, idTarjetaBanco, idSucursal, idDireccion, monto, fechaCompra,
+                fechaTarjeta, estado,numeroTarjeta,tipoPago) 
+                    VALUES
+                (DEFAULT,
+                '$clienteId',
+                '$cuponId',
+                NULL,
+                '$sucuId',
+                NULL,
+                '$total',
+                NULL,
+                NULL,
+                '$estadoCompra',
+                NULL,
+                '$formaPago')";
+             }
+
+             if($this->connection->query($queryCompra)){
+                    $data['idCompra'] = $this->connection->insert_id;
+                    $idCompra=$data['idCompra'] ;
+                    
+                }else{
+                    return false;
+                }
+var_dump($lista);
+         $queryDetalle ="";
+         $i = 0;
+             for($i = 0; $i<= count($lista) ;$i++){
+                 $l = $lista[i];
+                 var_dump($l);
+                 $sku=       $this->connection->real_escape_string($l['sku']);
+                 $precioUnitario=  $this->connection->real_escape_string($l['unitPrice']);
+                $queryDetalle =
+                     "INSERT INTO detalle_compra
+                    (idCompra, codSku, cantidad, precio) 
+                        VALUES
+                    ($idCompra,
+                    $sku,
+                    1,
+                    $precioUnitario)";
+             }
+          if($this->connection->query($queryDetalle)){
+                    $data['idCompra'] = $this->connection->insert_id;
+                    
+                    return $data;
+                }else{
+                    return false;
+                }
+
+        }
     
 }
 /*

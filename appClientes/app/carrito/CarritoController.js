@@ -16,7 +16,6 @@ function CarritoCtrl($state,$rootScope,ProductosService) {
     vm.mostrarBanner = function(){
         return ProductosService.getImgModulo().then(function(data){
             if(data){
-                debugger;
                 vm.banner = data[0].modulo;
             }
         });

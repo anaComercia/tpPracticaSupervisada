@@ -100,19 +100,37 @@ $app->get('/reputacionPerf/:id', function($idUser){
 $app->get('/cuponNuevo/:id', function($idUser){
 
 	$reputacion = new Perfil();
-	$data = $reputacion->getCuponesUsados($idUser);
+	$data = $reputacion->getCuponesNuevos($idUser);
 	sendResult($data);
 });
 $app->get('/cuponUsado/:id', function($idUser){
 
 	$reputacion = new Perfil();
-	$data = $reputacion->getCuponesNuevos($idUser);
+	$data = $reputacion->getCuponesUsados($idUser);
 	sendResult($data);
 });
 $app->get('/carritoTarjetas/:id', function($id){
 
 	$reputacion = new Carrito();
 	$data = $reputacion->getTarjetas($id);
+	sendResult($data);
+});
+$app->get('/traerLocalidades/:idProv', function($idProv){
+
+	$reputacion = new Carrito();
+	$data = $reputacion->getLocalidades($idProv);
+	sendResult($data);
+});
+$app->get('/traerProvincias', function(){
+
+	$reputacion = new Carrito();
+	$data = $reputacion->getProvincias();
+	sendResult($data);
+});
+$app->get('/traerDomicilios/:idUsuario', function($idUsuario){
+
+	$reputacion = new Carrito();
+	$data = $reputacion->getDomicilios($idUsuario);
 	sendResult($data);
 });
 $app->get('/telSucursales', function(){
@@ -242,6 +260,35 @@ $app->get('/CuotasCarrito/:banco&:tarjeta', function($banco,$tarjeta){
 	$color = new Carrito();
 	$data = $color->getCuotas($banco,$tarjeta);
 	sendResult($data);
+});
+$app->get('/buscarIdPersona/:idUsr', function($idUsr){
+	$color = new Carrito();
+	$data = $color->getIdPersona($idUsr);
+	sendResult($data);
+});
+$app->post('/altaDeDomicilio', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
+	$altaDomi = new Carrito();
+    $result = $altaDomi->create($data);
+
+	if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al crear el nuevo domicilio.");
+	}
+});
+$app->post('/insertCompra', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
+	$altaCompra = new Carrito();
+    $result = $altaCompra->createCompra($data);
+
+	if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al crear la nueva compra.");
+	}
 });
 
 $app->run();

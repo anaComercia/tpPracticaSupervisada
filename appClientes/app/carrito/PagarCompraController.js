@@ -2,9 +2,9 @@ angular
     .module("backendEcommerceClientes.carrito")
     .controller("PagarCompraController", PagarCompraController);
 
-PagarCompraController.$injector = ["$state", "$scope", "CarritoService"];
+PagarCompraController.$injector = ["$state", "$scope", "CarritoService","$rootScope"];
 
-function PagarCompraController($state,$scope,CarritoService) {
+function PagarCompraController($state,$scope,CarritoService,$rootScope) {
    var vm = this;
     
     //vm.sumaTotalReservas = $scope.carrito.totalReservas;
@@ -124,6 +124,7 @@ function PagarCompraController($state,$scope,CarritoService) {
          console.log(localStorage);
         var idCupon;
         var detalleCompra = [];
+        debugger;
         if(vm.cupon.length == 0){
             idCupon = 0; //NO TIENE CUPON
         }else{
@@ -147,13 +148,15 @@ function PagarCompraController($state,$scope,CarritoService) {
                                         detalleCompra) //lista carrito
         .then(function(response){
 
-            debugger;
-             console.log(response.data);
             if(response.data.error){
                 alert("Ha ocurrido un error");
                 return;
             }else{
-         //    vm.cargarDomicilios();
+                debugger;
+                localStorage.clear();
+                vm.totalReservas = 0;
+                vm.subTotal = 0;
+                $rootScope.$emit('actualizarTotal', vm.totalReservas);
             }
         });
          

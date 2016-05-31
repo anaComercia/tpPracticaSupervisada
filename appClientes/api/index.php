@@ -282,7 +282,7 @@ $app->post('/insertCompra', function(){
     $request = Slim\Slim::getInstance()->request();
     $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
 	$altaCompra = new Carrito();
-    $result = $altaCompra->createCompra($data);
+    $result = $altaCompra->createCompraEfectivo($data);
 
 	if($result){
 		sendResult($result);

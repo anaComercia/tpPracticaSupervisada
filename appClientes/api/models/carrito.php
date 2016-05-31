@@ -203,7 +203,7 @@ class Carrito
        
         
     }
-     public function createCompra($data){
+     public function createCompraEfectivo($data){
 
             $clienteId=       $this->connection->real_escape_string($data['idUsuario']);
             $cuponId =        $this->connection->real_escape_string($data['idCupon']);
@@ -211,9 +211,9 @@ class Carrito
             $total=       $this->connection->real_escape_string($data['totalPagar']);
             $estadoCompra=       $this->connection->real_escape_string($data['estado']);
             $formaPago=       $this->connection->real_escape_string($data['tipoPago']);
-            $lista=       $this->connection->real_escape_string($entryArray[$data['detalle']]);
-           
-             if($cuponId == 0){
+            //$lista=       $this->connection->real_escape_string($entryArray[$data['detalle']]);
+          // var_dump($cuponId);
+             if(($cuponId == "0") || ($cuponId == 0)){
                  $queryCompra =
                  "INSERT INTO compra
                 (idCompra, idCliente, idCupon, idTarjetaBanco, idSucursal, idDireccion, monto, fechaCompra,
@@ -254,11 +254,11 @@ class Carrito
              if($this->connection->query($queryCompra)){
                     $data['idCompra'] = $this->connection->insert_id;
                     $idCompra=$data['idCompra'] ;
-                    
+                    return $idCompra;
                 }else{
                     return false;
                 }
-var_dump($lista);
+/*var_dump($lista);
          $queryDetalle ="";
          $i = 0;
              for($i = 0; $i<= count($lista) ;$i++){
@@ -281,7 +281,7 @@ var_dump($lista);
                     return $data;
                 }else{
                     return false;
-                }
+                }*/
 
         }
     

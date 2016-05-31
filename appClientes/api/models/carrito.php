@@ -245,6 +245,9 @@ class Carrito
          $fechaCompra=       $this->connection->real_escape_string($data['fechaCompra']);
             //$lista=       $this->connection->real_escape_string($entryArray[$data['detalle']]);
           //var_dump($fechaPago);
+         date_default_timezone_set('America/Argentina/Buenos_Aires');
+         $date= date('Y-m-d') ;
+         
              if(($cuponId == "0") || ($cuponId == 0)){
                  $queryCompra =
                  "INSERT INTO compra
@@ -258,7 +261,7 @@ class Carrito
                 '$sucuId',
                 NULL,
                 '$total',
-                '$fechaCompra',
+                '$date',
                 NULL,
                 NULL,
                 '$estadoCompra',
@@ -277,7 +280,7 @@ class Carrito
                 '$sucuId',
                 NULL,
                 '$total',
-                '$fechaCompra',
+                '$date',
                 NULL,
                 NULL,
                 '$estadoCompra',
@@ -334,6 +337,9 @@ class Carrito
             $formaPago=       $this->connection->real_escape_string($data['tipoPago']);
             $fechaCompra=       $this->connection->real_escape_string($data['fechaCompra']);
  $idTarjetaBanco=       $this->connection->real_escape_string($data['idTarjetaBanco']);
+         
+         date_default_timezone_set('America/Argentina/Buenos_Aires');
+         $date= date('Y-m-d') ;
 
              if(($cuponId == "0") || ($cuponId == 0)){
                  $queryCompra =
@@ -348,9 +354,9 @@ class Carrito
                 NULL,
                 '$idDireccion',
                 '$total',
-                '$fechaCompra',
+                '$date',
                 '$fechaTarjeta',
-                '$fechaPago',
+                '$date',
                 '$estadoCompra',
                 '$nroTarjeta',
                 '$formaPago')";
@@ -367,9 +373,9 @@ class Carrito
                 NULL,
                 '$idDireccion',
                 '$total',
-                '$fechaCompra',
+                '$date',
                 '$fechaTarjeta',
-                '$fechaPago',
+                '$date',
                 '$estadoCompra',
                 '$nroTarjeta',
                 '$formaPago')";

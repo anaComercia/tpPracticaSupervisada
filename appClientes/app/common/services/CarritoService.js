@@ -76,6 +76,16 @@ backendEcommerce.service("CarritoService", function($http){
         });
     };
     
+    this.actualizarCupon = function(idCupon, idUsuario){
+        data = {
+            'idCupon':idCupon,
+            'idUsuario':idUsuario};
+        var promise = $http.post('api/index.php/updateCupon', data);
+        return promise.then(function(response){
+            return response;
+        });
+    };
+    
      this.postInsertCompra = function(idUsuario, 
                                       idCupon, 
                                       idTarjetaBanco, 
@@ -84,6 +94,7 @@ backendEcommerce.service("CarritoService", function($http){
                                       totalPagar,
                                       fechaCompra,
                                       fechaTarjeta,
+                                       fechaPago,
                                       estado,
                                       nroTarjeta,
                                       tipoPago,
@@ -97,6 +108,7 @@ backendEcommerce.service("CarritoService", function($http){
             'totalPagar':totalPagar,
             'fechaCompra':fechaCompra,
             'fechaTarjeta':fechaTarjeta,
+            'fechaPago':fechaPago,
             'estado':estado,
             'nroTarjeta':nroTarjeta,
             'tipoPago':tipoPago,

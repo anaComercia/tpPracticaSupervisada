@@ -290,5 +290,17 @@ $app->post('/insertCompra', function(){
 		sendError("Error al crear la nueva compra.");
 	}
 });
+$app->post('/updateCupon', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
+	$altaDomi = new Carrito();
+    $result = $altaDomi->actualizarCupon($data);
+
+	if($result){
+		sendResult("cupon actualizado");
+	}else{
+		sendError("Error al actualizar el cupon.");
+	}
+});
 
 $app->run();

@@ -132,7 +132,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
         };
         
         detalleCompra =  JSON.parse(localStorage.listaTemporal);
-        
+        var compraFecha = new Date();
        //insertar compra Y ME DEVUELVE EL ID AL CONTROLLER
          CarritoService.postInsertCompra(vm.idUsuario, //vm.idUsuario
                                          idCupon, // vm.cupon[0].idCup
@@ -140,8 +140,9 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
                                          vm.mySelect.retiro.id, // sucursal =    vm.retiro.id
                                          null, //idDireccion= null
                                          vm.totalReservas, //  monto = vm.totalReservas
-                                        null,//  fechaCompra =null
+                                        compraFecha,//  fechaCompra =null
                                         null,//fechaTarjeta = null
+                                         null,//fechaPago = null
                                         'PENDIENTE RETIRO',//estado =  PENDIENTE RETIRO
                                         null,//NRO TARJETA = null
                                         'E',//tipoPago = E
@@ -153,6 +154,9 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
                 return;
             }else{
                 debugger;
+                if(idCupon != 0){
+                    actualizarCupon();
+                }
                 localStorage.clear();
                 vm.totalReservas = 0;
                 vm.subTotal = 0;
@@ -166,6 +170,14 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
         //codSku
         //cantidad = 1
         //precio = localStorage.unitPrice
+    };
+    
+    function actualizarCupon(){
+           return CarritoService.actualizarCupon(vm.cupon[0].idCup, vm.idUsuario).then(function(data){
+            if(data){
+              console.log("refressco bien el cupon");
+            }
+        });
     };
     
     vm.verificoCupon = function(){

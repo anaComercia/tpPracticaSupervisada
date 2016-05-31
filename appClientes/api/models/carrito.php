@@ -154,7 +154,20 @@ class Carrito
         }
         return $cupon;
     }
-    
+    public function actualizarCupon($data){
+       
+        $idCupon=       $this->connection->real_escape_string($data['idCupon']);
+        $idUsuario =        $this->connection->real_escape_string($data['idUsuario']);
+
+       //Insert en tabla: cupon_cliente
+       $queryPersona =
+        "UPDATE cupon_cliente
+            set estado = 'SI'
+            WHERE idCupon = '$idCupon'
+            AND idCliente = '$idUsuario'";
+
+        return $this->connection->query($queryPersona);
+    }
     public function create($data){
        
         $dire=       $this->connection->real_escape_string($data['direccion']);
@@ -211,13 +224,14 @@ class Carrito
             $total=       $this->connection->real_escape_string($data['totalPagar']);
             $estadoCompra=       $this->connection->real_escape_string($data['estado']);
             $formaPago=       $this->connection->real_escape_string($data['tipoPago']);
+         $fechaCompra=       $this->connection->real_escape_string($data['fechaCompra']);
             //$lista=       $this->connection->real_escape_string($entryArray[$data['detalle']]);
-          // var_dump($cuponId);
+          //var_dump($fechaPago);
              if(($cuponId == "0") || ($cuponId == 0)){
                  $queryCompra =
                  "INSERT INTO compra
                 (idCompra, idCliente, idCupon, idTarjetaBanco, idSucursal, idDireccion, monto, fechaCompra,
-                fechaTarjeta, estado,numeroTarjeta,tipoPago) 
+                fechaTarjeta,fechaPago, estado,numeroTarjeta,tipoPago) 
                     VALUES
                 (DEFAULT,
                 '$clienteId',
@@ -226,6 +240,7 @@ class Carrito
                 '$sucuId',
                 NULL,
                 '$total',
+                '$fechaCompra',
                 NULL,
                 NULL,
                 '$estadoCompra',
@@ -235,7 +250,7 @@ class Carrito
                  $queryCompra =
                  "INSERT INTO compra
                 (idCompra, idCliente, idCupon, idTarjetaBanco, idSucursal, idDireccion, monto, fechaCompra,
-                fechaTarjeta, estado,numeroTarjeta,tipoPago) 
+                fechaTarjeta, fechaPago,estado,numeroTarjeta,tipoPago) 
                     VALUES
                 (DEFAULT,
                 '$clienteId',
@@ -244,6 +259,7 @@ class Carrito
                 '$sucuId',
                 NULL,
                 '$total',
+                '$fechaCompra',
                 NULL,
                 NULL,
                 '$estadoCompra',

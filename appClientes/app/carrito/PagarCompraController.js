@@ -71,10 +71,12 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     };
     
     vm.pagarCarrito = function(){
-        if(vm.isOpenSucursal == true){ //pago en efectivo
-            guardarCompraEfvo();
-        }
-        if(vm.isOpenTarjeta == true){ //pago con tarjeta
+        if(vm.subTotal == 0
+            || vm.totalReservas == 0){
+            if(vm.isOpenSucursal == true){ //pago en efectivo
+                guardarCompraEfvo();
+            }
+            if(vm.isOpenTarjeta == true){ //pago con tarjeta
              //necesito estos cambios 
             //tabla compra -> idTarjetaBanco
             //tabla tarjeta_banco -> idTarjetaBanco
@@ -113,6 +115,9 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
         //TODO: impactar en las tablas
         //TODO: front - input numero tarjeta
         //TODO: pto reposicion javi
+        }
+       
+        
     };
     
     function buscarIdTarjetaBco(){

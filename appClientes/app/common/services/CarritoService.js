@@ -60,6 +60,12 @@ backendEcommerce.service("CarritoService", function($http){
 			return response.data.data;
 		})
     };
+     this.getTarjetaBancoId = function($idBco,$idTarj,$cuotas){
+    	var promise = $http.get('api/index.php/buscarTarjtaId/'+$idBco+'&'+$idTarj+'&'+$cuotas);
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
     
      this.postNvoDom = function(direccion, cp, idProv, idLoc, idPersona){
         data = {
@@ -116,6 +122,42 @@ backendEcommerce.service("CarritoService", function($http){
         
           
         var promise = $http.post('api/index.php/insertCompra', data);
+        return promise.then(function(response){
+            console.log(response);
+            return response;
+        });
+    };
+    
+    this.postInsertCompraTarjeta = function(idUsuario, 
+                                      idCupon, 
+                                      idTarjetaBanco, 
+                                      idSucursal, 
+                                      idDireccion,
+                                      totalPagar,
+                                      fechaCompra,
+                                      fechaTarjeta,
+                                       fechaPago,
+                                      estado,
+                                      nroTarjeta,
+                                      tipoPago,
+                                      detalleCompra){
+        data = {
+            'idUsuario':idUsuario, 
+            'idCupon':idCupon,
+            'idTarjetaBanco':idTarjetaBanco,
+            'idSucursal':idSucursal,
+            'idDireccion':idDireccion,
+            'totalPagar':totalPagar,
+            'fechaCompra':fechaCompra,
+            'fechaTarjeta':fechaTarjeta,
+            'fechaPago':fechaPago,
+            'estado':estado,
+            'nroTarjeta':nroTarjeta,
+            'tipoPago':tipoPago,
+            'detalle':detalleCompra};
+        
+          
+        var promise = $http.post('api/index.php/insertCompraTarjeta', data);
         return promise.then(function(response){
             console.log(response);
             return response;

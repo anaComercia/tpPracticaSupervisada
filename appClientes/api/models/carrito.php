@@ -154,6 +154,24 @@ class Carrito
         }
         return $cupon;
     }
+     public function getTarjetaBcoId($idBco,$idTarj,$cuotas){
+           $bco = (int) $this->connection->real_escape_string($idBco);
+           $tarj = (int) $this->connection->real_escape_string($idTarj);
+         $c = $this->connection->real_escape_string($cuotas);
+        $query = "select idTarjetaBanco as id 
+                    from tarjeta_banco
+                    WHERE idTarjeta = $tarj
+                    and idBanco = $bco
+                    and cuotas = '$c'";
+        $cupon = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $cupon[] = $fila;
+            }
+            $result->free();
+        }
+        return $cupon;
+    }
     public function actualizarCupon($data){
        
         $idCupon=       $this->connection->real_escape_string($data['idCupon']);
@@ -301,6 +319,95 @@ class Carrito
 
         }
     
+     public function createCompraTarjeta($data){
+
+            $idDireccion=       $this->connection->real_escape_string($data['idDireccion']);
+            $fechaTarjeta=       $this->connection->real_escape_string($data['fechaTarjeta']);
+            $fechaPago=       $this->connection->real_escape_string($data['fechaPago']);
+            $nroTarjeta=       $this->connection->real_escape_string($data['nroTarjeta']);
+
+            $clienteId=       $this->connection->real_escape_string($data['idUsuario']);
+            $cuponId =        $this->connection->real_escape_string($data['idCupon']);
+            $sucuId =     $this->connection->real_escape_string($data['idSucursal']);
+            $total=       $this->connection->real_escape_string($data['totalPagar']);
+            $estadoCompra=       $this->connection->real_escape_string($data['estado']);
+            $formaPago=       $this->connection->real_escape_string($data['tipoPago']);
+            $fechaCompra=       $this->connection->real_escape_string($data['fechaCompra']);
+ $idTarjetaBanco=       $this->connection->real_escape_string($data['idTarjetaBanco']);
+
+             if(($cuponId == "0") || ($cuponId == 0)){
+                 $queryCompra =
+                 "INSERT INTO compra
+                (idCompra, idCliente, idCupon, idTarjetaBanco, idSucursal, idDireccion, monto, fechaCompra,
+                fechaTarjeta,fechaPago, estado,numeroTarjeta,tipoPago) 
+                    VALUES
+                (DEFAULT,
+                '$clienteId',
+                NULL,
+                '$idTarjetaBanco',
+                NULL,
+                '$idDireccion',
+                '$total',
+                '$fechaCompra',
+                '$fechaTarjeta',
+                '$fechaPago',
+                '$estadoCompra',
+                '$nroTarjeta',
+                '$formaPago')";
+             }else{
+                 $queryCompra =
+                 "INSERT INTO compra
+                (idCompra, idCliente, idCupon, idTarjetaBanco, idSucursal, idDireccion, monto, fechaCompra,
+                fechaTarjeta,fechaPago, estado,numeroTarjeta,tipoPago) 
+                    VALUES
+                (DEFAULT,
+                '$clienteId',
+                '$cuponId',
+                '$idTarjetaBanco',
+                NULL,
+                '$idDireccion',
+                '$total',
+                '$fechaCompra',
+                '$fechaTarjeta',
+                '$fechaPago',
+                '$estadoCompra',
+                '$nroTarjeta',
+                '$formaPago')";
+             }
+
+             if($this->connection->query($queryCompra)){
+                    $data['idCompra'] = $this->connection->insert_id;
+                    $idCompra=$data['idCompra'] ;
+                    return $idCompra;
+                }else{
+                    return false;
+                }
+/*var_dump($lista);
+         $queryDetalle ="";
+         $i = 0;
+             for($i = 0; $i<= count($lista) ;$i++){
+                 $l = $lista[i];
+                 var_dump($l);
+                 $sku=       $this->connection->real_escape_string($l['sku']);
+                 $precioUnitario=  $this->connection->real_escape_string($l['unitPrice']);
+                $queryDetalle =
+                     "INSERT INTO detalle_compra
+                    (idCompra, codSku, cantidad, precio) 
+                        VALUES
+                    ($idCompra,
+                    $sku,
+                    1,
+                    $precioUnitario)";
+             }
+          if($this->connection->query($queryDetalle)){
+                    $data['idCompra'] = $this->connection->insert_id;
+                    
+                    return $data;
+                }else{
+                    return false;
+                }*/
+
+        }
 }
 /*
 SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,

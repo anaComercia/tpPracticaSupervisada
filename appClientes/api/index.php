@@ -261,6 +261,11 @@ $app->get('/CuotasCarrito/:banco&:tarjeta', function($banco,$tarjeta){
 	$data = $color->getCuotas($banco,$tarjeta);
 	sendResult($data);
 });
+$app->get('/buscarTarjtaId/:banco&:tarjeta&:cuotas', function($banco,$tarjeta,$cuotas){
+	$color = new Carrito();
+	$data = $color->getTarjetaBcoId($banco,$tarjeta,$cuotas);
+	sendResult($data);
+});
 $app->get('/buscarIdPersona/:idUsr', function($idUsr){
 	$color = new Carrito();
 	$data = $color->getIdPersona($idUsr);
@@ -283,6 +288,18 @@ $app->post('/insertCompra', function(){
     $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
 	$altaCompra = new Carrito();
     $result = $altaCompra->createCompraEfectivo($data);
+
+	if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al crear la nueva compra.");
+	}
+});
+$app->post('/insertCompraTarjeta', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
+	$altaCompra = new Carrito();
+    $result = $altaCompra->createCompraTarjeta($data);
 
 	if($result){
 		sendResult($result);

@@ -37,6 +37,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     vm.idPersona = 0;
     vm.disableBtnGuardar = true;
     var puedoGuardar = false;
+    var tarjetaBcoId;
     
     
    vm.buscarLocalidades = function(){
@@ -114,17 +115,78 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
         //TODO: pto reposicion javi
     };
     
-    function guardarCompraTarjeta(){
-        console.log("entre a la compra por tarjeta");
+    function buscarIdTarjetaBco(){
+         return CarritoService.getTarjetaBancoId(vm.mySelect.bancoSelec.id, 
+                                                 vm.mySelect.tarjeta.id,
+                                                vm.mySelect.cuotaSelec.cuotas).then(function(data){
+            if(data){
+                tarjetaBcoId = data[0].id;
+                insertarCompraTarjeta();
+            }
+        });
     };
     
-    function guardarCompraEfvo(){ //Tipo Pago Efectivo = E
-       
-     console.log(vm.mySelect);
+   function insertarCompraTarjeta(){
+       console.log(vm.mySelect);
          console.log(localStorage);
         var idCupon;
         var detalleCompra = [];
         debugger;
+        if(vm.cupon.length == 0){
+            idCupon = 0; //NO TIENE CUPON
+        }else{
+            idCupon = vm.cupon[0].idCup;
+        };
+          detalleCompra =  JSON.parse(localStorage.listaTemporal);
+        var compraFecha = new Date();
+        //insertar compra Y ME DEVUELVE EL ID AL CONTROLLER
+         CarritoService.postInsertCompraTarjeta(vm.idUsuario, //vm.idUsuario
+                                         idCupon, // vm.cupon[0].idCup
+                                         tarjetaBcoId, //tarjeta banco = null
+                                         null, // sucursal =    vm.retiro.id
+                                         vm.mySelect.domicilioEntrega.id, //idDireccion= null
+                                         vm.totalReservas, //  monto = vm.totalReservas
+                                         compraFecha,//  fechaCompra =null
+                                         vm.mySelect.fechaTarjeta,//fechaTarjeta = null
+                                         compraFecha,//fechaPago = null
+                                         'PAGADA',//estado =  PENDIENTE RETIRO
+                                         vm.mySelect.nroTarjeta,//NRO TARJETA = null
+                                         'T',//tipoPago = E
+                                         detalleCompra) //lista carrito
+        .then(function(response){
+
+            if(response.data.error){
+                alert("Ha ocurrido un error");
+                return;
+            }else{
+                debugger;
+                if(idCupon != 0){
+                    actualizarCupon();
+                }
+                localStorage.clear();
+                vm.totalReservas = 0;
+                vm.subTotal = 0;
+                $rootScope.$emit('actualizarTotal', vm.totalReservas);
+            }
+        });
+        //insertar detalle compra
+        
+        //idCompra
+        //codSku
+        //cantidad = 1
+        //precio = localStorage.unitPrice
+    };
+    function guardarCompraTarjeta(){
+      
+       // buscar id tarjeta banco con id banco y id tarjeta
+       buscarIdTarjetaBco();
+       
+    };
+    
+    function guardarCompraEfvo(){ //Tipo Pago Efectivo = E
+ 
+        var idCupon;
+        var detalleCompra = [];
         if(vm.cupon.length == 0){
             idCupon = 0; //NO TIENE CUPON
         }else{

@@ -71,8 +71,8 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     };
     
     vm.pagarCarrito = function(){
-        if(vm.subTotal == 0
-            || vm.totalReservas == 0){
+        if(vm.subTotal != 0
+            || vm.totalReservas != 0){
             if(vm.isOpenSucursal == true){ //pago en efectivo
                 guardarCompraEfvo();
             }
@@ -165,6 +165,9 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
                 return;
             }else{
                 debugger;
+                console.log("devolucion del insert - resonse data id comrpa");
+                console.log(response.data.data.idCompra);
+                
                 if(idCupon != 0){
                     actualizarCupon();
                 }
@@ -221,6 +224,9 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
                 return;
             }else{
                 debugger;
+                console.log("devolucion del insert - resonse data id comrpa");
+                console.log(response.data.data.idCompra);
+                
                 if(idCupon != 0){
                     actualizarCupon();
                 }

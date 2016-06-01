@@ -48,6 +48,12 @@ backendEcommerce.service("CarritoService", function($http){
 			return response.data.data;
 		})
     };
+    this.consultarStock= function(){
+    	var promise = $http.get('api/index.php/consultarStcok');
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
      this.getVerifCupon = function($descCupon,$idUsr){
     	var promise = $http.get('api/index.php/verifCupon/'+$descCupon+'&'+$idUsr);
 		return promise.then(function(response){
@@ -77,6 +83,15 @@ backendEcommerce.service("CarritoService", function($http){
         
           
         var promise = $http.post('api/index.php/altaDeDomicilio', data);
+        return promise.then(function(response){
+            return response;
+        });
+    };
+    
+      this.generarAlerta = function(idStock){
+        data = {
+            'idStock':idStock};
+        var promise = $http.post('api/index.php/generarAlerta', data);
         return promise.then(function(response){
             return response;
         });

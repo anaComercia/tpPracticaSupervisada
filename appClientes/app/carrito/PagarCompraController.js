@@ -38,6 +38,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     vm.disableBtnGuardar = true;
     var puedoGuardar = false;
     var tarjetaBcoId;
+    var alertas = [];
     
     
    vm.buscarLocalidades = function(){
@@ -268,12 +269,40 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     function actualizarStock(sku){
         return CarritoService.actualizarStock(sku).then(function(data){
             if(data){
-                //TODO: generar alerta
+                consultarStock();
                 //TODO: manejo de stock entre sucursales
                 //TODO: precio de envio entre sucursales
-              console.log("refressco bien el cupon");
+              console.log("refressco bien el stock");
             }
         });
+    };
+    function  consultarStock(){
+        //TODO ARREGLAR porque debe ser por sku y id prod 
+        //validar que ya no este insertado el alerta
+        return CarritoService.consultarStock().then(function(data){
+            if(data.length > 0){
+                alertas = data;
+                generarAlerta();
+              console.log("refressco bien el stock");
+            }
+        });
+    };
+    
+    function generarAlerta(){
+        console.log(alertas);
+        for(var i = 0; i<alertas.length ; i++){
+            insertAlertProducto(alertas[i].idStock);
+        };
+           
+    };
+    
+    function insertAlertProducto(id){
+         return CarritoService.generarAlerta(id).then(function(data){
+                if(data){
+                  console.log("inserto bien el alerta");
+                }
+            });
+        
     };
     vm.verificoCupon = function(){
        // if(vm.mySelect.cupon.length == 8 ){

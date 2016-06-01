@@ -142,6 +142,22 @@ class Carrito
         }
         return $cupon;
     }
+    public function consultarStock(){
+        $query = "select sp.idStock 
+                from stock_producto SP 
+                left join presentacion_producto pp on pp.codSku = sp.codSku 
+                left join producto p on p.idProducto = pp.idProducto 
+                where p.puntoReposicion < sp.cantidad";
+        $cupon = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $cupon[] = $fila;
+            }
+            $result->free();
+        }
+        return $cupon;
+    }
+    
     public function getIdPersona($idUsr){
            $usuario = (int) $this->connection->real_escape_string($idUsr);
         $query = "select idPersona as id from usuario where idUsuario= $usuario";
@@ -193,8 +209,6 @@ class Carrito
         $cantidad = 1;
 
        //Insert en tabla: stock_producto
-        var_dump($sku);
-        var_dump($cantidad);
        $queryPersona =
         "UPDATE stock_producto
             set cantidad = cantidad - $cantidad
@@ -244,6 +258,31 @@ class Carrito
         if($this->connection->query($queryPersona)){
             $data['idPersona'] = $this->connection->insert_id;
             $idPersona=$data['idPersona'];
+            return $data;
+        }else{
+            return false;
+        }
+       
+        
+    }
+     public function createAlerta($data){
+       
+        $id=       $this->connection->real_escape_string($data['idStock']);
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+         $date= date('Y-m-d') ;
+        $queryDireccion =
+         "INSERT INTO aviso_producto
+        (	idAvisoProducto, idStock, fecha, estado) 
+            VALUES
+        (DEFAULT,
+        '$id',
+        '$date',
+        'PENDIENTE')";   
+        
+         
+        if($this->connection->query($queryDireccion)){
+            $data['idPersona'] = $this->connection->insert_id;
+            $queryDireccion=$data['idPersona'];
             return $data;
         }else{
             return false;

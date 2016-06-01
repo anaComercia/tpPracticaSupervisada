@@ -261,6 +261,11 @@ $app->get('/CuotasCarrito/:banco&:tarjeta', function($banco,$tarjeta){
 	$data = $color->getCuotas($banco,$tarjeta);
 	sendResult($data);
 });
+$app->get('/consultarStcok', function(){
+	$color = new Carrito();
+	$data = $color->consultarStock();
+	sendResult($data);
+});
 $app->get('/buscarTarjtaId/:banco&:tarjeta&:cuotas', function($banco,$tarjeta,$cuotas){
 	$color = new Carrito();
 	$data = $color->getTarjetaBcoId($banco,$tarjeta,$cuotas);
@@ -281,6 +286,18 @@ $app->post('/altaDeDomicilio', function(){
 		sendResult($result);
 	}else{
 		sendError("Error al crear el nuevo domicilio.");
+	}
+});
+$app->post('/generarAlerta', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
+	$altaDomi = new Carrito();
+    $result = $altaDomi->createAlerta($data);
+
+	if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al crear el alerta.");
 	}
 });
 $app->post('/insertCompra', function(){

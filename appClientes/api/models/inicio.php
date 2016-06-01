@@ -34,7 +34,14 @@ class Inicio
                      FROM categoria c, genero g
                      left join producto p on  p.idGenero = g.idGenero
                      where p.idCategoria = c.idCategoria
-                     and g.descripcion = 'HOMBRE'
+                     and upper(g.descripcion) = 'HOMBRE'
+                     and (select sum(sp.cantidad)
+                                         from stock_producto sp 
+                                         left join presentacion_producto pp on pp.codSku = sp.codSku 
+                                         where p.idProducto =  pp.idProducto
+                                         and sp.cantidad != 0
+                                         and sp.cantidad is not null
+                                         GROUP by pp.idProducto) != 0
                      ORDER BY stock DESC
                      LIMIT 0,5";
         $productosIniHombre = array();
@@ -58,7 +65,14 @@ class Inicio
                      FROM categoria c, genero g
                      left join producto p on  p.idGenero = g.idGenero
                      where p.idCategoria = c.idCategoria
-                     and g.descripcion = 'MUJER'
+                     and upper(g.descripcion) = 'MUJER'
+                     and (select sum(sp.cantidad)
+                                         from stock_producto sp 
+                                         left join presentacion_producto pp on pp.codSku = sp.codSku 
+                                         where p.idProducto =  pp.idProducto
+                                         and sp.cantidad != 0
+                                         and sp.cantidad is not null
+                                         GROUP by pp.idProducto) != 0
                      ORDER BY stock DESC
                      LIMIT 0,5";
         $productosIniMujer = array();

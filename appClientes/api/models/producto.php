@@ -10,12 +10,19 @@ class Producto
     }
 
     public function getAllProductos(){
-        $query = "SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,               p.descripcion as prodDesc, p.idProducto as idProd,
-                    p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
-                    FROM categoria c, genero g, producto p
-                    WHERE p.idCategoria = c.idCategoria 
-                    and p.baja = 0 
-                    AND p.idGenero = g.idGenero";
+        $query = "SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,
+            p.descripcion as prodDesc, p.idProducto as idProd,
+            p.urlImagen as img1, p.urlImagenAlt1 as img2, p.urlImagenAlt2 as img3, p.urlImagenAlt3 as img4
+            FROM categoria c, genero g, producto p
+            WHERE p.idCategoria = c.idCategoria 
+            and p.baja = 0 
+            AND p.idGenero = g.idGenero
+            and (select sum(sp.cantidad)
+                 from stock_producto sp 
+                 left join presentacion_producto pp on pp.codSku = sp.codSku 
+                 where p.idProducto =  pp.idProducto
+                 GROUP by pp.idProducto)  != 0
+            ORDER BY gendDesc  DESC";
         $productos = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -70,6 +77,11 @@ class Producto
                     WHERE p.idCategoria = c.idCategoria 
                     and p.baja = 0 
                     AND p.idGenero = g.idGenero
+                     and (select sum(sp.cantidad)
+                 from stock_producto sp 
+                 left join presentacion_producto pp on pp.codSku = sp.codSku 
+                 where p.idProducto =  pp.idProducto
+                 GROUP by pp.idProducto)  != 0
                     AND UPPER(g.descripcion) = 'HOMBRE' ";
         $productosHombre = array();
         if( $result = $this->connection->query($query) ){
@@ -88,6 +100,11 @@ class Producto
                     WHERE p.idCategoria = c.idCategoria 
                     and p.baja = 0 
                     AND p.idGenero = g.idGenero
+                     and (select sum(sp.cantidad)
+                 from stock_producto sp 
+                 left join presentacion_producto pp on pp.codSku = sp.codSku 
+                 where p.idProducto =  pp.idProducto
+                 GROUP by pp.idProducto)  != 0
                     AND UPPER(g.descripcion) = 'MUJER' ";
         $productosMujer = array();
         if( $result = $this->connection->query($query) ){
@@ -106,6 +123,11 @@ class Producto
                     WHERE p.idCategoria = c.idCategoria 
                     and p.baja = 0 
                     AND p.idGenero = g.idGenero
+                     and (select sum(sp.cantidad)
+                 from stock_producto sp 
+                 left join presentacion_producto pp on pp.codSku = sp.codSku 
+                 where p.idProducto =  pp.idProducto
+                 GROUP by pp.idProducto)  != 0
                     AND UPPER(c.descripcion) = 'CAMISA' ";
         $productosCamisa = array();
         if( $result = $this->connection->query($query) ){
@@ -123,6 +145,11 @@ class Producto
                     WHERE p.idCategoria = c.idCategoria 
                     and p.baja = 0 
                     AND p.idGenero = g.idGenero
+                     and (select sum(sp.cantidad)
+                 from stock_producto sp 
+                 left join presentacion_producto pp on pp.codSku = sp.codSku 
+                 where p.idProducto =  pp.idProducto
+                 GROUP by pp.idProducto)  != 0
                     AND UPPER(c.descripcion) = 'JEAN' ";
         $productosJean = array();
         if( $result = $this->connection->query($query) ){
@@ -141,6 +168,11 @@ class Producto
                     WHERE p.idCategoria = c.idCategoria 
                     and p.baja = 0 
                     AND p.idGenero = g.idGenero
+                     and (select sum(sp.cantidad)
+                 from stock_producto sp 
+                 left join presentacion_producto pp on pp.codSku = sp.codSku 
+                 where p.idProducto =  pp.idProducto
+                 GROUP by pp.idProducto)  != 0
                     AND UPPER(c.descripcion) = 'CAMPERA' ";
         $productosCampera = array();
         if( $result = $this->connection->query($query) ){
@@ -158,6 +190,11 @@ class Producto
                     WHERE p.idCategoria = c.idCategoria 
                     and p.baja = 0 
                     AND p.idGenero = g.idGenero
+                     and (select sum(sp.cantidad)
+                 from stock_producto sp 
+                 left join presentacion_producto pp on pp.codSku = sp.codSku 
+                 where p.idProducto =  pp.idProducto
+                 GROUP by pp.idProducto)  != 0
                     AND UPPER(c.descripcion) = 'REMERA' ";
         $productosRemera = array();
         if( $result = $this->connection->query($query) ){

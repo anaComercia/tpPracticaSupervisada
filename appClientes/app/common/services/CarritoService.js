@@ -91,6 +91,14 @@ backendEcommerce.service("CarritoService", function($http){
             return response;
         });
     };
+     this.actualizarStock = function(sku){
+        data = {
+            'sku':sku};
+        var promise = $http.post('api/index.php/updateStock', data);
+        return promise.then(function(response){
+            return response;
+        });
+    };
     
      this.postInsertCompra = function(idUsuario, 
                                       idCupon, 
@@ -158,6 +166,24 @@ backendEcommerce.service("CarritoService", function($http){
         
           
         var promise = $http.post('api/index.php/insertCompraTarjeta', data);
+        return promise.then(function(response){
+            console.log(response);
+            return response;
+        });
+    };
+    
+    this.insertarDetalle = function(idCompra,
+                                    sku,
+                                    cantidad,
+                                    precioUnitario){
+        data = {
+            'idCompra':idCompra, 
+            'sku':sku,
+            'cantidad':cantidad,
+            'precioUnitario':precioUnitario};
+        
+          
+        var promise = $http.post('api/index.php/insertDetalleCompra', data);
         return promise.then(function(response){
             console.log(response);
             return response;

@@ -319,5 +319,28 @@ $app->post('/updateCupon', function(){
 		sendError("Error al actualizar el cupon.");
 	}
 });
+$app->post('/updateStock', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
+	$altaDomi = new Carrito();
+    $result = $altaDomi->actualizarStock($data);
 
+	if($result){
+		sendResult("stock actualizado");
+	}else{
+		sendError("Error al actualizar el stock.");
+	}
+});
+$app->post('/insertDetalleCompra', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
+	$altaDomi = new Carrito();
+    $result = $altaDomi->insertDetalleCompra($data);
+
+	if($result){
+		sendResult("detalle insertado");
+	}else{
+		sendError("Error al actualizar el cupon.");
+	}
+});
 $app->run();

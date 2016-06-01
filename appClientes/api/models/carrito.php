@@ -186,6 +186,23 @@ class Carrito
 
         return $this->connection->query($queryPersona);
     }
+    
+    public function actualizarStock($data){
+       
+        $sku=  $this->connection->real_escape_string($data['sku']);
+        $cantidad = 1;
+
+       //Insert en tabla: stock_producto
+        var_dump($sku);
+        var_dump($cantidad);
+       $queryPersona =
+        "UPDATE stock_producto
+            set cantidad = cantidad - $cantidad
+            WHERE codSku = $sku";
+
+        return $this->connection->query($queryPersona);
+    }
+    
     public function create($data){
        
         $dire=       $this->connection->real_escape_string($data['direccion']);
@@ -295,30 +312,7 @@ class Carrito
                 }else{
                     return false;
                 }
-/*var_dump($lista);
-         $queryDetalle ="";
-         $i = 0;
-             for($i = 0; $i<= count($lista) ;$i++){
-                 $l = $lista[i];
-                 var_dump($l);
-                 $sku=       $this->connection->real_escape_string($l['sku']);
-                 $precioUnitario=  $this->connection->real_escape_string($l['unitPrice']);
-                $queryDetalle =
-                     "INSERT INTO detalle_compra
-                    (idCompra, codSku, cantidad, precio) 
-                        VALUES
-                    ($idCompra,
-                    $sku,
-                    1,
-                    $precioUnitario)";
-             }
-          if($this->connection->query($queryDetalle)){
-                    $data['idCompra'] = $this->connection->insert_id;
-                    
-                    return $data;
-                }else{
-                    return false;
-                }*/
+
 
         }
     
@@ -389,30 +383,35 @@ class Carrito
                 }else{
                     return false;
                 }
-/*var_dump($idCompra);
-       //  $queryDetalle ="";
-         $l = count($lista);
-             for($i = 0; $i< $l   ;$i++){
-                $e = $l[$i];
-                 var_dump($l[$i]);
-                 $sku=       $this->connection->real_escape_string($e['sku']);
-                 $precioUnitario=  $this->connection->real_escape_string($e['unitPrice']);
-                $queryDetalle =
-                     "INSERT INTO detalle_compra
-                    (idCompra, codSku, cantidad, precio) 
-                        VALUES
-                    ('$idCompra'',
-                    '$sku',
-                    1,
-                    '$precioUnitario')";
-             }
-          if($this->connection->query($queryDetalle)){
+
+
+        }
+    
+     public function insertDetalleCompra($data){
+
+            $compraId=       $this->connection->real_escape_string($data['idCompra']);
+            $codSku =        $this->connection->real_escape_string($data['sku']);
+            $cant =     $this->connection->real_escape_string($data['cantidad']);
+            $precio=       $this->connection->real_escape_string($data['precioUnitario']);
+ 
+                 $queryCompra =
+                 "INSERT INTO detalle_compra
+                (idCompra, codSku, cantidad, precio) 
+                    VALUES
+                ('$compraId',
+                '$codSku',
+                '$cant',
+                '$precio')";
+             
+
+             if($this->connection->query($queryCompra)){
                     $data['idCompra'] = $this->connection->insert_id;
-                     $idCompra=$data['idCompra'] ;
+                    $idCompra=$data['idCompra'] ;
                     return $data;
                 }else{
                     return false;
-                }*/
+                }
+
 
         }
 }

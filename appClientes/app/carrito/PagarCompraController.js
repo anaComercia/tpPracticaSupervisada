@@ -76,11 +76,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
             if(vm.isOpenSucursal == true){ //pago en efectivo
                 guardarCompraEfvo();
             }
-            if(vm.isOpenTarjeta == true){ //pago con tarjeta
-             //necesito estos cambios 
-            //tabla compra -> idTarjetaBanco
-            //tabla tarjeta_banco -> idTarjetaBanco
-            debugger;
+        if(vm.isOpenTarjeta == true){ //pago con tarjeta
             if(( vm.mySelect.bancoSelec != undefined)
                 &&( vm.mySelect.cuotaSelec != undefined)
                 &&( vm.mySelect.domicilioEntrega != undefined)
@@ -134,6 +130,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
    function insertarCompraTarjeta(){
        console.log(vm.mySelect);
          console.log(localStorage);
+       var idCompra;
         var idCupon;
         var detalleCompra = [];
         debugger;
@@ -164,13 +161,13 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
                 alert("Ha ocurrido un error");
                 return;
             }else{
-                debugger;
-                console.log("devolucion del insert - resonse data id comrpa");
-                console.log(response.data.data.idCompra);
+             
+               idCompra = response.data.data.idCompra;
                 
                 if(idCupon != 0){
                     actualizarCupon();
                 }
+                
                 localStorage.clear();
                 vm.totalReservas = 0;
                 vm.subTotal = 0;
@@ -192,7 +189,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     };
     
     function guardarCompraEfvo(){ //Tipo Pago Efectivo = E
- 
+        var idCompra;
         var idCupon;
         var detalleCompra = [];
         if(vm.cupon.length == 0){
@@ -225,10 +222,14 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
             }else{
                 debugger;
                 console.log("devolucion del insert - resonse data id comrpa");
-                console.log(response.data.data.idCompra);
+                idCompra = response.data.data.idCompra;
                 
                 if(idCupon != 0){
                     actualizarCupon();
+                }
+                
+                for(var i = 0; i< detalleCompra.length; i++){
+                    insertarDetalle(detalleCompra[i], idCompra);
                 }
                 localStorage.clear();
                 vm.totalReservas = 0;
@@ -245,6 +246,17 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
         //precio = localStorage.unitPrice
     };
     
+    function insertarDetalle(item, idCompra){
+        console.log(item);
+        return CarritoService.insertarDetalle(idCompra,
+                                             item.sku,
+                                             1,
+                                             item.unitPrice).then(function(data){
+            if(data){
+              actualizarStock(item.sku);
+            }
+        });
+    };
     function actualizarCupon(){
            return CarritoService.actualizarCupon(vm.cupon[0].idCup, vm.idUsuario).then(function(data){
             if(data){
@@ -253,6 +265,16 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
         });
     };
     
+    function actualizarStock(sku){
+        return CarritoService.actualizarStock(sku).then(function(data){
+            if(data){
+                //TODO: generar alerta
+                //TODO: manejo de stock entre sucursales
+                //TODO: precio de envio entre sucursales
+              console.log("refressco bien el cupon");
+            }
+        });
+    };
     vm.verificoCupon = function(){
        // if(vm.mySelect.cupon.length == 8 ){
             return CarritoService.getVerifCupon(vm.mySelect.cupon, vm.idUsuario).then(function(data){

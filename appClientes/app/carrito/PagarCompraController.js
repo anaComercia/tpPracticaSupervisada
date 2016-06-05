@@ -199,7 +199,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
         }else{
             idCupon = vm.cupon[0].idCup;
         };
-        
+        debugger;
         detalleCompra =  JSON.parse(localStorage.listaTemporal);
         var compraFecha = new Date();
        //insertar compra Y ME DEVUELVE EL ID AL CONTROLLER

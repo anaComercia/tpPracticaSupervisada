@@ -247,6 +247,11 @@ $app->get('/verifCupon/:descCupon&:idUsr', function($descCupon, $idUsr){
 	$data = $producto->getVerifCupon($descCupon,$idUsr);
 	sendResult($data);
 });
+$app->get('/buscarDetalleCompra/:idCompra&:idSucu', function($idCompra,$idSucu){
+	$producto = new Carrito();
+	$data = $producto->getDetalleCompra($idCompra,$idSucu);
+	sendResult($data);
+});
 $app->get('/IniBuscadorProd/:dato', function($dato){
 	$producto = new Inicio();
 	$data = $producto->getProductoCliente($dato);

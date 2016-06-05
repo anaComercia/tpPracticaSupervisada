@@ -110,11 +110,12 @@ class Carrito
     }
     
      public function getSucursales(){
-        $query = "SELECT d.idDireccion as id, d.direccion as dir, d.cp as cp , l.descripcion as des
+        $query = "SELECT s.idSucursal as id, d.direccion as dir, d.cp as cp , l.descripcion as des
                     FROM sucursal s
                     left join direccion d on d.idDireccion = s.idDireccion
                     left join localidad l on l.idLocalidad = d.idLocalidad
-                    WHERE s.baja = 0";
+                    WHERE s.baja = 0
+                    and s.nroSucursal != 0";
         $sucursal = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -141,6 +142,39 @@ class Carrito
             $result->free();
         }
         return $cupon;
+    }
+    public function getDetalleCompra($idCompra,$idSucu){
+        $compra = (int) $this->connection->real_escape_string($idCompra);
+        $sucu= (int) $this->connection->real_escape_string($idSucu);
+
+        $query = "select s.nroSucursal as nroSuc, d.direccion as dir, d.cp as cp,
+                    l.descripcion as loc, p.descripcion as prov, t.descripcion as descTalle,
+                    c.descripcion as descColor, prod.titulo as tit, prod.precio as precio,
+                    prod.descripcion as prodDesc, prod.urlImagen as img, g.descripcion as sexo,
+                    cat.descripcion as descCat
+                    from detalle_compra dc
+                    left join stock_producto sp on sp.codSku = dc.codSku
+                    left join sucursal s on s.idSucursal=sp.idSucursal
+                    left join direccion d on d.idDireccion = s.idDireccion
+                    left join localidad l on d.idLocalidad = l.idLocalidad
+                    left join provincia p on p.idProvincia = l.idProvincia
+                    left join presentacion_producto pp on pp.codSku = sp.codSku
+                    left join talle t on t.idTalle = pp.idTalle
+                    left join color c on c.idColor = pp.idColor
+                    left join producto prod on prod.idProducto = pp.idProducto
+                    left join genero g on g.idGenero = prod.idGenero
+                    left join categoria cat on cat.idCategoria = prod.idCategoria
+                    where dc.idCompra = $compra 
+                    and s.idSucursal = $sucu ";
+
+        $detalle = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $detalle[] = $fila;
+            }
+            $result->free();
+        }
+        return $detalle;
     }
     public function consultarStock(){
         $query = "select sp.idStock 

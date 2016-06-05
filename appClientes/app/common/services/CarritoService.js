@@ -72,6 +72,12 @@ backendEcommerce.service("CarritoService", function($http){
 			return response.data.data;
 		})
     };
+     this.getDetalleEfectivo = function($idCompra,$idSucu){
+    	var promise = $http.get('api/index.php/buscarDetalleCompra/'+$idCompra+'&'+$idSucu);
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
      this.getTarjetaBancoId = function($idBco,$idTarj,$cuotas){
     	var promise = $http.get('api/index.php/buscarTarjtaId/'+$idBco+'&'+$idTarj+'&'+$cuotas);
 		return promise.then(function(response){

@@ -8,6 +8,7 @@ function CarritoComprasCtrl($state,$scope,CarritoService) {
    var vm = this;
    vm.listaCompras = []; 
     vm.idUsuario = 1; //SACAR HARDCODE
+        vm.detallesCompra=[];
     /* lista compras 
     vm.listaCompras = [
         {
@@ -39,22 +40,54 @@ function CarritoComprasCtrl($state,$scope,CarritoService) {
             }
         });
    };
-    vm.detallesCompra={};
+
+
     
+    vm.onClickDetail = function(compraDet){
+        //carritoComprasController.js
+        //carritoCompras.html
+        //carritoComprasDirective.js
+        //carritoComprasDirective.html
+        if(compraDet.cupon == null){
+            compraDet.cupon = 'NO'; //para el filtro enel php
+        }
+        if(compraDet.formaPago == 'E'){//efectivo
+            debugger;
+            /*
+            */
+            traerDetalleEfectivo(compraDet.compra,
+                                compraDet.sucu);
+        }else{//tarjeta
+            debugger;
+            /*compraDet compra
+            compraDet dir
+            compraDet e
+            compraDet fechaC
+            compraDet fechaP
+            compraDet formaPago
+            compraDet precio
+            compraDet sucu
+            compraDet tarjetaBco*/
+        }
+        
+        //Aca voy con el id a buscar a la base los detalles de la compra y cuando vuelvo lo seteo a vm.DetalleCompras
+    };
+    
+   function traerDetalleEfectivo(compra,
+                         sucu){
+         return CarritoService.getDetalleEfectivo(compra,
+                                                 sucu).then(function(data){
+            if(data.length>0){
+                debugger; 
+               vm.detallesCompra = data;//si tiene cupon hay que sumarle el monto del cupon al total
+            }
+        });
+    };
+        
     vm.init = function(){
         buscarlistaCompras();
 	};
     
     vm.init();
-    
-    vm.onClickDetail = function(compraId){
-        //carritoComprasController.js
-        //carritoCompras.html
-        //carritoComprasDirective.js
-        //carritoComprasDirective.html
-        debugger;
-        //Aca voy con el id a buscar a la base los detalles de la compra y cuando vuelvo lo seteo a vm.DetalleCompras
-        //creo el evento
-    }
     
 }

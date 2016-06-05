@@ -10,7 +10,7 @@ class Inicio
     }
     
     public function getTelefonos(){
-        $query = "SELECT telefono FROM sucursal";
+        $query = "SELECT telefono FROM sucursal where nroSucursal != 0";
         $telefonos = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

@@ -13,8 +13,8 @@ function ComprasDirective() {
                }, //product-data="cupon"
         controller: function($scope, $element, $attrs) {
             //$scope.verDetalle = verDetalle;
-
-            //buyData.subTotal = buyData.unitPrice * buyData.quantity;
+debugger;
+           $scope.buyData.formaPago = $scope.buyData.formaPago == 'E'? 'EFECTIVO' : 'TARJETA';
 
         }       
     }    

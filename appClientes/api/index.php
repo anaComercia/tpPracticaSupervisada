@@ -335,7 +335,7 @@ $app->post('/updateCupon', function(){
     $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
 	$altaDomi = new Carrito();
     $result = $altaDomi->actualizarCupon($data);
-
+var_dump($result);
 	if($result){
 		sendResult("cupon actualizado");
 	}else{
@@ -349,7 +349,7 @@ $app->post('/updateStock', function(){
     $result = $altaDomi->actualizarStock($data);
 
 	if($result){
-		sendResult("stock actualizado");
+		sendResult($result);
 	}else{
 		sendError("Error al actualizar el stock.");
 	}

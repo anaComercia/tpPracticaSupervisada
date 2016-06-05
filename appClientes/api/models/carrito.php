@@ -214,7 +214,30 @@ class Carrito
             set cantidad = cantidad - $cantidad
             WHERE codSku = $sku";
 
-        return $this->connection->query($queryPersona);
+     
+         $querySP =
+        "SELECT idStock as id
+            FROM stock_producto
+            WHERE codSku = $sku";
+        var_dump($querySP);
+        /*
+        $query = "select sp.idStock 
+                from stock_producto SP 
+                left join presentacion_producto pp on pp.codSku = sp.codSku 
+                left join producto p on p.idProducto = pp.idProducto 
+                where p.puntoReposicion > sp.cantidad
+                and sp.idStock = $stock
+                and sp.codSku = $sku";
+        var_dump($query);
+        $alerta = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $alerta[] = $fila;
+            }
+            $result->free();
+        }
+        return $alerta;*/
+        return $this->connection->query($querySP);
     }
     
     public function create($data){

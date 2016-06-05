@@ -133,9 +133,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     };
     
    function insertarCompraTarjeta(){
-       console.log(vm.mySelect);
-         console.log(localStorage);
-       var idCompra;
+      var idCompra;
         var idCupon;
         var detalleCompra = [];
         debugger;
@@ -224,9 +222,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
                 alert("Ha ocurrido un error");
                 return;
             }else{
-                debugger;
-                console.log("devolucion del insert - resonse data id comrpa");
-                idCompra = response.data.data.idCompra;
+               idCompra = response.data.data.idCompra;
                 
                 if(idCupon != 0){
                     actualizarCupon();
@@ -244,7 +240,6 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     
     function insertarDetalle(item, idCompra){
         //TODO: reagrupar SKU y hacer bbdd clave compeusta idCompra codSku
-        console.log(item);
         return CarritoService.insertarDetalle(idCompra,
                                              item.sku,
                                              1,
@@ -252,8 +247,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
             
             debugger;
             if(data){
-             console.log("detalle insertado");
-                actualizarStock(item.sku);
+               actualizarStock(item.sku);
                 debugger;
                 localStorage.clear();
                 vm.totalReservas = 0;
@@ -276,7 +270,6 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     function actualizarCupon(){
            return CarritoService.actualizarCupon(vm.cupon[0].idCup, vm.idUsuario).then(function(data){
             if(data){
-              console.log("refressco bien el cupon");
                 
             }
         });
@@ -285,17 +278,18 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     function actualizarStock(sku){
         return CarritoService.actualizarStock(sku).then(function(data){
             if(data){
-                consultarStock();
+                console.log(data);
+                //consultarStock(sku);
                 //TODO: manejo de stock entre sucursales
                 //TODO: precio de envio entre sucursales
               console.log("refressco bien el stock");
             }
         });
     };
-    function  consultarStock(){
+    function  consultarStock(sku){
         //TODO ARREGLAR porque debe ser por sku y id prod 
         //validar que ya no este insertado el alerta
-        return CarritoService.consultarStock().then(function(data){
+        return CarritoService.consultarStock(sku).then(function(data){
             if(data.length > 0){
                 alertas = data;
                 generarAlerta();
@@ -469,7 +463,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     }
     
     vm.init = function(){
-       //TODO: verificar local host con bbdd el stock con sku
+       //TODO: verificar local storage con bbdd el stock a comrpar con sku
         //TODO: verificar tiempo entre sucursales
         vm.mostrarBancos();
         vm.cargarDomicilios();

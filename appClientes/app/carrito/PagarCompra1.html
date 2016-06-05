@@ -1,5 +1,5 @@
 <div ng-controller="PagarCompraController as pagarCtrl" class="div-pagar" >
-   <div class="body-carrito-compras">
+   <div class="body-carrito-compras" ng-hide="pagarCtrl.hidePagar">
         <div class="panel-heading pnl-prod-perfil cupon-usado-back-color-pnl"  >
             <h4 class="panel-title panel-titulo">
                 <b>
@@ -228,4 +228,8 @@
                 </button>
             </div>
         </div>
+        <div  ng-hide="pagarCtrl.hideCompraOk" class="alert alert-success" ui-sref="carrito.compras">  
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>                                          {{pagarCtrl.mensajeCompraOk}}
+        </div>
     </div>
+

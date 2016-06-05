@@ -1,0 +1,14 @@
+<div class="row lista-compras" >
+    <!--<img  src="{{product.image[0]}}"  class="img-responsive" ui-sref="productosDetail({prodId: product.id})"/>-->
+    
+    <label class="lbl-detalle">{{buyData.compra}}</label>
+    <label class="lbl-cantidad ">{{buyData.fechaC}}</label>
+    <label class="lbl-cantidad ">{{buyData.fechaP}}</label>
+    <label class="lbl-precio  " >{{buyData.e == 'E'? 'EFECTIVO' : 'TARJETA'}}</label>
+    <label class="lbl-fecha-compra  ">${{buyData.precio}}</label>
+    <label class="lbl-estado">{{buyData.e}}</label>
+    <label> 
+        <span class="glyphicon glyphicon-search" data-target="#myModalCompra" data-toggle="modal" ng-click="openDetail()"></span>
+    </label>
+</div>
+

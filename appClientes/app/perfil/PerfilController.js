@@ -6,7 +6,7 @@ PerfilCtrl.$injector = ["$state","PerfilService", "$scope", "ProductosService"];
 
 function PerfilCtrl($state, PerfilService, $scope, ProductosService) {
     var vm = this;
-    vm.idUsuario = 18;           //SACAR HARDCODE
+    vm.idUsuario = 1;           //SACAR HARDCODE
     vm.cuponUsadosLista =[];    //TOMO EN CONSIDERACION usado = SI
     vm.cuponNuevosLista = [];   //TOMO EN CONSIDERACION usado = NO
     vm.datosDelCliente=[];      //acastillo 22/05/2016
@@ -15,7 +15,6 @@ function PerfilCtrl($state, PerfilService, $scope, ProductosService) {
     vm.mostrarBanner = function(){
         return ProductosService.getImgModulo().then(function(data){
             if(data){
-                debugger;
                 vm.banner = data[0].modulo;
             }
         });

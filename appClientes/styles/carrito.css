@@ -61,6 +61,28 @@
     margin-bottom: 10;
     margin-right: 24px;
 }
+
+.lbl-detalle{
+    width: 82px;
+    margin-left: 27px;
+}
+.lbl-cantidad{
+    width: 98px;
+    margin-right: 43px;
+}
+.lbl-color{
+    width: 141px;
+}
+.compras-lbl-size{
+    width: 60;
+}
+.lbl-precio{
+    width: 126px;
+}
+.lbl-fecha-compra{
+     width: 75px;
+}
+
 .compras-lbl-detalle{
    width: 256px;
 }
@@ -68,10 +90,7 @@
       width: 98px;
 }
 .compras-lbl-color{
-    width: 141px;
-}
-.compras-lbl-size{
-    width: 60;
+    width: 141;
 }
 .compras-lbl-precio{
      width: 96px;
@@ -212,8 +231,8 @@
 .nro-tarjeta input{
    
 }
-.compras-lbl-estado{
-        width: 100;
+.lbl-estado{
+    width: 208px;
 }
 .ng-hide {
   height: 0;

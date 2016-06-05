@@ -9,19 +9,19 @@
              </h4>
         </div>
         <div class="titulos-compras">
-            <label style="  margin-left: 20px;"> IMAGEN </label>
-            <label style="  margin-left: 10px;"> DETALLE </label>
-            <label style="  margin-left: 149px;"> CANTIDAD </label>
-            <label style="  margin-left: 30px;">  PRECIO</label>
-            <label style="  margin-left: 10px;"> FECHA COMPRA </label>
-            <label style="  margin-left: 10px;"> ESTADO</label>
+            <label style="  margin-left: 15px;"> N° </label>
+            <label style="  margin-left: 30px;"> FECHA COMPRA </label>
+            <label style="  margin-left: 10px;"> FECHA PAGO </label>
+            <label style="  margin-left: 10px;">  FORMA DE PAGO</label>
+            <label style="  margin-left: 10px;"> PRECIO </label>
+            <label style="  margin-left: 17px;"> ESTADO</label>
         </div>
         <div >
-            <carrito-compras-directive 
+            <compras-directive 
                                ng-repeat="compras in comprasCtrl.listaCompras" 
                                buy-data="compras"
-                               on-click-detail="comprasCtrl.onClickDetail(compras.id)">
-            </carrito-compras-directive >
+                               on-click-detail="comprasCtrl.onClickDetail(compras.compra)">
+            </compras-directive >
             
             <!-- Modal compra-->
             <div class="modal fade" id="myModalCompra" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -60,7 +60,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="alert('Message 2');" data-dismiss="modal" ng-hide="{{buyData.state}} === 'Pagado'">Guardar</button>
+                   <!-- <button type="button" class="btn btn-primary" onclick="alert('Message 2');" data-dismiss="modal" ng-hide="{{buyData.state}} === 'Pagado'">Guardar</button>-->
                   </div>
                 </div>
               </div>

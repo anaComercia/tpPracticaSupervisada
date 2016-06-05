@@ -164,6 +164,12 @@ $app->get('/traerSucursales', function(){
 	$data = $producto->getSucursales();
 	sendResult($data);
 });
+$app->get('/traerCompras/:idUsuario', function($idUsuario){
+
+	$producto = new Carrito();
+	$data = $producto->getCompras($idUsuario);
+	sendResult($data);
+});
 $app->get('/productos', function(){
 
 	$producto = new Producto();
@@ -357,7 +363,7 @@ $app->post('/insertDetalleCompra', function(){
 	if($result){
 		sendResult("detalle insertado");
 	}else{
-		sendError("Error al actualizar el cupon.");
+		sendError("Error al insertar el detalle.");
 	}
 });
 $app->run();

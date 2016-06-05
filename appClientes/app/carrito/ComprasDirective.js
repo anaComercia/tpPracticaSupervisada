@@ -1,13 +1,13 @@
 angular
     .module("backendEcommerceClientes.carrito")
-    .directive("carritoComprasDirective", CarritoComprasDirective);
+    .directive("comprasDirective", ComprasDirective);
 
-function CarritoComprasDirective() {
+function ComprasDirective() {
     
     return {
         restrict: "E",
         //replace: true,
-        templateUrl:'app/carrito/CarritoComprasDirective.html',
+        templateUrl:'app/carrito/ComprasDirective.html',
         scope: { buyData: '=buyData',
                  openDetail: '&onClickDetail'
                }, //product-data="cupon"

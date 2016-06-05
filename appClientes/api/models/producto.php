@@ -255,6 +255,7 @@ class Producto
         }
         return $color; 
     }
+
     
      public function getSKU($idTalle,$idColor,$idProd){
       //  $idProd = (int) $this->connection->real_escape_string($producto['productoSeleccionado']);

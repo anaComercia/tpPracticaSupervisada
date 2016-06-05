@@ -1,12 +1,12 @@
 <div class="row lista-compras" >
     <!--<img  src="{{product.image[0]}}"  class="img-responsive" ui-sref="productosDetail({prodId: product.id})"/>-->
     
-    <img src="img/campera/h_invierno pluma (1).png" class="img-compras" />
-    <label class="compras-lbl-detalle">{{buyData.detail | uppercase}}</label>
-    <label class=" compras-lbl-cantidad ">{{buyData.quantity}}</label>
-    <label class=" compras-lbl-precio  " >${{buyData.price}}</label>
-    <label class=" compras-lbl-fecha-compra  ">{{buyData.buyDate}}</label>
-    <label class=" compras-lbl-estado">{{buyData.state}}</label>
+    <label class="compras-lbl-detalle">{{buyData.compra}}</label>
+    <label class=" compras-lbl-cantidad ">{{buyData.fechaC}}</label>
+    <label class=" compras-lbl-cantidad ">{{buyData.fechaP}}</label>
+    <label class=" compras-lbl-precio  " >${{buyData.formaPago}}</label>
+    <label class=" compras-lbl-fecha-compra  ">{{buyData.precio}}</label>
+    <label class=" compras-lbl-estado">{{buyData.e}}</label>
     <label> 
         <span class="glyphicon glyphicon-search" data-target="#myModalCompra" data-toggle="modal" ng-click="openDetail()"></span>
     </label>

@@ -1,13 +1,14 @@
 angular
     .module("backendEcommerceClientes.carrito")
-    .controller("CarritoComprasController", CarritoComprasCtrl);
+    .controller("ComprasController", CarritoComprasCtrl);
 
-CarritoComprasCtrl.$injector = ["$state , $scope"];
+CarritoComprasCtrl.$injector = ["$state , $scope", "CarritoService"];
 
-function CarritoComprasCtrl($state,$scope) {
+function CarritoComprasCtrl($state,$scope,CarritoService) {
    var vm = this;
-    
-    /* lista compras */
+   vm.listaCompras = []; 
+    vm.idUsuario = 1; //SACAR HARDCODE
+    /* lista compras 
     vm.listaCompras = [
         {
             id:1,
@@ -27,9 +28,24 @@ function CarritoComprasCtrl($state,$scope) {
             buyDate: '06/10/2015',
             state:'Pagado'
         }
-    ];
+    ];*/
     
+      buscarlistaCompras = function buscar(){
+          return CarritoService.getCompras(vm.idUsuario).then(function(data){
+            if(data.length>0){
+                debugger; 
+               vm.listaCompras = data;
+                debugger;
+            }
+        });
+   };
     vm.detallesCompra={};
+    
+    vm.init = function(){
+        buscarlistaCompras();
+	};
+    
+    vm.init();
     
     vm.onClickDetail = function(compraId){
         //carritoComprasController.js

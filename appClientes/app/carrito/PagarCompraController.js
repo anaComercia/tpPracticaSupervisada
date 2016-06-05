@@ -39,6 +39,10 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     var puedoGuardar = false;
     var tarjetaBcoId;
     var alertas = [];
+    vm.compraFinalizada = false;
+    vm.hideCompraOk= true;
+    vm.hidePagar= false;
+    vm.mensajeCompraOk ="";
     
     
    vm.buscarLocalidades = function(){
@@ -168,19 +172,18 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
                 if(idCupon != 0){
                     actualizarCupon();
                 }
-                
+                 for(var i = 0; i< detalleCompra.length; i++){
+                    insertarDetalle(detalleCompra[i], idCompra);
+                     debugger;
+                   //  actualizarStock(detalleCompra[i].sku);
+                }
                 localStorage.clear();
                 vm.totalReservas = 0;
                 vm.subTotal = 0;
                 $rootScope.$emit('actualizarTotal', vm.totalReservas);
             }
         });
-        //insertar detalle compra
-        
-        //idCompra
-        //codSku
-        //cantidad = 1
-        //precio = localStorage.unitPrice
+
     };
     function guardarCompraTarjeta(){
       
@@ -231,30 +234,42 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
                 
                 for(var i = 0; i< detalleCompra.length; i++){
                     insertarDetalle(detalleCompra[i], idCompra);
+                    debugger;
+                    
                 }
-                localStorage.clear();
-                vm.totalReservas = 0;
-                vm.subTotal = 0;
-                $rootScope.$emit('actualizarTotal', vm.totalReservas);
             }
         });
-         
-        //insertar detalle compra
-        
-        //idCompra
-        //codSku
-        //cantidad = 1
-        //precio = localStorage.unitPrice
+
     };
     
     function insertarDetalle(item, idCompra){
+        //TODO: reagrupar SKU y hacer bbdd clave compeusta idCompra codSku
         console.log(item);
         return CarritoService.insertarDetalle(idCompra,
                                              item.sku,
                                              1,
                                              item.unitPrice).then(function(data){
+            
+            debugger;
             if(data){
-              actualizarStock(item.sku);
+             console.log("detalle insertado");
+                actualizarStock(item.sku);
+                debugger;
+                localStorage.clear();
+                vm.totalReservas = 0;
+                vm.subTotal = 0;
+                $rootScope.$emit('actualizarTotal', vm.totalReservas);
+                vm.compraFinalizada = true;
+                vm.hideCompraOk = false;
+                vm.hidePagar = true;
+                debugger;
+                vm.mensajeCompraOk= "Su compra se efectuó correctamente. Su código de compra es " + idCompra + " .";
+                debugger;
+            }
+            if(data.error){
+               vm.compraFinalizada = false;
+                vm.hideCompraOk = true;
+                vm.hidePagar = false;
             }
         });
     };
@@ -262,6 +277,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
            return CarritoService.actualizarCupon(vm.cupon[0].idCup, vm.idUsuario).then(function(data){
             if(data){
               console.log("refressco bien el cupon");
+                
             }
         });
     };

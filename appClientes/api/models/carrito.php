@@ -432,7 +432,7 @@ class Carrito
             $codSku =        $this->connection->real_escape_string($data['sku']);
             $cant =     $this->connection->real_escape_string($data['cantidad']);
             $precio=       $this->connection->real_escape_string($data['precioUnitario']);
- 
+
                  $queryCompra =
                  "INSERT INTO detalle_compra
                 (idCompra, codSku, cantidad, precio) 
@@ -441,8 +441,13 @@ class Carrito
                 '$codSku',
                 '$cant',
                 '$precio')";
-             
-
+ /*     var_dump($data);
+         var_dump($compraId);
+         var_dump($codSku);
+         var_dump($cant);
+         var_dump($precio);
+         var_dump($queryCompra);
+*/
              if($this->connection->query($queryCompra)){
                     $data['idCompra'] = $this->connection->insert_id;
                     $idCompra=$data['idCompra'] ;
@@ -453,6 +458,24 @@ class Carrito
 
 
         }
+    
+           public function getCompras($idUsuario){
+      //  $idProd = (int) $this->connection->real_escape_string($producto['productoSeleccionado']);
+       // $idTalle = (int) $this->connection->real_escape_string($producto['talleSeleccionado']);
+        $idPro = (int) $this->connection->real_escape_string($idUsuario);
+        $query = "SELECT idCompra as compra, idCupon as cupon, idTarjetaBanco as tarjetaBco, idSucursal as sucu, idDireccion as dir,
+                    monto as precio,fechaCompra as fechaC, fechaPago as fechaP, estado as e, tipoPago as formaPago
+                    from compra
+                    where idCliente = $idPro";
+         $color = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $color[] = $fila;
+            }
+            $result->free();
+        }
+        return $color; 
+    }
 }
 /*
 SELECT c.descripcion as catDesc, g.descripcion as gendDesc, p.titulo as prodTit, p.precio as prodPrecio,

@@ -42,6 +42,12 @@ backendEcommerce.service("CarritoService", function($http){
 			return response.data.data;
 		})
     };
+    this.getCompras = function($idUsuario){
+    	var promise = $http.get('api/index.php/traerCompras/'+$idUsuario);
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
     this.getProvincias = function(){
     	var promise = $http.get('api/index.php/traerProvincias');
 		return promise.then(function(response){

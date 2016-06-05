@@ -30,7 +30,13 @@
     margin-top: 40px;
     
 }
-
+.label-volver-lista{
+    cursor: pointer;
+    float: right;
+    margin-top: 15;
+    font-style: italic;
+    color: #72B4E4;
+}
 #idPaginaProducto .img {
     padding-left: 50px;
 }

@@ -2,7 +2,6 @@ var producto = angular.module("backendEcommerceClientes.producto", [
 	"ui.router"
 ]);
 
-
 var categoriesList = $("#idPnlCategorias li");
 
 if (categoriesList.length > 4) {

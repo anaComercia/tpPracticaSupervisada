@@ -1,10 +1,11 @@
 <?php
 class Connection extends MySQLi {
      private static $instance = null ;
-     const HOST = 'localhost';
-     const USER = 'root';
-     const PASSWORD = '';       
-     const DATABASE = 'negocio';
+    const HOST = 'localhost';
+    const USER = 'root';
+    // const PASSWORD = 'admin'; //      SI JAVI LO UTILIZA
+    const PASSWORD = ''; //SI YO LO UTILIZO
+    const DATABASE = 'negocio';
          
      private function __construct($host, $user, $password, $database){ 
          parent::__construct($host, $user, $password, $database);

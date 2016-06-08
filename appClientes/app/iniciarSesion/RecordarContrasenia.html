@@ -20,15 +20,15 @@
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*E-mail:</label>
-                <input type="text" class="form-control" placeholder="Email" >
+               <input type="text" class="form-control" placeholder="Email" ng-model="recordarContraseniaCta.email">
             </div>
             </div>
  
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*Fecha Nacimiento:</label>
-                <input type=date class="form-control" placeholder="Fecha Nacimiento" />
-            </div>
+                <input type=date class="form-control" placeholder="Fecha Nacimiento" ng-model="recordarContraseniaCta.fechaNacimiento"/>
+           </div>
         </div>     
         
         <div class="form-group col-md-offset-4" style="" >
@@ -36,8 +36,8 @@
         <!-- BOTONES!-->
         <div class="row" class="col-md-12" style=" "   >
             <div class="col-md-6  col-md-offset-6">
-               <button class="btn btn-default btn-md btnBoton" >Aceptar</button>
-	           <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
+                <button class="btn btn-default btn-md btnBoton" ng-click="recordarContraseniaCta.usuarioGetAllByEmailFechaNacimiento()">Aceptar</button>
+	          <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
             </div>
         </div>
     </div>

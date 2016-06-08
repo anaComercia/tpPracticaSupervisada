@@ -12,15 +12,14 @@ class CrearCuenta
 
 
    public function create($data){
-       
-        //var_dump($data);
 
+ 
         $nombre=            $this->connection->real_escape_string($data['nombre']);
         $apellido =         $this->connection->real_escape_string($data['apellido']);
         $email =            $this->connection->real_escape_string($data['email']);
         $repetirEmail =     $this->connection->real_escape_string($data['repetirEmail']);
         $numDni =           $this->connection->real_escape_string($data['numDni']);
-        $tipoDni =          $this->connection->real_escape_string($data['tipoDni']);
+        $tipoDni =          $this->connection->real_escape_string($data['idTipoDni']);
         $fechaNacimiento =  $this->connection->real_escape_string($data['fechaNacimiento']);
         $telefono =         $this->connection->real_escape_string($data['telefono']);
         //$pais=              $this->connection->real_escape_string($data['pais']);
@@ -37,7 +36,7 @@ class CrearCuenta
         $reputacion=    100;
         $Fila=          array();
         $IdCupon=       0;
-        $EstadoCupon=   1;
+        $EstadoCupon=   'NO';
         $idCliente=     0;
 
        
@@ -50,6 +49,7 @@ class CrearCuenta
         '$idLocalidad',
         '$direccion',
         '$codigoPostal')";   
+
         
        //var_dump($queryDireccion);
 
@@ -86,13 +86,14 @@ class CrearCuenta
             return false;
         }
        
-   
+
+  
        //Insert en tabla: usuario
        $queryUsuario=
         "INSERT INTO usuario
-        (idUsuario, usuario, contraseña, idPersona, habilitado) 
+        (idUsuario, usuario, password, idPersona, habilitado) 
         VALUES 
-        (DEFAULT,'$email','$clave','$idPersona',1)";
+        (DEFAULT,'$email','$clave','$idPersona',0)";
        
        //print($queryPersona);
        
@@ -160,4 +161,5 @@ class CrearCuenta
         }
        
     }
+   
 }

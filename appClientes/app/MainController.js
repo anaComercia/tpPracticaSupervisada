@@ -3,9 +3,9 @@ angular
     .controller("MainController", MainCtrl);
 
 
-MainCtrl.$injector = ["$state","FooterService","$rootScope"];
+MainCtrl.$injector = ["$state","FooterService","$rootScope", "InicioService"];
 
-function MainCtrl($state, FooterService, $rootScope) {
+function MainCtrl($state, FooterService, $rootScope, InicioService) {
 
 //Siempre que se trabaje con angular en js se tiene que traer el modulo declarado en index.html ng-app
 //var backendEcommerce = angular.module("backendEcommerceClientes");
@@ -19,6 +19,7 @@ function MainCtrl($state, FooterService, $rootScope) {
 	vm.telefonos=[];
     vm.totalReservas = localStorage.contador == undefined ? 0 : JSON.parse(localStorage.contador);
     vm.mySelect = localStorage.buscador == undefined ?  new String() :  new String();
+    vm.datosUsuario = null;
     
     $rootScope.$on('actualizarTotal', _actualizarTotal);
     
@@ -85,22 +86,30 @@ function MainCtrl($state, FooterService, $rootScope) {
             source: vm.substringMatcher(vm.nombresMps)
         });
     }
+
     
-    /*
-      this.getMps = function(){
-    return MpService.getMps().then(function(data){
-            self.mps = data;
-         self.mps.forEach(function(elemento){
-             if(self.nombresMps.indexOf(elemento.titulo) == -1){
-         self.nombresMps.push(elemento.titulo);
-             }
-         });
+     
+    vm.cerrarSesion = function(){
+        return InicioService.cerrarSesion().then(function(data){
+          vm.getLogin();
+          $state.go("inicio");   
         });
-    };
-    */
+    }
+    
+    
+    vm.getLogin = function(){
+      return InicioService.getLogin().then(function(data){
+            if(data){    
+               vm.datosUsuario = data;
+            }else{
+            vm.datosUsuario = null;
+            }
+        });
+    }
     
     vm.init = function(){
         vm.mostrarTelefonos();
+        vm.getLogin();
  	};
     
     vm.init();

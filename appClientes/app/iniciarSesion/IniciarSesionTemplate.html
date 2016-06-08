@@ -7,23 +7,23 @@
             </div>
         </div>
 
-        <div class="row col-md-offset-2" id="lblDatoObligatorio" class="col-md-12" >
-            <label >* Datos Obligatorios</label>
-        </div>
+         <div class="row col-md-offset-2" id="lblDatoObligatorio" class="col-md-12" style=""   >
+            <label >* Todos los datos son Obligatorios</label>
+         </div>
 
         <!-- CUERPO!-->
         <div class="form-group col-md-offset-4" style="" >
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*E-mail:</label>
-                <input type="text" class="form-control" placeholder="Email" >
+                <input type="text" class="form-control" placeholder="Email" ng-model="login.email" >
             </div>
             </div>
          
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*Clave:</label>
-                <input type="text" class="form-control" placeholder="Clave" >
+               <input type="text" class="form-control" placeholder="Clave" ng-model="login.password">
             </div>
             </div>
 
@@ -39,8 +39,8 @@
         <!-- BOTONES!-->
         <div class="row" class="col-md-12" style=" "   >
             <div class="col-md-6  col-md-offset-6">
-               <button class="btn btn-default btn-md btnBoton" >Aceptar</button>
-	           <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
+             <button class="btn btn-default btn-md btnBoton" ng-click="login.usuarioGetAllByEmailPassword()">Aceptar</button>
+	             <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
             </div>
         </div>
     </div>

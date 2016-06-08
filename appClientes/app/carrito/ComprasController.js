@@ -5,38 +5,20 @@ angular
 CarritoComprasCtrl.$injector = ["$state , $scope", "CarritoService"];
 
 function CarritoComprasCtrl($state,$scope,CarritoService) {
-   var vm = this;
-   vm.listaCompras = []; 
+    var vm = this;
+    vm.listaCompras = []; 
     vm.idUsuario = 1; //SACAR HARDCODE
-        vm.detallesCompra=[];
-    /* lista compras 
-    vm.listaCompras = [
-        {
-            id:1,
-            image: 'img/modulos/prueba2.jpg', 
-            detail: 'campera milano', 
-            quantity: 2,
-            price: 1600,
-            buyDate: '16/01/2016',
-            state:'Pendiente'
-        },
-        {
-            id:2,
-            image: 'img/modulos/prueba1.jpg', 
-            detail: 'remera ny',
-            quantity: 1,
-            price: 800,
-            buyDate: '06/10/2015',
-            state:'Pagado'
-        }
-    ];*/
+    vm.detallesCompra=[];
+    vm.compraVisualizar;
+    vm.pagoEn;
+    vm.totalCompra;
+    vm.hideDivTarjeta = true;
+    vm.hideDivEfectivo = true;
     
-      buscarlistaCompras = function buscar(){
+    buscarlistaCompras = function buscar(){
           return CarritoService.getCompras(vm.idUsuario).then(function(data){
             if(data.length>0){
-                debugger; 
                vm.listaCompras = data;
-                debugger;
             }
         });
    };
@@ -48,42 +30,56 @@ function CarritoComprasCtrl($state,$scope,CarritoService) {
         //carritoCompras.html
         //carritoComprasDirective.js
         //carritoComprasDirective.html
-        if(compraDet.cupon == null){
-            compraDet.cupon = 'NO'; //para el filtro enel php
-        }
+
         if(compraDet.formaPago == 'E'){//efectivo
-            debugger;
-            /*
-            */
-            traerDetalleEfectivo(compraDet.compra,
-                                compraDet.sucu);
+            vm.pagoEn= "efectivo";
+            vm.hideDivTarjeta = true;
+            vm.hideDivEfectivo = false;
+            traerDetalleEfectivo(compraDet);
         }else{//tarjeta
-            debugger;
-            /*compraDet compra
-            compraDet dir
-            compraDet e
-            compraDet fechaC
-            compraDet fechaP
-            compraDet formaPago
-            compraDet precio
-            compraDet sucu
-            compraDet tarjetaBco*/
+            vm.pagoEn= "tarjeta";
+            
+            vm.hideDivTarjeta = false;
+            vm.hideDivEfectivo = true;
+            traerDetalleTarjeta(compraDet);
         }
-        
+
         //Aca voy con el id a buscar a la base los detalles de la compra y cuando vuelvo lo seteo a vm.DetalleCompras
     };
     
-   function traerDetalleEfectivo(compra,
-                         sucu){
-         return CarritoService.getDetalleEfectivo(compra,
-                                                 sucu).then(function(data){
+    function traerDetalleTarjeta(compraDet){
+        return CarritoService.getDetalleTarjeta(compraDet.compra).then(function(data){
             if(data.length>0){
-                debugger; 
-               vm.detallesCompra = data;//si tiene cupon hay que sumarle el monto del cupon al total
+                debugger;
+                vm.detallesCompra = data;//si tiene cupon hay que sumarle el monto del cupon al total
+                //vm.totalCompra = vm.totalCompra - parseInt(vm.detallesCompra[0].costo);
+                rellenarDatos(compraDet);
+               
+            }
+        });
+    };
+    
+    function traerDetalleEfectivo(compraDet){
+         return CarritoService.getDetalleEfectivo(compraDet.compra, compraDet.sucu).then(function(data){
+            if(data.length>0){
+                vm.detallesCompra = data;//si tiene cupon hay que sumarle el monto del cupon al total
+                rellenarDatos(compraDet);
+               
             }
         });
     };
         
+    function rellenarDatos(compraDet){
+        vm.compraVisualizar = compraDet;
+        vm.compraVisualizar.precio = parseInt(vm.compraVisualizar.precio);
+        if(compraDet.cupon == null){
+            compraDet.cupon = 0; //para el filtro enel php
+            vm.totalCompra =  vm.compraVisualizar.precio; 
+        }else{
+            vm.totalCompra = parseInt(compraDet.cupon) + vm.compraVisualizar.precio;
+        }
+    };
+    
     vm.init = function(){
         buscarlistaCompras();
 	};

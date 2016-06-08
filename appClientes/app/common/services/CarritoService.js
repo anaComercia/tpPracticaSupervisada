@@ -60,6 +60,12 @@ backendEcommerce.service("CarritoService", function($http){
 			return response.data.data;
 		})
     };
+      this.selectMaxCupon= function($idUsuario){
+    	var promise = $http.get('api/index.php/traerMaxCupon/'+$idUsuario);
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
      this.getVerifCupon = function($descCupon,$idUsr){
     	var promise = $http.get('api/index.php/verifCupon/'+$descCupon+'&'+$idUsr);
 		return promise.then(function(response){
@@ -78,8 +84,20 @@ backendEcommerce.service("CarritoService", function($http){
 			return response.data.data;
 		})
     };
+    this.getDetalleTarjeta = function($idCompra){
+    	var promise = $http.get('api/index.php/buscarDetalleTarjeta/'+$idCompra);
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
      this.getTarjetaBancoId = function($idBco,$idTarj,$cuotas){
     	var promise = $http.get('api/index.php/buscarTarjtaId/'+$idBco+'&'+$idTarj+'&'+$cuotas);
+		return promise.then(function(response){
+			return response.data.data;
+		})
+    };
+    this.consultarLocalidad = function($idLocalidad){
+    	var promise = $http.get('api/index.php/consultarLocalidad/'+$idLocalidad);
 		return promise.then(function(response){
 			return response.data.data;
 		})
@@ -114,6 +132,15 @@ backendEcommerce.service("CarritoService", function($http){
             'idCupon':idCupon,
             'idUsuario':idUsuario};
         var promise = $http.post('api/index.php/updateCupon', data);
+        return promise.then(function(response){
+            return response;
+        });
+    };
+    this.asignarCuponCliente = function(idUsuario, idCupon){
+      data = {
+            'idUsuario':idUsuario,
+            'idCupon':idCupon};
+        var promise = $http.post('api/index.php/asignarCuponCliente',data);
         return promise.then(function(response){
             return response;
         });
@@ -158,7 +185,6 @@ backendEcommerce.service("CarritoService", function($http){
           
         var promise = $http.post('api/index.php/insertCompra', data);
         return promise.then(function(response){
-            console.log(response);
             return response;
         });
     };
@@ -194,7 +220,6 @@ backendEcommerce.service("CarritoService", function($http){
           
         var promise = $http.post('api/index.php/insertCompraTarjeta', data);
         return promise.then(function(response){
-            console.log(response);
             return response;
         });
     };
@@ -212,7 +237,6 @@ backendEcommerce.service("CarritoService", function($http){
           
         var promise = $http.post('api/index.php/insertDetalleCompra', data);
         return promise.then(function(response){
-            console.log(response);
             return response;
         });
     };

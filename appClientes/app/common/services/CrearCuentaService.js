@@ -10,7 +10,7 @@ backendEcommerce.service("CrearCuentaService", function($http){
     
     //Genero
     this.getGeneros = function(){
-		var promise = $http.get('api/index.php/altaDeCuentaGenero');
+        var promise = $http.get('api/index.php/genero');
 		return promise.then(function(response){
 			return response.data.data;
 		})
@@ -18,7 +18,7 @@ backendEcommerce.service("CrearCuentaService", function($http){
   
     //Provincia
     this.getProvincias = function(){
-		var promise = $http.get('api/index.php/altaDeCuentaProvincia');
+        var promise = $http.get('api/index.php/provincia');
 		return promise.then(function(response){
 			return response.data.data;
 		})
@@ -26,7 +26,15 @@ backendEcommerce.service("CrearCuentaService", function($http){
     
     //Localidad
     this.getLocalidadesById = function($id){
-		var promise = $http.get('api/index.php/altaDeCuentaLocalidad/'+$id);
+        var promise = $http.get('api/index.php/localidad/'+$id);
+		return promise.then(function(response){
+			return response.data.data;
+		})
+	};
+    
+    //Tipo Dni
+    this.getTiposDni = function(){
+        var promise = $http.get('api/index.php/tipoDni');
 		return promise.then(function(response){
 			return response.data.data;
 		})
@@ -39,7 +47,8 @@ backendEcommerce.service("CrearCuentaService", function($http){
           , email
           , repetirEmail
           , numDni
-          , tipoDni
+
+          , idTipoDni
           , fechaNacimiento
           , telefono
           //, pais
@@ -63,7 +72,8 @@ backendEcommerce.service("CrearCuentaService", function($http){
          , 'email':email
          , 'repetirEmail':repetirEmail
          , 'numDni':numDni
-         , 'tipoDni':tipoDni
+
+         , 'idTipoDni':idTipoDni
          , 'fechaNacimiento':fechaNacimiento
          , 'telefono':telefono
          //, 'pais':pais

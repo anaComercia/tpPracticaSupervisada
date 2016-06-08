@@ -86,6 +86,7 @@
            <label>Envío a Domicilio</label>
            <select class="select-option select-domicilio" 
                     ng-model="pagarCtrl.mySelect.domicilioEntrega" 
+                   ng-change="pagarCtrl.calcularEnvio()"
                     ng-options="domi as domi.dire for domi in pagarCtrl.domicilios" 
                     >
              </select>
@@ -93,6 +94,12 @@
                     data-toggle="modal" 
                    ng-click="pagarCtrl.ejecutarModal()"
                    data-target="#myModal">¿Nuevo domicilio?</label>
+            <div class="detalle-informativo">
+                <label> Tiempo de entrega: {{pagarCtrl.costoEnvio[0].dias}} dias. </label>
+            </div>
+            <div class="detalle-informativo">
+                <label> Costo de entrega:  ${{pagarCtrl.costoEnvio[0].precio}}. </label>
+            </div>
             
             <!-- Modal Nvo Dom-->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -194,19 +201,30 @@
         </div>
          <div class="div-total-reserva">
                <div class="total-pagar-finalizar">
-                    <label class="detalle-informativo-precio">
-                       Subtotal
-                    </label>
-                    <label style="width: 100;">
-                        $ {{pagarCtrl.subTotal}}
-                    </label>
-                    <label class="detalle-informativo-precio">
-                        Cupon 
-                    </label> 
-                    <label style="color: #1D8804;margin-left: 8px;">
-                       - $ {{pagarCtrl.valorCupon}}
-                     </label> 
-                   
+                    <div>
+                        <label class="detalle-informativo-precio">
+                            Subtotal:
+                        </label>
+                        <label style="width: 100; font-size: initial;">
+                            $ {{pagarCtrl.subTotal}}
+                        </label>
+                    </div>
+                    <div>
+                        <label class="detalle-informativo-precio">
+                            Cupon: 
+                        </label> 
+                        <label style="color: #1D8804;margin-left: 8px; font-size: initial;">
+                            - $ {{pagarCtrl.valorCupon}}
+                        </label> 
+                    </div>
+                   <div ng-hide="pagarCtrl.hiddenTarjeta">
+                        <label class="detalle-informativo-precio">
+                            Costo de Entrega: 
+                        </label> 
+                        <label style="color: #1D8804;margin-left: 8px; font-size: initial;">
+                            + $ {{pagarCtrl.costoEnvio[0].precio}}
+                        </label> 
+                    </div>
                 </div>
                 <div class="total-pagar-finalizar">
                     TOTAL A PAGAR
@@ -230,6 +248,13 @@
         </div>
         <div  ng-hide="pagarCtrl.hideCompraOk" class="alert alert-success" ui-sref="carrito.compras">  
               <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>                                          {{pagarCtrl.mensajeCompraOk}}
+        </div>
+        <div  ng-hide="pagarCtrl.hideNuevoCupon" class="alert alert-success" >  
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>                                          {{pagarCtrl.nuevoCuponAsignado}}
+        </div>
+        <div  ng-hide="pagarCtrl.hideErrorCupon" class="alert alert-danger">  
+              <span  aria-hidden="true"></span>                                          
+            {{pagarCtrl.errorDelCupon}}
         </div>
     </div>
 

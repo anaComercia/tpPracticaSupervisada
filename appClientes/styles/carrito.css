@@ -57,11 +57,18 @@
     height: 50;
     width: 50;
     margin: 0px;
-    margin-left: 42px;
+    margin-left: -9px;
     margin-bottom: 10;
     margin-right: 24px;
 }
-
+.img-compras-detail{
+    height: 50;
+    width: 50;
+    margin: 0px;
+    margin-left: 18px;
+    margin-bottom: 10;
+    margin-right: 18px;
+}
 .lbl-detalle{
     width: 82px;
     margin-left: 27px;
@@ -74,7 +81,7 @@
     width: 141px;
 }
 .compras-lbl-size{
-    width: 60;
+    width: 88px;
 }
 .lbl-precio{
     width: 126px;
@@ -90,7 +97,7 @@
       width: 98px;
 }
 .compras-lbl-color{
-    width: 141;
+        width: 140px;
 }
 .compras-lbl-precio{
      width: 96px;
@@ -165,7 +172,7 @@
 
 .detalle-informativo-precio{
     color: #999;
-    font-size: inherit;
+    font-size: initial;
 }
 .forma-pago{
     width: 134px;
@@ -258,7 +265,10 @@
 }
 .detalle-compra-titulo{
     font-size: large;
-    border-bottom-style: double;
+    margin-bottom: 13px;
+}
+.compra-titulo{
+    font-size: initial;
     margin-bottom: 13px;
 }
 .detalle-compra-detalle{
@@ -273,4 +283,30 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+.separador-totales{
+    border-top: aquamarine;
+    border-style: groove;
+    border-left: none;
+    border-bottom: none;
+    border-right: none;
+}
+.separador-estado{
+        border-style: groove;
+    border-color: aquamarine;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+.scroll-detalles{
+    max-height: 165;
+    overflow-y: scroll;
+}
+.estado-compra{
+    margin-left: 56px;
+    font-style: italic;
+}
+.costos-pago{
+    width: 144px !important; 
+    font-style: initial !important;
 }

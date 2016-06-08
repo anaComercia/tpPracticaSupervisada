@@ -147,12 +147,13 @@ class Carrito
         $compra = (int) $this->connection->real_escape_string($idCompra);
         $sucu= (int) $this->connection->real_escape_string($idSucu);
 
-        $query = "select s.nroSucursal as nroSuc, d.direccion as dir, d.cp as cp,
+        $query = "select s.nroSucursal as nroSuc, d.direccion as dir, d.cp as cp, dc.cantidad as cant,
                     l.descripcion as loc, p.descripcion as prov, t.descripcion as descTalle,
                     c.descripcion as descColor, prod.titulo as tit, prod.precio as precio,
                     prod.descripcion as prodDesc, prod.urlImagen as img, g.descripcion as sexo,
                     cat.descripcion as descCat
                     from detalle_compra dc
+                    left join compra com on com.idCompra = dc.idCompra
                     left join stock_producto sp on sp.codSku = dc.codSku
                     left join sucursal s on s.idSucursal=sp.idSucursal
                     left join direccion d on d.idDireccion = s.idDireccion
@@ -164,8 +165,40 @@ class Carrito
                     left join producto prod on prod.idProducto = pp.idProducto
                     left join genero g on g.idGenero = prod.idGenero
                     left join categoria cat on cat.idCategoria = prod.idCategoria
-                    where dc.idCompra = $compra 
-                    and s.idSucursal = $sucu ";
+                    where com.idCompra = $compra
+                    and com.idSucursal = $sucu ";
+
+        $detalle = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $detalle[] = $fila;
+            }
+            $result->free();
+        }
+        return $detalle;
+    }
+    public function getDetalleTarjeta($idCompra){
+        $compra = (int) $this->connection->real_escape_string($idCompra);
+       
+
+        $query = "select t.descripcion as tarjeta, b.descripcion as banco, tb.cuotas as cuotas, d.direccion as dire,
+                    l.descripcion as localidad, p.descripcion as provincia,d.cp as cp,lug.tardanzaDias as dias,
+                    prod.titulo as tit, prod.precio as precio, dc.cantidad as cant, prod.urlImagen as img, ta.descripcion as descTalle,
+                    col.descripcion as descColor, lug.costo as costo
+                    from detalle_compra dc
+                    left join compra c on c.idCompra = dc.idCompra
+                    left join tarjeta_banco tb on tb.idTarjetaBanco = c.idTarjetaBanco
+                    left join tarjeta t on t.idTarjeta = tb.idTarjeta
+                    left join banco b on b.idBanco = tb.idBanco
+                    left join direccion d on d.idDireccion = c.idDireccion
+                    left join localidad l on l.idLocalidad = d.idLocalidad
+                    left join provincia p on p.idProvincia = l.idProvincia
+                    left join presentacion_producto st on st.codSku = dc.codSku
+                    left join producto prod on prod.idProducto = st.idProducto
+                    left join talle ta on ta.idTalle = st.idTalle
+                    left join color as col on col.idColor = st.idColor
+                    left join envio_lugar lug on lug.idLocalidad = l.idLocalidad
+                    where dc.idCompra = $compra ";
 
         $detalle = array();
         if( $result = $this->connection->query($query) ){
@@ -177,11 +210,13 @@ class Carrito
         return $detalle;
     }
     public function consultarStock(){
-        $query = "select sp.idStock 
-                from stock_producto SP 
-                left join presentacion_producto pp on pp.codSku = sp.codSku 
-                left join producto p on p.idProducto = pp.idProducto 
-                where p.puntoReposicion < sp.cantidad";
+        $query = "select sp.idStock
+                    from stock_producto sp
+                    left join presentacion_producto pp on pp.codSku = sp.codSku
+                    left join producto p on p.idProducto = pp.idProducto
+                    where sp.cantidad < p.puntoReposicion
+                    and sp.idStock not in (select ap.idStock
+                                            FROM aviso_producto ap)";
         $cupon = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -204,6 +239,26 @@ class Carrito
         }
         return $cupon;
     }
+        public function traerMaxCupon($idUsuario){
+           $usuario = (int) $this->connection->real_escape_string($idUsuario);
+        $query = "select c.montoDescuento, c.idCupon
+                    from cupon  c
+                    where c.baja = 0 
+                    and c.montoDescuento = (SELECT max(montoDescuento)
+                                        from cupon
+                                         where baja = 0 )
+                    and c.idCupon not in (Select idCupon
+                                         from cupon_cliente
+                                         where idCliente = $usuario) ";
+        $cupon = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $cupon[] = $fila;
+            }
+            $result->free();
+        }
+        return $cupon;
+    }
      public function getTarjetaBcoId($idBco,$idTarj,$cuotas){
            $bco = (int) $this->connection->real_escape_string($idBco);
            $tarj = (int) $this->connection->real_escape_string($idTarj);
@@ -213,6 +268,22 @@ class Carrito
                     WHERE idTarjeta = $tarj
                     and idBanco = $bco
                     and cuotas = '$c'";
+        $cupon = array();
+        if( $result = $this->connection->query($query) ){
+            while($fila = $result->fetch_assoc()){
+                $cupon[] = $fila;
+            }
+            $result->free();
+        }
+        return $cupon;
+    }
+    public function getLocalidadEnvio($idLocalidad){
+           $bco = (int) $this->connection->real_escape_string($idLocalidad);
+        $query = "select lug.tardanzaDias as dias, lug.costo as precio
+                    from direccion d
+                    left join envio_lugar lug on lug.idLocalidad = d.idLocalidad
+                    where d.idDireccion = $bco 
+                    and lug.baja = 0";
         $cupon = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -249,12 +320,11 @@ class Carrito
             WHERE codSku = $sku";
 
      
-         $querySP =
+         /*$querySP =
         "SELECT idStock as id
             FROM stock_producto
             WHERE codSku = $sku";
-        var_dump($querySP);
-        /*
+        
         $query = "select sp.idStock 
                 from stock_producto SP 
                 left join presentacion_producto pp on pp.codSku = sp.codSku 
@@ -271,7 +341,7 @@ class Carrito
             $result->free();
         }
         return $alerta;*/
-        return $this->connection->query($querySP);
+        return $this->connection->query($queryPersona);
     }
     
     public function create($data){
@@ -291,9 +361,7 @@ class Carrito
         '$locId',
         '$dire',
         '$cp')";   
-        
-       //var_dump($queryDireccion);
-
+      
        if($this->connection->query($queryDireccion)){
             $data['idDireccion'] = $this->connection->insert_id;
             $idDireccion=$data['idDireccion'] ;
@@ -315,6 +383,31 @@ class Carrito
         if($this->connection->query($queryPersona)){
             $data['idPersona'] = $this->connection->insert_id;
             $idPersona=$data['idPersona'];
+            return $data;
+        }else{
+            return false;
+        }
+       
+        
+    }
+     public function asignarCupCliente($data){
+        $id=      (int) $this->connection->real_escape_string($data['idUsuario']);
+        $cupon=   (int) $this->connection->real_escape_string($data['idCupon']);
+   
+       //Insert en tabla: cupon_cliente
+       $queryPersona =
+        "INSERT INTO cupon_cliente
+        (idCupon, idCliente, estado) 
+           VALUES
+        ($cupon,
+            $id,
+            'NO')";
+
+       //print($queryPersona);
+       
+        if($this->connection->query($queryPersona)){
+            $data['idCliente'] = $this->connection->insert_id;
+            $idPersona=$data['idCliente'];
             return $data;
         }else{
             return false;
@@ -356,8 +449,7 @@ class Carrito
             $estadoCompra=       $this->connection->real_escape_string($data['estado']);
             $formaPago=       $this->connection->real_escape_string($data['tipoPago']);
          $fechaCompra=       $this->connection->real_escape_string($data['fechaCompra']);
-            //$lista=       $this->connection->real_escape_string($entryArray[$data['detalle']]);
-          //var_dump($fechaPago);
+       
          date_default_timezone_set('America/Argentina/Buenos_Aires');
          $date= date('Y-m-d') ;
          
@@ -498,13 +590,7 @@ class Carrito
                 '$codSku',
                 '$cant',
                 '$precio')";
- /*     var_dump($data);
-         var_dump($compraId);
-         var_dump($codSku);
-         var_dump($cant);
-         var_dump($precio);
-         var_dump($queryCompra);
-*/
+         
              if($this->connection->query($queryCompra)){
                     $data['idCompra'] = $this->connection->insert_id;
                     $idCompra=$data['idCompra'] ;
@@ -520,10 +606,12 @@ class Carrito
       //  $idProd = (int) $this->connection->real_escape_string($producto['productoSeleccionado']);
        // $idTalle = (int) $this->connection->real_escape_string($producto['talleSeleccionado']);
         $idPro = (int) $this->connection->real_escape_string($idUsuario);
-        $query = "SELECT idCompra as compra, idCupon as cupon, idTarjetaBanco as tarjetaBco, idSucursal as sucu, idDireccion as dir,
+        $query = "SELECT idCompra as compra, cc.montoDescuento as cupon, idTarjetaBanco as tarjetaBco, idSucursal as sucu, idDireccion as dir,
                     monto as precio,fechaCompra as fechaC, fechaPago as fechaP, estado as e, tipoPago as formaPago
-                    from compra
-                    where idCliente = $idPro";
+                    from compra 
+                    left join cupon cc on cc.idCupon = compra.idCupon
+                    where idCliente = $idPro 
+                    order by estado DESC, fechaCompra DESC";
          $color = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

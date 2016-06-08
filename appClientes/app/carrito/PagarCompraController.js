@@ -43,10 +43,14 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     vm.hideCompraOk= true;
     vm.hidePagar= false;
     vm.mensajeCompraOk ="";
+    vm.costoEnvio=[];
+    vm.hideErrorCupon= true;
+    vm.errorDelCupon;
+    vm.nuevoCuponAsignado;
+    vm.hideNuevoCupon = true;
     
     
    vm.buscarLocalidades = function(){
-       debugger;
        vm.habilitarGuardar();
           return CarritoService.getLocalidades(vm.nvoDom.provincia.idProv).then(function(data){
             if(data.length>0){
@@ -112,9 +116,6 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
                 };
             };
         };
-        //TODO: restar productos del carrito
-        //TODO: impactar en las tablas
-        //TODO: front - input numero tarjeta
         //TODO: pto reposicion javi
         }
        
@@ -136,7 +137,6 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
       var idCompra;
         var idCupon;
         var detalleCompra = [];
-        debugger;
         if(vm.cupon.length == 0){
             idCupon = 0; //NO TIENE CUPON
         }else{
@@ -166,19 +166,14 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
             }else{
              
                idCompra = response.data.data.idCompra;
-                
                 if(idCupon != 0){
                     actualizarCupon();
                 }
                  for(var i = 0; i< detalleCompra.length; i++){
                     insertarDetalle(detalleCompra[i], idCompra);
-                     debugger;
                    //  actualizarStock(detalleCompra[i].sku);
                 }
-                localStorage.clear();
-                vm.totalReservas = 0;
-                vm.subTotal = 0;
-                $rootScope.$emit('actualizarTotal', vm.totalReservas);
+                asignarCupon();
             }
         });
 
@@ -199,7 +194,6 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
         }else{
             idCupon = vm.cupon[0].idCup;
         };
-        debugger;
         detalleCompra =  JSON.parse(localStorage.listaTemporal);
         var compraFecha = new Date();
        //insertar compra Y ME DEVUELVE EL ID AL CONTROLLER
@@ -230,25 +224,48 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
                 
                 for(var i = 0; i< detalleCompra.length; i++){
                     insertarDetalle(detalleCompra[i], idCompra);
-                    debugger;
-                    
+                     
                 }
+                asignarCupon(idCompra);
             }
         });
 
     };
     
+    function asignarCuponCliente(idCuponInsert){
+        return CarritoService.asignarCuponCliente(vm.idUsuario, idCuponInsert).then(function(data){
+                if(data){
+                   vm.nuevoCuponAsignado = "Se te asigno un nuevo cupon debido al monto de la compra realizado."
+                    vm.hideNuevoCupon = false;
+                }
+            });
+    };
+    function buscarYasignar(idCompra){
+         return CarritoService.selectMaxCupon(vm.idUsuario).then(function(data){
+                if(data.length>0){
+                    asignarCuponCliente(data[0].idCupon);
+                }else{
+                    vm.errorDelCupon="Debido al monto de la compra, te corresponde un cupon. Lamentablemente hubo un error en la asginación del cupón. Por favor contactate con nosotros y brindanos el id de la compra para solucionar el inconveniente. El id de la compra es: " + idCompra+ ". Muchas gracias."
+                    vm.hideErrorCupon= false;
+                };
+            });
+        
+    };
+    function asignarCupon(idCompra){
+        if(vm.totalReservas >= 2500){ //asignar cupon de $300
+            buscarYasignar(idCompra);
+        }
+    };
     function insertarDetalle(item, idCompra){
         //TODO: reagrupar SKU y hacer bbdd clave compeusta idCompra codSku
         return CarritoService.insertarDetalle(idCompra,
                                              item.sku,
                                              1,
                                              item.unitPrice).then(function(data){
-            
-            debugger;
+
             if(data){
                actualizarStock(item.sku);
-                debugger;
+               
                 localStorage.clear();
                 vm.totalReservas = 0;
                 vm.subTotal = 0;
@@ -256,9 +273,8 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
                 vm.compraFinalizada = true;
                 vm.hideCompraOk = false;
                 vm.hidePagar = true;
-                debugger;
+               
                 vm.mensajeCompraOk= "Su compra se efectuó correctamente. Su código de compra es " + idCompra + " .";
-                debugger;
             }
             if(data.error){
                vm.compraFinalizada = false;
@@ -278,38 +294,48 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     function actualizarStock(sku){
         return CarritoService.actualizarStock(sku).then(function(data){
             if(data){
-                console.log(data);
-                //consultarStock(sku);
+                consultarStock();
                 //TODO: manejo de stock entre sucursales
                 //TODO: precio de envio entre sucursales
-              console.log("refressco bien el stock");
             }
         });
     };
-    function  consultarStock(sku){
+    function  consultarStock(){
         //TODO ARREGLAR porque debe ser por sku y id prod 
         //validar que ya no este insertado el alerta
-        return CarritoService.consultarStock(sku).then(function(data){
+        return CarritoService.consultarStock().then(function(data){
             if(data.length > 0){
                 alertas = data;
-                generarAlerta();
-              console.log("refressco bien el stock");
+                generarAlerta(alertas);
             }
         });
     };
     
     function generarAlerta(){
-        console.log(alertas);
-        for(var i = 0; i<alertas.length ; i++){
+       for(var i = 0; i<alertas.length ; i++){
             insertAlertProducto(alertas[i].idStock);
         };
            
     };
     
+    vm.calcularEnvio = function calcular(){
+        consultarLocalidad(vm.mySelect.domicilioEntrega.id);
+    };
+    
+    function consultarLocalidad(idDomi){
+         return CarritoService.consultarLocalidad(idDomi).then(function(data){
+                if(data.length>0){
+                    vm.costoEnvio = data;
+                    vm.costoEnvio[0].precio = parseInt(vm.costoEnvio[0].precio);
+                    vm.totalReservas = vm.totalReservas + vm.costoEnvio[0].precio;
+                }
+            });
+    };
+    
     function insertAlertProducto(id){
          return CarritoService.generarAlerta(id).then(function(data){
                 if(data){
-                  console.log("inserto bien el alerta");
+                 console.log("inserto bien el alerta");
                 }
             });
         
@@ -378,9 +404,7 @@ function PagarCompraController($state,$scope,CarritoService,$rootScope) {
     vm.insertarNvoDom = function(){
         CarritoService.postNvoDom(vm.nvoDom.direccion, vm.nvoDom.cp, vm.nvoDom.provincia.idProv, vm.nvoDom.localidad.idLoc, vm.idPersona)
         .then(function(response){
-           
-            debugger;
-            if(response.data.error){
+           if(response.data.error){
                 alert("Ha ocurrido un error");
                 return;
             }else{

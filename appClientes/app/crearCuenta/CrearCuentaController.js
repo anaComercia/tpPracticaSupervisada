@@ -14,12 +14,12 @@ function CrearCtaCtrl($state, CrearCuentaService) {
     self.generoSeleccionado = "";
     self.provincias = [];
     self.localidades = [];
+	self.tiposDni = [];
 
 
     
     self.getGeneros = function(){
           return CrearCuentaService.getGeneros().then(function(data){
-            //console.log(data);
             self.generos = data;
         });
     };
@@ -27,7 +27,6 @@ function CrearCtaCtrl($state, CrearCuentaService) {
 // acastillo 24/05/2016-------------------------------------------------------------    
     self.getProvincias = function(){
           return CrearCuentaService.getProvincias().then(function(data){
-            //console.log(data);
             self.provincias = data;
         });
     };
@@ -39,17 +38,22 @@ function CrearCtaCtrl($state, CrearCuentaService) {
         });
     };
 
+	    self.getTiposDni = function(){
+          return CrearCuentaService.getTiposDni().then(function(data){
+            console.log(data);
+            self.tiposDni = data;
+        });
+    };
 
     
     self.altaDeCuenta = function(){
-        //console.log(self.clienteNuevo);
         CrearCuentaService.crearNuevaCuenta(
            self.clienteNuevo.nombre
          , self.clienteNuevo.apellido
          , self.clienteNuevo.email
          , self.clienteNuevo.repetirEmail
          , self.clienteNuevo.numDni
-         , self.clienteNuevo.tipoDni
+         , self.clienteNuevo.idTipoDni
          , self.clienteNuevo.fechaNacimiento
          , self.clienteNuevo.telefono
          //, self.clienteNuevo.pais
@@ -63,8 +67,7 @@ function CrearCtaCtrl($state, CrearCuentaService) {
          , self.clienteNuevo.idDireccion
         )
         .then(function(response){
-            debugger;
-                if(response.data.error){
+            if(response.data.error){
                     alert("Ha ocurrido un error");
                     return;
                 }
@@ -78,6 +81,7 @@ function CrearCtaCtrl($state, CrearCuentaService) {
     this.init = function(){
         this.getGeneros();
         this.getProvincias();
+		this.getTiposDni();
         
 	};
     

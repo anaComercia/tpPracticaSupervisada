@@ -8,19 +8,21 @@ class MostrarCuenta
     public function __construct(){
         $this->connection = Connection::getInstance();
     }
-    
-   public function getAll(){
-       
+
+
+   public function getAll($emailUSuario){    
         //var_dump($data);
-  
-        $EmailUSuario= 'francoDataIQ@gmail.com';//adriana.programacion@gmail.com';   
+        $emailUSuario = $this->connection->real_escape_string($emailUSuario);
+       
+        //$emailUSuario= 'adriana.castillo@data.com';   
+
         $DatosUsuario=array();
         $Fila=array();
        
         $query =
         "SELECT p.nombre, p.apellido 
-        , p.numDni, p.tipoDni 
-        , p.telefono, p.email ,p.fechaNacimiento 
+        , p.numDni, p.tipoDni as idTipoDni
+        , p.telefono, p.email ,date_format(p.fechaNacimiento,'%d/%m/%Y') as fechaNacimiento
         ,d.direccion, d.cp,d.idDireccion 
         ,l.idLocalidad,l.descripcion as descripcion_localidad 
         ,pr.idProvincia, pr.descripcion as descripcion_provincia 
@@ -30,10 +32,11 @@ class MostrarCuenta
         and d.idLocalidad=l.idLocalidad
         and l.idProvincia=pr.idProvincia
         and p.idGenero=g.idGenero 
-        and p.email='$EmailUSuario'";
+        and p.email='$emailUSuario'";
        
        // print($query);
        
+
         if( $result = $this->connection->query($query) ){
            $Fila= $result->fetch_assoc();
            $DatosUsuario[] = $Fila;
@@ -42,6 +45,7 @@ class MostrarCuenta
        
         //var_dump($DatosUsuario);
        
+
         return $DatosUsuario;
     }
 }

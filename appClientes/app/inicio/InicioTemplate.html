@@ -45,6 +45,13 @@
                            ng-repeat="product in initCtrl.productListCliente" 
                            product-data="product">
         </producto-directive>
-
+        <div ng-hide="initCtrl.hideMostrarDatos" class="div-busqueda-sin-datos">
+            <label>
+                No hay datos para la búsqueda solicitada.
+            </label>
+            <label  ng-click="initCtrl.buscarTodosProductos()">
+                Ver todos los productos.
+            </label>
+        </div>
     </div>
 </div>

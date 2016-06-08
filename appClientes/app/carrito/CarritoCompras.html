@@ -28,33 +28,61 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                      <h4 class="modal-title" id="myModalLabel">Detalle de la compra</h4>
+                      <h4 class="modal-title" id="myModalLabel">Detalle de la compra en  {{comprasCtrl.pagoEn}}. 
+                        <small class="estado-compra">{{comprasCtrl.compraVisualizar.e}}</small>
+                      </h4>
                   </div>
                   <div class="modal-body">
-                       <label class="detalle-compra-titulo">Estado</label>
-                        <div>
-                         <label class="detalle-compra-detalle">Pendientes</label>
+                        <div class="separador-estado">
+                            <div ng-hide="comprasCtrl.hideDivTarjeta"> <!-- tarjeta -->
+                                <div>
+                                    <label class="compra-titulo " style="width: 188px;">Dirección de entrega: </label>
+                                    <label style="font-weight: 400;">{{comprasCtrl.detallesCompra[0].dire}}, CP: {{comprasCtrl.detallesCompra[0].cp}}, Localidad: {{comprasCtrl.detallesCompra[0].localidad}}</label>
+                                </div>
+                                <div>
+                                    <label class="compra-titulo " style="width: 188px;">Detalles de pago: </label>
+                                    <label style="font-weight: 400;">Banco: {{comprasCtrl.detallesCompra[0].banco}}, Tarjeta: {{comprasCtrl.detallesCompra[0].tarjeta}}, Cuotas: {{comprasCtrl.detallesCompra[0].cuotas}}</label>
+                                </div>
+                                 <div>
+                                    <label class="compra-titulo " style="width: 188px;">Detalles de entrega: </label>
+                                    <label style="font-weight: 400;">Dias: {{comprasCtrl.detallesCompra[0].dias}}, Costo: ${{comprasCtrl.detallesCompra[0].costo}} </label>
+                                </div>
+                            </div>
+                            <div ng-hide="comprasCtrl.hideDivEfectivo"><!-- efectivo -->
+                                <label class="detalle-compra-titulo " style="    margin-right: 10;">Sucursal: </label>
+                                <label style="font-weight: 400;">{{comprasCtrl.detallesCompra[0].dir}}, CP: {{comprasCtrl.detallesCompra[0].cp}}, Localidad: {{comprasCtrl.detallesCompra[0].loc}}</label>
+                            </div>
                         </div>
-                        
-                        <label class="detalle-compra-titulo">Producto</label>
-                        <div>
-                           <img src="{{buyData.image}}" class="img-compras" />
-                           <label >CAMPERA MILANO</label>
+                      <!-- inicio detalles -->
+
+                        <div class="scroll-detalles">
+                            <div ng-repeat="s in comprasCtrl.detallesCompra">
+                                <div style="margin-top: 4;">
+                                    <img src="{{s.img}}" class="img-compras-detail" />
+                                    <label style="  width: 160px;">{{s.tit | uppercase}},</label>
+                                    <label style="  width: 32px;">{{s.descTalle | uppercase}},</label>
+                                    <label style="  width: 59px;">{{s.descColor | uppercase}},</label>
+                                    <label style="width: 102px;"> Cantidad: {{s.cant}},</label>
+                                    <label >${{s.precio}}</label>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <label class="detalle-compra-titulo">Cantidad</label>
-                        <div>
-                            <label class="detalle-compra-detalle">2</label>
-                        </div>
-                        
-                        <label class="detalle-compra-titulo">Precio</label>
-                        <div>
-                           <label class="detalle-compra-detalle">$1600</label>
-                        </div>
-                        
-                        <label class="detalle-compra-titulo">Forma de Pago</label>
-                        <div>
-                            <label class="detalle-compra-detalle">Retiro por sucursal - DIRECCION DE SUCURSAL</label>
+                        <!-- fin detalles ng-hide="comprasCtrl.hideDivTarjeta" -->
+                      
+                        <div class="separador-totales">
+                            <div style="    font-size: 23px;">
+                                <label  style="width: 144px; margin-left: 0; ">Total Pagado</label>
+                                <label style="width: 144px; margin-left: 0;">$ {{comprasCtrl.compraVisualizar.precio}}</label>
+                            </div>  
+                            <div>
+                                <label class="costos-pago">Monto de cupon</label>
+                                <label class="costos-pago">$ {{comprasCtrl.compraVisualizar.cupon}}</label>
+                           </div>  
+                            <div>
+                                <label class="costos-pago">Costo de envío</label>
+                                <label class="costos-pago">$ {{comprasCtrl.detallesCompra[0].costo}}</label>
+                            </div>
+                            
                         </div>
             
                   </div>

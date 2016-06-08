@@ -128,7 +128,7 @@ class Producto
                  left join presentacion_producto pp on pp.codSku = sp.codSku 
                  where p.idProducto =  pp.idProducto
                  GROUP by pp.idProducto)  != 0
-                    AND UPPER(c.descripcion) = 'CAMISA' ";
+                    AND UPPER(c.descripcion) LIKE 'CAMISA%'";
         $productosCamisa = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -150,7 +150,7 @@ class Producto
                  left join presentacion_producto pp on pp.codSku = sp.codSku 
                  where p.idProducto =  pp.idProducto
                  GROUP by pp.idProducto)  != 0
-                    AND UPPER(c.descripcion) = 'JEAN' ";
+                    AND UPPER(c.descripcion) LIKE 'JEAN%'";
         $productosJean = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -173,7 +173,7 @@ class Producto
                  left join presentacion_producto pp on pp.codSku = sp.codSku 
                  where p.idProducto =  pp.idProducto
                  GROUP by pp.idProducto)  != 0
-                    AND UPPER(c.descripcion) = 'CAMPERA' ";
+                    AND UPPER(c.descripcion) LIKE 'CAMPERA%'";
         $productosCampera = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -195,7 +195,7 @@ class Producto
                  left join presentacion_producto pp on pp.codSku = sp.codSku 
                  where p.idProducto =  pp.idProducto
                  GROUP by pp.idProducto)  != 0
-                    AND UPPER(c.descripcion) = 'REMERA' ";
+                    AND UPPER(c.descripcion) LIKE 'REMERA%'";
         $productosRemera = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

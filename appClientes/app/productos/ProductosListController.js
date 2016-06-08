@@ -184,21 +184,41 @@ function ProductosCtrl($state, ProductosService,$rootScope) {
    };
    
    vm.agregarProductoTemporal= function generarListaTemp (){
-       objTemporal = {
-            id: vm.prodDetalle.idProd,
-            sku: vm.sku ,
-            detail: vm.prodDetalle.prodTit,
-            unitPrice: vm.prodDetalle.prodPrecio,
-            gender: vm.prodDetalle.gendDesc,
-            sizeId: vm.mySelect.size.idTalle,
-            size: vm.mySelect.size.descripcion,
-            colorId: vm.mySelect.color.idColor,
-            color: vm.mySelect.color.descripcion,
-            image: vm.prodDetalle.img1        
-        };
+       debugger;
+       var cantidad = 1;
+       var flagAgregar = true;
+       var carrito = localStorage.listaTemporal == undefined ? new Array() : JSON.parse(localStorage.listaTemporal);
+       if(carrito.length > 0){ 
+           //si ya hay productos, necesito validar el sku para sumarlo
+           for(var i = 0; i< carrito.length; i++){
+                if(carrito[i].sku == vm.sku){
+                    carrito[i].cantidad = carrito[i].cantidad + 1;
+                    debugger;
+                    carrito[i].unitPrice = parseInt(carrito[i].unitPrice) + parseInt(vm.prodDetalle.prodPrecio);
+                    flagAgregar = false;
+                }
+            }
+           
+       }
+       if(flagAgregar){
+           objTemporal = {
+                id: vm.prodDetalle.idProd,
+                sku: vm.sku ,
+                cantidad: cantidad ,
+                detail: vm.prodDetalle.prodTit,
+                unitPrice: vm.prodDetalle.prodPrecio,
+                gender: vm.prodDetalle.gendDesc,
+                sizeId: vm.mySelect.size.idTalle,
+                size: vm.mySelect.size.descripcion,
+                colorId: vm.mySelect.color.idColor,
+                color: vm.mySelect.color.descripcion,
+                image: vm.prodDetalle.img1        
+            };
+           carrito.push(objTemporal);
+       }
        
-        var carrito = localStorage.listaTemporal == undefined ? new Array() : JSON.parse(localStorage.listaTemporal);
-        carrito.push(objTemporal);
+        //var carrito = localStorage.listaTemporal == undefined ? new Array() : JSON.parse(localStorage.listaTemporal);
+       // carrito.push(objTemporal);
         localStorage.listaTemporal = JSON.stringify(carrito);
        
         var precio =  parseInt(vm.prodDetalle.prodPrecio);
@@ -220,40 +240,7 @@ function ProductosCtrl($state, ProductosService,$rootScope) {
 	};
     
     vm.init();
-    
-  
-   /* DETALLE */ 
-    
- 
-    //vm.roductID= $state.params.prodId; //param para el productosDetail.html
-  /*   vm.prod = getProductDetail($state.params.prodId);*/
-   
-   // vm.precioXcuota = vm.prod.price / 3;
-   /* vm.precioXcuota = vm.precioXcuota.toFixed(2);
-    vm.mySelect = {};//seleccion de los combos
-    
-    vm.source = vm.prod.image[0];
-    vm.changeImage = _changeImage;
-    
-        
-    function _changeImage($event){
-        vm.source = $event.target.src;
-    }
 
-    function getProductDetail(id) {
-        debugger;
-     
-         for (index = 0; index <  vm.productList.length; ++index) {
-             if(vm.productList[index].id == id){
-                 return vm.productList[index];
-             }
-         }
-       
-    } */
-    
-    
-       /* DETALLE FIN */ 
-    
     
     
   

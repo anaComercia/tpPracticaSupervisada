@@ -5,9 +5,10 @@
         </div>
         </div>
      
-        <!--div class="row col-md-offset-2" id="lblTitulo" class="col-md-12" style=""  >
-            <label >MODIFICAR CONTRASEÑA</label>
-        </div-->
+        <div class="row col-md-offset-2" id="lblDatoObligatorio" class="col-md-12" style=""   >
+            <label >* Todos los datos son Obligatorios</label>
+
+        </div>
 
         <div class="row col-md-offset-2" id="lblDatoObligatorio" class="col-md-12" style=""   >
             <label >Contraseña:</label>
@@ -17,19 +18,20 @@
         <div class="form-group col-md-offset-4" style="" >
             <div id="divDetalle">
             <div  id="divAlineacion">
-                <label>*Actual:</label>
-                <input type=password class="form-control" placeholder="Clave Actual" />
+                <label>Actual:</label>
+                <input  type="password" class="form-control" disabled ng-model="prfl.datosUsuario[0].password" />
             </div>
             </div>
             
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*Nueva:</label>
-                <input type="password" class="form-control" placeholder="Nueva" >
-            </div>
+                <input type="password" class="form-control" placeholder="Nueva" ng-model="prfl.passwordNueva">
+             </div>
+			 
             <div  id="divAlineacion">
-                <label>Repetir Clave:</label>
-                <input type="password" class="form-control" placeholder="Repetir Clave" >
+                <label>*Repetir Clave:</label>
+                <input type="password" class="form-control" placeholder="Repetir Clave" ng-model="prfl.passwordRepetir" >
             </div>
             </div>
         </div>     
@@ -39,8 +41,8 @@
         <!-- BOTONES!-->
         <div class="row" class="col-md-12" style=" "   >
             <div class="col-md-6  col-md-offset-6">
-               <button class="btn btn-default btn-md btnBoton" >Guardar</button>
-	           <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
+               <button class="btn btn-default btn-md btnBoton" ng-click="prfl.actualizarContrasenia()" >Guardar</button>
+	            <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
             </div>
         </div>
     </div>

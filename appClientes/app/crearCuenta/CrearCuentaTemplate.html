@@ -31,9 +31,16 @@
                 <input id="numDni" type="text" class="form-control" placeholder="D.N.I" ng-model="crearCta.clienteNuevo.numDni">
             </div>
             <div  id="divAlineacion">
+            <div  id="divAlineacion">
                 <label>Tipo Dni:</label>
-                <input id="tipoDni" type="text" class="form-control" placeholder="TipoDni" ng-model="crearCta.clienteNuevo.tipoDni" >
-            </div>
+                <div class="selectContainer">
+                <select class="form-control" id="idTipoDni" ng-model="crearCta.clienteNuevo.idTipoDni">
+                <option ng-repeat="tipoDni in crearCta.tiposDni" ng-value = 'tipoDni.idTipoDni'>
+                        {{tipoDni.descripcion}}
+                </option>
+                </select>
+                </div>
+             </div>
             </div>
             
             <div id="divDetalle">
@@ -44,7 +51,7 @@
             <div  id="divAlineacion">
                 <label>Sexo:</label>
                 <div class="selectContainer">
-                <select id="idGenero" ng-model="crearCta.clienteNuevo.idGenero">
+                <select class="form-control" id="idGenero" ng-model="crearCta.clienteNuevo.idGenero">
                 <option ng-repeat="genero in crearCta.generos" ng-value = 'genero.idGenero'>
                         {{genero.descripcion}}
                 </option>

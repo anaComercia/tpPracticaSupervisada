@@ -1,6 +1,9 @@
-
-
-
+.div-busqueda-sin-datos{
+    margin-top:40px;
+    font-style: italic;
+    color:rgb(168, 11, 11);
+    
+}
 #myCarousel {
     width:700px; 
     padding: 0px;

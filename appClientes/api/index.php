@@ -18,6 +18,9 @@ require_once("models/genero.php");
 require_once("models/mostrarDatosCuenta.php");//acastillo 22/05/2016
 require_once("models/provincia.php");//acastillo 24/05/2016
 require_once("models/localidad.php");//acastillo 24/05/2016
+require_once("models/tipoDni.php");  //acastillo 27/05/2016
+require_once("models/modificarCuenta.php");//acastillo 28/05/2016
+require_once("models/usuario.php");//acastillo 30/05/2016
 
 //Esto va siempre
 require_once("util/jsonResponse.php");
@@ -46,8 +49,23 @@ $app->post('/altaDeCuenta', function(){
 		sendError("Error al crear la cuenta del cliente");
 	}
 });
+// acastillo 28/05/2016-------------------------------------------------------------
+$app->put('/modificacionDeCuenta', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); 
 
-$app->get('/altaDeCuentaGenero', function(){
+	$modificarCuenta= new ModificarCuenta();
+    $result = $modificarCuenta->update($data);
+    
+	//var_dump($data);
+    
+	if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al actualizar la categoría");
+	}
+});
+$app->get('/genero', function(){
     $genero = new Genero();
 	$data = $genero->getAll();
     
@@ -59,7 +77,7 @@ $app->get('/altaDeCuentaGenero', function(){
 });
 
 // acastillo 24/05/2016-------------------------------------------------------------
-$app->get('/altaDeCuentaProvincia', function(){
+$app->get('/provincia', function(){
     $genero = new Provincia();
 	$data = $genero->getAll();
     
@@ -70,16 +88,29 @@ $app->get('/altaDeCuentaProvincia', function(){
 	}
 });
 // acastillo 24/05/2016-------------------------------------------------------------
-$app->get('/altaDeCuentaLocalidad/:id', function($id){
+$app->get('/localidad/:id', function($id){
 	$localidad = new Localidad();
 	$data = $localidad->getAllByIdProvincia($id);
 	sendResult($data);
 });
 
+$app->get('/tipoDni', function(){
+    $tipoDni = new TipoDni();
+    
+	$data = $tipoDni->getAll();
+    
+    if($data){
+		sendResult($data);
+	}else{
+		sendError("Error al mostrar el tipo dni");
+	}
+});
 // acastillo 22/05/2016-------------------------------------------------------------
-$app->get('/mostrarDatosCuenta', function(){
+$app->get('/mostrarDatosCuenta/:email', function($email){
     $datosCliente = new MostrarCuenta();
-	$data = $datosCliente->getAll();
+	$data = $datosCliente->getAll($email);
+    //$data = $datosCliente->getAll();
+    //var_dump($data);
     
     if($data){
 		sendResult($data);
@@ -88,6 +119,64 @@ $app->get('/mostrarDatosCuenta', function(){
 	}
 });
 
+// acastillo 30/05/2016-------------------------------------------------------------
+$app->post('/usuario', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); 
+	$usuario = new Usuario();
+	$result = $usuario->loginByEmail($data);
+    
+    if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al obtener datos del usuario");
+	}
+});
+
+$app->post('/usuarioEmailPassword', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); 
+	$usuario = new Usuario();
+	$result = $usuario->loginByEmailPassword($data);
+    
+    if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al obtener datos del usuario");
+	}
+});
+
+
+// acastillo 04/06/2016-------------------------------------------------------------
+$app->post('/usuarioEmailFechaNacimiento', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); 
+	$usuario = new Usuario();
+	$result = $usuario->loginByEmailFechaNacimiento($data);
+    
+    if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al obtener datos del usuario");
+	}
+});
+
+    
+$app->put('/modificacionContrasenia', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); 
+
+	$modificarContrasenia= new Usuario();
+    $result = $modificarContrasenia->updatePassword($data);
+    
+	//var_dump($data);
+    
+	if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al actualizar la contraseña");
+	}
+});
 //----------------------------------------------------------------------------------
 
 $app->get('/reputacionPerf/:id', function($idUser){
@@ -247,9 +336,19 @@ $app->get('/verifCupon/:descCupon&:idUsr', function($descCupon, $idUsr){
 	$data = $producto->getVerifCupon($descCupon,$idUsr);
 	sendResult($data);
 });
+$app->get('/consultarLocalidad/:idLocalidad', function($idLocalidad){
+	$producto = new Carrito();
+	$data = $producto->getLocalidadEnvio($idLocalidad);
+	sendResult($data);
+});
 $app->get('/buscarDetalleCompra/:idCompra&:idSucu', function($idCompra,$idSucu){
 	$producto = new Carrito();
 	$data = $producto->getDetalleCompra($idCompra,$idSucu);
+	sendResult($data);
+});
+$app->get('/buscarDetalleTarjeta/:idCompra', function($idCompra){
+	$producto = new Carrito();
+	$data = $producto->getDetalleTarjeta($idCompra);
 	sendResult($data);
 });
 $app->get('/IniBuscadorProd/:dato', function($dato){
@@ -275,6 +374,11 @@ $app->get('/CuotasCarrito/:banco&:tarjeta', function($banco,$tarjeta){
 $app->get('/consultarStcok', function(){
 	$color = new Carrito();
 	$data = $color->consultarStock();
+	sendResult($data);
+});
+$app->get('/traerMaxCupon/:idUsuario', function($idUsuario){
+	$color = new Carrito();
+	$data = $color->traerMaxCupon($idUsuario);
 	sendResult($data);
 });
 $app->get('/buscarTarjtaId/:banco&:tarjeta&:cuotas', function($banco,$tarjeta,$cuotas){
@@ -335,12 +439,24 @@ $app->post('/insertCompraTarjeta', function(){
 		sendError("Error al crear la nueva compra.");
 	}
 });
+$app->post('/asignarCuponCliente', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
+  	$altaCompra = new Carrito();
+    $result = $altaCompra->asignarCupCliente($data);
+
+	if($result){
+		sendResult($result);
+	}else{
+		sendError("Error al crear la nueva compra.");
+	}
+});
 $app->post('/updateCupon', function(){
     $request = Slim\Slim::getInstance()->request();
     $data = json_decode($request->getBody(), true); //true convierte en array asoc, false en objeto php
 	$altaDomi = new Carrito();
     $result = $altaDomi->actualizarCupon($data);
-var_dump($result);
+
 	if($result){
 		sendResult("cupon actualizado");
 	}else{
@@ -371,4 +487,23 @@ $app->post('/insertDetalleCompra', function(){
 		sendError("Error al insertar el detalle.");
 	}
 });
+
+/*Inicio del login*/
+$app->get('/login', function(){
+    $objeto = new Usuario();
+	$data = $objeto->getLogin();
+	sendResult($data);
+});
+
+
+$app->delete('/login', function(){
+	$objeto = new Usuario();
+	$result = $objeto->deleteSesion();
+	if($result){
+		sendResult("Sesion cerrada");
+	}else{
+		sendError("Error al cerrar sesión");
+	}
+});
+/*Fin del login*/
 $app->run();

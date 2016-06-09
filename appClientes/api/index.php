@@ -26,7 +26,8 @@ require_once("models/usuario.php");//acastillo 30/05/2016
 require_once("util/jsonResponse.php");
 require 'slim/Slim/Slim.php';
 
-
+//acastillo 04/06/2016 - Envio de mail
+require_once('util/phpmail/PHPMailerAutoload.php');
 //Esto va siempre
 Slim\Slim::registerAutoloader();
 $app = new Slim\Slim();
@@ -123,7 +124,8 @@ $app->get('/mostrarDatosCuenta/:email', function($email){
 $app->post('/usuario', function(){
     $request = Slim\Slim::getInstance()->request();
     $data = json_decode($request->getBody(), true); 
-	$usuario = new Usuario();
+
+    $usuario = new Usuario();
 	$result = $usuario->loginByEmail($data);
     
     if($result){
@@ -136,7 +138,12 @@ $app->post('/usuario', function(){
 $app->post('/usuarioEmailPassword', function(){
     $request = Slim\Slim::getInstance()->request();
     $data = json_decode($request->getBody(), true); 
+
+
+    //var_dump($email);
+    //var_dump($password);
 	$usuario = new Usuario();
+
 	$result = $usuario->loginByEmailPassword($data);
     
     if($result){
@@ -151,13 +158,19 @@ $app->post('/usuarioEmailPassword', function(){
 $app->post('/usuarioEmailFechaNacimiento', function(){
     $request = Slim\Slim::getInstance()->request();
     $data = json_decode($request->getBody(), true); 
+
+
+    //var_dump($email);
+    //var_dump($password);
 	$usuario = new Usuario();
-	$result = $usuario->loginByEmailFechaNacimiento($data);
+
+    $result = $usuario->loginByEmailFechaNacimiento($data);
+	$data = $usuario->getAllByEmailDni($email,$dni);
     
     if($result){
 		sendResult($result);
 	}else{
-		sendError("Error al obtener datos del usuario");
+        sendError("Error al obtener datos del usuario");
 	}
 });
 
@@ -177,6 +190,42 @@ $app->put('/modificacionContrasenia', function(){
 		sendError("Error al actualizar la contraseña");
 	}
 });
+//Envio de mail
+$app->post('/mail', function(){
+    $request = Slim\Slim::getInstance()->request();
+    $data = json_decode($request->getBody(), true);
+    $mailRemitente = $data['mailRemitente'];
+    $nombreRemitente = $data['nombreRemitente'];
+    $mailDestinatario = $data['mailDestinatario'];
+    $asunto = $data['asunto'];
+    $contenido = $data['contenido'];
+    
+    $mail = new PHPMailer;
+    $mail->isSMTP();                            
+    $mail->Host = 'smtp.gmail.com';             
+    $mail->SMTPAuth = true;                     
+    $mail->Username ='modashowventaropa@gmail.com';        
+    $mail->Password = 'tpppp2016';
+    $mail->SMTPSecure = 'tls';                  
+    $mail->Port = 587;                          
+
+    $mail->setFrom($mailRemitente, $nombreRemitente);
+    $mail->addReplyTo($mailRemitente, $nombreRemitente);
+    $mail->addAddress($mailDestinatario);   // Add a recipient
+
+    $mail->isHTML(true);  
+
+    $mail->Subject = $asunto;
+    $mail->Body    = $contenido;
+
+if(!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent';
+};
+});
+//Fin Envio de mail
 //----------------------------------------------------------------------------------
 
 $app->get('/reputacionPerf/:id', function($idUser){

@@ -45,22 +45,22 @@ backendEcommerce.service("InicioService", function($http){
         'email' : $email,
         'password' : $password
         }
-        
-    	var promise = $http.post('api/index.php/usuarioEmailPassword', data);
+        	var promise = $http.post('api/index.php/usuarioEmailPassword', data);
+    //	var promise = $http.get('api/index.php/usuarioEmailPassword/'+$email+'&'+$password);
 		return promise.then(function(response){
 			return response.data.data;
 		})
     };
     
     // acastillo 30/05/2016-------------------------------------------------------------
-    this.loginlByEmailFechaNacimiento= function($email,$fechaNacimiento){
+    this.loginlByEmailDni= function($email,$dni){
 
         var data = {
         'email' : $email,
-        'fechaNacimiento' : $fechaNacimiento
+        'fechaNacimiento' : $dni
         }
-        
-    	var promise = $http.post('api/index.php/usuarioEmailFechaNacimiento', data);
+        	var promise = $http.post('api/index.php/usuarioEmailFechaNacimiento', data);
+    	//var promise = $http.get('api/index.php/usuarioEmailDni/'+$email+'&'+$dni);
 		return promise.then(function(response){
 			return response.data.data;
 		})

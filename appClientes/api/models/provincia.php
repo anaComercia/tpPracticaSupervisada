@@ -10,7 +10,10 @@ class Provincia
     }
     
     public function getAll(){
-        $query = "SELECT idProvincia, descripcion FROM provincia";
+        $query = 
+            "SELECT idProvincia, descripcion 
+            FROM provincia
+            WHERE baja=0";
         $provincias = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

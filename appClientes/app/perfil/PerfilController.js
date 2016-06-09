@@ -6,7 +6,7 @@ PerfilCtrl.$injector = ["$state","PerfilService", "$scope", "ProductosService"];
 
 function PerfilCtrl($state, PerfilService, $scope, ProductosService) {
     var vm = this;
-    vm.idUsuario = 1;           //SACAR HARDCODE
+    vm.idUsuario = 2;           //SACAR HARDCODE
     vm.cuponUsadosLista =[];    //TOMO EN CONSIDERACION usado = SI
     vm.cuponNuevosLista = [];   //TOMO EN CONSIDERACION usado = NO
     vm.datosDelCliente=[];      //acastillo 22/05/2016
@@ -22,10 +22,11 @@ function PerfilCtrl($state, PerfilService, $scope, ProductosService) {
     
     //acastillo 30/05/2016
     vm.datosUsuario=[];  
-    vm.emailUsuario="a";
+    vm.emailUsuario="vanesa";
     vm.passwordNueva=" ";
     vm.passwordActual=" ";
     vm.passwordRepetir=" ";
+	vm.dateEditar = new Date();
     vm.banner = '';
     
     vm.mostrarBanner = function(){
@@ -76,8 +77,14 @@ function PerfilCtrl($state, PerfilService, $scope, ProductosService) {
             if(data){
                     vm.datosDelCliente = data;
                     vm.emailUsuario=vm.datosDelCliente[0].email;
-                    //console.log(vm.emailUsuario);
-                }              
+                     var fecha = vm.convertirFecha(vm.datosDelCliente[0].fechaNacimiento);
+                     fecha = fecha.split("/");
+                     var dia = parseInt(fecha[0]);
+                     var mes = parseInt(fecha[1])-1;
+                     var year = parseInt(fecha[2]);
+                     vm.dateEditar = new Date(year, mes,dia);  
+                vm.getLocalidadesById(vm.datosDelCliente[0].idProvincia);    
+			};              
         });
     };
     
@@ -160,6 +167,11 @@ function PerfilCtrl($state, PerfilService, $scope, ProductosService) {
         });
     };
     
+this.convertirFecha = function(inputFormat) {
+        function pad(s) { return (s < 10) ? '0' + s : s; }
+        var d = new Date(inputFormat);
+        return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+    }  
     vm.actualizarContrasenia = function(){
         PerfilService.actualizarContrasenia(
           vm.datosUsuario[0].usuario //email
@@ -174,43 +186,31 @@ function PerfilCtrl($state, PerfilService, $scope, ProductosService) {
                 }
             })
     };
+
+
+
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
-    //----------------------------------------------------------------------------------------------
-    
-    /* lista cupones 
-    vm.cuponUsadosLista = [
-        {
-            id: 1,
-            code: '987dmslk43',
-            date: '14/03/2016',
-            price: 50
-        },
-        {
-            id: 2,
-            code: '87fdswrlkju',
-            date: '14/11/2015',
-            price: 150
-        },
-        {
-            id: 3,
-            code: 'fdsdfh6wet5',
-            date: '10/03/2016',
-            price: 350
-        }];
-    
-      vm.cuponNuevosLista = [
-        {
-            id: 1,
-            code: '45fdhy57w54',
-            price: 150
-        },
-        {
-            id: 2,
-            code: 'fhs437use4',
-            price: 250
-        }];*/
-    
+      
+
+
+
      vm.init = function(){
         vm.mostrarReputacion();
         vm.mostrarCuponesUsados();

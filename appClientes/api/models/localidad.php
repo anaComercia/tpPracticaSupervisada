@@ -10,7 +10,13 @@ class Localidad
     }
     
     public function getAll(){
-        $query = "SELECT localidad.*, provincia.idProvincia, provincia.descripcion as provincia_desc FROM localidad, provincia where localidad.idProvincia = provincia.idProvincia";
+        $query = 
+            "SELECT localidad.idLocalidad,localidad.idProvincia,localidad.descripcion,localidad.baja
+            , provincia.idProvincia, provincia.descripcion as provincia_desc , provincia.baja
+            FROM localidad, provincia 
+            where localidad.idProvincia = provincia.idProvincia
+            and provincia.baja=0
+            and localidad.baja=0";
         $localidades = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){
@@ -23,7 +29,11 @@ class Localidad
     
        public function getAllByIdProvincia($LocalidadId){
         $id = $this->connection->real_escape_string($LocalidadId);
-        $query = "SELECT localidad.* FROM localidad where idProvincia = '$id'";
+               $query = 
+            "SELECT localidad.idLocalidad,localidad.idProvincia,localidad.descripcion,localidad.baja 
+             FROM localidad 
+             where idProvincia = '$id'
+             and localidad.baja=0";
         $localidades = array();
         if( $result = $this->connection->query($query) ){
             while($fila = $result->fetch_assoc()){

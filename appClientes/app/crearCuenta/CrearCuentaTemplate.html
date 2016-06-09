@@ -31,7 +31,7 @@
                 <input id="numDni" type="text" class="form-control" placeholder="D.N.I" ng-model="crearCta.clienteNuevo.numDni">
             </div>
             <div  id="divAlineacion">
-            <div  id="divAlineacion">
+            
                 <label>Tipo Dni:</label>
                 <div class="selectContainer">
                 <select class="form-control" id="idTipoDni" ng-model="crearCta.clienteNuevo.idTipoDni">
@@ -93,7 +93,7 @@
             <div  id="divAlineacion">
                 <label>Provincia:</label>
                 <div class="selectContainer">
-                <select id="idProvincia" ng-model="crearCta.clienteNuevo.idProvincia" ng-change="crearCta.getLocalidadesById(crearCta.clienteNuevo.idProvincia)">
+                <select class="form-control" id="idProvincia" ng-model="crearCta.clienteNuevo.idProvincia" ng-change="crearCta.getLocalidadesById(crearCta.clienteNuevo.idProvincia)">
                 <option ng-repeat="provincia in crearCta.provincias" ng-value = 'provincia.idProvincia'>
                         {{provincia.descripcion}}
                 </option>
@@ -106,7 +106,7 @@
                 
                 <label>Localidad:</label>
                 <div class="selectContainer">
-                <select id="idLocalidad" ng-model="crearCta.clienteNuevo.idLocalidad" >
+                <select class="form-control" id="idLocalidad" ng-model="crearCta.clienteNuevo.idLocalidad" >
                 <option ng-repeat="localidad in crearCta.localidades" ng-value = 'localidad.idLocalidad'>
                         {{localidad.descripcion}}
                 </option>

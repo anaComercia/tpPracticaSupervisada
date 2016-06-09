@@ -13,7 +13,6 @@ class Usuario
 
    public function loginByEmail($data){
       $email=$this->connection->real_escape_string($data['email']);
-       
        $queryUsuario =
         "SELECT 
         idUsuario
@@ -40,6 +39,7 @@ class Usuario
     public function loginByEmailPassword($data){
        $email=$this->connection->real_escape_string($data['email']);
        $password=$this->connection->real_escape_string($data['password']);
+        
        $queryUsuario =
         "SELECT 
           idUsuario
@@ -68,7 +68,7 @@ class Usuario
         return $datosUsuario;
     }
     
-    public function loginByEmailFechaNacimiento($data){
+     public function loginByEmailFechaNacimiento($data){
        $email=$this->connection->real_escape_string($data['email']);
        $date=$this->connection->real_escape_string($data['fechaNacimiento']);
         
@@ -109,12 +109,11 @@ class Usuario
         return $datosUsuario;
     }
     
+    
     public function getLogin(){
-        
-        
         $objeto = null;
         
-            if(isset($_COOKIE["emailUsuario"]) && isset($_COOKIE["idUsuario"]))
+        if(isset($_COOKIE["emailUsuario"]) && isset($_COOKIE["idUsuario"]))
         {
             $idUsuario = $_COOKIE["idUsuario"];
             $emailUsuario = $_COOKIE["emailUsuario"];

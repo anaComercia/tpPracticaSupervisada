@@ -21,11 +21,11 @@
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*Nombre:</label>
-                <input type="text" class="form-control" placeholder="Nombre" >
+                <input type="text" class="form-control" placeholder="Nombre" ng-model="cont.nombre" >
             </div>
             <div  id="divAlineacion">
                 <label>*Apellido:</label>
-                <input type="text" class="form-control" placeholder="Apellido" >
+                <input type="text" class="form-control" placeholder="Apellido" ng-model="cont.apellido">
             </div>
             </div>
             
@@ -33,14 +33,14 @@
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*E-mail:</label>
-                <input type="text" class="form-control" placeholder="Email" >
+                <input type="text" class="form-control" placeholder="Email" ng-model="cont.email" >
             </div>
             </div>
 
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>Tel&eacute;fono/Celular:</label>
-                <input type="text" class="form-control" placeholder="Telefono/Celular" >
+                <input type="text" class="form-control" placeholder="Telefono/Celular" ng-model="cont.telefono" >
             </div>
             </div>
 
@@ -54,7 +54,7 @@
             <div id="divDetalle">
             <div  id="divAlineacion">
                 <label>*Asunto:</label>
-                <input type="text" class="form-control" placeholder="Asunto" >
+                <input type="text" class="form-control" placeholder="Asunto" ng-model="cont.asunto">
             </div>
             </div>
             
@@ -67,7 +67,7 @@
             
             <div id="divDetalle">
             <div  id="divAlineacion">
-                <textarea class="form_textarea4" cols="40" rows="10" id="Mensaje" placeholder="Escriba a quí su mensaje....."></textarea>
+                <textarea class="form_textarea4" cols="40" rows="10" id="Mensaje" placeholder="Escriba a quí su mensaje....." ng-model="cont.mensaje"></textarea>
             </div>
             </div>
             
@@ -79,7 +79,7 @@
         <!-- BOTONES!-->
         <div class="row" class="col-md-12" style=" "   >
             <div class="col-md-6  col-md-offset-6">
-               <button class="btn btn-default btn-md btnBoton" >Aceptar</button>
+               <button class="btn btn-default btn-md btnBoton" ng-click="cont.enviarMail()">Aceptar</button>
 	           <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
             </div>
         </div>

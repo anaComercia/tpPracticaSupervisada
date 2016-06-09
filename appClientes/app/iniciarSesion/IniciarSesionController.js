@@ -1,52 +1,3 @@
-/*var iniciarSesion = angular.module("backendEcommerceClientes.iniciarSesion",['ngCookies']);
-
-iniciarSesion.controller("IniciarSesionController", ["$state","InicioService","$rootScope","$cookies", function($state, InicioService,$rootScope,$cookies){
-    var vm = this;
-    vm.datosUsuario=[];  
-    vm.email=" ";
-    vm.password=" ";
-    vm.fechaNacimiento= new Date();
-    var emailUsuarioLogueado;
-    var idUsuarioLogueado;
-    vm.usuarioLogueado = false;
-    
-    vm.usuarioGetAllByEmailPassword = function(){
-        return InicioService.getAllByEmailPassword(vm.email,vm.password).then(function(data){
-              debugger;
-            if(data != undefined && data.length>0){
-                    vm.datosUsuario = data;
-                    emailUsuarioLogueado = vm.datosUsuario[0].usuario;
-                    idUsuarioLogueado = vm.datosUsuario[0].idUsuario;
-                
-                //    $cookies.put('emailUsuarioLogueado', 'emailUsuarioLogueado');
-                //    $cookies.put('idUsuarioLogueado', 'idUsuarioLogueado');
-                debugger;
-             }
-        });
-    };
-    
-    // acastillo 04/06/2016 
-    vm.usuarioGetAllByEmailFechaNacimiento = function(){
-        return InicioService.getAllByEmailFechaNacimiento(vm.email,vm.fechaNacimiento).then(function(data){
-
-            console.log('Controller-vm.email:'+vm.email);
-            console.log('Controller-vm.fechaNacimiento:'+vm.fechaNacimiento);
-            
-            if(data){
-                    vm.datosUsuario = data;
-
-            }
-        });
-    };
-    
-    
-    vm.cerrarSesion = function(){
-        return InicioService.cerrarSesion().then(function(data){
-          $window.location.href = 'http://localhost/tp/index.html';   
-        });
-    }
-}]);*/
-
 angular
     .module("backendEcommerceClientes.iniciarSesion")
     .controller("IniciarSesionController", InicioSesionCtrl);
@@ -71,10 +22,8 @@ function InicioSesionCtrl($state, InicioService,$rootScope, $scope) {
                     emailUsuarioLogueado = vm.datosUsuario[0].usuario;
                     idUsuarioLogueado = vm.datosUsuario[0].idUsuario;
                     vm.getLogin();
-                    $state.go("perfil");
-                //    $cookies.put('emailUsuarioLogueado', 'emailUsuarioLogueado');
-                //    $cookies.put('idUsuarioLogueado', 'idUsuarioLogueado');
-                debugger;
+                    $state.go("perfil.detalleCuenta");
+					debugger;
              }
         });
     };
@@ -82,38 +31,34 @@ function InicioSesionCtrl($state, InicioService,$rootScope, $scope) {
      vm.getLogin = function(){
       return InicioService.getLogin().then(function(data){
             if(data){    
-            $scope.main.datosUsuario = data;
+                $scope.main.datosUsuario = data;
             }else{
-            $scope.main.datosUsuario = null;
+                $scope.main.datosUsuario = null;
             }
         });
     }
     // acastillo 04/06/2016 
-    vm.usuarioGetAllByEmailFechaNacimiento = function(){
-        return InicioService.loginByEmailFechaNacimiento(vm.email,vm.fechaNacimiento).then(function(data){
+    vm.usuarioGetAllByEmailDni = function(){
+        return InicioService.getAllByEmailDni(vm.email,vm.dni).then(function(data){
 
             console.log('Controller-vm.email:'+vm.email);
-            console.log('Controller-vm.fechaNacimiento:'+vm.fechaNacimiento);
+            console.log('Controller-vm.dni:'+vm.dni);
             
             if(data){
                     vm.datosUsuario = data;
+              
+                    MailService.mandarMail("modashowventaropa@gmail.com" //mailRemitente
+                                           , "ModaShow"                       //nombreRemitente
+                                           , vm.email//"adriana.castillo2025@gmail.com"//mailDestinatario
+                                           , "Mail OK"                       //asunto
+                                           , "<h2>Todo ok 2</h2>"              //contenido
+                                          );
 
             }
         });
     };
     
-    
-   /* function checkCookie() {
-        emailUsuarioLogueado=getCookie("emailUsuario");
-        idUsuarioLogueado = getCookie("idUsuario");
-        if (emailUsuarioLogueado!="" && idUsuarioLogueado!="") {
-            alert("Welcome again " + emailUsuarioLogueado + " "+ idUsuarioLogueado);
-            vm.usuarioLogueado = false;
-        } else {
-          vm.usuarioLogueado = true;
-        }
-    }
-    */
+
       vm.init = function(){
        // vm.getLogin();
 	};

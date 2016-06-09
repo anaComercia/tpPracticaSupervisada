@@ -98,7 +98,9 @@ function MainCtrl($state, FooterService, $rootScope, InicioService) {
     
     
     vm.getLogin = function(){
+        debugger;
       return InicioService.getLogin().then(function(data){
+          debugger;
             if(data){    
                vm.datosUsuario = data;
             }else{

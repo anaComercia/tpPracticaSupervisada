@@ -59,7 +59,7 @@
             <div  id="divAlineacion">
                 <label>Fecha Nacimiento:</label>
                 <input id="fechaNacimiento" type=date class="form-control" placeholder="Fecha Nacimiento" 
-                       ng-model="prfl.datosDelCliente[0].fechaNacimiento" />
+                       ng-model="prfl.dateEditar" />
             </div>
             <div  id="divAlineacion">
                 <label>Sexo:</label>
@@ -145,7 +145,7 @@
         <div class="row" class="col-md-12" style=" "   >
             <div class="col-md-6  col-md-offset-6">
                <button class="btn btn-default btn-md btnBoton" ng-click="prfl.modificacionDeCuenta()">Aceptar</button>
-	           <button class="btn btn-default btn-md btnBoton" >Cancelar</button>
+	           <button class="btn btn-default btn-md btnBoton" ng-click="prfl.clear()">Cancelar</button>
             </div>
         </div>
     </div>

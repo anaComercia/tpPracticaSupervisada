@@ -22,7 +22,7 @@ function PerfilCtrl($state, PerfilService, $scope, ProductosService) {
     
     //acastillo 30/05/2016
     vm.datosUsuario=[];  
-    vm.emailUsuario="vanesa";
+    vm.emailUsuario="adriana.castillo2025@gmail.com";//vanesa";
     vm.passwordNueva=" ";
     vm.passwordActual=" ";
     vm.passwordRepetir=" ";

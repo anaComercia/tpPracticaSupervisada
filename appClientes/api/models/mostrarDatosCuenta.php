@@ -23,6 +23,7 @@ class MostrarCuenta
         "SELECT p.nombre, p.apellido 
         , p.numDni, p.tipoDni as idTipoDni
         , p.telefono, p.email ,p.fechaNacimiento
+        , date_format(p.fechaNacimiento,'%d/%m/%Y') as fechaNacimientoConFormato
         ,d.direccion, d.cp,d.idDireccion 
         ,l.idLocalidad,l.descripcion as descripcion_localidad 
         ,pr.idProvincia, pr.descripcion as descripcion_provincia 

@@ -51,7 +51,7 @@ function InicioSesionCtrl($state, InicioService,$rootScope, $scope) {
                                            , "ModaShow"                       //nombreRemitente
                                            , vm.email//"adriana.castillo2025@gmail.com"//mailDestinatario
                                            , "Mail OK"                       //asunto
-                                           , "<h2>Todo ok 2</h2>"              //contenido
+                                           , "<h2>r</h2>"              //contenido
                                           );
 
             }

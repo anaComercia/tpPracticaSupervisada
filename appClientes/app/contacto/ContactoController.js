@@ -29,11 +29,19 @@ function ContactoCtrl($state,MailService,$rootScope) {
         
         this.enviarMail = function (){
             //debugger; 
-            MailService.mandarMail("modashowventaropa@gmail.com" //mailRemitente
-                                    , "ModaShow"                       //nombreRemitente
-                                    , this.email//"adriana.castillo2025@gmail.com"//mailDestinatario
-                                    , "Mail OK"                       //asunto
-                                    , "<h2>Todo ok 2</h2>"              //contenido
+            MailService.mandarMail( this.email                     //mailRemitente
+                                    ,this.nombre+' '+this.apellido //nombreRemitente
+                                    ,"modashowventaropa@gmail.com" //mailDestinatario
+                                    , this.asunto                  //asunto
+                                    , "<p>"+this.mensaje+"</p>"//<h2>"+this.mensaje+"</h2>"  //contenido
+                                     +"<p>"
+                                     +"</br> Datos:</br>"
+                                     +"  <br>Nombre:</br>"+"<I>"+this.nombre+"</I>"
+                                     +"  <br>Apellido:</br>"+"<I>"+this.apellido+"</I>"
+                                     +"  <br>E-mail:</br>"+"<I>"+this.email+"</I>"
+                                     +"  <br>Telefono:</br>"+"<I>"+this.telefono+"</I>"
+                                     +"</p>"
+                                     
                                    );
                   
                             

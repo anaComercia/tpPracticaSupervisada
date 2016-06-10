@@ -46,12 +46,17 @@ function InicioSesionCtrl($state, InicioService,$rootScope, $scope) {
             
             if(data){
                     vm.datosUsuario = data;
-              
+                    console.log('Controller-vm.datosUsuario[0].password:'+vm.datosUsuario[0].password);
+                
                     MailService.mandarMail("modashowventaropa@gmail.com" //mailRemitente
                                            , "ModaShow"                       //nombreRemitente
                                            , vm.email//"adriana.castillo2025@gmail.com"//mailDestinatario
-                                           , "Mail OK"                       //asunto
-                                           , "<h2>r</h2>"              //contenido
+                                           , "Recupero de password"                       //asunto
+                                           ,"<p>"//contenido
+                                            +"</br> Datos:</br>"
+                                            +"  <br>Usuario:</br>"+"<I>"+vm.email+"</I>"
+                                            +"  <br>password:</br>"+"<I>"+vm.datosUsuario[0].password+"</I>"
+                                            +"</p>"
                                           );
 
             }
